@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07100d">
+  <meta name="description" content="The Gridiron Pulse — football signal intelligence, Player Edge picks, matchup breakdowns, and live player-stat tracking.">
+  <title>The Gridiron Pulse</title>
+  <style>
+    :root {
+      --ink: #07100d;
+      --ink-2: #0c1813;
+      --ink-3: #13231b;
+      --paper: #f1efe7;
+      --paper-2: #e4e1d7;
+      --white: #fffdf6;
+      --acid: #c9ff32;
+      --cyan: #59d7ff;
+      --red: #ff544e;
+      --orange: #ff783f;
+      --muted: #6d766f;
+      --line: rgba(7, 16, 13, .15);
+      --dark-line: rgba(255, 255, 255, .12);
+      --mono: "Courier New", Courier, monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --display: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--ink); }
+    body { margin: 0; color: var(--ink); background: var(--ink); font-family: var(--sans); }
+    button, a { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--acid); outline-offset: 3px; }
+    .shell { min-width: 320px; overflow: hidden; background: var(--paper); }
+    .wrap { width: min(1380px, calc(100% - 48px)); margin: 0 auto; }
+    .kicker { margin: 0 0 12px; color: #4b554f; font: 800 10px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+    .kicker.light { color: var(--acid); }
+    .kicker .dot { margin-right: 8px; }
+    .dot { width: 8px; height: 8px; display: inline-block; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 5px rgba(255,84,78,.13); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 50% { opacity: .5; transform: scale(.72); } }
+
+    .site-header { height: 78px; padding: 0 clamp(18px,4vw,62px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px; color: var(--white); background: rgba(7,16,13,.98); border-bottom: 1px solid var(--dark-line); position: sticky; top: 0; z-index: 40; }
+    .brand { width: max-content; padding: 0; border: 0; display: inline-flex; align-items: center; gap: 12px; color: inherit; background: transparent; cursor: pointer; text-align: left; }
+    .brand-mark { width: 38px; height: 25px; border: 2px solid var(--acid); border-radius: 50%; display: grid; place-items: center; position: relative; transform: rotate(-17deg); }
+    .brand-mark:before, .brand-mark:after, .brand-mark i:before, .brand-mark i:after { content: ""; position: absolute; background: var(--acid); }
+    .brand-mark:before, .brand-mark:after, .brand-mark i:before { width: 2px; height: 6px; top: 7px; }
+    .brand-mark:before { left: 12px; } .brand-mark i:before { left: 17px; } .brand-mark:after { left: 22px; }
+    .brand-mark i:after { width: 15px; height: 2px; left: 10px; top: 9px; }
+    .brand-copy { display: grid; line-height: .8; }
+    .brand-copy strong { font-size: 18px; font-weight: 950; letter-spacing: -.045em; }
+    .brand-copy em { margin-top: 6px; color: var(--acid); font: 850 8px/1 var(--mono); font-style: normal; letter-spacing: .31em; }
+    .desktop-nav { display: flex; align-items: center; gap: clamp(18px,2.4vw,38px); }
+    .desktop-nav button { padding: 10px 0; border: 0; color: rgba(255,255,255,.65); background: transparent; font-size: 11px; font-weight: 760; cursor: pointer; }
+    .desktop-nav button:hover { color: var(--acid); }
+    .live-jump { height: 38px; padding: 0 15px; border: 1px solid var(--acid); justify-self: end; display: inline-flex; align-items: center; gap: 9px; color: var(--acid); background: transparent; font: 850 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+
+    .score-ribbon { min-height: 94px; display: flex; color: var(--white); background: #0b1612; border-bottom: 1px solid var(--dark-line); }
+    .score-label { width: 145px; flex: 0 0 145px; padding: 18px 24px; display: flex; flex-direction: column; justify-content: center; background: var(--acid); color: var(--ink); }
+    .score-label span { font: 850 9px/1 var(--mono); letter-spacing: .16em; }
+    .score-label strong { margin-top: 7px; font-size: 11px; font-weight: 950; }
+    .score-scroll { min-width: 0; flex: 1; display: flex; overflow-x: auto; scrollbar-color: rgba(201,255,50,.45) transparent; }
+    .score-chip { min-width: 138px; padding: 13px 17px; border-right: 1px solid var(--dark-line); display: grid; align-content: center; gap: 7px; background: rgba(255,255,255,.018); }
+    .score-chip.live { min-width: 150px; background: rgba(255,84,78,.05); }
+    .score-chip.next { background: rgba(201,255,50,.045); }
+    .score-status { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,.46); font: 800 7px/1 var(--mono); letter-spacing: .08em; }
+    .score-chip.live .score-status { color: #ff766f; }
+    .score-chip.next .score-status { color: var(--acid); }
+    .score-status i { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+    .score-chip > div:not(.score-status) { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .score-chip b { font-size: 11px; } .score-chip strong { font: 900 16px/1 var(--mono); }
+
+    .hero { min-height: 650px; padding: 82px max(24px,calc((100vw - 1380px)/2)); display: grid; grid-template-columns: minmax(0,1.2fr) minmax(390px,.8fr); grid-template-rows: 1fr auto; gap: 52px 70px; color: var(--white); background: var(--ink); position: relative; isolation: isolate; }
+    .hero:before { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .17; background: repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),rgba(255,255,255,.18) 10%); }
+    .hero:after { content: ""; width: 520px; height: 520px; border: 1px solid rgba(201,255,50,.23); border-radius: 50%; position: absolute; right: -180px; top: 60px; z-index: -1; box-shadow: 0 0 0 120px rgba(201,255,50,.018), 0 0 0 240px rgba(201,255,50,.012); }
+    .hero-copy { align-self: center; max-width: 830px; }
+    .eyebrow { margin-bottom: 24px; display: flex; align-items: center; gap: 12px; color: var(--acid); font: 850 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow i { width: 40px; height: 1px; background: rgba(201,255,50,.5); }
+    .hero h1 { margin: 0; font: 400 clamp(62px,8.6vw,132px)/.78 var(--display); letter-spacing: -.035em; text-transform: uppercase; }
+    .hero h1 em { color: var(--acid); font-style: normal; }
+    .hero-copy > p { max-width: 680px; margin: 32px 0 0; color: rgba(255,255,255,.67); font-size: clamp(15px,1.4vw,19px); line-height: 1.65; }
+    .hero-actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .primary, .ghost { min-height: 49px; padding: 0 20px; display: inline-flex; align-items: center; justify-content: center; gap: 20px; border: 1px solid var(--acid); cursor: pointer; font-weight: 850; }
+    .primary { color: var(--ink); background: var(--acid); }
+    .ghost { color: var(--white); background: transparent; border-color: rgba(255,255,255,.32); }
+    .feature { align-self: center; padding: 24px; border: 1px solid var(--dark-line); background: rgba(255,255,255,.035); box-shadow: 24px 24px 0 rgba(201,255,50,.055); backdrop-filter: blur(12px); }
+    .feature-top { display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,.48); font: 800 8px/1 var(--mono); letter-spacing: .12em; }
+    .feature-top span { color: #ff746f; } .feature-top i { width: 6px; height: 6px; margin-right: 7px; display: inline-block; border-radius: 50%; background: var(--red); }
+    .feature-matchup { padding: 26px 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 15px; border-bottom: 1px solid var(--dark-line); }
+    .feature-team { display: grid; justify-items: center; gap: 12px; }
+    .team-orb { width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; color: white; font: 950 15px/1 var(--mono); }
+    .team-orb.blue { background: #2d6cdf; } .team-orb.orange { background: #ff5a1f; }
+    .feature-team b { font: 950 52px/1 var(--mono); }
+    .feature-clock { display: grid; justify-items: center; gap: 5px; }
+    .feature-clock small { color: var(--acid); font: 850 8px/1 var(--mono); letter-spacing: .15em; }
+    .feature-clock strong { font: 900 22px/1 var(--mono); }
+    .feature-clock em { padding: 5px 7px; color: rgba(255,255,255,.52); border: 1px solid var(--dark-line); font: 800 7px/1 var(--mono); font-style: normal; }
+    .feature-alert { margin: 18px 0; padding: 14px; display: flex; gap: 12px; color: var(--ink); background: var(--acid); }
+    .feature-alert > span { font-size: 22px; } .feature-alert div { display: grid; gap: 4px; }
+    .feature-alert small { font: 900 7px/1 var(--mono); letter-spacing: .12em; }
+    .feature-alert strong { font-size: 12px; }
+    .mini-label { display: flex; justify-content: space-between; font: 800 8px/1 var(--mono); text-transform: uppercase; }
+    .mini-label b { color: var(--acid); font-size: 14px; }
+    .mini-pulse { height: 5px; margin-top: 10px; background: rgba(255,255,255,.1); }
+    .mini-pulse i { height: 100%; display: block; background: var(--acid); }
+    .feature-foot { margin: 12px 0 0; color: rgba(255,255,255,.5); font-size: 11px; line-height: 1.5; }
+    .hero-metrics { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--dark-line); }
+    .hero-metrics div { min-height: 92px; padding: 20px 28px; display: flex; align-items: flex-end; gap: 10px; border-right: 1px solid var(--dark-line); }
+    .hero-metrics strong { color: var(--acid); font: 400 35px/1 var(--display); }
+    .hero-metrics span { padding-bottom: 2px; color: rgba(255,255,255,.47); font: 800 8px/1 var(--mono); text-transform: uppercase; }
+
+    .section { padding: 108px 0; }
+    .section-heading { margin-bottom: 45px; display: grid; grid-template-columns: 1fr minmax(280px,440px); align-items: end; gap: 40px; }
+    .section-title { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; }
+    .section-index { grid-row: 1 / 3; color: #8a918c; font: 850 10px/1 var(--mono); }
+    .section-title .kicker { margin-bottom: 11px; }
+    .section-title h2 { margin: 0; font: 400 clamp(42px,5.6vw,82px)/.88 var(--display); letter-spacing: -.025em; }
+    .heading-copy { margin: 0; color: #68716b; font-size: 14px; line-height: 1.7; }
+    .pulse-layout { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(320px,.8fr); gap: 22px; }
+    .lead-story { display: grid; grid-template-columns: minmax(280px,.76fr) 1.24fr; border: 1px solid var(--line); background: var(--white); }
+    .story-art { min-height: 360px; padding: 24px; color: var(--white); background: #123b26; position: relative; overflow: hidden; }
+    .story-art:before { content: ""; position: absolute; inset: 0; opacity: .22; background: repeating-linear-gradient(90deg,transparent 0,transparent 19%,rgba(255,255,255,.38) 20%); }
+    .story-tag { position: relative; z-index: 1; color: var(--acid); font: 850 8px/1 var(--mono); letter-spacing: .12em; }
+    .story-score { height: calc(100% - 40px); position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .story-score span { font: 400 clamp(65px,7vw,104px)/1 var(--display); }
+    .story-score i { color: var(--acid); font-style: normal; }
+    .story-field { position: absolute; z-index: 1; left: 24px; right: 24px; bottom: 25px; display: flex; align-items: center; gap: 12px; }
+    .story-field i { height: 1px; flex: 1; background: rgba(255,255,255,.36); }
+    .story-field b { color: var(--acid); font: 800 10px/1 var(--mono); }
+    .story-copy { padding: clamp(28px,4vw,58px); display: flex; flex-direction: column; justify-content: center; }
+    .story-number { color: #8a918c; font: 850 9px/1 var(--mono); letter-spacing: .12em; }
+    .story-copy h3 { margin: 22px 0 18px; font-size: clamp(24px,2.5vw,37px); line-height: 1.08; letter-spacing: -.035em; }
+    .story-copy > p { margin: 0; color: #68716b; font-size: 14px; line-height: 1.7; }
+    .story-tags { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 7px; }
+    .story-tags span { padding: 7px 9px; border: 1px solid var(--line); font: 800 7px/1 var(--mono); text-transform: uppercase; }
+    .alerts { border: 1px solid var(--line); background: var(--paper-2); }
+    .panel-label { padding: 18px 20px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); font: 850 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .panel-label b { color: #7a837d; }
+    .alert-row { min-height: 83px; padding: 16px 18px; display: grid; grid-template-columns: 48px 1fr auto; align-items: start; gap: 14px; border-bottom: 1px solid var(--line); }
+    .alert-row:last-child { border-bottom: 0; }
+    .alert-time { padding-top: 4px; color: #718078; font: 900 8px/1 var(--mono); }
+    .alert-time.hot { color: var(--red); } .alert-time.watch { color: #c27816; } .alert-time.next { color: #2a7352; }
+    .alert-row strong { font-size: 13px; } .alert-row p { margin: 5px 0 0; color: #6c756f; font-size: 11px; line-height: 1.45; }
+
+    .edge-section { background: #dfe3d8; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .edge-board { border: 1px solid rgba(7,16,13,.3); background: var(--paper); }
+    .edge-rail { display: flex; overflow-x: auto; background: var(--ink); }
+    .edge-rail button { min-width: 128px; min-height: 90px; padding: 14px 15px; border: 0; border-right: 1px solid var(--dark-line); display: grid; align-content: center; gap: 7px; color: rgba(255,255,255,.58); background: transparent; text-align: left; cursor: pointer; }
+    .edge-rail button.active { color: var(--ink); background: var(--acid); }
+    .edge-state { color: #949f98; font: 850 7px/1 var(--mono); letter-spacing: .1em; }
+    .edge-state.live { color: #ff7770; } .edge-state.up-next { color: var(--acid); }
+    .edge-state.preview { color: var(--acid); }
+    .edge-rail button.active .edge-state { color: rgba(7,16,13,.58); }
+    .edge-rail strong { font: 900 12px/1 var(--mono); } .edge-rail strong i { opacity: .45; font-style: normal; }
+    .edge-rail small { font: 750 7px/1 var(--mono); }
+    .edge-context { min-height: 150px; padding: 30px 34px; display: grid; grid-template-columns: 1fr minmax(300px,.8fr); align-items: center; gap: 40px; border-bottom: 1px solid var(--line); }
+    .edge-lock { display: inline-flex; align-items: center; gap: 7px; color: #556159; font: 850 8px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .edge-lock i { width: 7px; height: 7px; border-radius: 50%; background: #5d8060; }
+    .edge-context h3 { margin: 15px 0 0; font: 400 clamp(38px,4.4vw,68px)/.8 var(--display); }
+    .edge-context h3 em { color: #8c948e; font-size: .46em; font-style: normal; }
+    .edge-read small { color: #7a837d; font: 850 7px/1 var(--mono); letter-spacing: .12em; }
+    .edge-read p { margin: 9px 0; font-size: 13px; line-height: 1.55; }
+    .edge-read span { color: #6e7871; font: 750 8px/1 var(--mono); }
+    .edge-picks { padding: 24px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .edge-card { --pick: #2d6cdf; padding: 23px; border: 1px solid var(--line); background: var(--white); box-shadow: inset 0 4px 0 var(--pick); }
+    .edge-card-top { display: flex; justify-content: space-between; color: #747d77; font: 850 8px/1 var(--mono); letter-spacing: .08em; }
+    .edge-card-top span { color: var(--pick); }
+    .edge-player { margin-top: 22px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; }
+    .edge-number { width: 52px; height: 52px; border: 1px solid var(--pick); display: grid; place-items: center; color: var(--pick); font: 400 26px/1 var(--display); }
+    .edge-player h4 { margin: 0 0 7px; font-size: clamp(21px,2vw,29px); letter-spacing: -.035em; }
+    .edge-player p { margin: 0; color: #69726c; font-size: 11px; line-height: 1.45; }
+    .edge-score { --score: 80; width: 66px; height: 66px; border-radius: 50%; display: grid; place-content: center; justify-items: center; background: radial-gradient(circle at center,var(--white) 57%,transparent 59%), conic-gradient(var(--pick) calc(var(--score)*1%),#dfe2db 0); }
+    .edge-score strong { font: 400 24px/1 var(--display); } .edge-score span { color: #768078; font: 850 6px/1 var(--mono); letter-spacing: .12em; }
+    .signal-list { margin-top: 22px; border-top: 1px solid var(--line); }
+    .signal { min-height: 65px; padding: 13px 0; display: grid; grid-template-columns: 28px 112px 1fr; align-items: start; gap: 10px; border-bottom: 1px solid var(--line); }
+    .signal b { color: var(--pick); font: 900 8px/1 var(--mono); } .signal span { font: 900 9px/1.2 var(--mono); text-transform: uppercase; }
+    .signal p { margin: 0; color: #6b746e; font-size: 11px; line-height: 1.45; }
+    .edge-method { padding: 17px 24px; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; color: rgba(255,255,255,.62); background: var(--ink); font-size: 10px; line-height: 1.5; }
+    .edge-method span, .edge-method b { color: var(--acid); font: 850 8px/1 var(--mono); text-transform: uppercase; }
+
+    .live-section { padding: 110px 0; color: var(--white); background: var(--ink); }
+    .live-heading { margin-bottom: 44px; display: grid; grid-template-columns: 1fr minmax(280px,430px); align-items: end; gap: 40px; }
+    .live-heading h2 { margin: 0; font: 400 clamp(52px,7vw,98px)/.78 var(--display); }
+    .live-heading h2 em { color: var(--acid); font-style: normal; }
+    .live-heading > p { margin: 0; color: rgba(255,255,255,.54); font-size: 14px; line-height: 1.65; }
+    .game-switcher { display: flex; overflow-x: auto; border: 1px solid var(--dark-line); border-bottom: 0; }
+    .game-switcher button { min-width: 245px; min-height: 92px; padding: 15px 20px; border: 0; border-right: 1px solid var(--dark-line); color: rgba(255,255,255,.5); background: var(--ink-2); text-align: left; cursor: pointer; }
+    .game-switcher button.active { color: var(--ink); background: var(--acid); }
+    .game-switcher button > span { font: 850 7px/1 var(--mono); letter-spacing: .1em; }
+    .game-switcher button > div { margin-top: 13px; display: grid; grid-template-columns: 1fr auto auto auto 1fr; align-items: center; gap: 9px; }
+    .game-switcher b { font: 900 11px/1 var(--mono); } .game-switcher b:last-child { text-align: right; }
+    .game-switcher strong { font: 400 23px/1 var(--display); } .game-switcher i { opacity: .4; font-style: normal; }
+    .live-console { border: 1px solid var(--dark-line); background: #0b1511; }
+    .console-scoreboard { padding: clamp(20px,3vw,40px); border-bottom: 1px solid var(--dark-line); }
+    .console-meta { display: flex; justify-content: space-between; color: rgba(255,255,255,.48); font: 850 8px/1 var(--mono); letter-spacing: .08em; }
+    .console-meta span { display: inline-flex; align-items: center; gap: 9px; color: #ff7770; }
+    .console-score { padding: 28px 0; display: grid; grid-template-columns: 1fr 140px 1fr; align-items: center; gap: 22px; }
+    .console-team { display: flex; align-items: center; gap: 18px; }
+    .console-team.home { justify-content: flex-end; text-align: right; }
+    .console-mark { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; color: white; font: 950 16px/1 var(--mono); }
+    .console-team div { display: grid; gap: 8px; }
+    .console-team small { color: rgba(255,255,255,.48); font-size: 10px; }
+    .console-team strong { font: 400 clamp(52px,6vw,86px)/.72 var(--display); }
+    .console-clock { display: grid; justify-items: center; gap: 6px; }
+    .console-clock span { color: var(--acid); font: 850 8px/1 var(--mono); letter-spacing: .12em; }
+    .console-clock strong { font: 900 30px/1 var(--mono); }
+    .console-clock em { color: rgba(255,255,255,.44); font: 800 7px/1 var(--mono); font-style: normal; }
+    .console-alert { min-height: 45px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--ink); background: var(--acid); font: 900 9px/1.3 var(--mono); }
+    .field { height: 52px; margin: 22px 0; border: 1px solid rgba(255,255,255,.12); position: relative; overflow: hidden; background: repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),rgba(255,255,255,.13) 10%),#173b28; }
+    .field-fill { height: 100%; position: absolute; left: 0; top: 0; background: rgba(201,255,50,.13); transition: width .25s ease; }
+    .field-ball { width: 15px; height: 10px; position: absolute; top: calc(50% - 5px); border-radius: 50%; background: #9c5a2b; transform: rotate(-18deg); transition: left .25s ease; }
+    .field-numbers { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: space-around; color: rgba(255,255,255,.35); font: 800 7px/1 var(--mono); }
+    .win-pulse { display: grid; grid-template-columns: 150px 1fr 150px; align-items: center; gap: 15px; }
+    .win-pulse > div:first-child, .win-pulse > div:last-child { display: flex; align-items: center; justify-content: space-between; gap: 9px; color: rgba(255,255,255,.48); font: 800 7px/1 var(--mono); text-transform: uppercase; }
+    .win-pulse > div:last-child { flex-direction: row-reverse; }
+    .win-pulse strong { color: var(--white); font-size: 14px; }
+    .win-bar { height: 5px; display: flex; background: rgba(255,255,255,.1); }
+    .win-bar i, .win-bar b { height: 100%; transition: width .25s ease; }
+    .team-stats { margin-top: 28px; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--dark-line); border-left: 1px solid var(--dark-line); }
+    .team-stats div { min-height: 58px; padding: 12px; display: grid; grid-template-columns: 1fr auto 1fr; place-items: center; gap: 9px; border-right: 1px solid var(--dark-line); border-bottom: 1px solid var(--dark-line); }
+    .team-stats b { font: 900 13px/1 var(--mono); } .team-stats span { color: rgba(255,255,255,.38); font: 800 7px/1 var(--mono); text-transform: uppercase; }
+    .stat-room { padding: clamp(20px,3vw,40px); }
+    .stat-tabs { display: flex; border-bottom: 1px solid var(--dark-line); }
+    .stat-tabs button { padding: 13px 20px; border: 0; border-bottom: 3px solid transparent; color: rgba(255,255,255,.45); background: transparent; font: 850 9px/1 var(--mono); cursor: pointer; }
+    .stat-tabs button.active { color: var(--acid); border-bottom-color: var(--acid); }
+    .player-grid { margin-top: 20px; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .player-card { min-height: 238px; padding: 19px; border: 1px solid var(--dark-line); color: var(--white); background: rgba(255,255,255,.025); text-align: left; cursor: pointer; transition: transform .16s ease,border-color .16s ease; }
+    .player-card:hover { transform: translateY(-3px); border-color: rgba(201,255,50,.52); }
+    .player-top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
+    .player-number { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid; font: 900 12px/1 var(--mono); }
+    .player-top div { display: grid; gap: 5px; }
+    .player-top small { color: rgba(255,255,255,.4); font: 800 7px/1 var(--mono); text-transform: uppercase; }
+    .player-top strong { font-size: 15px; }
+    .player-card > p { min-height: 48px; margin: 18px 0; color: rgba(255,255,255,.52); font-size: 10px; line-height: 1.55; }
+    .player-stats { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--dark-line); }
+    .player-stats div { padding: 13px 5px 0; display: grid; gap: 5px; text-align: center; }
+    .player-stats strong { font: 900 13px/1 var(--mono); } .player-stats span { color: rgba(255,255,255,.34); font: 800 6px/1.2 var(--mono); }
+    .player-hint { margin: 15px 0 0; color: rgba(255,255,255,.34); font: 750 8px/1 var(--mono); }
+
+    .matchup-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .matchup-card { min-height: 330px; padding: 25px; border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; }
+    .matchup-top { display: flex; justify-content: space-between; font: 850 8px/1 var(--mono); letter-spacing: .08em; }
+    .matchup-card > small { margin-top: 37px; color: #7a837d; font: 800 8px/1 var(--mono); }
+    .matchup-card h3 { margin: 14px 0; font-size: 25px; line-height: 1.06; letter-spacing: -.035em; }
+    .matchup-card > p { margin: 0; color: #68716b; font-size: 11px; line-height: 1.55; }
+    .matchup-result { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .matchup-result strong { font: 900 10px/1 var(--mono); } .matchup-result span { padding: 7px 8px; border: 1px solid; font: 850 7px/1 var(--mono); }
+
+    .standout-section { color: var(--white); background: #0f1c17; }
+    .dark-heading .section-index { color: rgba(255,255,255,.38); }
+    .dark-heading .heading-copy { color: rgba(255,255,255,.48); }
+    .standout-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--dark-line); border: 1px solid var(--dark-line); }
+    .standout-card { min-height: 205px; padding: 23px; display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 17px; background: #101f19; }
+    .standout-rank { color: rgba(255,255,255,.25); font: 400 29px/1 var(--display); }
+    .standout-team { width: max-content; padding: 6px 8px; border: 1px solid; font: 850 7px/1 var(--mono); }
+    .standout-card div:nth-child(3) { grid-column: 2 / 3; }
+    .standout-card small { color: var(--acid); font: 850 8px/1 var(--mono); }
+    .standout-card h3 { margin: 9px 0; font-size: 23px; }
+    .standout-card p { margin: 0; color: rgba(255,255,255,.48); font-size: 11px; line-height: 1.5; }
+    .standout-card button { grid-column: 3; grid-row: 1 / 3; align-self: end; width: 38px; height: 38px; border: 1px solid var(--dark-line); color: var(--acid); background: transparent; cursor: pointer; }
+
+    .results-table { border: 1px solid var(--line); }
+    .results-header, .result-row { display: grid; grid-template-columns: 1fr 130px minmax(260px,1.2fr) 90px; align-items: center; gap: 18px; }
+    .results-header { min-height: 42px; padding: 0 20px; color: #7a837d; background: var(--paper-2); font: 850 7px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .result-row { min-height: 75px; padding: 12px 20px; border-top: 1px solid var(--line); background: var(--white); }
+    .result-teams { display: flex; align-items: center; gap: 12px; }
+    .result-teams span { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: white; font: 900 8px/1 var(--mono); }
+    .result-teams i { color: #929993; font: 800 8px/1 var(--mono); font-style: normal; }
+    .result-row > strong { font: 900 15px/1 var(--mono); }
+    .result-row > p { margin: 0; color: #68716b; font-size: 11px; }
+    .final-pill { width: max-content; padding: 6px 7px; color: #3b5f49; border: 1px solid #7d9c88; font: 850 7px/1 var(--mono); }
+    .results-footer { padding: 16px 19px; display: flex; justify-content: space-between; color: #68716b; background: #dfe3d8; font: 800 8px/1 var(--mono); }
+    .results-footer b { color: #335e43; }
+    .empty-results { min-height: 170px; padding: 34px; display: grid; place-items: center; text-align: center; background: var(--white); border-top: 1px solid var(--line); }
+    .empty-results strong { display: block; font: 400 34px/1 var(--display); }
+    .empty-results p { max-width: 520px; margin: 12px auto 0; color: #68716b; font-size: 12px; line-height: 1.6; }
+
+    .night-banner { min-height: 300px; padding: 55px max(24px,calc((100vw - 1380px)/2)); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 55px; color: var(--white); background: #07100d; border-top: 1px solid var(--dark-line); }
+    .night-banner h2 { margin: 10px 0; font: 400 clamp(42px,5vw,72px)/.85 var(--display); }
+    .night-banner h2 em { color: var(--acid); font-style: normal; }
+    .night-banner p:last-child { color: rgba(255,255,255,.48); font-size: 12px; }
+    .night-matchup { display: flex; align-items: center; gap: 14px; }
+    .night-team { width: 78px; height: 78px; border-radius: 50%; display: grid; place-items: center; font: 950 15px/1 var(--mono); }
+    .night-team.red { background: #c9233e; } .night-team.gold { color: var(--ink); background: #d7b85b; }
+    .night-matchup i { color: rgba(255,255,255,.35); font: 850 8px/1 var(--mono); font-style: normal; }
+    .night-banner button { height: 48px; padding: 0 18px; border: 1px solid var(--acid); color: var(--acid); background: transparent; font: 850 9px/1 var(--mono); cursor: pointer; }
+
+    footer { padding: 45px max(24px,calc((100vw - 1380px)/2)); display: grid; grid-template-columns: 1fr minmax(320px,.8fr) auto; align-items: center; gap: 50px; color: rgba(255,255,255,.43); background: #050b09; border-top: 1px solid var(--dark-line); }
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+    .footer-brand strong { color: var(--white); font-size: 13px; } .footer-brand p { margin: 6px 0 0; font-size: 9px; }
+    .source-note { margin: 0; font-size: 9px; line-height: 1.55; }
+    .footer-meta { display: grid; justify-items: end; gap: 7px; font: 800 7px/1 var(--mono); }
+
+    .overlay { position: fixed; inset: 0; z-index: 80; display: none; align-items: stretch; justify-content: flex-end; background: rgba(2,8,6,.75); backdrop-filter: blur(7px); }
+    .overlay.open { display: flex; }
+    .drawer { width: min(470px,100%); height: 100%; padding: 34px; overflow-y: auto; color: var(--white); background: #101f19; border-left: 1px solid var(--dark-line); box-shadow: -30px 0 80px rgba(0,0,0,.35); }
+    .drawer-close { width: 40px; height: 40px; float: right; border: 1px solid var(--dark-line); color: var(--white); background: transparent; font-size: 22px; cursor: pointer; }
+    .drawer-head { clear: both; padding-top: 42px; display: flex; align-items: center; gap: 18px; }
+    .drawer-number { width: 70px; height: 70px; border: 1px solid; display: grid; place-items: center; font: 400 34px/1 var(--display); }
+    .drawer-head small { color: rgba(255,255,255,.42); font: 800 8px/1 var(--mono); text-transform: uppercase; }
+    .drawer-head h3 { margin: 8px 0 0; font-size: 32px; letter-spacing: -.04em; }
+    .drawer-note { margin: 30px 0; color: rgba(255,255,255,.58); font-size: 13px; line-height: 1.65; }
+    .drawer-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--dark-line); border: 1px solid var(--dark-line); }
+    .drawer-stats div { min-height: 85px; padding: 18px; display: grid; gap: 7px; background: #13251d; }
+    .drawer-stats strong { font: 400 30px/1 var(--display); } .drawer-stats span { color: rgba(255,255,255,.4); font: 800 7px/1 var(--mono); }
+    .drawer-section { margin-top: 30px; border-top: 1px solid var(--dark-line); }
+    .drawer-section > span { display: block; padding: 20px 0 12px; color: var(--acid); font: 850 8px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .drawer-signal { min-height: 54px; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; border-bottom: 1px solid var(--dark-line); }
+    .drawer-signal b { color: rgba(255,255,255,.35); font: 850 8px/1 var(--mono); } .drawer-signal p { margin: 0; font-size: 12px; }
+
+    @media (max-width: 1080px) {
+      .desktop-nav { display: none; }
+      .site-header { grid-template-columns: 1fr auto; }
+      .hero { grid-template-columns: 1fr; }
+      .feature { max-width: 620px; }
+      .hero-metrics { grid-template-columns: repeat(2,1fr); }
+      .pulse-layout, .section-heading, .live-heading { grid-template-columns: 1fr; }
+      .matchup-grid { grid-template-columns: repeat(2,1fr); }
+      .standout-grid { grid-template-columns: repeat(2,1fr); }
+      .player-grid { grid-template-columns: repeat(2,1fr); }
+      .edge-context { grid-template-columns: 1fr; gap: 22px; }
+      .night-banner { grid-template-columns: 1fr auto; }
+      .night-banner button { grid-column: 1 / -1; width: max-content; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .footer-meta { grid-column: 1 / -1; grid-auto-flow: column; justify-content: start; }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 28px,1380px); }
+      .site-header { height: 66px; }
+      .brand-copy strong { font-size: 15px; }
+      .live-jump { padding: 0 10px; font-size: 7px; }
+      .score-label { width: 104px; flex-basis: 104px; padding: 14px; }
+      .score-chip { min-width: 122px; }
+      .hero { min-height: auto; padding-top: 62px; padding-bottom: 48px; gap: 38px; }
+      .hero h1 { font-size: clamp(56px,17vw,90px); }
+      .hero-copy > p { margin-top: 24px; }
+      .feature { padding: 17px; box-shadow: 12px 12px 0 rgba(201,255,50,.055); }
+      .team-orb { width: 55px; height: 55px; }
+      .feature-team b { font-size: 40px; }
+      .hero-metrics div { padding: 15px; }
+      .section, .live-section { padding: 76px 0; }
+      .section-heading { margin-bottom: 30px; gap: 20px; }
+      .lead-story { grid-template-columns: 1fr; }
+      .story-art { min-height: 260px; }
+      .edge-picks { grid-template-columns: 1fr; padding: 14px; }
+      .edge-context { padding: 24px 18px; }
+      .edge-method { grid-template-columns: 1fr; gap: 9px; }
+      .console-score { grid-template-columns: 1fr 90px 1fr; gap: 8px; }
+      .console-mark { width: 48px; height: 48px; font-size: 10px; }
+      .console-team { gap: 8px; }
+      .console-team small { display: none; }
+      .console-clock strong { font-size: 21px; }
+      .console-alert { align-items: flex-start; flex-direction: column; justify-content: center; padding: 10px 12px; }
+      .win-pulse { grid-template-columns: 1fr; }
+      .win-pulse > div:first-child, .win-pulse > div:last-child { display: none; }
+      .team-stats { grid-template-columns: repeat(2,1fr); }
+      .player-grid, .matchup-grid, .standout-grid { grid-template-columns: 1fr; }
+      .player-stats { grid-template-columns: repeat(4,minmax(0,1fr)); }
+      .results-header { display: none; }
+      .result-row { grid-template-columns: 1fr auto; gap: 10px; }
+      .result-row > p { grid-column: 1 / -1; }
+      .final-pill { display: none; }
+      .results-footer { flex-direction: column; gap: 8px; }
+      .night-banner { padding-top: 45px; padding-bottom: 45px; grid-template-columns: 1fr; gap: 30px; }
+      footer { grid-template-columns: 1fr; }
+      .footer-meta { grid-column: auto; grid-auto-flow: row; justify-items: start; }
+    }
+
+    @media (max-width: 480px) {
+      .brand-mark { width: 32px; height: 22px; }
+      .live-jump .dot { display: none; }
+      .score-label { display: none; }
+      .hero h1 { font-size: 58px; }
+      .hero-actions { display: grid; }
+      .primary, .ghost { width: 100%; }
+      .hero-metrics { grid-template-columns: 1fr 1fr; }
+      .hero-metrics strong { font-size: 29px; }
+      .edge-player { grid-template-columns: auto 1fr; }
+      .edge-score { grid-column: 1 / -1; width: 100%; height: 38px; border-radius: 0; display: flex; align-items: center; justify-content: center; gap: 7px; background: linear-gradient(90deg,var(--pick) calc(var(--score)*1%),#dfe2db 0); }
+      .edge-score:before { content: ""; position: absolute; }
+      .edge-score strong, .edge-score span { padding: 4px; color: var(--ink); background: var(--white); }
+      .signal { grid-template-columns: 26px 1fr; }
+      .signal p { grid-column: 2; }
+      .console-team { display: grid; justify-items: center; }
+      .console-team.home { justify-items: center; text-align: center; }
+      .console-team strong { font-size: 44px; }
+      .game-switcher button { min-width: 210px; }
+      .stat-tabs button { flex: 1; padding-left: 7px; padding-right: 7px; font-size: 7px; }
+      .player-card { min-height: 224px; }
+      .drawer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="site-header">
+      <button class="brand" data-scroll="top" aria-label="Back to top">
+        <span class="brand-mark"><i></i></span>
+        <span class="brand-copy"><strong>GRIDIRON</strong><em>PULSE</em></span>
+      </button>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <button data-scroll="top">Home</button>
+        <button data-scroll="player-edge">Player Edge</button>
+        <button data-scroll="live">Gridiron Live</button>
+        <button data-scroll="matchups">Matchups</button>
+        <button data-scroll="results">Results</button>
+      </nav>
+      <button class="live-jump" data-scroll="live"><span class="dot"></span> Live feed standby</button>
+    </header>
+
+    <section class="score-ribbon" aria-label="2026 Week 1 schedule">
+      <div class="score-label"><span>WEEK 01</span><strong>OPENING SLATE</strong></div>
+      <div class="score-scroll" id="score-strip"></div>
+    </section>
+
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>2026 season command center</span><i></i> Opening week is loading</div>
+        <h1>THE SEASON<br>STARTS <em>HERE.</em></h1>
+        <p>Every matchup, every player angle and every live stat in one football-first command center—from the first pregame read to the final snap.</p>
+        <div class="hero-actions">
+          <button class="primary" data-scroll="player-edge">Open Player Edge <span>↘</span></button>
+          <button class="ghost" data-scroll="live">Preview Gridiron Live</button>
+        </div>
+      </div>
+      <article class="feature">
+        <div class="feature-top"><span><i></i> SEASON KICKOFF</span><b>SEATTLE, WA</b></div>
+        <div class="feature-matchup">
+          <div class="feature-team"><span class="team-orb blue">NE</span><b>—</b></div>
+          <div class="feature-clock"><small>WED · SEP 9</small><strong>8:20</strong><em>ET · NBC</em></div>
+          <div class="feature-team"><span class="team-orb orange">SEA</span><b>—</b></div>
+        </div>
+        <div class="feature-alert"><span>↗</span><div><small>OPENING NIGHT</small><strong>Super Bowl rematch starts the 2026 regular season</strong></div></div>
+        <div class="mini-label"><span>Countdown to kickoff</span><b id="kickoff-countdown">30D</b></div>
+        <div class="mini-pulse"><i style="width:100%"></i></div>
+        <p class="feature-foot">Player Edge updates daily as depth charts, injuries and roles settle.</p>
+      </article>
+      <div class="hero-metrics">
+        <div><strong>16</strong><span>Week 1 games</span></div>
+        <div><strong>13</strong><span>Sunday matchups</span></div>
+        <div><strong>10</strong><span>new head-coach debuts</span></div>
+        <div><strong>1</strong><span>Australia opener</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-title"><span class="section-index">01</span><p class="kicker">The opening pulse</p><h2>WHAT WEEK 1 IS SAYING</h2></div>
+          <p class="heading-copy">The real site opens in pregame mode, builds its matchup board through the week, then hands off to live tracking at kickoff.</p>
+        </div>
+        <div class="pulse-layout">
+          <article class="lead-story">
+            <div class="story-art">
+              <span class="story-tag">OPENING NIGHT · SEATTLE</span>
+              <div class="story-score"><span>NE</span><i>—</i><span>SEA</span></div>
+              <div class="story-field"><i></i><b>SEP 9</b><i></i></div>
+            </div>
+            <div class="story-copy">
+              <span class="story-number">THE SEPTEMBER 9 RESET</span>
+              <h3>The champions open at home. The team they beat gets the first chance to answer.</h3>
+              <p>New England at Seattle is the first game on the board and the first test of the Player Edge model: new personnel, familiar opponent and immediate championship-level context.</p>
+              <div class="story-tags"><span>Super Bowl rematch</span><span>New roles</span><span>Opening-night pressure</span></div>
+            </div>
+          </article>
+          <aside class="alerts">
+            <div class="panel-label"><span>Pulse alerts</span><b>Season setup</b></div>
+            <article class="alert-row"><span class="alert-time hot">SEP 9</span><div><strong>Kickoff in Seattle</strong><p>New England visits the reigning champions at 8:20 PM ET.</p></div><b>↗</b></article>
+            <article class="alert-row"><span class="alert-time watch">SEP 10</span><div><strong>Australia debut</strong><p>San Francisco and Los Angeles meet in Melbourne.</p></div><b>↗</b></article>
+            <article class="alert-row"><span class="alert-time">SUNDAY</span><div><strong>Thirteen-game board</strong><p>Eight early games, four late games and Cowboys–Giants at night.</p></div><b>↗</b></article>
+            <article class="alert-row"><span class="alert-time next">KICKOFF</span><div><strong>Gridiron Live activates</strong><p>Scores, drives and individual player stats move into the live console.</p></div><b>↗</b></article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section edge-section" id="player-edge">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-title"><span class="section-index">02</span><p class="kicker">Pregame intelligence</p><h2>PLAYER EDGE</h2></div>
+          <p class="heading-copy">The early watchlist is live now. Final scores and player calls lock before kickoff after injuries, depth charts and roles are confirmed.</p>
+        </div>
+        <div class="edge-board">
+          <div class="edge-rail" id="edge-rail" role="tablist" aria-label="Select a game for pregame player picks"></div>
+          <div class="edge-context">
+            <div><span class="edge-lock"><i></i> Early board · final picks lock before kickoff</span><h3 id="edge-matchup"></h3></div>
+            <div class="edge-read"><small>GAME-LEVEL READ</small><p id="edge-read"></p><span id="edge-context"></span></div>
+          </div>
+          <div class="edge-picks" id="edge-picks"></div>
+          <div class="edge-method"><span>EARLY EDGE / 100</span><p>Weighted from matchup quality, expected role, scheme fit, recent usage, injuries, line play, pace and game environment.</p><b>Updates through kickoff · not a wager card</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="live-section" id="live">
+      <div class="wrap">
+        <div class="live-heading">
+          <div><p class="kicker light"><span class="dot"></span> Gridiron Live</p><h2>EVERY SNAP.<br><em>EVERY STAT.</em></h2></div>
+          <p>Gridiron Live stays in standby before kickoff. Once a game starts, passing, rushing, receiving, tackles, sacks, pass breakups and line play populate here automatically.</p>
+        </div>
+        <div class="game-switcher" id="game-switcher" role="tablist" aria-label="Select a live game"></div>
+        <div class="live-console">
+          <div class="console-scoreboard" id="console-scoreboard"></div>
+          <div class="stat-room">
+            <div class="stat-tabs" id="stat-tabs" role="tablist" aria-label="Live stat categories">
+              <button class="active" data-tab="Offense" role="tab" aria-selected="true">Offense</button>
+              <button data-tab="Defense" role="tab" aria-selected="false">Defense</button>
+              <button data-tab="Line Play" role="tab" aria-selected="false">Line Play</button>
+            </div>
+            <div class="player-grid" id="player-grid"></div>
+            <p class="player-hint">Pregame watchlists are shown now. Live totals replace them automatically at kickoff.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="matchups">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-title"><span class="section-index">03</span><p class="kicker">Matchup lab</p><h2>OPENING-WEEK PRESSURE POINTS</h2></div>
+          <p class="heading-copy">Head-to-head context, offense-versus-defense stress points and scheme changes that can create an early player edge.</p>
+        </div>
+        <div class="matchup-grid">
+          <article class="matchup-card"><div class="matchup-top"><span style="color:#2aa994">HEAVYWEIGHT TEST</span><b>01</b></div><small>BUF offense vs HOU defense</small><h3>Josh Allen meets the edge wall</h3><p>Buffalo's new offensive structure opens against Will Anderson Jr., Danielle Hunter and one of the league's toughest pressure units.</p><div class="matchup-result"><strong>SEP 13 · 1:00</strong><span style="color:#2aa994;border-color:#2aa994">Pressure index 92</span></div></article>
+          <article class="matchup-card"><div class="matchup-top"><span style="color:#3c73da">SCHEME DEBUT</span><b>02</b></div><small>ARI defense vs LAC offense</small><h3>Herbert gets the McDaniel layer</h3><p>The Chargers unveil a new offensive system, with motion and spacing expected to change how defenses can rush Justin Herbert.</p><div class="matchup-result"><strong>SEP 13 · 4:25</strong><span style="color:#3c73da;border-color:#3c73da">New scheme +19</span></div></article>
+          <article class="matchup-card"><div class="matchup-top"><span style="color:#e75e28">RIVALRY PACE</span><b>03</b></div><small>WAS offense vs PHI defense</small><h3>Two dual-threat quarterbacks reset the East</h3><p>Jayden Daniels returns to face Jalen Hurts in a divisional game where quarterback movement can reshape every protection call.</p><div class="matchup-result"><strong>SEP 13 · 4:25</strong><span style="color:#e75e28;border-color:#e75e28">Volatility 88</span></div></article>
+          <article class="matchup-card"><div class="matchup-top"><span style="color:#26936a">NIGHT MISMATCH</span><b>04</b></div><small>DAL offense vs NYG pressure</small><h3>Explosives versus the rebuilt rush</h3><p>CeeDee Lamb and George Pickens challenge New York's new secondary while the Giants' front tries to move Dak Prescott off his spot.</p><div class="matchup-result"><strong>SEP 13 · 8:20</strong><span style="color:#26936a;border-color:#26936a">Explosive index 90</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section standout-section">
+      <div class="wrap">
+        <div class="section-heading dark-heading">
+          <div class="section-title"><span class="section-index">04</span><p class="kicker light">Early watchlist</p><h2>WHO COULD OWN WEEK 1</h2></div>
+          <p class="heading-copy">The players with the clearest early paths to volume, matchup leverage or scheme-driven production.</p>
+        </div>
+        <div class="standout-grid">
+          <article class="standout-card"><div class="standout-rank">01</div><span class="standout-team" style="color:#86a5ff;border-color:#86a5ff">BUF</span><div><small>DUAL-THREAT PATH</small><h3>Josh Allen</h3><p>Buffalo's first game under a new head coach starts with Allen as the entire offense's pressure release.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+          <article class="standout-card"><div class="standout-rank">02</div><span class="standout-team" style="color:#5ee7d5;border-color:#5ee7d5">DET</span><div><small>BACKFIELD FEATURE</small><h3>Jahmyr Gibbs</h3><p>A featured Week 1 workload is the cleanest way for Detroit to stress New Orleans.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+          <article class="standout-card"><div class="standout-rank">03</div><span class="standout-team" style="color:#78aaff;border-color:#78aaff">LAR</span><div><small>TARGET CONCENTRATION</small><h3>Puka Nacua</h3><p>A divisional matchup and condensed target tree keep the ceiling high in Melbourne.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+          <article class="standout-card"><div class="standout-rank">04</div><span class="standout-team" style="color:#f5c84b;border-color:#f5c84b">LAC</span><div><small>NEW-SCHEME BOOST</small><h3>Justin Herbert</h3><p>Mike McDaniel's motion and spacing add a new layer to an already explosive arm.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+          <article class="standout-card"><div class="standout-rank">05</div><span class="standout-team" style="color:#66b7ff;border-color:#66b7ff">DAL</span><div><small>PRIME-TIME VOLUME</small><h3>CeeDee Lamb</h3><p>Dallas can move him across formations to hunt New York's newest coverage pieces.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+          <article class="standout-card"><div class="standout-rank">06</div><span class="standout-team" style="color:#61e6a8;border-color:#61e6a8">CLE</span><div><small>PASS-RUSH EDGE</small><h3>Myles Garrett</h3><p>The reigning defensive player of the year opens against a Jacksonville line with pressure questions.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="section-title"><span class="section-index">05</span><p class="kicker">Results tracker</p><h2>WEEK 1 RESULTS</h2></div>
+          <p class="heading-copy">This section stays empty before the season. Final scores and Player Edge outcomes will post here automatically after each game.</p>
+        </div>
+        <div class="results-table">
+          <div class="results-header"><span>Matchup</span><span>Final</span><span>What decided it</span><span>Status</span></div>
+          <div id="results-list"></div>
+        </div>
+        <div class="results-footer"><span>No regular-season games have been played yet</span><b>First result posts September 9</b></div>
+      </div>
+    </section>
+
+    <section class="night-banner">
+      <div><p class="kicker light">First game · NFL Kickoff</p><h2>NEW ENGLAND <em>AT</em> SEATTLE</h2><p>Opening-night matchup room locks Wednesday, September 9 at 7:50 PM ET. Kickoff: 8:20 PM ET.</p></div>
+      <div class="night-matchup"><span class="night-team red">NE</span><i>VS</i><span class="night-team gold">SEA</span></div>
+      <button data-scroll="player-edge">Open pregame room ↗</button>
+    </section>
+
+    <footer>
+      <div class="footer-brand"><span class="brand-mark"><i></i></span><div><strong>THE GRIDIRON PULSE</strong><p>Football signal intelligence from the first read to the final snap.</p></div></div>
+      <p class="source-note">Opening-week schedule is loaded for the 2026 season. Early Player Edge scores are product examples and will refresh when live injuries, depth charts and data feeds are connected.</p>
+      <div class="footer-meta"><span>2026 SEASON</span><span>WEEK 01</span><span>FEED STANDBY</span></div>
+    </footer>
+  </main>
+
+  <div class="overlay" id="player-overlay" role="dialog" aria-modal="true" aria-label="Player live detail">
+    <article class="drawer" id="player-drawer"></article>
+  </div>
+
+  <script>
+    function P(number,name,team,role,note,accent,stats,form) {
+      return {number:number,name:name,team:team,role:role,note:note,accent:accent,stats:stats,form:form};
+    }
+
+    /* Permanent season-ready data state: 2026 Week 1 and live-feed standby. */
+    var scores = [
+      ["NE","—","SEA","—","WED · 8:20","next"],["SF","—","LAR","—","THU · 8:35","next"],
+      ["CHI","—","CAR","—","SUN · 1:00","next"],["TB","—","CIN","—","SUN · 1:00","next"],
+      ["NO","—","DET","—","SUN · 1:00","next"],["BUF","—","HOU","—","SUN · 1:00","next"],
+      ["BAL","—","IND","—","SUN · 1:00","next"],["CLE","—","JAX","—","SUN · 1:00","next"],
+      ["ATL","—","PIT","—","SUN · 1:00","next"],["NYJ","—","TEN","—","SUN · 1:00","next"],
+      ["ARI","—","LAC","—","SUN · 4:25","next"],["MIA","—","LV","—","SUN · 4:25","next"],
+      ["GB","—","MIN","—","SUN · 4:25","next"],["WAS","—","PHI","—","SUN · 4:25","next"],
+      ["DAL","—","NYG","—","SUN · 8:20","next"],["DEN","—","KC","—","MON · 8:15","next"]
+    ];
+
+    function Watch(name,team,pos,no,score,tier,forecast,accent,signals) {
+      return {name:name,team:team,pos:pos,no:no,score:score,tier:tier,forecast:forecast,accent:accent,signals:signals};
+    }
+    function Edge(id,away,home,kick,read,context,picks) {
+      return {id:id,away:away,home:home,kick:kick,state:"PREVIEW",read:read,context:context,picks:picks};
+    }
+
+    var edgeGames = [
+      Edge("ne-sea-26","NE","SEA","WED · 8:20","The Super Bowl rematch opens with Seattle's continuity against a New England offense replacing its leading receiver.","NFL Kickoff Game · Seattle",[
+        Watch("Jaxon Smith-Njigba","SEA","WR","11",89,"TARGET EDGE","High-volume path · featured third-down role","#39a879",[["Role","Seattle returns its primary receiving engine for the championship defense."],["Matchup","New England's strongest cover player can force Seattle to create motion releases."],["Game plan","Opening-night script favors quick, repeatable targets."]]),
+        Watch("Drake Maye","NE","QB","10",84,"DUAL-THREAT EDGE","250+ total-yard path · scramble floor","#de4f61",[["New weapons","A changed receiver room makes Maye's distribution the core Week 1 question."],["Mobility","Designed movement can reduce Seattle's front-four advantage."],["Game script","A road underdog path keeps passing and scramble volume alive."]])
+      ]),
+      Edge("sf-lar-26","SF","LAR","THU · 8:35","Two elite offensive systems meet in Melbourne, with familiar divisional tendencies and concentrated star usage.","Australia · divisional matchup",[
+        Watch("Puka Nacua","LAR","WR","17",91,"TARGET EDGE","10+ target path · explosive route volume","#5b86ff",[["Concentration","The Rams can build the opening script around Nacua's motion usage."],["Familiarity","Repeated divisional meetings sharpen Stafford's leverage reads."],["Environment","A marquee neutral-site game supports aggressive early passing."]]),
+        Watch("Christian McCaffrey","SF","RB","23",90,"DUAL-THREAT EDGE","120+ scrimmage-yard ceiling","#c9a33f",[["Role","McCaffrey remains the cleanest answer against changing coverage."],["Scheme","Motion and option routes stress linebackers before the snap."],["Game script","Receiving usage protects his production in either score state."]])
+      ]),
+      Edge("chi-car-26","CHI","CAR","SUN · 1:00","The two quarterbacks forever linked by the 2023 trade meet as established starters for ascending division winners.","Week 1 · quarterback spotlight",[
+        Watch("Caleb Williams","CHI","QB","18",83,"CREATION EDGE","Multi-score path · off-script upside","#e87535",[["Secondary stress","Chicago can spread Carolina and force isolated coverage decisions."],["Mobility","Scramble production protects Williams when the first read closes."],["Continuity","A second year in the system should speed up early-down answers."]]),
+        Watch("Tetairoa McMillan","CAR","WR","04",82,"TARGET EDGE","8+ target path · contested-catch ceiling","#3bc7b3",[["Role","Carolina can condense Bryce Young's first reads around McMillan."],["Alignment","Motion helps him avoid Chicago's strongest static matchup."],["Game environment","A competitive opener supports four-quarter route volume."]])
+      ]),
+      Edge("tb-cin-26","TB","CIN","SUN · 1:00","Two deep receiving groups create the clearest shootout path of the early window.","Week 1 · perimeter matchup",[
+        Watch("Ja'Marr Chase","CIN","WR","01",92,"TOP EDGE","100-yard ceiling · multi-score path","#e87535",[["Matchup","Cincinnati can move Chase away from Tampa Bay's preferred boundary help."],["Chemistry","Burrow-to-Chase timing remains the offense's fastest answer."],["Pace","Both receiver rooms can push the game toward extra possessions."]]),
+        Watch("Emeka Egbuka","TB","WR","02",84,"VOLUME EDGE","7+ catch path · middle-field leverage","#d14e63",[["New hierarchy","Tampa Bay enters without its former long-time WR1."],["Alignment","Inside and motion snaps create favorable leverage."],["Script","Potential chase volume raises the target floor."]])
+      ]),
+      Edge("no-det-26","NO","DET","SUN · 1:00","Detroit's new offensive structure still starts with speed in the backfield and spacing through the slot.","Ford Field · fast-track game",[
+        Watch("Jahmyr Gibbs","DET","RB","00",91,"PRIMARY EDGE","125+ scrimmage-yard ceiling","#4aa6ff",[["Featured role","The reshaped backfield points to more high-value touches."],["Space","Detroit can isolate Gibbs against linebackers in option routes."],["Home script","A favorable game state keeps carries and catches available."]]),
+        Watch("Amon-Ra St. Brown","DET","WR","14",87,"CHAIN-MOVER EDGE","8+ catches · red-zone path","#78bfff",[["Target floor","Goff's most repeatable answer remains the middle of the field."],["Scheme continuity","Core route chemistry survives the coordinator change."],["Third down","High-leverage targets protect his volume."]])
+      ]),
+      Edge("buf-hou-26","BUF","HOU","SUN · 1:00","Buffalo's celebrated offense opens against Houston's elite pass-rush pairing in the best trench test of Sunday afternoon.","AFC heavyweight matchup",[
+        Watch("Josh Allen","BUF","QB","17",90,"CREATION EDGE","300 total-yard ceiling · rushing TD path","#4e8cff",[["Pressure answer","Allen's movement is Buffalo's best response to Houston's edge speed."],["New structure","The first Joe Brady head-coaching game keeps the offense centered on its quarterback."],["Ceiling","High-leverage designed runs preserve scoring equity."]]),
+        Watch("Will Anderson Jr.","HOU","EDGE","51",86,"PRESSURE EDGE","Sack favorite · multi-hit ceiling","#e34b62",[["Trenches","Buffalo must handle Anderson and Danielle Hunter without overcommitting help."],["Dropback volume","A competitive AFC game supports sustained rush opportunities."],["Home field","Crowd noise increases the edge timing advantage."]])
+      ]),
+      Edge("bal-ind-26","BAL","IND","SUN · 1:00","Baltimore's new era begins with Lamar Jackson, while Indianapolis can attack the rebuilt front through Jonathan Taylor.","Indoor track · coaching debut",[
+        Watch("Lamar Jackson","BAL","QB","08",89,"DUAL-THREAT EDGE","275+ total yards · two-score ceiling","#7452bd",[["Fresh structure","A new coaching staff can feature movement early before tendencies settle."],["Space","Indianapolis must account for Jackson on every run fit."],["Game script","Indoor conditions preserve the full speed-and-shot menu."]]),
+        Watch("Jonathan Taylor","IND","RB","28",87,"RUSH EDGE","20+ touch path · 100-yard ceiling","#4e8cff",[["Front change","Baltimore enters with new pieces across its defensive line."],["Role","Taylor remains Indianapolis' safest high-value touch source."],["Home plan","A balanced script keeps the run available deep into the game."]])
+      ]),
+      Edge("cle-jax-26","CLE","JAX","SUN · 1:00","Jacksonville's rising offense meets the reigning defensive player of the year and a Cleveland team beginning a new era.","Duval · pressure matchup",[
+        Watch("Myles Garrett","CLE","EDGE","95",91,"TOP PRESSURE EDGE","Multi-sack ceiling · drive-changing path","#e87535",[["Form","Garrett opens after a record-setting 23-sack season."],["Matchup","Jacksonville must protect long enough for its explosive concepts."],["Down distance","Early run stops can create the obvious pass situations he hunts."]]),
+        Watch("Trevor Lawrence","JAX","QB","16",85,"OFFENSE EDGE","275+ pass-yard path · multi-TD ceiling","#1ea58a",[["Momentum","Lawrence enters off a career-best touchdown season."],["Weapons","Travis Hunter's return adds another movable matchup piece."],["Home script","Jacksonville can dictate tempo if it survives first-down pressure."]])
+      ]),
+      Edge("atl-pit-26","ATL","PIT","SUN · 1:00","Two new coaching eras and unsettled quarterback pictures make the most stable skill and defensive roles matter more.","Acrisure · volatility game",[
+        Watch("Bijan Robinson","ATL","RB","07",88,"VOLUME EDGE","120+ scrimmage-yard path · receiving floor","#d93f56",[["Stability","The backfield role is clearer than Atlanta's quarterback situation."],["Receiving","Screens and angle routes can avoid Pittsburgh's interior strength."],["Coach debut","A new staff can lean on its best all-purpose player."]]),
+        Watch("T.J. Watt","PIT","EDGE","90",84,"PRESSURE EDGE","Sack path · turnover upside","#c9a33f",[["Quarterback uncertainty","Atlanta's protection calls depend on who wins the job."],["Home field","Silent-count stress improves the edge rush."],["Game shape","A low-possession game makes one pressure play more valuable."]])
+      ]),
+      Edge("nyj-ten-26","NYJ","TEN","SUN · 1:00","Robert Saleh faces his former team while Geno Smith and Cam Ward headline a game full of new roles.","Nashville · new-era matchup",[
+        Watch("Cam Ward","TEN","QB","01",82,"YEAR-TWO EDGE","250 total-yard path · scramble boost","#5b86ff",[["Growth","Ward enters Year 2 with a deeper receiving group."],["New target","First-round receiver Carnell Tate adds a movable matchup."],["Mobility","Scrambles can punish man coverage and long rush lanes."]]),
+        Watch("Geno Smith","NYJ","QB","07",79,"REVENGE EDGE","High-completion path · controlled volume","#2aa66f",[["Role clarity","New York has already identified Smith as QB1."],["Experience","Quick decisions can blunt Saleh's familiar pressure rules."],["Narrative pressure","His second Jets chapter opens against the coach who once led New York."]])
+      ]),
+      Edge("ari-lac-26","ARI","LAC","SUN · 4:25","Arizona's rookie backfield star debuts against a Chargers offense revealing Mike McDaniel's system for the first time.","SoFi Stadium · scheme debut",[
+        Watch("Justin Herbert","LAC","QB","10",90,"SCHEME EDGE","300-yard ceiling · three-score path","#d4a81d",[["New coordinator","McDaniel's motion can create cleaner pre-snap answers."],["Protection return","Joe Alt and Rashawn Slater are expected back."],["Matchup","Arizona enters with a new coaching structure and coverage rules."]]),
+        Watch("Jeremiyah Love","ARI","RB","04",83,"ROOKIE EDGE","18+ touch path · explosive-run ceiling","#d9314c",[["Draft capital","The No. 3 overall pick is positioned for immediate feature work."],["Speed","One crease can turn ordinary volume into an explosive day."],["Quarterback plan","A veteran starter can keep the box from fully collapsing."]])
+      ]),
+      Edge("mia-lv-26","MIA","LV","SUN · 4:25","Two rebuilt teams debut new head coaches, making pass protection and quarterback composure the biggest early variables.","Las Vegas · dual coaching debut",[
+        Watch("Maxx Crosby","LV","EDGE","98",89,"PRESSURE EDGE","Multi-hit ceiling · sack favorite","#b6bdc4",[["Return","Crosby is expected back after the knee injury."],["Quarterback change","Miami's new offense must synchronize protection and timing."],["Home field","Noise and a new playbook can create free-rush chances."]]),
+        Watch("Malik Willis","MIA","QB","07",80,"MOBILITY EDGE","225 total-yard path · rushing floor","#38bfa6",[["New role","Willis enters as Miami's expected QB1."],["Movement","Designed runs can simplify the offense's first week."],["Game script","A close rebuilding matchup keeps every part of the playbook available."]])
+      ]),
+      Edge("gb-min-26","GB","MIN","SUN · 4:25","The 132nd meeting in the rivalry starts with quarterback questions in Minnesota and a Green Bay team trying to reset after a five-game skid.","NFC North · rivalry game",[
+        Watch("Justin Jefferson","MIN","WR","18",90,"TARGET EDGE","100-yard ceiling · matchup-proof volume","#7452bd",[["Role","Minnesota's quarterback winner still starts with Jefferson."],["Rivalry","Condensed high-leverage targets rise in close division games."],["Alignment","Motion keeps Green Bay from fixing one coverage answer."]]),
+        Watch("Jordan Love","GB","QB","10",84,"RESET EDGE","250+ pass-yard path · multi-TD ceiling","#26936a",[["Receiver focus","A thinner room creates clearer first-read priorities."],["Rivalry experience","Love has repeated exposure to Minnesota's pressure identity."],["Urgency","Green Bay enters determined to break its late-2025 slide."]])
+      ]),
+      Edge("was-phi-26","WAS","PHI","SUN · 4:25","Jayden Daniels' return creates a dual-threat quarterback matchup against the two-time reigning division champions.","NFC East · rivalry game",[
+        Watch("Jalen Hurts","PHI","QB","01",88,"PRIMARY EDGE","275 total-yard path · rushing TD equity","#2aa994",[["Dual threat","Washington must defend every goal-line and scramble path."],["Home field","Philadelphia can control cadence and fourth-down decisions."],["Familiarity","Repeated division meetings sharpen Hurts' leverage reads."]]),
+        Watch("Jayden Daniels","WAS","QB","05",86,"RETURN EDGE","300 total-yard ceiling · scramble boost","#c99a30",[["Return","Daniels' comeback immediately restores Washington's movement game."],["Game script","A road matchup with the division champion supports pass volume."],["Designed runs","Quarterback carries stress Philadelphia's edge discipline."]])
+      ]),
+      Edge("dal-nyg-26","DAL","NYG","SUN · 8:20","Dallas' explosive receivers meet a revamped Giants secondary while New York's new offense debuts under the prime-time lights.","Sunday Night Football",[
+        Watch("CeeDee Lamb","DAL","WR","88",91,"TOP TARGET EDGE","100-yard ceiling · touchdown path","#4ca6ff",[["Alignment","Dallas can move Lamb to identify New York's weakest coverage matchup."],["Chemistry","Prescott-to-Lamb remains the fastest third-down answer."],["Pace","Prime-time rivalry volatility can drive extra passing volume."]]),
+        Watch("Jaxson Dart","NYG","QB","06",82,"SCHEME EDGE","250 total-yard path · designed-run boost","#2d6cdf",[["New offense","The Week 1 structure can lean into Dart's movement strengths."],["Dallas transition","A new defensive coordinator means fresh coverage rules."],["Home script","Designed quarterback movement can energize the opener."]])
+      ]),
+      Edge("den-kc-26","DEN","KC","MON · 8:15","The AFC West champions visit a Kansas City team rebuilding its identity and waiting on Patrick Mahomes' availability.","Monday Night Football",[
+        Watch("Bo Nix","DEN","QB","10",86,"CONTROL EDGE","250+ total yards · efficient scoring path","#ff783f",[["Continuity","Denver returns most of a 14-win core."],["New weapon","Jaylen Waddle adds speed to the passing structure."],["Quarterback health","Nix is expected back from the ankle injury."]]),
+        Watch("Kenneth Walker III","KC","RB","09",84,"NEW-ROLE EDGE","18+ touch path · explosive-run ceiling","#e33f55",[["Team debut","The Super Bowl MVP arrives as Kansas City's new backfield centerpiece."],["Quarterback uncertainty","A heavier run plan can protect the offense if Mahomes is limited."],["Big-play trait","Walker creates scoring chances without perfect blocking."]])
+      ])
+    ];
+
+    function standbyPlayer(number,name,team,role,note,accent,labels) {
+      return P(number,name,team,role,note,accent,labels.map(function(label) { return [label,"—"]; }),["Live totals at kickoff","Drive-by-drive updates","Final line archived"]);
+    }
+    function standbyGame(id,away,awayName,awayColor,home,homeName,homeColor,date,time,pulseAway,pulseHome,groups) {
+      return {id:id,away:away,awayName:awayName,awayColor:awayColor,awayScore:"—",home:home,homeName:homeName,homeColor:homeColor,homeScore:"—",status:"UPCOMING",clock:date,possession:"—",situation:"KICKOFF · "+time+" ET",alert:"GRIDIRON LIVE · FEED OPENS AT KICKOFF",field:50,winAway:pulseAway,winHome:pulseHome,teamStats:[["Pass yards","—","—"],["Rush yards","—","—"],["Sacks","—","—"],["Turnovers","—","—"]],groups:groups};
+    }
+
+    var liveGames = [
+      standbyGame("ne-sea-live","NE","New England Patriots","#de4f61","SEA","Seattle Seahawks","#2e9d75","SEP 9","8:20 PM",44,56,{
+        "Offense":[
+          standbyPlayer("10","Drake Maye","NE","Quarterback","Passing, rushing and touchdown totals will populate here from the opening snap.","#ff7786",["CMP / ATT","PASS YDS","RUSH YDS","TOTAL TD"]),
+          standbyPlayer("11","Jaxon Smith-Njigba","SEA","Wide receiver","Targets, catches, receiving yards and touchdowns will update live.","#52c496",["TARGETS","REC","REC YDS","TD"]),
+          standbyPlayer("14","Sam Darnold","SEA","Quarterback","The defending champions' first offensive drive will activate his live line.","#52c496",["CMP / ATT","PASS YDS","RUSH YDS","TOTAL TD"])
+        ],
+        "Defense":[
+          standbyPlayer("00","Christian Gonzalez","NE","Cornerback","Tackles, targets allowed and pass breakups will update by drive.","#ff7786",["TACKLES","PBU","TARGETS","INT"]),
+          standbyPlayer("FR","Seattle front","SEA","Defensive front","Team pressures, sacks and run stops will populate in real time.","#52c496",["SACKS","QB HITS","TFL","STOPS"]),
+          standbyPlayer("99","Milton Williams","NE","Defensive tackle","Interior pressure and tackle production will be tracked live.","#ff7786",["TACKLES","SACKS","TFL","QB HITS"])
+        ],
+        "Line Play":[
+          standbyPlayer("OL","Patriots protection","NE","Offensive line","Pass-block snaps, pressures and sacks allowed will update live.","#ff7786",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("OL","Seattle protection","SEA","The full protection line activates at kickoff.","#52c496",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("DL","Seattle pass rush","SEA","Every pressure, hit and sack will appear here.","#52c496",["RUSH SNAPS","PRESSURES","QB HITS","SACKS"])
+        ]
+      }),
+      standbyGame("sf-lar-live","SF","San Francisco 49ers","#d0a539","LAR","Los Angeles Rams","#5b86ff","SEP 10","8:35 PM",48,52,{
+        "Offense":[
+          standbyPlayer("23","Christian McCaffrey","SF","Running back","Carries, catches and total scrimmage yards will update live from Melbourne.","#e0ba52",["CARRIES","RUSH YDS","REC YDS","TD"]),
+          standbyPlayer("17","Puka Nacua","LAR","Wide receiver","Targets, receptions, yards and explosives will populate by drive.","#86a5ff",["TARGETS","REC","REC YDS","EXPLOSIVES"]),
+          standbyPlayer("09","Matthew Stafford","LAR","Passing production and pressure response will update every possession.","#86a5ff",["CMP / ATT","PASS YDS","PASS TD","INT"])
+        ],
+        "Defense":[
+          standbyPlayer("97","Nick Bosa","SF","Edge","Pressures, hits, sacks and run stops will update live.","#e0ba52",["PRESSURES","QB HITS","SACKS","TFL"]),
+          standbyPlayer("54","Fred Warner","SF","Linebacker","Tackles, coverage stops and pass breakups will populate here.","#e0ba52",["TACKLES","SOLO","STOPS","PBU"]),
+          standbyPlayer("DB","Rams secondary","LAR","Targets, completions allowed and breakups will update by drive.","#86a5ff",["TARGETS","COMP ALW","PBU","INT"])
+        ],
+        "Line Play":[
+          standbyPlayer("OL","49ers protection","SF","Pass-block results and rush-lane production will update live.","#e0ba52",["PASS BLK","PRESSURES","SACKS ALW","RUSH YDS"]),
+          standbyPlayer("OL","Rams protection","LAR","Every clean pocket and pressure allowed will be tracked.","#86a5ff",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("DL","49ers front","SF","Rush snaps, pressure rate and run stops will populate at kickoff.","#e0ba52",["RUSH SNAPS","PRESSURES","QB HITS","STOPS"])
+        ]
+      }),
+      standbyGame("buf-hou-live","BUF","Buffalo Bills","#4e8cff","HOU","Houston Texans","#d93f56","SEP 13","1:00 PM",47,53,{
+        "Offense":[
+          standbyPlayer("17","Josh Allen","BUF","Quarterback","Passing, rushing and pressure-escape production will update live.","#78aaff",["CMP / ATT","PASS YDS","RUSH YDS","TOTAL TD"]),
+          standbyPlayer("07","C.J. Stroud","HOU","Quarterback","Every completion, yard, touchdown and turnover will populate here.","#ff6c7e",["CMP / ATT","PASS YDS","PASS TD","INT"]),
+          standbyPlayer("RB","Houston backfield","HOU","Carries, rushing yards, catches and scoring touches will update live.","#ff6c7e",["CARRIES","RUSH YDS","REC YDS","TD"])
+        ],
+        "Defense":[
+          standbyPlayer("51","Will Anderson Jr.","HOU","Edge","Pressures, hits, sacks and tackles for loss will update live.","#ff6c7e",["PRESSURES","QB HITS","SACKS","TFL"]),
+          standbyPlayer("55","Danielle Hunter","HOU","Edge","The opposite-edge pressure line will populate every drive.","#ff6c7e",["PRESSURES","QB HITS","SACKS","STOPS"]),
+          standbyPlayer("LB","Buffalo defense","BUF","Team tackles, pass breakups and takeaways will update live.","#78aaff",["TACKLES","PBU","SACKS","TAKEAWAYS"])
+        ],
+        "Line Play":[
+          standbyPlayer("OL","Bills protection","BUF","Pass-block snaps and pressure allowed will update against Houston's rush.","#78aaff",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("OL","Texans protection","HOU","The protection line activates at kickoff.","#ff6c7e",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("DL","Houston front","HOU","Combined rush and run-stop output will be tracked in one card.","#ff6c7e",["RUSH SNAPS","PRESSURES","QB HITS","TFL"])
+        ]
+      }),
+      standbyGame("dal-nyg-live","DAL","Dallas Cowboys","#4ca6ff","NYG","New York Giants","#2d6cdf","SEP 13","8:20 PM",54,46,{
+        "Offense":[
+          standbyPlayer("04","Dak Prescott","DAL","Quarterback","Passing production and pressure response will update under the night lights.","#7fc2ff",["CMP / ATT","PASS YDS","PASS TD","INT"]),
+          standbyPlayer("88","CeeDee Lamb","DAL","Wide receiver","Targets, catches, yards and touchdowns will populate live.","#7fc2ff",["TARGETS","REC","REC YDS","TD"]),
+          standbyPlayer("06","Jaxson Dart","NYG","Quarterback","Passing, rushing and designed-run production will update every drive.","#58a0ff",["CMP / ATT","PASS YDS","RUSH YDS","TOTAL TD"])
+        ],
+        "Defense":[
+          standbyPlayer("FR","Giants pass rush","NYG","Pressures, hits and sacks against Dallas will update live.","#58a0ff",["PRESSURES","QB HITS","SACKS","TFL"]),
+          standbyPlayer("DB","Dallas secondary","DAL","Targets, pass breakups and interceptions will populate by drive.","#7fc2ff",["TARGETS","COMP ALW","PBU","INT"]),
+          standbyPlayer("LB","Giants defense","NYG","Tackles, run stops and coverage plays will be tracked.","#58a0ff",["TACKLES","SOLO","STOPS","PBU"])
+        ],
+        "Line Play":[
+          standbyPlayer("OL","Dallas protection","DAL","Pass-block snaps, pressures and sacks allowed will update live.","#7fc2ff",["PASS BLK","PRESSURES","SACKS ALW","PENALTIES"]),
+          standbyPlayer("OL","Giants protection","NYG","Protection and rushing-lane output will populate at kickoff.","#58a0ff",["PASS BLK","PRESSURES","SACKS ALW","RUSH YDS"]),
+          standbyPlayer("DL","Giants front","NYG","Every pressure, hit, sack and tackle for loss will be tracked.","#58a0ff",["RUSH SNAPS","PRESSURES","QB HITS","SACKS"])
+        ]
+      })
+    ];
+
+    var results = [];
+
+    var activeEdge = edgeGames[0];
+    var activeGame = liveGames[0];
+    var activeTab = "Offense";
+
+    function renderScores() {
+      document.getElementById("score-strip").innerHTML = scores.map(function(g) {
+        return '<article class="score-chip '+g[5]+'"><div class="score-status"><span>'+g[4]+'</span>'+(g[5] === "live" ? "<i></i>" : "")+'</div><div><b>'+g[0]+'</b><strong>'+g[1]+'</strong></div><div><b>'+g[2]+'</b><strong>'+g[3]+'</strong></div></article>';
+      }).join("");
+    }
+
+    function renderEdgeRail() {
+      document.getElementById("edge-rail").innerHTML = edgeGames.map(function(g) {
+        var stateClass = g.state.toLowerCase().replace(" ","-");
+        return '<button class="'+(g.id === activeEdge.id ? "active" : "")+'" data-edge="'+g.id+'" role="tab" aria-selected="'+(g.id === activeEdge.id)+'"><span class="edge-state '+stateClass+'">'+g.state+'</span><strong>'+g.away+' <i>@</i> '+g.home+'</strong><small>'+g.kick+'</small></button>';
+      }).join("");
+      document.querySelectorAll("[data-edge]").forEach(function(button) {
+        button.addEventListener("click", function() {
+          activeEdge = edgeGames.find(function(g) { return g.id === button.dataset.edge; });
+          renderEdge();
+        });
+      });
+    }
+
+    function renderEdge() {
+      renderEdgeRail();
+      document.getElementById("edge-matchup").innerHTML = activeEdge.away+' <em>AT</em> '+activeEdge.home;
+      document.getElementById("edge-read").textContent = activeEdge.read;
+      document.getElementById("edge-context").textContent = activeEdge.context;
+      document.getElementById("edge-picks").innerHTML = activeEdge.picks.map(function(pick) {
+        return '<article class="edge-card" style="--pick:'+pick.accent+'"><div class="edge-card-top"><span>'+pick.tier+'</span><small>'+pick.team+' · '+pick.pos+'</small></div><div class="edge-player"><span class="edge-number">'+pick.no+'</span><div><h4>'+pick.name+'</h4><p>'+pick.forecast+'</p></div><div class="edge-score" style="--score:'+pick.score+'" aria-label="Player Edge score '+pick.score+' out of 100"><strong>'+pick.score+'</strong><span>EDGE</span></div></div><div class="signal-list">'+pick.signals.map(function(signal,index) { return '<div class="signal"><b>0'+(index+1)+'</b><span>'+signal[0]+'</span><p>'+signal[1]+'</p></div>'; }).join("")+'</div></article>';
+      }).join("");
+    }
+
+    function renderGameSwitcher() {
+      document.getElementById("game-switcher").innerHTML = liveGames.map(function(g) {
+        var label = g.status === "FINAL" ? "FINAL" : g.status.replace(" QUARTER","")+" · "+g.clock;
+        return '<button class="'+(g.id === activeGame.id ? "active" : "")+'" data-game="'+g.id+'" role="tab" aria-selected="'+(g.id === activeGame.id)+'"><span>'+label+'</span><div><b>'+g.away+'</b><strong>'+g.awayScore+'</strong><i>—</i><strong>'+g.homeScore+'</strong><b>'+g.home+'</b></div></button>';
+      }).join("");
+      document.querySelectorAll("[data-game]").forEach(function(button) {
+        button.addEventListener("click", function() {
+          activeGame = liveGames.find(function(g) { return g.id === button.dataset.game; });
+          renderLive();
+        });
+      });
+    }
+
+    function renderConsole() {
+      var g = activeGame;
+      var statusLabel = g.status === "FINAL" ? "FINAL" : (g.status === "UPCOMING" ? "PREGAME" : "4TH");
+      var possession = g.possession === "—" ? "FEED STANDBY" : g.possession+" BALL";
+      document.getElementById("console-scoreboard").innerHTML =
+        '<div class="console-meta"><span><i class="dot"></i> '+g.status+'</span><b>LIVE FEED CONNECTS AT KICKOFF</b></div>'+
+        '<div class="console-score"><div class="console-team away"><span class="console-mark" style="background:'+g.awayColor+'">'+g.away+'</span><div><small>'+g.awayName+'</small><strong>'+g.awayScore+'</strong></div></div><div class="console-clock"><span>'+statusLabel+'</span><strong>'+g.clock+'</strong><em>'+possession+'</em></div><div class="console-team home"><div><small>'+g.homeName+'</small><strong>'+g.homeScore+'</strong></div><span class="console-mark" style="background:'+g.homeColor+'">'+g.home+'</span></div></div>'+
+        '<div class="console-alert"><span>'+g.alert+'</span><b>'+g.situation+'</b></div>'+
+        '<div class="field"><div class="field-numbers"><span>0</span><span>20</span><span>40</span><span>50</span><span>40</span><span>20</span><span>0</span></div><div class="field-fill" style="width:'+g.field+'%"></div><i class="field-ball" style="left:calc('+g.field+'% - 7px)"></i></div>'+
+        '<div class="win-pulse"><div><span>'+g.away+' win pulse</span><strong>'+g.winAway+'%</strong></div><div class="win-bar"><i style="width:'+g.winAway+'%;background:'+g.awayColor+'"></i><b style="width:'+g.winHome+'%;background:'+g.homeColor+'"></b></div><div><strong>'+g.winHome+'%</strong><span>'+g.home+' win pulse</span></div></div>'+
+        '<div class="team-stats">'+g.teamStats.map(function(stat) { return '<div><b>'+stat[1]+'</b><span>'+stat[0]+'</span><b>'+stat[2]+'</b></div>'; }).join("")+'</div>';
+    }
+
+    function renderPlayers() {
+      document.querySelectorAll("[data-tab]").forEach(function(button) {
+        var isActive = button.dataset.tab === activeTab;
+        button.classList.toggle("active",isActive);
+        button.setAttribute("aria-selected",isActive);
+      });
+      var players = activeGame.groups[activeTab];
+      document.getElementById("player-grid").innerHTML = players.map(function(player,index) {
+        return '<button class="player-card" data-player="'+index+'"><div class="player-top"><span class="player-number" style="border-color:'+player.accent+';color:'+player.accent+'">'+player.number+'</span><div><small>'+player.team+' · '+player.role+'</small><strong>'+player.name+'</strong></div><i>↗</i></div><p>'+player.note+'</p><div class="player-stats">'+player.stats.map(function(stat) { return '<div><strong>'+stat[1]+'</strong><span>'+stat[0]+'</span></div>'; }).join("")+'</div></button>';
+      }).join("");
+      document.querySelectorAll("[data-player]").forEach(function(button) {
+        button.addEventListener("click", function() { openPlayer(players[Number(button.dataset.player)]); });
+      });
+    }
+
+    function renderLive() {
+      renderGameSwitcher();
+      renderConsole();
+      renderPlayers();
+    }
+
+    function openPlayer(player) {
+      var drawer = document.getElementById("player-drawer");
+      drawer.innerHTML = '<button class="drawer-close" id="drawer-close" aria-label="Close player detail">×</button><div class="drawer-head"><span class="drawer-number" style="border-color:'+player.accent+';color:'+player.accent+'">'+player.number+'</span><div><small>'+player.team+' · '+player.role+'</small><h3>'+player.name+'</h3></div></div><p class="drawer-note">'+player.note+'</p><div class="drawer-stats">'+player.stats.map(function(stat) { return '<div><strong>'+stat[1]+'</strong><span>'+stat[0]+'</span></div>'; }).join("")+'</div><div class="drawer-section"><span>Last three signals</span>'+player.form.map(function(item,index) { return '<div class="drawer-signal"><b>0'+(index+1)+'</b><p>'+item+'</p><i>↗</i></div>'; }).join("")+'</div>';
+      document.getElementById("player-overlay").classList.add("open");
+      document.body.style.overflow = "hidden";
+      document.getElementById("drawer-close").focus();
+    }
+
+    function closePlayer() {
+      document.getElementById("player-overlay").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function renderResults() {
+      if (!results.length) {
+        document.getElementById("results-list").innerHTML = '<div class="empty-results"><div><strong>THE BOARD IS CLEAN.</strong><p>Week 1 finals, player lines and Player Edge outcomes will appear here automatically after each game ends.</p></div></div>';
+        return;
+      }
+      document.getElementById("results-list").innerHTML = results.map(function(r) {
+        return '<article class="result-row"><div class="result-teams"><span style="background:'+r[4]+'">'+r[0]+'</span><i>@</i><b>'+r[1]+'</b></div><strong>'+r[2]+'</strong><p>'+r[3]+'</p><span class="final-pill">FINAL</span></article>';
+      }).join("");
+    }
+
+    document.querySelectorAll("[data-scroll]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        document.getElementById(button.dataset.scroll).scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    });
+
+    document.querySelectorAll("[data-tab]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        activeTab = button.dataset.tab;
+        renderPlayers();
+      });
+    });
+
+    document.getElementById("player-overlay").addEventListener("click", function(event) {
+      if (event.target.id === "player-overlay" || event.target.id === "drawer-close") closePlayer();
+    });
+    document.addEventListener("keydown", function(event) { if (event.key === "Escape") closePlayer(); });
+
+    function updateKickoffCountdown() {
+      var target = new Date("2026-09-09T20:20:00-04:00").getTime();
+      var remaining = target - Date.now();
+      var label = "LIVE";
+      if (remaining > 0) {
+        var days = Math.floor(remaining / 86400000);
+        var hours = Math.floor((remaining % 86400000) / 3600000);
+        label = days > 0 ? days+"D "+hours+"H" : hours+"H";
+      }
+      document.getElementById("kickoff-countdown").textContent = label;
+    }
+
+    renderScores();
+    renderEdge();
+    renderLive();
+    renderResults();
+    updateKickoffCountdown();
+  </script>
+</body>
+</html>
