@@ -241,6 +241,8 @@
 
     .matchup-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
     .matchup-card { min-height: 330px; padding: 25px; border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; }
+    .matchup-card[data-open-edge] { cursor: pointer; transition: transform .16s ease,border-color .16s ease; }
+    .matchup-card[data-open-edge]:hover, .matchup-card[data-open-edge]:focus-visible { transform: translateY(-3px); border-color: #76947e; outline: none; }
     .matchup-top { display: flex; justify-content: space-between; font: 850 8px/1 var(--mono); letter-spacing: .08em; }
     .matchup-card > small { margin-top: 37px; color: #7a837d; font: 800 8px/1 var(--mono); }
     .matchup-card h3 { margin: 14px 0; font-size: 25px; line-height: 1.06; letter-spacing: -.035em; }
@@ -580,14 +582,14 @@
           <button class="ghost" data-scroll="live">Preview Gridiron Live</button>
         </div>
       </div>
-      <article class="feature">
-        <div class="feature-top"><span><i></i> SEASON KICKOFF</span><b>SEATTLE, WA</b></div>
+      <article class="feature" id="featured-kickoff">
+        <div class="feature-top"><span><i></i> <span id="feature-status">SEASON KICKOFF</span></span><b id="feature-location">SEATTLE, WA</b></div>
         <div class="feature-matchup">
-          <div class="feature-team"><span class="team-orb blue">NE</span><b>—</b></div>
-          <div class="feature-clock"><small>WED · SEP 9</small><strong>8:20</strong><em>ET · NBC</em></div>
-          <div class="feature-team"><span class="team-orb orange">SEA</span><b>—</b></div>
+          <div class="feature-team"><span class="team-orb blue" id="feature-away">NE</span><b id="feature-away-score">—</b></div>
+          <div class="feature-clock"><small id="feature-date">WED · SEP 9</small><strong id="feature-time">8:20</strong><em id="feature-broadcast">ET · NBC</em></div>
+          <div class="feature-team"><span class="team-orb orange" id="feature-home">SEA</span><b id="feature-home-score">—</b></div>
         </div>
-        <div class="feature-alert"><span>↗</span><div><small>OPENING NIGHT</small><strong>Super Bowl rematch starts the 2026 regular season</strong></div></div>
+        <div class="feature-alert"><span>↗</span><div><small id="feature-alert-label">OPENING NIGHT</small><strong id="feature-alert-copy">Super Bowl rematch starts the 2026 regular season</strong></div></div>
         <div class="mini-label"><span>Countdown to kickoff</span><b id="kickoff-countdown">30D</b></div>
         <div class="mini-pulse"><i style="width:100%"></i></div>
         <p class="feature-foot">Player Edge updates daily as depth charts, injuries and roles settle.</p>
@@ -603,11 +605,11 @@
     <section class="section">
       <div class="wrap">
         <div class="section-heading">
-          <div class="section-title"><span class="section-index">01</span><p class="kicker">The opening pulse</p><h2>WHAT WEEK 1 IS SAYING</h2></div>
-          <p class="heading-copy">The real site opens in pregame mode, builds its matchup board through the week, then hands off to live tracking at kickoff.</p>
+          <div class="section-title"><span class="section-index">01</span><p class="kicker">The opening pulse</p><h2 id="opening-pulse-title">WHAT WEEK 1 IS SAYING</h2></div>
+          <p class="heading-copy" id="opening-pulse-copy">The real site opens in pregame mode, builds its matchup board through the week, then hands off to live tracking at kickoff.</p>
         </div>
         <div class="pulse-layout">
-          <article class="lead-story">
+          <article class="lead-story" id="opening-story">
             <div class="story-art">
               <span class="story-tag">OPENING NIGHT · SEATTLE</span>
               <div class="story-score"><span>NE</span><i>—</i><span>SEA</span></div>
@@ -620,7 +622,7 @@
               <div class="story-tags"><span>Super Bowl rematch</span><span>New roles</span><span>Opening-night pressure</span></div>
             </div>
           </article>
-          <aside class="alerts">
+          <aside class="alerts" id="pulse-alerts">
             <div class="panel-label"><span>Pulse alerts</span><b>Season setup</b></div>
             <article class="alert-row"><span class="alert-time hot">SEP 9</span><div><strong>Kickoff in Seattle</strong><p>New England visits the reigning champions at 8:20 PM ET.</p></div><b>↗</b></article>
             <article class="alert-row"><span class="alert-time watch">SEP 10</span><div><strong>Australia debut</strong><p>San Francisco and Los Angeles meet in Melbourne.</p></div><b>↗</b></article>
@@ -674,10 +676,10 @@
     <section class="section" id="matchups">
       <div class="wrap">
         <div class="section-heading">
-          <div class="section-title"><span class="section-index">03</span><p class="kicker">Matchup lab</p><h2>OPENING-WEEK PRESSURE POINTS</h2></div>
-          <p class="heading-copy">Head-to-head context, offense-versus-defense stress points and scheme changes that can create an early player edge.</p>
+          <div class="section-title"><span class="section-index">03</span><p class="kicker">Matchup lab</p><h2 id="matchup-title">OPENING-WEEK PRESSURE POINTS</h2></div>
+          <p class="heading-copy" id="matchup-copy">Head-to-head context, offense-versus-defense stress points and scheme changes that can create an early player edge.</p>
         </div>
-        <div class="matchup-grid">
+        <div class="matchup-grid" id="matchup-grid">
           <article class="matchup-card"><div class="matchup-top"><span style="color:#2aa994">HEAVYWEIGHT TEST</span><b>01</b></div><small>BUF offense vs HOU defense</small><h3>Josh Allen meets the edge wall</h3><p>Buffalo's new offensive structure opens against Will Anderson Jr., Danielle Hunter and one of the league's toughest pressure units.</p><div class="matchup-result"><strong>SEP 13 · 1:00</strong><span style="color:#2aa994;border-color:#2aa994">Pressure index 92</span></div></article>
           <article class="matchup-card"><div class="matchup-top"><span style="color:#3c73da">SCHEME DEBUT</span><b>02</b></div><small>ARI defense vs LAC offense</small><h3>Herbert gets the McDaniel layer</h3><p>The Chargers unveil a new offensive system, with motion and spacing expected to change how defenses can rush Justin Herbert.</p><div class="matchup-result"><strong>SEP 13 · 4:25</strong><span style="color:#3c73da;border-color:#3c73da">New scheme +19</span></div></article>
           <article class="matchup-card"><div class="matchup-top"><span style="color:#e75e28">RIVALRY PACE</span><b>03</b></div><small>WAS offense vs PHI defense</small><h3>Two dual-threat quarterbacks reset the East</h3><p>Jayden Daniels returns to face Jalen Hurts in a divisional game where quarterback movement can reshape every protection call.</p><div class="matchup-result"><strong>SEP 13 · 4:25</strong><span style="color:#e75e28;border-color:#e75e28">Volatility 88</span></div></article>
@@ -686,13 +688,13 @@
       </div>
     </section>
 
-    <section class="section standout-section">
+    <section class="section standout-section" id="standouts">
       <div class="wrap">
         <div class="section-heading dark-heading">
-          <div class="section-title"><span class="section-index">04</span><p class="kicker light">Early watchlist</p><h2>WHO COULD OWN WEEK 1</h2></div>
-          <p class="heading-copy">The players with the clearest early paths to volume, matchup leverage or scheme-driven production.</p>
+          <div class="section-title"><span class="section-index">04</span><p class="kicker light">Early watchlist</p><h2 id="standout-title">WHO COULD OWN WEEK 1</h2></div>
+          <p class="heading-copy" id="standout-copy">The players with the clearest early paths to volume, matchup leverage or scheme-driven production.</p>
         </div>
-        <div class="standout-grid">
+        <div class="standout-grid" id="standout-grid">
           <article class="standout-card"><div class="standout-rank">01</div><span class="standout-team" style="color:#86a5ff;border-color:#86a5ff">BUF</span><div><small>DUAL-THREAT PATH</small><h3>Josh Allen</h3><p>Buffalo's first game under a new head coach starts with Allen as the entire offense's pressure release.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
           <article class="standout-card"><div class="standout-rank">02</div><span class="standout-team" style="color:#5ee7d5;border-color:#5ee7d5">DET</span><div><small>BACKFIELD FEATURE</small><h3>Jahmyr Gibbs</h3><p>A featured Week 1 workload is the cleanest way for Detroit to stress New Orleans.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
           <article class="standout-card"><div class="standout-rank">03</div><span class="standout-team" style="color:#78aaff;border-color:#78aaff">LAR</span><div><small>TARGET CONCENTRATION</small><h3>Puka Nacua</h3><p>A divisional matchup and condensed target tree keep the ceiling high in Melbourne.</p></div><button data-scroll="player-edge" aria-label="View Player Edge">↗</button></article>
@@ -717,9 +719,9 @@
       </div>
     </section>
 
-    <section class="night-banner">
-      <div><p class="kicker light">First game · NFL Kickoff</p><h2>NEW ENGLAND <em>AT</em> SEATTLE</h2><p>Opening-night matchup room locks Wednesday, September 9 at 7:50 PM ET. Kickoff: 8:20 PM ET.</p></div>
-      <div class="night-matchup"><span class="night-team red">NE</span><i>VS</i><span class="night-team gold">SEA</span></div>
+    <section class="night-banner" id="kickoff-banner">
+      <div><p class="kicker light" id="kickoff-kicker">First game · NFL Kickoff</p><h2 id="kickoff-title">NEW ENGLAND <em>AT</em> SEATTLE</h2><p id="kickoff-copy">Opening-night matchup room locks Wednesday, September 9 at 7:50 PM ET. Kickoff: 8:20 PM ET.</p></div>
+      <div class="night-matchup"><span class="night-team red" id="kickoff-away">NE</span><i>VS</i><span class="night-team gold" id="kickoff-home">SEA</span></div>
       <button data-scroll="player-edge">Open pregame room ↗</button>
     </section>
 
@@ -922,6 +924,9 @@
     */
     var AGENT_URL = "https://grid-pulse-agent.kadescott97.workers.dev";
     var refreshTimer = null;
+    var currentSnapshot = null;
+    var featuredKickoffTarget = new Date("2026-09-09T20:20:00-04:00").getTime();
+    var featuredKickoffState = "pre";
 
     function asList(value) {
       return Array.isArray(value) ? value : [];
@@ -930,6 +935,17 @@
     function asText(value,fallback) {
       if (value === null || value === undefined || value === "") return fallback || "";
       return String(value);
+    }
+
+    function htmlText(value) {
+      return asText(value,"").replace(/[&<>"']/g,function(character) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character];
+      });
+    }
+
+    function setText(id,value) {
+      var node = document.getElementById(id);
+      if (node) node.textContent = asText(value,"");
     }
 
     function colorValue(value,fallback) {
@@ -973,6 +989,297 @@
         hour:"numeric",
         minute:"2-digit"
       }).format(parsed).toUpperCase()+" ET";
+    }
+
+    function kickoffDateLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "DATE TBD";
+      return new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        weekday:"short",
+        month:"short",
+        day:"numeric"
+      }).format(parsed).toUpperCase().replace(","," ·");
+    }
+
+    function kickoffTimeLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "TIME TBD";
+      return new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        hour:"numeric",
+        minute:"2-digit"
+      }).format(parsed).toUpperCase();
+    }
+
+    function kickoffDayLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "TBD";
+      return new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        weekday:"short"
+      }).format(parsed).toUpperCase();
+    }
+
+    function gameState(game) {
+      return asText(game && game.status && game.status.state,"pre").toLowerCase();
+    }
+
+    function sortedGames(snapshot) {
+      return asList(snapshot && snapshot.games).slice().sort(function(left,right) {
+        var leftDate = dateValue(left.date);
+        var rightDate = dateValue(right.date);
+        return (leftDate ? leftDate.getTime() : Number.MAX_SAFE_INTEGER) - (rightDate ? rightDate.getTime() : Number.MAX_SAFE_INTEGER);
+      });
+    }
+
+    function featuredGameFor(snapshot) {
+      var games = sortedGames(snapshot);
+      var live = games.find(function(game) { return gameState(game) === "in"; });
+      var upcoming = games.find(function(game) { return gameState(game) === "pre"; });
+      var finals = games.filter(function(game) { return gameState(game) === "post"; }).reverse();
+      return live || upcoming || finals[0] || games[0] || null;
+    }
+
+    function boardForGame(snapshot,gameId) {
+      return asList(snapshot && snapshot.playerEdge).find(function(board) {
+        return String(board.gameId) === String(gameId);
+      }) || null;
+    }
+
+    function numericPickScore(pick) {
+      var score = Number(pick && pick.score);
+      return Number.isFinite(score) ? score : 0;
+    }
+
+    function strongestPick(board) {
+      return asList(board && board.picks).slice().sort(function(left,right) {
+        return numericPickScore(right) - numericPickScore(left);
+      })[0] || null;
+    }
+
+    function gameBroadcast(game) {
+      return asText(asList(game && game.broadcasts)[0],"GRIDIRON LIVE").toUpperCase();
+    }
+
+    function gameVenue(game) {
+      var venue = game && game.venue || {};
+      return asText(venue.name,venue.city || "VENUE TBD");
+    }
+
+    function renderFeaturedKickoff(snapshot) {
+      var game = featuredGameFor(snapshot);
+      if (!game) return;
+      var teams = game.teams || {};
+      var away = teams.away || {};
+      var home = teams.home || {};
+      var state = gameState(game);
+      var board = boardForGame(snapshot,game.id);
+      var kickoff = dateValue(game.date);
+      var season = snapshot.season || {};
+      var awayAbbreviation = asText(away.abbreviation,"TBD");
+      var homeAbbreviation = asText(home.abbreviation,"TBD");
+      var awayName = asText(away.displayName,awayAbbreviation);
+      var homeName = asText(home.displayName,homeAbbreviation);
+      var time = kickoffTimeLabel(game.date);
+      var dayPeriod = (time.match(/\b(?:AM|PM)\b/) || [""])[0];
+      var clock = time.replace(/\s*(?:AM|PM)\s*$/,"");
+      var statusLabel = state === "in" ? "LIVE NOW" : state === "post" ? "FINAL" : "NEXT KICKOFF";
+      var featureLabel = state === "in" ? "GAME IN PROGRESS" : state === "post" ? "LATEST FINAL" : asText(season.typeName,"SEASON").toUpperCase()+" WEEK "+asText(season.week,"1");
+      var alertCopy = board && board.read ? board.read : awayName+" at "+homeName+" is the next matchup on the Gridiron Pulse board.";
+      var venue = game.venue || {};
+
+      featuredKickoffState = state;
+      if (kickoff) featuredKickoffTarget = kickoff.getTime();
+
+      setText("feature-status",statusLabel);
+      setText("feature-location",asText(venue.city,gameVenue(game)).toUpperCase());
+      setText("feature-away",awayAbbreviation);
+      setText("feature-home",homeAbbreviation);
+      setText("feature-away-score",state === "pre" ? "—" : asText(away.score,"0"));
+      setText("feature-home-score",state === "pre" ? "—" : asText(home.score,"0"));
+      setText("feature-date",state === "in" ? "LIVE · "+asText(game.status && game.status.shortDetail,"IN PROGRESS") : state === "post" ? "GAME COMPLETE" : kickoffDateLabel(game.date));
+      setText("feature-time",state === "in" ? asText(game.status && game.status.clock,"LIVE") : state === "post" ? "FINAL" : clock);
+      setText("feature-broadcast",state === "pre" ? (dayPeriod ? dayPeriod+" " : "")+"ET · "+gameBroadcast(game) : gameBroadcast(game));
+      setText("feature-alert-label",featureLabel);
+      setText("feature-alert-copy",alertCopy);
+
+      var awayOrb = document.getElementById("feature-away");
+      var homeOrb = document.getElementById("feature-home");
+      var bannerAway = document.getElementById("kickoff-away");
+      var bannerHome = document.getElementById("kickoff-home");
+      if (awayOrb) awayOrb.style.background = colorValue(away.color,"#4e8cff");
+      if (homeOrb) homeOrb.style.background = colorValue(home.color,"#2aa994");
+      if (bannerAway) bannerAway.style.background = colorValue(away.color,"#4e8cff");
+      if (bannerHome) bannerHome.style.background = colorValue(home.color,"#2aa994");
+
+      setText("kickoff-kicker",state === "in" ? "Live now · "+asText(season.typeName,"NFL")+" Week "+asText(season.week,"1") : state === "post" ? "Latest final · "+asText(season.typeName,"NFL") : "Next game · "+asText(season.typeName,"NFL")+" Week "+asText(season.week,"1"));
+      document.getElementById("kickoff-title").innerHTML = htmlText(awayName.toUpperCase())+' <em>AT</em> '+htmlText(homeName.toUpperCase());
+      setText("kickoff-copy",state === "in"
+        ? "The matchup room is live now. Scores, player totals and game context refresh automatically."
+        : state === "post"
+          ? "The final score and locked Player Edge outcomes are now available in the results tracker."
+          : "Player Edge updates automatically until kickoff. "+fullKickoffLabel(game.date)+" · "+gameVenue(game)+".");
+      setText("kickoff-away",awayAbbreviation);
+      setText("kickoff-home",homeAbbreviation);
+      updateKickoffCountdown();
+    }
+
+    function renderOpeningPulse(snapshot) {
+      var game = featuredGameFor(snapshot);
+      if (!game) return;
+      var season = snapshot.season || {};
+      var summary = snapshot.summary || {};
+      var teams = game.teams || {};
+      var away = teams.away || {};
+      var home = teams.home || {};
+      var board = boardForGame(snapshot,game.id) || {};
+      var state = gameState(game);
+      var awayAbbreviation = asText(away.abbreviation,"TBD");
+      var homeAbbreviation = asText(home.abbreviation,"TBD");
+      var picks = asList(board.picks);
+      var names = picks.slice(0,2).map(function(pick) { return asText(pick.name,""); }).filter(Boolean);
+      var storyTitle = asText(board.read,awayAbbreviation+" at "+homeAbbreviation+" leads the current football board.");
+      var storyCopy = names.length
+        ? "Player Edge is tracking "+names.join(" and ")+" while opponent defense, current form, team scheme and position history continue to update."
+        : "The matchup model will add its quarterback and team-star reads as verified roster and game information becomes available.";
+      var framework = asList(board.evidence && board.evidence.analysisFramework).slice(0,3);
+      if (!framework.length) framework = ["opponent defense","current form","team scheme"];
+      var awayColor = colorValue(away.color,"#174d32");
+      var homeColor = colorValue(home.color,"#123b26");
+      var storyStatus = state === "in" ? "LIVE READ" : state === "post" ? "FINAL READ" : "NEXT GAME READ";
+
+      setText("opening-pulse-title","WHAT "+asText(season.typeName,"SEASON").toUpperCase()+" WEEK "+asText(season.week,"1")+" IS SAYING");
+      setText("opening-pulse-copy",asText(summary.gameCount,asList(snapshot.games).length)+" games are connected to one automatic slate. Pregame analysis hands off to live tracking, then archives into results.");
+      document.getElementById("opening-story").innerHTML =
+        '<div class="story-art" style="background:linear-gradient(135deg,'+awayColor+' 0%,#123b26 50%,'+homeColor+' 100%)">'+
+          '<span class="story-tag">'+htmlText(storyStatus+" · "+asText(game.venue && game.venue.city,gameVenue(game)).toUpperCase())+'</span>'+
+          '<div class="story-score"><span>'+htmlText(awayAbbreviation)+'</span><i>—</i><span>'+htmlText(homeAbbreviation)+'</span></div>'+
+          '<div class="story-field"><i></i><b>'+htmlText(state === "in" ? "LIVE" : state === "post" ? "FINAL" : kickoffDateLabel(game.date))+'</b><i></i></div>'+
+        '</div>'+
+        '<div class="story-copy">'+
+          '<span class="story-number">'+htmlText(storyStatus+" · "+fullKickoffLabel(game.date))+'</span>'+
+          '<h3>'+htmlText(storyTitle)+'</h3>'+
+          '<p>'+htmlText(storyCopy)+'</p>'+
+          '<div class="story-tags">'+framework.map(function(label) { return '<span>'+htmlText(asText(label,"Signal").replace(/-/g," "))+'</span>'; }).join("")+'</div>'+
+        '</div>';
+
+      var alertGames = sortedGames(snapshot).filter(function(candidate) {
+        return gameState(candidate) === "in" || gameState(candidate) === "pre";
+      });
+      if (!alertGames.length) alertGames = sortedGames(snapshot).filter(function(candidate) { return gameState(candidate) === "post"; }).reverse();
+      alertGames = alertGames.slice(0,4);
+      document.getElementById("pulse-alerts").innerHTML =
+        '<div class="panel-label"><span>Pulse alerts</span><b>'+htmlText(asText(season.typeName,"Season")+" · Week "+asText(season.week,"1"))+'</b></div>'+
+        alertGames.map(function(candidate,index) {
+          var candidateTeams = candidate.teams || {};
+          var candidateAway = candidateTeams.away || {};
+          var candidateHome = candidateTeams.home || {};
+          var candidateState = gameState(candidate);
+          var timeClass = candidateState === "in" ? "hot" : index === 0 ? "watch" : "next";
+          var timeLabel = candidateState === "in" ? "LIVE" : candidateState === "post" ? "FINAL" : kickoffDayLabel(candidate.date);
+          var detail = candidateState === "post"
+            ? asText(candidateAway.abbreviation,"TBD")+" "+asText(candidateAway.score,"0")+" · "+asText(candidateHome.abbreviation,"TBD")+" "+asText(candidateHome.score,"0")
+            : fullKickoffLabel(candidate.date)+" · "+gameVenue(candidate)+(asList(candidate.broadcasts).length ? " · "+gameBroadcast(candidate) : "");
+          return '<article class="alert-row"><span class="alert-time '+timeClass+'">'+htmlText(timeLabel)+'</span><div><strong>'+htmlText(asText(candidateAway.abbreviation,"TBD")+" at "+asText(candidateHome.abbreviation,"TBD"))+'</strong><p>'+htmlText(detail)+'</p></div><b>↗</b></article>';
+        }).join("");
+    }
+
+    function renderMatchupLab(snapshot) {
+      var season = snapshot.season || {};
+      var boards = asList(snapshot.playerEdge).map(function(board) {
+        return {board:board,pick:strongestPick(board),game:gameById(snapshot,board.gameId)};
+      }).filter(function(item) { return item.pick; }).sort(function(left,right) {
+        return numericPickScore(right.pick) - numericPickScore(left.pick);
+      }).slice(0,4);
+      if (!boards.length) return;
+
+      setText("matchup-title",asText(season.typeName,"SEASON").toUpperCase()+" WEEK "+asText(season.week,"1")+" PRESSURE POINTS");
+      setText("matchup-copy","The four strongest matchup levers are selected automatically from the current quarterback and team-star analysis board.");
+      document.getElementById("matchup-grid").innerHTML = boards.map(function(item,index) {
+        var pick = item.pick;
+        var board = item.board;
+        var game = item.game || {};
+        var position = asText(pick.position,"PLAYER").toUpperCase();
+        var defensiveRole = /^(DE|EDGE|DT|DL|LB|CB|DB|S|FS|SS)$/.test(position);
+        var headline = asText(pick.name,"Player Edge")+(defensiveRole ? " can tilt the matchup" : " is the matchup lever");
+        var label = asText(pick.spotlightRole,pick.edgeBand || pick.tier || "PLAYER EDGE");
+        var opponent = asText(pick.opponent,"");
+        var subline = asText(board.matchup,"NFL MATCHUP")+" · "+position+(opponent ? " vs "+opponent : "");
+        var accent = colorValue(pick.accent,"#2aa994");
+        return '<article class="matchup-card" data-open-edge="'+htmlText(board.gameId)+'" role="button" tabindex="0" aria-label="Open '+htmlText(board.matchup)+' Player Edge">'+
+          '<div class="matchup-top"><span style="color:'+accent+'">'+htmlText(label)+'</span><b>'+String(index+1).padStart(2,"0")+'</b></div>'+
+          '<small>'+htmlText(subline)+'</small><h3>'+htmlText(headline)+'</h3><p>'+htmlText(asText(pick.forecast,board.read || "Matchup analysis is updating."))+'</p>'+
+          '<div class="matchup-result"><strong>'+htmlText(fullKickoffLabel(board.kickoff || game.date))+'</strong><span style="color:'+accent+';border-color:'+accent+'">EDGE '+Math.round(numericPickScore(pick))+'</span></div>'+
+        '</article>';
+      }).join("");
+    }
+
+    function renderStandouts(snapshot) {
+      var season = snapshot.season || {};
+      var allRows = [];
+      asList(snapshot.playerEdge).forEach(function(board) {
+        asList(board.picks).forEach(function(pick) { allRows.push({board:board,pick:pick}); });
+      });
+      var starRows = allRows.filter(function(item) {
+        return asText(item.pick.spotlightRole,"").toUpperCase() === "TEAM STAR" || asText(item.pick.tier,"").toUpperCase().indexOf("TEAM STAR") !== -1;
+      });
+      var candidates = starRows.length ? starRows : allRows;
+      var seen = new Set();
+      candidates = candidates.filter(function(item) {
+        var key = asText(item.pick.athleteId,item.pick.team+"|"+item.pick.name);
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      }).sort(function(left,right) {
+        var scoreDifference = numericPickScore(right.pick) - numericPickScore(left.pick);
+        if (scoreDifference) return scoreDifference;
+        return Number(right.pick.starScore || 0) - Number(left.pick.starScore || 0);
+      }).slice(0,6);
+      if (!candidates.length) return;
+
+      setText("standout-title","WHO COULD OWN WEEK "+asText(season.week,"1"));
+      setText("standout-copy","The six strongest team-star paths on the current "+asText(season.typeName,"season").toLowerCase()+" board, refreshed whenever the saved snapshot changes.");
+      document.getElementById("standout-grid").innerHTML = candidates.map(function(item,index) {
+        var pick = item.pick;
+        var accent = colorValue(pick.accent,"#61e6a8");
+        var role = asText(pick.spotlightRole,"TEAM STAR");
+        var band = asText(pick.edgeBand,pick.outlook || "PLAYER EDGE");
+        return '<article class="standout-card"><div class="standout-rank">'+String(index+1).padStart(2,"0")+'</div><span class="standout-team" style="color:'+accent+';border-color:'+accent+'">'+htmlText(asText(pick.team,"NFL"))+'</span><div><small>'+htmlText(role+" · "+band)+'</small><h3>'+htmlText(asText(pick.name,"Player Edge"))+'</h3><p>'+htmlText(asText(pick.forecast,"The current matchup path is still updating."))+'</p></div><button type="button" data-open-edge="'+htmlText(item.board.gameId)+'" aria-label="Open '+htmlText(asText(pick.name,"player"))+' analysis">↗</button></article>';
+      }).join("");
+    }
+
+    function openEdgeGame(gameId) {
+      var selected = edgeGames.find(function(game) { return String(game.id) === String(gameId); });
+      if (!selected) return;
+      activeEdge = selected;
+      renderEdge();
+      document.getElementById("player-edge").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function bindAutomaticEdgeLinks() {
+      document.querySelectorAll("[data-open-edge]").forEach(function(node) {
+        node.addEventListener("click",function(event) {
+          event.preventDefault();
+          openEdgeGame(node.dataset.openEdge);
+        });
+        if (node.matches("[role='button']")) {
+          node.addEventListener("keydown",function(event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openEdgeGame(node.dataset.openEdge);
+            }
+          });
+        }
+      });
+    }
+
+    function renderAutomaticHomepage(snapshot) {
+      renderFeaturedKickoff(snapshot);
+      renderOpeningPulse(snapshot);
+      renderMatchupLab(snapshot);
+      renderStandouts(snapshot);
+      bindAutomaticEdgeLinks();
     }
 
     function gameById(snapshot,id) {
@@ -1130,6 +1437,7 @@
 
     function applySnapshot(snapshot) {
       if (!snapshot || !snapshot.season) return;
+      currentSnapshot = snapshot;
       var priorEdgeId = activeEdge && activeEdge.id;
       var priorGameId = activeGame && activeGame.id;
 
@@ -1210,6 +1518,7 @@
       document.getElementById("footer-week").textContent = "WEEK "+String(weekNumber).padStart(2,"0");
       document.getElementById("footer-feed").textContent = "FEED ONLINE";
 
+      renderAutomaticHomepage(snapshot);
       renderScores();
       renderEdge();
       renderLive();
@@ -1369,13 +1678,17 @@
     document.addEventListener("keydown", function(event) { if (event.key === "Escape") closePlayer(); });
 
     function updateKickoffCountdown() {
-      var target = new Date("2026-09-09T20:20:00-04:00").getTime();
-      var remaining = target - Date.now();
+      var remaining = featuredKickoffTarget - Date.now();
       var label = "LIVE";
-      if (remaining > 0) {
+      if (featuredKickoffState === "post") {
+        label = "FINAL";
+      } else if (featuredKickoffState === "in") {
+        label = "LIVE";
+      } else if (remaining > 0) {
         var days = Math.floor(remaining / 86400000);
         var hours = Math.floor((remaining % 86400000) / 3600000);
-        label = days > 0 ? days+"D "+hours+"H" : hours+"H";
+        var minutes = Math.floor((remaining % 3600000) / 60000);
+        label = days > 0 ? days+"D "+hours+"H" : hours > 0 ? hours+"H "+minutes+"M" : minutes+"M";
       }
       document.getElementById("kickoff-countdown").textContent = label;
     }
@@ -1385,6 +1698,7 @@
     renderLive();
     renderResults();
     updateKickoffCountdown();
+    window.setInterval(updateKickoffCountdown,60000);
     loadAgentData();
 
     document.addEventListener("visibilitychange",function() {
