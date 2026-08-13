@@ -63,9 +63,11 @@
     .score-chip { min-width: 138px; padding: 13px 17px; border-right: 1px solid var(--dark-line); display: grid; align-content: center; gap: 7px; background: rgba(255,255,255,.018); }
     .score-chip.live { min-width: 150px; background: rgba(255,84,78,.05); }
     .score-chip.next { background: rgba(201,255,50,.045); }
+    .score-chip.final { background: rgba(89,215,255,.035); }
     .score-status { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,.46); font: 800 7px/1 var(--mono); letter-spacing: .08em; }
     .score-chip.live .score-status { color: #ff766f; }
     .score-chip.next .score-status { color: var(--acid); }
+    .score-chip.final .score-status { color: var(--cyan); }
     .score-status i { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
     .score-chip > div:not(.score-status) { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
     .score-chip b { font-size: 11px; } .score-chip strong { font: 900 16px/1 var(--mono); }
@@ -269,6 +271,9 @@
     .result-row > strong { font: 900 15px/1 var(--mono); }
     .result-row > p { margin: 0; color: #68716b; font-size: 11px; }
     .final-pill { width: max-content; padding: 6px 7px; color: #3b5f49; border: 1px solid #7d9c88; font: 850 7px/1 var(--mono); }
+    .final-pill.hit { color: #24603f; border-color: #4e9a6c; background: rgba(78,154,108,.1); }
+    .final-pill.miss { color: #8e332f; border-color: #d97870; background: rgba(217,120,112,.1); }
+    .final-pill.no-data { color: #6c756f; border-color: #9aa29d; background: rgba(154,162,157,.1); }
     .results-footer { padding: 16px 19px; display: flex; justify-content: space-between; color: #68716b; background: #dfe3d8; font: 800 8px/1 var(--mono); }
     .results-footer b { color: #335e43; }
     .empty-results { min-height: 170px; padding: 34px; display: grid; place-items: center; text-align: center; background: var(--white); border-top: 1px solid var(--line); }
@@ -557,17 +562,17 @@
         <button data-scroll="matchups">Matchups</button>
         <button data-scroll="results">Results</button>
       </nav>
-      <button class="live-jump" data-scroll="live"><span class="dot"></span><span class="live-label-wide">Live feed standby</span><span class="live-label-short">Live standby</span></button>
+      <button class="live-jump" data-scroll="live"><span class="dot"></span><span class="live-label-wide" id="feed-status-wide">Connecting live feed</span><span class="live-label-short" id="feed-status-short">Connecting</span></button>
     </header>
 
-    <section class="score-ribbon" aria-label="2026 Week 1 schedule">
-      <div class="score-label"><span>WEEK 01</span><strong>OPENING SLATE</strong></div>
+    <section class="score-ribbon" id="score-ribbon" aria-label="Current football schedule">
+      <div class="score-label"><span id="score-week">WEEK 01</span><strong id="score-title">OPENING SLATE</strong></div>
       <div class="score-scroll" id="score-strip"></div>
     </section>
 
     <section class="hero" id="top">
       <div class="hero-copy">
-        <div class="eyebrow"><span>2026 season command center</span><i></i> Opening week is loading</div>
+        <div class="eyebrow"><span id="season-command">2026 season command center</span><i></i> <span id="season-mode">Opening week is loading</span></div>
         <h1>THE SEASON<br>STARTS <em>HERE.</em></h1>
         <p>Every matchup, every player angle and every live stat in one football-first command center—from the first pregame read to the final snap.</p>
         <div class="hero-actions">
@@ -588,10 +593,10 @@
         <p class="feature-foot">Player Edge updates daily as depth charts, injuries and roles settle.</p>
       </article>
       <div class="hero-metrics">
-        <div><strong>16</strong><span>Week 1 games</span></div>
-        <div><strong>13</strong><span>Sunday matchups</span></div>
-        <div><strong>10</strong><span>new head-coach debuts</span></div>
-        <div><strong>1</strong><span>Australia opener</span></div>
+        <div><strong id="metric-games">16</strong><span id="metric-games-label">Week 1 games</span></div>
+        <div><strong id="metric-pregame">16</strong><span>Pregame</span></div>
+        <div><strong id="metric-live">0</strong><span>Live now</span></div>
+        <div><strong id="metric-final">0</strong><span>Final</span></div>
       </div>
     </section>
 
@@ -630,7 +635,7 @@
       <div class="wrap">
         <div class="section-heading">
           <div class="section-title"><span class="section-index">02</span><p class="kicker">Pregame intelligence</p><h2>PLAYER EDGE</h2></div>
-          <p class="heading-copy">The early watchlist is live now. Final scores and player calls lock before kickoff after injuries, depth charts and roles are confirmed.</p>
+          <p class="heading-copy" id="edge-heading-copy">The early watchlist is live now. Final scores and player calls lock before kickoff after injuries, depth charts and roles are confirmed.</p>
         </div>
         <div class="edge-board">
           <div class="edge-rail" id="edge-rail" role="tablist" aria-label="Select a game for pregame player picks"></div>
@@ -648,7 +653,7 @@
       <div class="wrap">
         <div class="live-heading">
           <div><p class="kicker light"><span class="dot"></span> Gridiron Live</p><h2>EVERY SNAP.<br><em>EVERY STAT.</em></h2></div>
-          <p>Gridiron Live stays in standby before kickoff. Once a game starts, passing, rushing, receiving, tackles, sacks, pass breakups and line play populate here automatically.</p>
+          <p id="live-heading-copy">Gridiron Live stays in standby before kickoff. Once a game starts, passing, rushing, receiving, tackles, sacks, pass breakups and line play populate here automatically.</p>
         </div>
         <div class="game-switcher" id="game-switcher" role="tablist" aria-label="Select a live game"></div>
         <div class="live-console">
@@ -660,7 +665,7 @@
               <button data-tab="Line Play" role="tab" aria-selected="false">Line Play</button>
             </div>
             <div class="player-grid" id="player-grid"></div>
-            <p class="player-hint">Pregame watchlists are shown now. Live totals replace them automatically at kickoff.</p>
+            <p class="player-hint" id="player-hint">Pregame watchlists are shown now. Live totals replace them automatically at kickoff.</p>
           </div>
         </div>
       </div>
@@ -701,14 +706,14 @@
     <section class="section" id="results">
       <div class="wrap">
         <div class="section-heading">
-          <div class="section-title"><span class="section-index">05</span><p class="kicker">Results tracker</p><h2>WEEK 1 RESULTS</h2></div>
-          <p class="heading-copy">This section stays empty before the season. Final scores and Player Edge outcomes will post here automatically after each game.</p>
+          <div class="section-title"><span class="section-index">05</span><p class="kicker">Results tracker</p><h2 id="results-title">WEEK 1 RESULTS</h2></div>
+          <p class="heading-copy" id="results-copy">Final scores and Player Edge outcomes post here automatically after each game.</p>
         </div>
         <div class="results-table">
           <div class="results-header"><span>Matchup</span><span>Final</span><span>What decided it</span><span>Status</span></div>
           <div id="results-list"></div>
         </div>
-        <div class="results-footer"><span>No regular-season games have been played yet</span><b>First result posts September 9</b></div>
+        <div class="results-footer"><span id="results-footer-copy">Waiting for final Player Edge outcomes</span><b id="results-footer-status">Live feed connecting</b></div>
       </div>
     </section>
 
@@ -720,8 +725,8 @@
 
     <footer>
       <div class="footer-brand"><span class="brand-mark"><i></i></span><div><strong>THE GRIDIRON PULSE</strong><p>Football signal intelligence from the first read to the final snap.</p></div></div>
-      <p class="source-note">Opening-week schedule is loaded for the 2026 season. Early Player Edge scores are product examples and will refresh when live injuries, depth charts and data feeds are connected.</p>
-      <div class="footer-meta"><span>2026 SEASON</span><span>WEEK 01</span><span>FEED STANDBY</span></div>
+      <p class="source-note" id="source-note">Opening-week schedule is loaded for the 2026 season. Live data will appear as soon as the Gridiron Pulse agent connects.</p>
+      <div class="footer-meta"><span id="footer-season">2026 SEASON</span><span id="footer-week">WEEK 01</span><span id="footer-feed">FEED CONNECTING</span></div>
     </footer>
   </main>
 
@@ -821,6 +826,12 @@
     ];
 
     function standbyPlayer(number,name,team,role,note,accent,labels) {
+      if (!Array.isArray(labels) && Array.isArray(accent)) {
+        labels = accent;
+        accent = note;
+        note = role;
+        role = "Live tracker";
+      }
       return P(number,name,team,role,note,accent,labels.map(function(label) { return [label,"—"]; }),["Live totals at kickoff","Drive-by-drive updates","Final line archived"]);
     }
     function standbyGame(id,away,awayName,awayColor,home,homeName,homeColor,date,time,pulseAway,pulseHome,groups) {
@@ -904,6 +915,340 @@
     var activeGame = liveGames[0];
     var activeTab = "Offense";
 
+    /*
+      Live homepage connection.
+      RUN_KEY is intentionally not used here: /latest is public and read-only,
+      while /run-now remains protected inside the agent Worker.
+    */
+    var AGENT_URL = "https://grid-pulse-agent.kadescott97.workers.dev";
+    var refreshTimer = null;
+
+    function asList(value) {
+      return Array.isArray(value) ? value : [];
+    }
+
+    function asText(value,fallback) {
+      if (value === null || value === undefined || value === "") return fallback || "";
+      return String(value);
+    }
+
+    function colorValue(value,fallback) {
+      var clean = asText(value,"").replace(/^#/,"");
+      return /^[0-9a-f]{6}$/i.test(clean) ? "#"+clean : (fallback || "#61e6a8");
+    }
+
+    function dateValue(value) {
+      var parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function kickoffLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "TIME TBD";
+      return new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        weekday:"short",
+        hour:"numeric",
+        minute:"2-digit"
+      }).format(parsed).toUpperCase().replace(",", " ·");
+    }
+
+    function fullKickoffLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "TIME TBD";
+      return new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        month:"short",
+        day:"numeric",
+        hour:"numeric",
+        minute:"2-digit"
+      }).format(parsed).toUpperCase().replace(",", " ·")+" ET";
+    }
+
+    function updatedLabel(value) {
+      var parsed = dateValue(value);
+      if (!parsed) return "JUST UPDATED";
+      return "UPDATED "+new Intl.DateTimeFormat("en-US",{
+        timeZone:"America/New_York",
+        hour:"numeric",
+        minute:"2-digit"
+      }).format(parsed).toUpperCase()+" ET";
+    }
+
+    function gameById(snapshot,id) {
+      return asList(snapshot.games).find(function(game) { return String(game.id) === String(id); });
+    }
+
+    function teamColorFor(snapshot,abbreviation) {
+      var wanted = asText(abbreviation,"").toUpperCase();
+      for (var i=0;i<asList(snapshot.games).length;i+=1) {
+        var teams = snapshot.games[i].teams || {};
+        if (teams.away && asText(teams.away.abbreviation,"").toUpperCase() === wanted) return colorValue(teams.away.color,"#4e8cff");
+        if (teams.home && asText(teams.home.abbreviation,"").toUpperCase() === wanted) return colorValue(teams.home.color,"#2aa994");
+      }
+      return "#536d60";
+    }
+
+    function mapFeedPick(pick) {
+      return Watch(
+        asText(pick.name,"Player update pending"),
+        asText(pick.team,"NFL"),
+        asText(pick.position,"PLAYER"),
+        asText(pick.number,"—"),
+        Number.isFinite(Number(pick.score)) ? Number(pick.score) : 70,
+        asText(pick.tier,"PLAYER EDGE"),
+        asText(pick.forecast,"Role and matchup update pending."),
+        colorValue(pick.accent,"#61e6a8"),
+        asList(pick.signals).map(function(signal) {
+          return [asText(signal.label,"Signal"),asText(signal.detail,"Update pending.")];
+        })
+      );
+    }
+
+    function mapFeedEdge(board,snapshot) {
+      var game = gameById(snapshot,board.gameId) || {};
+      var teams = game.teams || {};
+      var away = teams.away || {};
+      var home = teams.home || {};
+      var status = game.status || {};
+      var state = status.state === "in" ? "LIVE" : status.state === "post" ? "FINAL" : board.locked ? "LOCKED" : "PREVIEW";
+      var matchup = asText(board.matchup,"").split(/\s+@\s+/);
+      return {
+        id:asText(board.gameId,"edge-"+Math.random()),
+        away:asText(away.abbreviation,matchup[0] || "TBD"),
+        home:asText(home.abbreviation,matchup[1] || "TBD"),
+        kick:status.state === "in" ? asText(status.shortDetail,"LIVE") : status.state === "post" ? "FINAL" : kickoffLabel(board.kickoff || game.date),
+        state:state,
+        read:asText(board.read,"The matchup model is updating."),
+        context:asText(board.context,"Live context will update automatically."),
+        picks:asList(board.picks).map(mapFeedPick)
+      };
+    }
+
+    function mapFeedPlayer(player,game) {
+      var team = asText(player.team,"");
+      var teams = game.teams || {};
+      var color = team === asText(teams.away && teams.away.abbreviation,"")
+        ? colorValue(teams.away && teams.away.color,"#4e8cff")
+        : colorValue(teams.home && teams.home.color,"#2aa994");
+      var stats = asList(player.displayStats).slice(0,4).map(function(stat) {
+        return [asText(stat.label,"STAT"),asText(stat.value,"—")];
+      });
+      if (!stats.length) stats = [["LIVE LINE","—"],["STATUS","PENDING"]];
+      return P(
+        asText(player.jersey || player.number,player.position || "—"),
+        asText(player.name,"Player update pending"),
+        team || "NFL",
+        asText(player.role,player.position || "Player"),
+        asText(player.note,player.headline || "Live production will populate automatically."),
+        color,
+        stats,
+        [
+          asText(player.headline,"Live totals update from the agent"),
+          "Drive-by-drive data refresh",
+          "Final line archives automatically"
+        ]
+      );
+    }
+
+    function standbyGroup(label,game) {
+      var team = game.teams && game.teams.away ? game.teams.away.abbreviation : "NFL";
+      var color = colorValue(game.teams && game.teams.away && game.teams.away.color,"#61e6a8");
+      return [P("—",label,team,"Feed standby","This category activates automatically when verified game data is available.",color,[["STATUS","STANDBY"],["REFRESH","AUTO"]],["No manual page load required","Live feed checks automatically","Final data is archived"])];
+    }
+
+    function pickPlayersForGame(board,game) {
+      return asList(board && board.picks).map(function(pick) {
+        return P(
+          asText(pick.number,"—"),
+          asText(pick.name,"Player Edge watch"),
+          asText(pick.team,"NFL"),
+          asText(pick.position,"Player Edge"),
+          asText(pick.forecast,"Pregame Player Edge watchlist."),
+          colorValue(pick.accent,"#61e6a8"),
+          [["EDGE",asText(pick.score,"—")],["STATUS",board && board.lockStatus ? board.lockStatus : "PREGAME"]],
+          asList(pick.signals).map(function(signal) { return asText(signal.label,"Signal")+": "+asText(signal.detail,"Update pending"); })
+        );
+      });
+    }
+
+    function mapFeedGame(game,snapshot) {
+      var teams = game.teams || {};
+      var away = teams.away || {};
+      var home = teams.home || {};
+      var status = game.status || {};
+      var state = asText(status.state,"pre");
+      var board = asList(snapshot.playerEdge).find(function(item) { return String(item.gameId) === String(game.id); });
+      var pickPlayers = pickPlayersForGame(board,game);
+      var offense = asList(game.players && game.players.offense).map(function(player) { return mapFeedPlayer(player,game); });
+      var defense = asList(game.players && game.players.defense).map(function(player) { return mapFeedPlayer(player,game); });
+      var linePlay = asList(game.players && game.players.linePlay).map(function(player) { return mapFeedPlayer(player,game); });
+      if (!offense.length && pickPlayers.length) offense = pickPlayers;
+      if (!offense.length) offense = standbyGroup("Offense feed",game);
+      if (!defense.length) defense = standbyGroup("Defense feed",game);
+      if (!linePlay.length) linePlay = standbyGroup("Line play feed",game);
+
+      var comparisons = asList(game.comparisonStats).slice(0,4).map(function(row) {
+        return [asText(row.label,"TEAM STAT"),asText(row.away,"—"),asText(row.home,"—")];
+      });
+      var defaults = [["Total yards","—","—"],["Pass yards","—","—"],["Rush yards","—","—"],["Turnovers","—","—"]];
+      while (comparisons.length < 4) comparisons.push(defaults[comparisons.length]);
+
+      var awayWin = game.winProbability && Number.isFinite(Number(game.winProbability.away)) ? Number(game.winProbability.away) : 50;
+      var homeWin = game.winProbability && Number.isFinite(Number(game.winProbability.home)) ? Number(game.winProbability.home) : 100-awayWin;
+      var statusText = state === "post" ? "FINAL" : state === "in" ? asText(status.shortDetail,"LIVE") : "UPCOMING";
+      var clockText = state === "post" ? "FINAL" : state === "in" ? asText(status.clock,status.shortDetail || "LIVE") : kickoffLabel(game.date);
+      var situation = state === "post"
+        ? "GAME COMPLETE"
+        : state === "in"
+          ? asText(game.situation && (game.situation.downDistance || game.situation.yardLine),"LIVE DRIVE")
+          : "KICKOFF · "+fullKickoffLabel(game.date);
+
+      return {
+        id:asText(game.id,"game-"+Math.random()),
+        away:asText(away.abbreviation,"TBD"),
+        awayName:asText(away.displayName,"Away team"),
+        awayColor:colorValue(away.color,"#4e8cff"),
+        awayScore:state === "pre" ? "—" : asText(away.score,"0"),
+        home:asText(home.abbreviation,"TBD"),
+        homeName:asText(home.displayName,"Home team"),
+        homeColor:colorValue(home.color,"#2aa994"),
+        homeScore:state === "pre" ? "—" : asText(home.score,"0"),
+        status:statusText,
+        statusState:state,
+        clock:clockText,
+        possession:asText(game.possession,"—"),
+        situation:situation,
+        alert:state === "post" ? "FINAL · RESULTS ARCHIVED" : state === "in" ? "GRIDIRON LIVE · AUTOMATIC DATA REFRESH" : "PREGAME · PLAYER EDGE UPDATES UNTIL KICKOFF",
+        field:game.situation && game.situation.isRedZone ? 82 : 50,
+        winAway:Math.max(0,Math.min(100,Math.round(awayWin))),
+        winHome:Math.max(0,Math.min(100,Math.round(homeWin))),
+        teamStats:comparisons,
+        groups:{"Offense":offense,"Defense":defense,"Line Play":linePlay}
+      };
+    }
+
+    function applySnapshot(snapshot) {
+      if (!snapshot || !snapshot.season) return;
+      var priorEdgeId = activeEdge && activeEdge.id;
+      var priorGameId = activeGame && activeGame.id;
+
+      if (asList(snapshot.scoreStrip).length) {
+        scores = snapshot.scoreStrip.map(function(item) {
+          var stateClass = item.state === "in" ? "live" : item.state === "post" ? "final" : "next";
+          var label = item.state === "post" ? "FINAL" : item.state === "in" ? asText(item.status,"LIVE") : kickoffLabel(item.kickoff);
+          return [asText(item.away,"TBD"),item.awayScore === null || item.awayScore === undefined ? "—" : item.awayScore,asText(item.home,"TBD"),item.homeScore === null || item.homeScore === undefined ? "—" : item.homeScore,label,stateClass];
+        });
+      }
+
+      var connectedEdges = asList(snapshot.playerEdge).filter(function(board) { return asList(board.picks).length; }).map(function(board) { return mapFeedEdge(board,snapshot); });
+      if (connectedEdges.length) edgeGames = connectedEdges;
+
+      var connectedGames = asList(snapshot.games).map(function(game) { return mapFeedGame(game,snapshot); });
+      if (connectedGames.length) liveGames = connectedGames;
+
+      activeEdge = edgeGames.find(function(game) { return game.id === priorEdgeId; }) || edgeGames[0];
+      activeGame = liveGames.find(function(game) { return game.id === priorGameId; }) || liveGames.find(function(game) { return game.statusState === "in"; }) || liveGames[0];
+
+      var trackedGameIds = new Set(asList(snapshot.results).map(function(result) { return String(result.gameId || ""); }));
+      results = asList(snapshot.results).map(function(result) {
+        return {
+          matchup:asText(result.matchup,"NFL result"),
+          player:asText(result.player,"Player Edge pick"),
+          team:asText(result.team,"NFL"),
+          finalScore:asText(result.finalScore,"FINAL"),
+          actual:asText(result.actual,result.forecast || "Final line unavailable"),
+          outcome:asText(result.outcome,"NO DATA"),
+          color:teamColorFor(snapshot,result.team)
+        };
+      });
+      asList(snapshot.games).filter(function(game) {
+        return game.status && game.status.state === "post" && !trackedGameIds.has(String(game.id));
+      }).forEach(function(game) {
+        var teams = game.teams || {};
+        var away = teams.away || {};
+        var home = teams.home || {};
+        var awayScore = Number(away.score);
+        var homeScore = Number(home.score);
+        var winner = awayScore > homeScore ? away : homeScore > awayScore ? home : away;
+        var winnerName = awayScore === homeScore ? "Game ended tied" : asText(winner.abbreviation,"Winner")+" won";
+        results.push({
+          matchup:asText(away.abbreviation,"TBD")+" @ "+asText(home.abbreviation,"TBD"),
+          player:"Game result",
+          team:asText(winner.abbreviation,away.abbreviation || "NFL"),
+          finalScore:asText(away.abbreviation,"TBD")+" "+asText(away.score,"0")+" · "+asText(home.abbreviation,"TBD")+" "+asText(home.score,"0"),
+          actual:winnerName+" · final score archived automatically",
+          outcome:"FINAL",
+          color:colorValue(winner.color,"#536d60")
+        });
+      });
+
+      var season = snapshot.season;
+      var summary = snapshot.summary || {};
+      var typeName = asText(season.typeName,"Season");
+      var weekNumber = asText(season.week,"1");
+      var seasonLabel = asText(season.label,season.year+" "+typeName+" · Week "+weekNumber);
+      document.getElementById("score-week").textContent = "WEEK "+String(weekNumber).padStart(2,"0");
+      document.getElementById("score-title").textContent = typeName.toUpperCase();
+      document.getElementById("score-ribbon").setAttribute("aria-label",seasonLabel+" schedule");
+      document.getElementById("season-command").textContent = season.year+" "+typeName+" command center";
+      document.getElementById("season-mode").textContent = Number(summary.liveCount || 0) > 0 ? summary.liveCount+" game"+(summary.liveCount === 1 ? "" : "s")+" live now" : "Automatic feed is active";
+      document.getElementById("metric-games").textContent = summary.gameCount || asList(snapshot.games).length;
+      document.getElementById("metric-games-label").textContent = typeName+" Week "+weekNumber+" games";
+      document.getElementById("metric-pregame").textContent = summary.pregameCount || 0;
+      document.getElementById("metric-live").textContent = summary.liveCount || 0;
+      document.getElementById("metric-final").textContent = summary.finalCount || 0;
+      document.getElementById("edge-heading-copy").textContent = "Player Edge is connected to the automatic "+seasonLabel+" snapshot. Picks update until kickoff and lock for results tracking.";
+      document.getElementById("live-heading-copy").textContent = Number(summary.liveCount || 0) > 0 ? "Live scores and player totals are updating automatically from the Gridiron Pulse agent." : "The live room is connected and will switch from pregame to live data automatically at kickoff.";
+      document.getElementById("player-hint").textContent = Number(summary.liveCount || 0) > 0 ? "Live player totals refresh automatically. Select any card for the expanded stat line." : "Pregame Player Edge watches are shown now. Verified live totals replace them at kickoff.";
+      document.getElementById("results-title").textContent = typeName.toUpperCase()+" WEEK "+weekNumber+" RESULTS";
+      document.getElementById("results-copy").textContent = "Final scores and locked Player Edge outcomes are read directly from the saved Gridiron Pulse snapshot.";
+      document.getElementById("results-footer-copy").textContent = results.length ? results.length+" tracked Player Edge outcome"+(results.length === 1 ? "" : "s") : "No locked Player Edge outcomes are final yet";
+      document.getElementById("results-footer-status").textContent = updatedLabel(snapshot.generatedAt);
+      document.getElementById("source-note").textContent = "Live schedule, scores, Player Edge and results are supplied by the Gridiron Pulse agent. "+updatedLabel(snapshot.generatedAt)+".";
+      document.getElementById("footer-season").textContent = season.year+" "+typeName.toUpperCase();
+      document.getElementById("footer-week").textContent = "WEEK "+String(weekNumber).padStart(2,"0");
+      document.getElementById("footer-feed").textContent = "FEED ONLINE";
+
+      renderScores();
+      renderEdge();
+      renderLive();
+      renderResults();
+      setFeedStatus(snapshot);
+      scheduleAgentRefresh(snapshot.refresh && snapshot.refresh.recommendedBrowserSeconds);
+    }
+
+    function setFeedStatus(snapshot) {
+      var liveCount = Number(snapshot && snapshot.summary && snapshot.summary.liveCount || 0);
+      document.getElementById("feed-status-wide").textContent = liveCount ? liveCount+" live · auto updating" : "Feed online · auto updating";
+      document.getElementById("feed-status-short").textContent = liveCount ? liveCount+" live" : "Feed online";
+    }
+
+    function scheduleAgentRefresh(seconds) {
+      window.clearTimeout(refreshTimer);
+      var delay = Number(seconds);
+      if (!Number.isFinite(delay)) delay = 300;
+      delay = Math.max(30,Math.min(300,delay));
+      refreshTimer = window.setTimeout(loadAgentData,delay*1000);
+    }
+
+    async function loadAgentData() {
+      try {
+        var response = await fetch(AGENT_URL+"/latest?homepage="+Date.now(),{cache:"no-store",credentials:"omit"});
+        if (!response.ok) throw new Error("Feed returned "+response.status);
+        var payload = await response.json();
+        if (!payload || !payload.ok || !payload.snapshot) throw new Error("No saved snapshot was returned");
+        applySnapshot(payload.snapshot);
+      } catch (error) {
+        console.error("Gridiron Pulse feed:",error);
+        document.getElementById("feed-status-wide").textContent = "Feed retrying · preview shown";
+        document.getElementById("feed-status-short").textContent = "Retrying";
+        document.getElementById("footer-feed").textContent = "FEED RETRYING";
+        window.clearTimeout(refreshTimer);
+        refreshTimer = window.setTimeout(loadAgentData,60000);
+      }
+    }
+
     function renderScores() {
       document.getElementById("score-strip").innerHTML = scores.map(function(g) {
         return '<article class="score-chip '+g[5]+'"><div class="score-status"><span>'+g[4]+'</span>'+(g[5] === "live" ? "<i></i>" : "")+'</div><div><b>'+g[0]+'</b><strong>'+g[1]+'</strong></div><div><b>'+g[2]+'</b><strong>'+g[3]+'</strong></div></article>';
@@ -935,7 +1280,7 @@
 
     function renderGameSwitcher() {
       document.getElementById("game-switcher").innerHTML = liveGames.map(function(g) {
-        var label = g.status === "FINAL" ? "FINAL" : g.status.replace(" QUARTER","")+" · "+g.clock;
+        var label = g.statusState === "post" || g.status === "FINAL" ? "FINAL" : g.statusState === "pre" ? g.clock : g.status.replace(" QUARTER","")+" · "+g.clock;
         return '<button class="'+(g.id === activeGame.id ? "active" : "")+'" data-game="'+g.id+'" role="tab" aria-selected="'+(g.id === activeGame.id)+'"><span>'+label+'</span><div><b>'+g.away+'</b><strong>'+g.awayScore+'</strong><i>—</i><strong>'+g.homeScore+'</strong><b>'+g.home+'</b></div></button>';
       }).join("");
       document.querySelectorAll("[data-game]").forEach(function(button) {
@@ -948,10 +1293,11 @@
 
     function renderConsole() {
       var g = activeGame;
-      var statusLabel = g.status === "FINAL" ? "FINAL" : (g.status === "UPCOMING" ? "PREGAME" : "4TH");
+      var statusLabel = g.statusState === "post" || g.status === "FINAL" ? "FINAL" : (g.statusState === "pre" || g.status === "UPCOMING" ? "PREGAME" : g.status);
       var possession = g.possession === "—" ? "FEED STANDBY" : g.possession+" BALL";
+      var consoleNote = g.statusState === "post" ? "FINAL DATA ARCHIVED" : g.statusState === "in" ? "LIVE DATA REFRESHES AUTOMATICALLY" : "LIVE FEED CONNECTS AT KICKOFF";
       document.getElementById("console-scoreboard").innerHTML =
-        '<div class="console-meta"><span><i class="dot"></i> '+g.status+'</span><b>LIVE FEED CONNECTS AT KICKOFF</b></div>'+
+        '<div class="console-meta"><span><i class="dot"></i> '+g.status+'</span><b>'+consoleNote+'</b></div>'+
         '<div class="console-score"><div class="console-team away"><span class="console-mark" style="background:'+g.awayColor+'">'+g.away+'</span><div><small>'+g.awayName+'</small><strong>'+g.awayScore+'</strong></div></div><div class="console-clock"><span>'+statusLabel+'</span><strong>'+g.clock+'</strong><em>'+possession+'</em></div><div class="console-team home"><div><small>'+g.homeName+'</small><strong>'+g.homeScore+'</strong></div><span class="console-mark" style="background:'+g.homeColor+'">'+g.home+'</span></div></div>'+
         '<div class="console-alert"><span>'+g.alert+'</span><b>'+g.situation+'</b></div>'+
         '<div class="field"><div class="field-numbers"><span>0</span><span>20</span><span>40</span><span>50</span><span>40</span><span>20</span><span>0</span></div><div class="field-fill" style="width:'+g.field+'%"></div><i class="field-ball" style="left:calc('+g.field+'% - 7px)"></i></div>'+
@@ -965,7 +1311,7 @@
         button.classList.toggle("active",isActive);
         button.setAttribute("aria-selected",isActive);
       });
-      var players = activeGame.groups[activeTab];
+      var players = activeGame.groups[activeTab] || [];
       document.getElementById("player-grid").innerHTML = players.map(function(player,index) {
         return '<button class="player-card" data-player="'+index+'"><div class="player-top"><span class="player-number" style="border-color:'+player.accent+';color:'+player.accent+'">'+player.number+'</span><div><small>'+player.team+' · '+player.role+'</small><strong>'+player.name+'</strong></div><i>↗</i></div><p>'+player.note+'</p><div class="player-stats">'+player.stats.map(function(stat) { return '<div><strong>'+stat[1]+'</strong><span>'+stat[0]+'</span></div>'; }).join("")+'</div></button>';
       }).join("");
@@ -995,11 +1341,12 @@
 
     function renderResults() {
       if (!results.length) {
-        document.getElementById("results-list").innerHTML = '<div class="empty-results"><div><strong>THE BOARD IS CLEAN.</strong><p>Week 1 finals, player lines and Player Edge outcomes will appear here automatically after each game ends.</p></div></div>';
+        document.getElementById("results-list").innerHTML = '<div class="empty-results"><div><strong>THE BOARD IS CLEAN.</strong><p>Final scores and locked Player Edge outcomes will appear here automatically after each game ends.</p></div></div>';
         return;
       }
       document.getElementById("results-list").innerHTML = results.map(function(r) {
-        return '<article class="result-row"><div class="result-teams"><span style="background:'+r[4]+'">'+r[0]+'</span><i>@</i><b>'+r[1]+'</b></div><strong>'+r[2]+'</strong><p>'+r[3]+'</p><span class="final-pill">FINAL</span></article>';
+        var outcomeClass = r.outcome === "HIT" ? "hit" : r.outcome === "MISS" ? "miss" : "no-data";
+        return '<article class="result-row"><div class="result-teams"><span style="background:'+r.color+'">'+r.team+'</span><i>·</i><b>'+r.matchup+'</b></div><strong>'+r.finalScore+'</strong><p><b>'+r.player+'</b> · '+r.actual+'</p><span class="final-pill '+outcomeClass+'">'+r.outcome+'</span></article>';
       }).join("");
     }
 
@@ -1038,6 +1385,11 @@
     renderLive();
     renderResults();
     updateKickoffCountdown();
+    loadAgentData();
+
+    document.addEventListener("visibilitychange",function() {
+      if (!document.hidden) loadAgentData();
+    });
   </script>
 </body>
 </html>
