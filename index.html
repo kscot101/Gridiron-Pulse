@@ -510,6 +510,36 @@
       text-transform: uppercase;
     }
 
+    .power-team-metric-nav {
+      margin-top: -8px;
+    }
+
+    .power-unit-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+    }
+
+    .power-unit-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 24px;
+      padding: 0 8px;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font: 800 8px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .power-unit-strip b {
+      color: var(--ink);
+      font-size: 10px;
+    }
+
     .favorites-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -681,6 +711,83 @@
       font: 800 9px/1 var(--mono);
       letter-spacing: 0.08em;
       white-space: nowrap;
+    }
+
+    .history-status-line {
+      margin-top: -14px;
+      background: rgba(183, 255, 60, 0.055);
+      border-color: rgba(183, 255, 60, 0.18);
+    }
+
+    .history-status-line[hidden] {
+      display: none;
+    }
+
+    .history-status-line b {
+      color: var(--acid);
+    }
+
+    .history-pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .history-pulse-grid .season-stat {
+      background: rgba(183, 255, 60, 0.035);
+      border-color: rgba(183, 255, 60, 0.14);
+    }
+
+    .history-pulse-grid .season-stat strong {
+      color: var(--acid);
+    }
+
+    .history-compare {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      margin-top: 10px;
+      padding: 13px 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--dark-line);
+    }
+
+    .history-compare small,
+    .history-compare span {
+      display: block;
+      color: rgba(255, 255, 255, 0.42);
+      font: 800 8px/1.35 var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .history-compare strong {
+      display: block;
+      margin: 5px 0;
+      color: #fff;
+      font: 800 11px/1.35 var(--mono);
+    }
+
+    .history-compare > b {
+      color: var(--mint);
+      font: 400 34px/0.9 var(--display);
+      text-align: right;
+    }
+
+    .history-compare > b em {
+      display: block;
+      margin-top: 7px;
+      color: rgba(255, 255, 255, 0.42);
+      font: 800 7px/1 var(--mono);
+      font-style: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .history-compare.standby {
+      grid-template-columns: 1fr;
     }
 
     .season-toolbar select {
@@ -1772,6 +1879,20 @@
         flex-direction: column;
       }
     }
+    @media (max-width: 720px) {
+      .history-pulse-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .history-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .history-compare > b {
+        text-align: left;
+      }
+    }
+
   </style>
 </head>
 
@@ -1922,6 +2043,11 @@
           <b>AUTO UPDATE ON</b>
         </div>
 
+        <div class="season-status-line history-status-line" id="history-status-line">
+          <span>The historical comparable layer is connecting.</span>
+          <b>HISTORY LAYER</b>
+        </div>
+
         <div class="toolbar season-toolbar">
           <button type="button" class="active" data-season-view="teams">
             Teams
@@ -2043,8 +2169,9 @@
           </div>
 
           <p>
-            See who is hottest or coldest without mixing backward-looking form
-            with the next-game Player Edge forecast.
+            See who is hottest or coldest, then split team form into offense,
+            defense and complementary Tandem Pulse without mixing backward-looking
+            form with the next-game Player Edge forecast.
           </p>
         </div>
 
@@ -2056,6 +2183,7 @@
 
         </div>
 
+        <div class="power-position-nav power-team-metric-nav" id="power-team-metric-nav"></div>
         <div class="power-position-nav" id="power-position-nav" hidden></div>
         <div class="ranking-grid" id="power-grid"></div>
       </div>
@@ -2177,12 +2305,17 @@
     var SEASON_URL =
       "https://gridiron-pulse-season.kadescott97.workers.dev";
 
+    var HISTORY_URL =
+      "https://gridiron-pulse-history.kadescott97.workers.dev";
+
     var FAVORITES_KEY = "gridironPulseFavoritesV1";
 
     var state = {
       snapshot: null,
       seasonOutlook: null,
       seasonError: "",
+      historicalOutlook: null,
+      historyError: "",
       favorites: loadFavorites(),
       availability: "all",
       edge: "all",
@@ -2191,11 +2324,13 @@
       seasonFavoritesOnly: false,
       powerKind: "teams",
       powerOrder: "hot",
+      powerMetric: "overall",
       powerPosition: "",
       modelView: "bands",
       searchType: "all",
       refreshTimer: null,
       seasonRefreshTimer: null,
+      historyRefreshTimer: null,
       toastTimer: null
     };
 
@@ -2425,6 +2560,13 @@
       );
     }
 
+    function historyTeams() {
+      return list(
+        state.historicalOutlook &&
+        state.historicalOutlook.teams
+      );
+    }
+
     function seasonMoves() {
       return list(
         state.seasonOutlook &&
@@ -2500,6 +2642,16 @@
     function findSeasonPlayer(key) {
       return seasonPlayers().find(function(player) {
         return playerKey(player) === key;
+      });
+    }
+
+    function findHistoricalTeam(key) {
+      return historyTeams().find(function(team) {
+        return (
+          teamKey(team) === key ||
+          text(team.canonicalAbbreviation, "").toUpperCase() === key ||
+          text(team.abbreviation, "").toUpperCase() === key
+        );
       });
     }
 
@@ -2766,6 +2918,72 @@
 
       state.seasonRefreshTimer = setTimeout(function() {
         loadSeasonOutlook(true);
+      }, 900 * 1000);
+    }
+
+
+    async function loadHistoricalOutlook(silent) {
+      try {
+        var response = await fetch(
+          HISTORY_URL + "/historical-outlook",
+          {
+            headers: {
+              Accept: "application/json"
+            },
+            cache: "no-store"
+          }
+        );
+
+        var payload = await response.json();
+
+        if (
+          !response.ok ||
+          !payload.ok ||
+          !payload.historicalOutlook
+        ) {
+          throw new Error(
+            payload.message || "Historical outlook unavailable"
+          );
+        }
+
+        state.historicalOutlook = payload.historicalOutlook;
+        state.historyError = "";
+
+        renderSeason();
+        renderFavorites();
+
+        if (
+          document.getElementById("search-overlay")
+            .classList.contains("open")
+        ) {
+          renderSearch();
+        }
+
+        scheduleHistoryRefresh();
+
+        if (!silent) {
+          toast("Historical projections updated");
+        }
+      } catch (error) {
+        state.historyError = text(
+          error && error.message,
+          "Historical model temporarily unavailable"
+        );
+
+        renderSeason();
+        scheduleHistoryRefresh();
+
+        if (!silent) {
+          toast(state.historyError);
+        }
+      }
+    }
+
+    function scheduleHistoryRefresh() {
+      clearTimeout(state.historyRefreshTimer);
+
+      state.historyRefreshTimer = setTimeout(function() {
+        loadHistoricalOutlook(true);
       }, 900 * 1000);
     }
 
@@ -3037,6 +3255,51 @@
       );
     }
 
+
+    function renderHistoryStatus(box) {
+      if (!box) return;
+
+      var history = state.historicalOutlook;
+
+      if (!history) {
+        box.innerHTML =
+          "<span>" +
+          escapeHtml(
+            state.historyError
+              ? state.historyError + ". Base Season Outlook projections remain active while this layer retries."
+              : "Connecting historical starts, unit balance and continuity to the current Season Outlook."
+          ) +
+          "</span><b>" +
+          escapeHtml(
+            state.historyError
+              ? "BASE MODEL ACTIVE"
+              : "HISTORY CONNECTING"
+          ) +
+          "</b>";
+        return;
+      }
+
+      var summary = history.summary || {};
+
+      box.innerHTML =
+        "<span>" +
+        escapeHtml(
+          text(
+            history.message,
+            "Historical comparable projections are active."
+          )
+        ) +
+        "</span><b>" +
+        escapeHtml(
+          number(summary.adjustedTeamCount, 0) +
+          " TEAMS · " +
+          number(summary.averageAbsoluteAdjustment, 0).toFixed(1) +
+          " AVG WIN SHIFT · " +
+          shortTime(history.generatedAt)
+        ) +
+        "</b>";
+    }
+
     function renderSeason() {
       var summaryBox = document.getElementById(
         "season-summary"
@@ -3044,6 +3307,10 @@
 
       var statusBox = document.getElementById(
         "season-status-line"
+      );
+
+      var historyBox = document.getElementById(
+        "history-status-line"
       );
 
       var grid = document.getElementById(
@@ -3070,6 +3337,7 @@
         });
 
       favoritesOnly.hidden = state.seasonView === "moves";
+      historyBox.hidden = state.seasonView !== "teams";
       favoritesOnly.classList.toggle(
         "active",
         state.seasonFavoritesOnly
@@ -3122,6 +3390,7 @@
           ) +
           "</div>";
 
+        renderHistoryStatus(historyBox);
         return;
       }
 
@@ -3167,6 +3436,8 @@
         ) +
         "</b>";
 
+      renderHistoryStatus(historyBox);
+
       if (state.seasonView === "teams") {
         renderSeasonTeams(grid);
       } else if (state.seasonView === "players") {
@@ -3202,7 +3473,29 @@
       }
 
       teams.sort(function(a, b) {
-        return number(a.rank, 99) - number(b.rank, 99);
+        var historyA = findHistoricalTeam(teamKey(a));
+        var historyB = findHistoricalTeam(teamKey(b));
+        var activeA = !!(
+          historyA &&
+          historyA.historical &&
+          historyA.historical.active
+        );
+        var activeB = !!(
+          historyB &&
+          historyB.historical &&
+          historyB.historical.active
+        );
+
+        return (
+          number(
+            activeA ? historyA.adjustedRank : a.rank,
+            99
+          ) -
+          number(
+            activeB ? historyB.adjustedRank : b.rank,
+            99
+          )
+        );
       });
 
       grid.innerHTML = teams.length
@@ -3212,17 +3505,108 @@
 
     function seasonTeamCard(team) {
       var key = teamKey(team);
-      var projection = team.projectedWins || {};
+      var history = findHistoricalTeam(key);
+      var adjusted = history && history.adjusted;
+      var historyActive = !!(
+        history &&
+        history.historical &&
+        history.historical.active
+      );
+      var projection =
+        historyActive && adjusted && adjusted.projectedWins
+          ? adjusted.projectedWins
+          : team.projectedWins || {};
+      var projectedRecord =
+        historyActive && adjusted && adjusted.projectedRecord
+          ? adjusted.projectedRecord
+          : team.projectedRecord;
+      var playoffPct =
+        historyActive && adjusted && adjusted.playoffPct != null
+          ? adjusted.playoffPct
+          : team.playoffPct;
+      var divisionPct =
+        historyActive && adjusted && adjusted.divisionPct != null
+          ? adjusted.divisionPct
+          : team.divisionPct;
       var next = list(team.nextGames)[0];
       var change = team.change || {};
       var direction = text(change.direction, "EVEN").toLowerCase();
       var accent = color(team.color);
+      var rank = number(
+        historyActive && history ? history.adjustedRank : team.rank,
+        number(team.rank, 0)
+      );
+      var metrics = history && history.metrics || {};
+      var comparable = history && history.historical || {};
+      var historyDrivers = historyActive
+        ? list(history.drivers).slice(0, 2)
+        : [];
+      var combinedDrivers = historyDrivers.concat(
+        list(team.drivers).slice(0, historyActive ? 2 : 4)
+      );
+
+      var historyMarkup = historyActive
+        ? (
+            '<div class="history-pulse-grid">' +
+            seasonStat(
+              number(metrics.startLegitimacy, 0),
+              text(metrics.startLegitimacyLabel, "Start legitimacy"),
+              metrics.startLegitimacy,
+              "#b7ff3c"
+            ) +
+            seasonStat(
+              number(metrics.offensePulse, 0),
+              "Offense pulse",
+              metrics.offensePulse,
+              "#61e6a8"
+            ) +
+            seasonStat(
+              number(metrics.defensePulse, 0),
+              "Defense pulse",
+              metrics.defensePulse,
+              "#74b9ff"
+            ) +
+            seasonStat(
+              number(metrics.tandemPulse, 0),
+              "Tandem pulse",
+              metrics.tandemPulse,
+              "#f6d365"
+            ) +
+            '</div><div class="history-compare"><div><small>Historical comparables</small><strong>' +
+            escapeHtml(
+              number(comparable.count, 0) +
+              " similar starts · " +
+              number(comparable.meanWins, 0).toFixed(1) +
+              " mean wins"
+            ) +
+            "</strong><span>" +
+            escapeHtml(
+              percentLabel(comparable.playoffPct) +
+              " playoffs · " +
+              percentLabel(comparable.collapsePct) +
+              " below nine wins · " +
+              number(metrics.regressionRisk, 0) +
+              " regression risk"
+            ) +
+            "</span></div><b>" +
+            escapeHtml(number(comparable.similarity, 0)) +
+            "<em>Similarity</em></b></div>"
+          )
+        : (
+            '<div class="history-compare standby"><div><small>Historical comparable model</small><strong>' +
+            escapeHtml(
+              history && history.historical && history.historical.message
+                ? history.historical.message
+                : "The historical layer activates after completed regular-season games."
+            ) +
+            "</strong><span>Base Season Outlook remains active until the start-quality sample is available.</span></div></div>"
+          );
 
       return (
         '<article class="season-card" style="--season-accent:' +
         escapeHtml(accent) +
         '"><div class="season-card-head"><div class="season-rank">' +
-        String(number(team.rank, 0)).padStart(2, "0") +
+        String(rank).padStart(2, "0") +
         "</div>" +
         imageOrFallback(
           team.logo,
@@ -3242,8 +3626,14 @@
         ) +
         "</p></div>" +
         favoriteButton("teams", team) +
-        '</div><div class="season-projection"><div><small>Projected record</small><strong>' +
-        escapeHtml(text(team.projectedRecord, "—")) +
+        '</div><div class="season-projection"><div><small>' +
+        escapeHtml(
+          historyActive
+            ? "Historical-adjusted record"
+            : "Projected record"
+        ) +
+        "</small><strong>" +
+        escapeHtml(text(projectedRecord, "—")) +
         "</strong></div>" +
         '<div class="season-projection-range">' +
         escapeHtml(
@@ -3256,17 +3646,23 @@
         ) +
         "</div></div>" +
         '<div class="season-stat-grid">' +
-        seasonStat(text(team.currentRecord, "0-0"), "Current record") +
         seasonStat(
-          percentLabel(team.playoffPct),
+          text(
+            history && history.currentRecord,
+            text(team.currentRecord, "0-0")
+          ),
+          "Current record"
+        ) +
+        seasonStat(
+          percentLabel(playoffPct),
           "Playoff chance",
-          team.playoffPct,
+          playoffPct,
           "#b7ff3c"
         ) +
         seasonStat(
-          percentLabel(team.divisionPct),
+          percentLabel(divisionPct),
           "Division chance",
-          team.divisionPct,
+          divisionPct,
           "#61e6a8"
         ) +
         seasonStat("#" + number(team.scheduleRank, 0), "Schedule difficulty") +
@@ -3279,13 +3675,27 @@
           " " +
           signedLabel(change.projectedWins, " wins")
         ) +
-        '</span><span class="season-tag">' +
+        "</span>" +
+        (
+          historyActive
+            ? '<span class="season-tag ' +
+              (number(adjusted.deltaWins, 0) >= 0 ? "up" : "down") +
+              '">' +
+              escapeHtml(
+                "HISTORY " +
+                signedLabel(adjusted.deltaWins, " wins")
+              ) +
+              "</span>"
+            : ""
+        ) +
+        '<span class="season-tag">' +
         escapeHtml(
           text(team.confidenceLabel, "EARLY") +
           " confidence · " +
           number(team.confidence, 0)
         ) +
         "</span></div>" +
+        historyMarkup +
         (
           next
             ? '<div class="season-next"><span>Week ' +
@@ -3300,7 +3710,7 @@
             : '<div class="season-next"><span>Regular season complete</span><b>FINAL OUTLOOK</b></div>'
         ) +
         '<div class="season-drivers">' +
-        seasonDriverMarkup(team.drivers, accent) +
+        seasonDriverMarkup(combinedDrivers, accent) +
         "</div></article>"
       );
     }
@@ -3661,6 +4071,7 @@
               });
 
               var forecast = findSeasonTeam(key);
+              var historicalForecast = findHistoricalTeam(key);
 
               var teamMeta = [];
 
@@ -3675,10 +4086,29 @@
               }
 
               if (forecast) {
+                var favoriteProjection =
+                  historicalForecast &&
+                  historicalForecast.adjusted
+                    ? historicalForecast.adjusted
+                    : forecast;
+
                 teamMeta.push(
-                  text(forecast.projectedRecord, "—") +
-                  " projected · " +
-                  percentLabel(forecast.playoffPct) +
+                  text(
+                    favoriteProjection.projectedRecord,
+                    forecast.projectedRecord || "—"
+                  ) +
+                  (
+                    historicalForecast &&
+                    historicalForecast.historical &&
+                    historicalForecast.historical.active
+                      ? " historical-adjusted · "
+                      : " projected · "
+                  ) +
+                  percentLabel(
+                    favoriteProjection.playoffPct != null
+                      ? favoriteProjection.playoffPct
+                      : forecast.playoffPct
+                  ) +
                   " playoffs"
                 );
               }
@@ -4201,6 +4631,44 @@
         : '<div class="empty dark-empty" style="grid-column:1/-1">No game is live right now. This section activates automatically at kickoff.</div>';
     }
 
+    function teamPowerMetricValue(item, metric) {
+      if (metric === "overall") {
+        return number(item && item.heatScore, null);
+      }
+
+      var history = findHistoricalTeam(teamKey(item));
+      var active = !!(
+        history &&
+        history.historical &&
+        history.historical.active
+      );
+
+      if (!active) {
+        return null;
+      }
+
+      var metrics = history.metrics || {};
+      var key =
+        metric === "offense"
+          ? "offensePulse"
+          : metric === "defense"
+            ? "defensePulse"
+            : "tandemPulse";
+
+      var value = Number(metrics[key]);
+      return Number.isFinite(value) ? value : null;
+    }
+
+    function powerMetricLabel(metric) {
+      return metric === "offense"
+        ? "OFFENSE PULSE"
+        : metric === "defense"
+          ? "DEFENSE PULSE"
+          : metric === "tandem"
+            ? "TANDEM PULSE"
+            : "HEAT SCORE";
+    }
+
     function renderPower() {
       var power =
         state.snapshot &&
@@ -4235,6 +4703,10 @@
         "power-position-nav"
       );
 
+      var teamMetricNav = document.getElementById(
+        "power-team-metric-nav"
+      );
+
       if (state.powerKind === "players") {
         if (!positions.includes(state.powerPosition)) {
           state.powerPosition = positions.includes("QB")
@@ -4242,6 +4714,7 @@
             : positions[0] || "";
         }
 
+        teamMetricNav.hidden = true;
         positionNav.hidden = false;
         positionNav.innerHTML = positions.length
           ? positions
@@ -4266,6 +4739,25 @@
           : '<span class="empty">Position groups will appear once player form is available.</span>';
       } else {
         positionNav.hidden = true;
+        teamMetricNav.hidden = false;
+        teamMetricNav.innerHTML = [
+          ["overall", "Overall"],
+          ["offense", "Offense"],
+          ["defense", "Defense"],
+          ["tandem", "Tandem"]
+        ]
+          .map(function(option) {
+            return (
+              '<button type="button" data-power-metric="' +
+              option[0] +
+              '" class="' +
+              (state.powerMetric === option[0] ? "active" : "") +
+              '">' +
+              option[1] +
+              "</button>"
+            );
+          })
+          .join("");
       }
 
       var items =
@@ -4276,9 +4768,21 @@
             });
 
       items.sort(function(a, b) {
+        var aValue =
+          state.powerKind === "teams"
+            ? teamPowerMetricValue(a, state.powerMetric)
+            : number(a.heatScore, null);
+        var bValue =
+          state.powerKind === "teams"
+            ? teamPowerMetricValue(b, state.powerMetric)
+            : number(b.heatScore, null);
+
+        if (aValue == null) aValue = number(a.heatScore);
+        if (bValue == null) bValue = number(b.heatScore);
+
         return state.powerOrder === "hot"
-          ? number(b.heatScore) - number(a.heatScore)
-          : number(a.heatScore) - number(b.heatScore);
+          ? bValue - aValue
+          : aValue - bValue;
       });
 
       items = items.slice(0, 16);
@@ -4296,7 +4800,29 @@
             ) +
             "</span></div>"
           )
-        : "";
+        : teamMode
+          ? (
+              '<div class="power-position-label"><strong>' +
+              escapeHtml(
+                state.powerMetric === "overall"
+                  ? "Team Power"
+                  : state.powerMetric.charAt(0).toUpperCase() +
+                    state.powerMetric.slice(1) +
+                    " Pulse"
+              ) +
+              "</strong><span>" +
+              escapeHtml(
+                state.powerMetric === "tandem"
+                  ? "How well offense and defense are clicking together"
+                  : state.powerMetric === "offense"
+                    ? "Current offensive form"
+                    : state.powerMetric === "defense"
+                      ? "Current defensive form"
+                      : "Overall completed-game form"
+              ) +
+              "</span></div>"
+            )
+          : "";
 
       document.getElementById(
         "power-grid"
@@ -4357,6 +4883,39 @@
                   ? number(item.positionRank)
                   : index + 1;
 
+              var teamHistory = teamMode
+                ? findHistoricalTeam(entityKey)
+                : null;
+              var historyActive = !!(
+                teamHistory &&
+                teamHistory.historical &&
+                teamHistory.historical.active
+              );
+              var teamMetrics =
+                historyActive && teamHistory.metrics
+                  ? teamHistory.metrics
+                  : {};
+              var selectedScore = teamMode
+                ? teamPowerMetricValue(item, state.powerMetric)
+                : number(item.heatScore, null);
+              var displayScore = selectedScore == null
+                ? "—"
+                : Math.round(selectedScore);
+              var scoreLabel = teamMode
+                ? powerMetricLabel(state.powerMetric)
+                : "HEAT SCORE";
+              var unitMarkup = teamMode
+                ? (
+                    '<div class="power-unit-strip"><span>OFF <b>' +
+                    (historyActive ? Math.round(number(teamMetrics.offensePulse)) : "—") +
+                    '</b></span><span>DEF <b>' +
+                    (historyActive ? Math.round(number(teamMetrics.defensePulse)) : "—") +
+                    '</b></span><span>TANDEM <b>' +
+                    (historyActive ? Math.round(number(teamMetrics.tandemPulse)) : "—") +
+                    "</b></span></div>"
+                  )
+                : "";
+
               return (
                 '<article class="ranking-card">' +
                 '<div class="rank-number">' +
@@ -4394,9 +4953,13 @@
                 ) +
                 '">' +
                 movement +
-                '</span></div><div class="heat"><strong>' +
-                number(item.heatScore) +
-                "</strong><small>HEAT SCORE</small>" +
+                "</span>" +
+                unitMarkup +
+                '</div><div class="heat"><strong>' +
+                escapeHtml(displayScore) +
+                "</strong><small>" +
+                escapeHtml(scoreLabel) +
+                "</small>" +
                 favoriteButton(
                   teamMode
                     ? "teams"
@@ -4889,16 +5452,48 @@
         ? findSeasonTeam(key)
         : findSeasonPlayer(key);
 
+      var historicalForecast = teamMode
+        ? findHistoricalTeam(key)
+        : null;
+
       var seasonMarkup =
         '<div class="empty">Season Outlook is connecting. This profile will fill in automatically.</div>';
 
       if (seasonForecast && teamMode) {
-        var wins = seasonForecast.projectedWins || {};
+        var historicalActive = !!(
+          historicalForecast &&
+          historicalForecast.historical &&
+          historicalForecast.historical.active
+        );
+        var profileProjection =
+          historicalActive && historicalForecast.adjusted
+            ? historicalForecast.adjusted
+            : seasonForecast;
+        var wins =
+          profileProjection.projectedWins ||
+          seasonForecast.projectedWins ||
+          {};
+        var profileMetrics =
+          historicalForecast && historicalForecast.metrics || {};
+        var profileComparables =
+          historicalForecast && historicalForecast.historical || {};
+        var topComparable = list(
+          profileComparables.topComparables
+        )[0];
 
         seasonMarkup =
-          '<article class="detail-card"><small>Projected record</small><strong>' +
+          '<article class="detail-card"><small>' +
           escapeHtml(
-            text(seasonForecast.projectedRecord, "—")
+            historicalActive
+              ? "Historical-adjusted record"
+              : "Projected record"
+          ) +
+          "</small><strong>" +
+          escapeHtml(
+            text(
+              profileProjection.projectedRecord,
+              seasonForecast.projectedRecord || "—"
+            )
           ) +
           "</strong><p>" +
           escapeHtml(
@@ -4911,17 +5506,100 @@
           ) +
           "</p></article>" +
           '<article class="detail-card"><small>Postseason path</small><strong>' +
-          escapeHtml(percentLabel(seasonForecast.playoffPct)) +
+          escapeHtml(
+            percentLabel(
+              profileProjection.playoffPct != null
+                ? profileProjection.playoffPct
+                : seasonForecast.playoffPct
+            )
+          ) +
           " playoffs</strong><p>" +
           escapeHtml(
-            percentLabel(seasonForecast.divisionPct) +
+            percentLabel(
+              profileProjection.divisionPct != null
+                ? profileProjection.divisionPct
+                : seasonForecast.divisionPct
+            ) +
             " division chance · No. " +
             number(seasonForecast.scheduleRank, 0) +
             " remaining schedule"
           ) +
           "</p></article>" +
-          list(seasonForecast.drivers)
-            .slice(0, 2)
+          (
+            historicalActive
+              ? '<article class="detail-card"><small>Start legitimacy</small><strong>' +
+                escapeHtml(
+                  number(profileMetrics.startLegitimacy, 0) +
+                  " · " +
+                  text(
+                    profileMetrics.startLegitimacyLabel,
+                    "CURRENT START"
+                  )
+                ) +
+                "</strong><p>Offense " +
+                escapeHtml(number(profileMetrics.offensePulse, 0)) +
+                " · Defense " +
+                escapeHtml(number(profileMetrics.defensePulse, 0)) +
+                " · Tandem " +
+                escapeHtml(number(profileMetrics.tandemPulse, 0)) +
+                "</p></article>" +
+                '<article class="detail-card"><small>Historical finish</small><strong>' +
+                escapeHtml(
+                  number(profileComparables.meanWins, 0).toFixed(1) +
+                  " mean wins"
+                ) +
+                "</strong><p>" +
+                escapeHtml(
+                  number(profileComparables.count, 0) +
+                  " comparable starts · " +
+                  percentLabel(profileComparables.playoffPct) +
+                  " playoffs · " +
+                  percentLabel(profileComparables.collapsePct) +
+                  " collapse rate"
+                ) +
+                "</p></article>" +
+                '<article class="detail-card"><small>Regression monitor</small><strong>' +
+                escapeHtml(
+                  number(profileMetrics.regressionRisk, 0) +
+                  " risk · " +
+                  number(profileMetrics.sustainability, 0) +
+                  " sustainability"
+                ) +
+                "</strong><p>Core continuity " +
+                escapeHtml(number(profileMetrics.coreContinuity, 0)) +
+                " · Historical adjustment " +
+                escapeHtml(
+                  signedLabel(
+                    historicalForecast.adjusted.deltaWins,
+                    " wins"
+                  )
+                ) +
+                "</p></article>" +
+                (
+                  topComparable
+                    ? '<article class="detail-card"><small>Closest historical comp</small><strong>' +
+                      escapeHtml(
+                        topComparable.season +
+                        " " +
+                        topComparable.team +
+                        " · " +
+                        topComparable.snapshotRecord
+                      ) +
+                      "</strong><p>Finished " +
+                      escapeHtml(topComparable.finalRecord) +
+                      " · " +
+                      escapeHtml(number(topComparable.similarity, 0)) +
+                      "% similarity</p></article>"
+                    : ""
+                )
+              : ""
+          ) +
+          list(
+            historicalActive
+              ? historicalForecast.drivers
+              : seasonForecast.drivers
+          )
+            .slice(0, historicalActive ? 3 : 2)
             .map(function(driver) {
               return (
                 '<article class="detail-card"><small>' +
@@ -5387,6 +6065,16 @@
         renderPower();
       }
 
+      var powerMetric = event.target.closest(
+        "[data-power-metric]"
+      );
+
+      if (powerMetric) {
+        state.powerMetric =
+          powerMetric.dataset.powerMetric;
+        renderPower();
+      }
+
       var powerOrder = event.target.closest(
         "[data-power-order]"
       );
@@ -5534,6 +6222,7 @@
         if (!document.hidden) {
           loadSnapshot(true);
           loadSeasonOutlook(true);
+          loadHistoricalOutlook(true);
         }
       }
     );
@@ -5541,6 +6230,7 @@
     renderAll();
     loadSnapshot(true);
     loadSeasonOutlook(true);
+    loadHistoricalOutlook(true);
   </script>
 </body>
 </html>
