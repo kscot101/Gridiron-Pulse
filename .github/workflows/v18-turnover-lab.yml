@@ -1,0 +1,66 @@
+name: V1.8 Turnover Impact Lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_season:
+        description: "First season to analyze"
+        required: true
+        default: "2014"
+      end_season:
+        description: "Last season to analyze"
+        required: true
+        default: "2025"
+
+permissions:
+  contents: read
+
+jobs:
+  turnover-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout model lab branch
+        uses: actions/checkout@v4
+        with:
+          ref: model-lab-v18-turnovers
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyarrow
+
+      - name: Build turnover sequence dataset
+        run: |
+          python model-lab/v18_turnover_sequences.py \
+            --start-season "${{ inputs.start_season }}" \
+            --end-season "${{ inputs.end_season }}" \
+            --history data/gridiron-history-data.json \
+            --cache model-lab/cache/pbp \
+            --out model-lab/output
+
+      - name: Show lab summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/turnover_lab_summary.json ]; then
+            cat model-lab/output/turnover_lab_summary.json
+          fi
+
+      - name: Upload turnover lab outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v18-turnover-lab-${{ inputs.start_season }}-${{ inputs.end_season }}
+          path: |
+            model-lab/output/turnover_sequences.csv
+            model-lab/output/turnover_checkpoints.csv
+            model-lab/output/turnover_lab_summary.json
+          if-no-files-found: warn
+          retention-days: 14
