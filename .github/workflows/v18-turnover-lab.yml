@@ -45,6 +45,7 @@ jobs:
           test -f model-lab/v18_turnover_sequences.py
           test -f model-lab/v18_turnover_features.py
           test -f model-lab/v18_turnover_backtest.py
+          test -f model-lab/v18_turnover_fade_backtest.py
           test -f data/gridiron-history-data.json
 
       - name: Install dependencies
@@ -61,9 +62,18 @@ jobs:
             --cache model-lab/cache/pbp \
             --out model-lab/output
 
-      - name: Run rolling no-lookahead turnover backtest
+      - name: Run original turnover signal screen
         run: |
           python model-lab/v18_turnover_backtest.py \
+            --history data/gridiron-history-data.json \
+            --sequences model-lab/output/turnover_sequences.csv \
+            --test-start "$TEST_START_SEASON" \
+            --test-end "$TEST_END_SEASON" \
+            --out model-lab/output
+
+      - name: Run targeted v1.8-B turnover fade screen
+        run: |
+          python model-lab/v18_turnover_fade_backtest.py \
             --history data/gridiron-history-data.json \
             --sequences model-lab/output/turnover_sequences.csv \
             --test-start "$TEST_START_SEASON" \
@@ -77,11 +87,18 @@ jobs:
             cat model-lab/output/turnover_lab_summary.json
           fi
 
-      - name: Show backtest summary
+      - name: Show original backtest summary
         if: always()
         run: |
           if [ -f model-lab/output/turnover_backtest_summary.json ]; then
             cat model-lab/output/turnover_backtest_summary.json
+          fi
+
+      - name: Show v1.8-B fade summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/turnover_fade_backtest_summary.json ]; then
+            cat model-lab/output/turnover_fade_backtest_summary.json
           fi
 
       - name: Upload turnover lab and backtest outputs
@@ -97,5 +114,9 @@ jobs:
             model-lab/output/turnover_backtest_ranking.csv
             model-lab/output/turnover_backtest_by_season.csv
             model-lab/output/turnover_backtest_summary.json
+            model-lab/output/turnover_fade_backtest_predictions.csv
+            model-lab/output/turnover_fade_backtest_ranking.csv
+            model-lab/output/turnover_fade_backtest_by_season.csv
+            model-lab/output/turnover_fade_backtest_summary.json
           if-no-files-found: warn
           retention-days: 14
