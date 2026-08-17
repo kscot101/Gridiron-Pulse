@@ -3,14 +3,19 @@ name: V1.8 Turnover Impact Lab
 on:
   workflow_dispatch:
     inputs:
-      start_season:
-        description: "First season to analyze"
+      test_start_season:
+        description: "First held-out season to test"
         required: true
         default: "2014"
-      end_season:
-        description: "Last season to analyze"
+      test_end_season:
+        description: "Last held-out season to test"
         required: true
         default: "2025"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/v18-turnover-lab.yml"
 
 permissions:
   contents: read
@@ -19,6 +24,10 @@ jobs:
   turnover-lab:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      DATA_START_SEASON: "2002"
+      TEST_START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_start_season || '2014' }}
+      TEST_END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_end_season || '2025' }}
 
     steps:
       - name: Checkout model lab branch
@@ -34,6 +43,8 @@ jobs:
       - name: Verify lab files
         run: |
           test -f model-lab/v18_turnover_sequences.py
+          test -f model-lab/v18_turnover_features.py
+          test -f model-lab/v18_turnover_backtest.py
           test -f data/gridiron-history-data.json
 
       - name: Install dependencies
@@ -41,30 +52,50 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pandas numpy requests pyarrow
 
-      - name: Build turnover sequence dataset
+      - name: Build historical turnover sequence dataset
         run: |
           python model-lab/v18_turnover_sequences.py \
-            --start-season "${{ inputs.start_season }}" \
-            --end-season "${{ inputs.end_season }}" \
+            --start-season "$DATA_START_SEASON" \
+            --end-season "$TEST_END_SEASON" \
             --history data/gridiron-history-data.json \
             --cache model-lab/cache/pbp \
             --out model-lab/output
 
-      - name: Show lab summary
+      - name: Run rolling no-lookahead turnover backtest
+        run: |
+          python model-lab/v18_turnover_backtest.py \
+            --history data/gridiron-history-data.json \
+            --sequences model-lab/output/turnover_sequences.csv \
+            --test-start "$TEST_START_SEASON" \
+            --test-end "$TEST_END_SEASON" \
+            --out model-lab/output
+
+      - name: Show turnover dataset summary
         if: always()
         run: |
           if [ -f model-lab/output/turnover_lab_summary.json ]; then
             cat model-lab/output/turnover_lab_summary.json
           fi
 
-      - name: Upload turnover lab outputs
+      - name: Show backtest summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/turnover_backtest_summary.json ]; then
+            cat model-lab/output/turnover_backtest_summary.json
+          fi
+
+      - name: Upload turnover lab and backtest outputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v18-turnover-lab-${{ inputs.start_season }}-${{ inputs.end_season }}
+          name: v18-turnover-backtest-${{ env.TEST_START_SEASON }}-${{ env.TEST_END_SEASON }}
           path: |
             model-lab/output/turnover_sequences.csv
             model-lab/output/turnover_checkpoints.csv
             model-lab/output/turnover_lab_summary.json
+            model-lab/output/turnover_backtest_predictions.csv
+            model-lab/output/turnover_backtest_ranking.csv
+            model-lab/output/turnover_backtest_by_season.csv
+            model-lab/output/turnover_backtest_summary.json
           if-no-files-found: warn
           retention-days: 14
