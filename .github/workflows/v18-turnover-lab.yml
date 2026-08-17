@@ -46,6 +46,7 @@ jobs:
           test -f model-lab/v18_turnover_features.py
           test -f model-lab/v18_turnover_backtest.py
           test -f model-lab/v18_turnover_fade_backtest.py
+          test -f model-lab/v18_exact_integration_replay.py
           test -f data/gridiron-history-data.json
 
       - name: Install dependencies
@@ -80,6 +81,16 @@ jobs:
             --test-end "$TEST_END_SEASON" \
             --out model-lab/output
 
+      - name: Run exact v1.8 integration replay
+        run: |
+          python model-lab/v18_exact_integration_replay.py \
+            --history data/gridiron-history-data.json \
+            --sequences model-lab/output/turnover_sequences.csv \
+            --pbp-cache model-lab/cache/pbp \
+            --test-start "$TEST_START_SEASON" \
+            --test-end "$TEST_END_SEASON" \
+            --out model-lab/output
+
       - name: Show turnover dataset summary
         if: always()
         run: |
@@ -101,6 +112,13 @@ jobs:
             cat model-lab/output/turnover_fade_backtest_summary.json
           fi
 
+      - name: Show exact integration replay summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/turnover_exact_integration_summary.json ]; then
+            cat model-lab/output/turnover_exact_integration_summary.json
+          fi
+
       - name: Upload turnover lab and backtest outputs
         if: always()
         uses: actions/upload-artifact@v4
@@ -118,5 +136,10 @@ jobs:
             model-lab/output/turnover_fade_backtest_ranking.csv
             model-lab/output/turnover_fade_backtest_by_season.csv
             model-lab/output/turnover_fade_backtest_summary.json
+            model-lab/output/turnover_exact_integration_predictions.csv
+            model-lab/output/turnover_exact_integration_ranking.csv
+            model-lab/output/turnover_exact_integration_weekly.csv
+            model-lab/output/turnover_exact_integration_by_season.csv
+            model-lab/output/turnover_exact_integration_summary.json
           if-no-files-found: warn
           retention-days: 14
