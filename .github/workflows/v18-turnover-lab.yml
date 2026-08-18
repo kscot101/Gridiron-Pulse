@@ -47,6 +47,7 @@ jobs:
           test -f model-lab/v18_turnover_backtest.py
           test -f model-lab/v18_turnover_fade_backtest.py
           test -f model-lab/v18_exact_integration_replay.py
+          test -f model-lab/v18_exact_integration_replay_fast.py
           test -f data/gridiron-history-data.json
 
       - name: Install dependencies
@@ -81,9 +82,9 @@ jobs:
             --test-end "$TEST_END_SEASON" \
             --out model-lab/output
 
-      - name: Run exact v1.8 integration replay
+      - name: Run optimized exact v1.8 integration replay
         run: |
-          python model-lab/v18_exact_integration_replay.py \
+          python model-lab/v18_exact_integration_replay_fast.py \
             --history data/gridiron-history-data.json \
             --sequences model-lab/output/turnover_sequences.csv \
             --pbp-cache model-lab/cache/pbp \
