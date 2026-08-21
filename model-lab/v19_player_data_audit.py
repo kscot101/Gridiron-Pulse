@@ -8,7 +8,7 @@ run a real no-lookahead player comparable model?
 Sources are official nflverse-data release assets:
 - weekly player stats
 - game-level snap counts
-- weekly depth charts
+- weekly/daily depth charts
 - weekly injury reports
 - season rosters / identifier crosswalks
 
@@ -40,6 +40,7 @@ except ImportError:  # pragma: no cover - workflow installs it
 BASE = "https://github.com/nflverse/nflverse-data/releases/download"
 CHECKPOINTS = (4, 8, 12)
 POSITIONS = ("QB", "RB", "WR", "TE")
+SNAP_RELIABLE_START = 2013
 
 ALIASES = {
     "JAC": "JAX",
@@ -72,8 +73,17 @@ NAME_CANDIDATES = [
     "name",
 ]
 TEAM_CANDIDATES = ["recent_team", "team", "club_code", "team_abbr", "team_abbreviation"]
-POSITION_CANDIDATES = ["position", "position_group", "pos", "depth_position"]
+POSITION_CANDIDATES = [
+    "position",
+    "position_group",
+    "pos",
+    "depth_position",
+    "pos_grp",
+    "pos_name",
+    "pos_abb",
+]
 WEEK_CANDIDATES = ["week", "game_week"]
+DATE_CANDIDATES = ["dt", "date", "game_date"]
 SEASON_TYPE_CANDIDATES = ["season_type", "game_type"]
 
 
@@ -185,14 +195,16 @@ def load_rds_url(url: str) -> pd.DataFrame:
 
 def load_source(source: str, season: int) -> pd.DataFrame:
     url = URLS[source](season)
-    if source == "depth_charts":
-        return load_rds_url(url)
-    return load_csv_url(url)
+    frame = load_rds_url(url) if source == "depth_charts" else load_csv_url(url)
+    if frame.empty:
+        raise RuntimeError(f"{source} {season} returned 0 usable rows")
+    return frame
 
 
 def source_summary(source: str, season: int, frame: pd.DataFrame) -> dict:
     team_column = first_column(frame, TEAM_CANDIDATES)
     week_column = first_column(frame, WEEK_CANDIDATES)
+    date_column = first_column(frame, DATE_CANDIDATES)
     name_column = first_column(frame, NAME_CANDIDATES)
     position_column = first_column(frame, POSITION_CANDIDATES)
     gsis_column = first_column(frame, ID_CANDIDATES["gsis"])
@@ -206,12 +218,15 @@ def source_summary(source: str, season: int, frame: pd.DataFrame) -> dict:
         "columnNames": [str(column) for column in frame.columns],
         "teamColumn": team_column,
         "weekColumn": week_column,
+        "dateColumn": date_column,
+        "timeColumn": week_column or date_column,
         "nameColumn": name_column,
         "positionColumn": position_column,
         "gsisColumn": gsis_column,
         "pfrColumn": pfr_column,
         "uniqueTeams": 0,
         "uniqueWeeks": 0,
+        "uniqueDates": 0,
         "uniquePlayersByName": 0,
         "uniqueGsisIds": 0,
         "uniquePfrIds": 0,
@@ -221,6 +236,8 @@ def source_summary(source: str, season: int, frame: pd.DataFrame) -> dict:
         summary["uniqueTeams"] = int(frame[team_column].fillna("").astype(str).map(canon_team).replace("", np.nan).nunique())
     if week_column:
         summary["uniqueWeeks"] = int(pd.to_numeric(frame[week_column], errors="coerce").dropna().nunique())
+    if date_column:
+        summary["uniqueDates"] = int(frame[date_column].fillna("").astype(str).replace("", np.nan).nunique())
     if name_column:
         summary["uniquePlayersByName"] = int(frame[name_column].fillna("").astype(str).map(clean_name).replace("", np.nan).nunique())
     if gsis_column:
@@ -229,6 +246,73 @@ def source_summary(source: str, season: int, frame: pd.DataFrame) -> dict:
         summary["uniquePfrIds"] = int(frame[pfr_column].map(clean_id).replace("", np.nan).nunique())
 
     return summary
+
+
+def schema_warnings(source_rows: Sequence[dict], failures: Sequence[dict]) -> List[dict]:
+    warnings: List[dict] = []
+    by_source: Dict[str, List[dict]] = {}
+    for row in source_rows:
+        by_source.setdefault(str(row.get("source") or ""), []).append(row)
+
+    for source, rows in by_source.items():
+        positive_rows = [int(row.get("rows") or 0) for row in rows if int(row.get("rows") or 0) > 0]
+        median_rows = float(np.median(positive_rows)) if positive_rows else 0.0
+        for row in rows:
+            season = int(row.get("season") or 0)
+            row_count = int(row.get("rows") or 0)
+            missing: List[str] = []
+            if not row.get("teamColumn"):
+                missing.append("team")
+            if source != "rosters" and not row.get("timeColumn"):
+                missing.append("week/date")
+            if source in {"player_stats", "snap_counts", "depth_charts"} and not row.get("positionColumn"):
+                missing.append("position")
+            if source in {"player_stats", "injuries", "depth_charts"} and not row.get("gsisColumn"):
+                missing.append("gsis_id")
+            if source == "snap_counts" and not (row.get("gsisColumn") or row.get("pfrColumn")):
+                missing.append("player id")
+
+            if missing:
+                warnings.append(
+                    {
+                        "source": source,
+                        "season": season,
+                        "type": "missing-columns",
+                        "message": f"Missing recognized fields: {', '.join(missing)}",
+                    }
+                )
+
+            if median_rows > 0 and row_count >= median_rows * 5:
+                warnings.append(
+                    {
+                        "source": source,
+                        "season": season,
+                        "type": "row-volume-shift",
+                        "message": f"{row_count:,} rows is more than 5x the source median ({median_rows:,.0f}); inspect schema/granularity before modeling.",
+                    }
+                )
+
+            if source == "depth_charts" and season >= 2025 and row.get("dateColumn") == "dt":
+                warnings.append(
+                    {
+                        "source": source,
+                        "season": season,
+                        "type": "recognized-schema-change",
+                        "message": "Daily depth-chart schema recognized via dt + pos_grp/pos_name/pos_abb + pos_rank; treat as dated snapshots rather than legacy weekly rows.",
+                    }
+                )
+
+    for failure in failures:
+        warnings.append(
+            {
+                "source": failure.get("source"),
+                "season": failure.get("season"),
+                "type": "source-unavailable",
+                "message": str(failure.get("error") or "source unavailable"),
+            }
+        )
+
+    return warnings
 
 
 def build_roster_crosswalk(rosters: Mapping[int, pd.DataFrame]) -> Tuple[set[str], set[str]]:
@@ -458,54 +542,76 @@ def main() -> None:
     source_df = pd.DataFrame(source_rows)
     joins_df = pd.DataFrame(join_rows)
     failures_df = pd.DataFrame(failures)
+    warnings = schema_warnings(source_rows, failures)
+    warnings_df = pd.DataFrame(warnings)
 
     source_df.to_csv(args.out / "source_coverage.csv", index=False)
     joins_df.to_csv(args.out / "identifier_match_rates.csv", index=False)
     checkpoints.to_csv(args.out / "player_checkpoint_candidates.csv", index=False)
     checkpoint_summary.to_csv(args.out / "checkpoint_summary.csv", index=False)
     failures_df.to_csv(args.out / "failures.csv", index=False)
+    warnings_df.to_csv(args.out / "schema_warnings.csv", index=False)
 
-    required_sources = {
-        "player_stats": args.start,
-        "snap_counts": max(args.start, 2012),
-        "depth_charts": max(args.start, 2001),
-        "injuries": max(args.start, 2009),
-        "rosters": args.start,
-    }
-    source_success = {
-        source: len(frames[source])
-        for source in URLS
-    }
+    source_success = {source: len(frames[source]) for source in URLS}
+    snap_start = max(args.start, SNAP_RELIABLE_START)
+    snap_required_seasons = list(range(snap_start, args.end + 1)) if snap_start <= args.end else []
+    snap_usable_seasons = sorted(season for season in frames["snap_counts"] if season >= snap_start)
+
+    has_player_stats = len(frames["player_stats"]) >= max(1, len(seasons) - 1)
+    has_rosters = len(frames["rosters"]) >= max(1, len(seasons) - 1)
+    has_checkpoint_sample = len(checkpoints) >= 1000
+    has_snap_counts = all(season in frames["snap_counts"] for season in snap_required_seasons)
+    has_depth_charts = len(frames["depth_charts"]) >= max(1, len(seasons) - 1)
+    has_injuries = len(frames["injuries"]) >= max(1, len(seasons) - 1)
+
+    core_comparables_ready = has_player_stats and has_rosters and has_checkpoint_sample
+    environment_features_ready = has_snap_counts and has_depth_charts and has_injuries
 
     report = {
         "lab": "GRIDIRON PULSE v1.9 historical player comparable data audit",
         "requestedSeasons": [args.start, args.end],
         "sourceSuccessSeasons": source_success,
         "sourceFailures": failures,
+        "schemaWarnings": warnings,
         "rosterCrosswalk": {
             "uniqueGsisIds": len(roster_gsis),
             "uniquePfrIds": len(roster_pfr),
         },
         "checkpointRows": int(len(checkpoints)),
         "checkpointSummary": checkpoint_summary.to_dict("records"),
-        "recommendedCommonHistoryStart": 2012,
+        "recommendedComparableHistoryStart": args.start,
+        "recommendedEnvironmentHistoryStart": snap_start,
+        "recommendedCommonHistoryStart": snap_start,
+        "snapCoverage": {
+            "reliableStart": SNAP_RELIABLE_START,
+            "requiredSeasons": snap_required_seasons,
+            "usableSeasons": snap_usable_seasons,
+            "note": "2012 snap data is empty in the source release; snap-dependent environment features begin in 2013 while core player comparables can still begin in 2012.",
+        },
         "recommendedInitialBacktest": {
-            "trainStart": 2012,
-            "testStart": 2014,
+            "trainStart": args.start,
+            "testStart": max(args.start + 2, 2014),
             "testEnd": args.end,
             "checkpoints": list(CHECKPOINTS),
             "positions": list(POSITIONS),
+            "environmentFeatureStart": snap_start,
+        },
+        "readiness": {
+            "coreComparablesReady": core_comparables_ready,
+            "environmentFeaturesReady": environment_features_ready,
+            "allResearchDataReady": core_comparables_ready and environment_features_ready,
         },
         "goNoGo": {
-            "hasPlayerStats": len(frames["player_stats"]) >= max(1, len(seasons) - 1),
-            "hasSnapCounts": len(frames["snap_counts"]) >= max(1, len(seasons) - 1),
-            "hasDepthCharts": len(frames["depth_charts"]) >= max(1, len(seasons) - 1),
-            "hasInjuries": len(frames["injuries"]) >= max(1, len(seasons) - 1),
-            "hasRosters": len(frames["rosters"]) >= max(1, len(seasons) - 1),
-            "hasCheckpointSample": len(checkpoints) >= 1000,
+            "hasPlayerStats": has_player_stats,
+            "hasSnapCounts": has_snap_counts,
+            "hasDepthCharts": has_depth_charts,
+            "hasInjuries": has_injuries,
+            "hasRosters": has_rosters,
+            "hasCheckpointSample": has_checkpoint_sample,
+            "allCoreDataAvailable": core_comparables_ready,
+            "allEnvironmentDataAvailable": environment_features_ready,
         },
     }
-    report["goNoGo"]["allCoreDataAvailable"] = all(report["goNoGo"].values())
 
     (args.out / "audit_summary.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 
@@ -514,6 +620,9 @@ def main() -> None:
     if not checkpoint_summary.empty:
         print("\nCHECKPOINT SAMPLE", flush=True)
         print(checkpoint_summary.to_string(index=False), flush=True)
+    if warnings:
+        print("\nSCHEMA / COVERAGE WARNINGS", flush=True)
+        print(warnings_df.to_string(index=False), flush=True)
     if failures:
         print("\nSOURCE FAILURES", flush=True)
         print(failures_df.to_string(index=False), flush=True)
