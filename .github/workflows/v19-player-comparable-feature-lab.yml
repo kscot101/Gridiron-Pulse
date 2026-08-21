@@ -1,0 +1,128 @@
+name: V1.9 Player Comparable Feature Lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_season:
+        description: "First historical season"
+        required: true
+        default: "2012"
+      end_season:
+        description: "Last historical season"
+        required: true
+        default: "2025"
+      test_start_season:
+        description: "First held-out backtest season"
+        required: true
+        default: "2014"
+  push:
+    branches:
+      - model-lab-v19-player-comparables
+    paths:
+      - ".github/workflows/v19-player-comparable-feature-lab.yml"
+      - "model-lab/v19_player_feature_builder.py"
+      - "model-lab/v19_player_comparable_backtest.py"
+      - "model-lab/v19_player_anomaly_engine.py"
+      - "model-lab/v19_player_data_audit.py"
+      - "model-lab/v19_player_environment_plan.md"
+
+permissions:
+  contents: read
+
+jobs:
+  player-comparable-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
+      END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
+      TEST_START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_start_season || '2014' }}
+
+    steps:
+      - name: Checkout v1.9 research branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify v1.9 research files
+        run: |
+          test -f model-lab/v19_player_data_audit.py
+          test -f model-lab/v19_player_feature_builder.py
+          test -f model-lab/v19_player_comparable_backtest.py
+          test -f model-lab/v19_player_anomaly_engine.py
+          test -f data/gridiron-history-data.json
+          python -m py_compile model-lab/v19_player_feature_builder.py
+          python -m py_compile model-lab/v19_player_comparable_backtest.py
+          python -m py_compile model-lab/v19_player_anomaly_engine.py
+
+      - name: Install research dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyreadr
+
+      - name: Build point-in-time player features
+        run: |
+          python model-lab/v19_player_feature_builder.py \
+            --start "$START_SEASON" \
+            --end "$END_SEASON" \
+            --out model-lab/output/v19-player-features \
+            --history data/gridiron-history-data.json
+
+      - name: Run rolling comparable backtest
+        run: |
+          python model-lab/v19_player_comparable_backtest.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --out model-lab/output/v19-player-backtest \
+            --test-start "$TEST_START_SEASON"
+
+      - name: Smoke-test secondary anomaly guardrail
+        run: |
+          python model-lab/v19_player_anomaly_engine.py
+
+      - name: Show feature manifest
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-features/feature_manifest.json ]; then
+            cat model-lab/output/v19-player-features/feature_manifest.json
+          fi
+
+      - name: Show feature quality
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-features/feature_quality.csv ]; then
+            cat model-lab/output/v19-player-features/feature_quality.csv
+          fi
+
+      - name: Show stage summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-backtest/stage_summary.csv ]; then
+            cat model-lab/output/v19-player-backtest/stage_summary.csv
+          fi
+
+      - name: Show promotion candidates
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-backtest/promotion_candidates.csv ]; then
+            cat model-lab/output/v19-player-backtest/promotion_candidates.csv
+          fi
+
+      - name: Upload v1.9 comparable lab outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v19-player-comparable-lab-${{ env.START_SEASON }}-${{ env.END_SEASON }}
+          path: |
+            model-lab/output/v19-player-features/player_features.csv
+            model-lab/output/v19-player-features/feature_quality.csv
+            model-lab/output/v19-player-features/feature_manifest.json
+            model-lab/output/v19-player-backtest/backtest_summary.json
+            model-lab/output/v19-player-backtest/stage_summary.csv
+            model-lab/output/v19-player-backtest/season_metrics.csv
+            model-lab/output/v19-player-backtest/promotion_candidates.csv
+            model-lab/output/v19-player-backtest/sample_comparables.csv
+          if-no-files-found: warn
+          retention-days: 14
