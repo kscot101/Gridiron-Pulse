@@ -22,6 +22,7 @@ on:
       - ".github/workflows/v19-player-comparable-feature-lab.yml"
       - "model-lab/v19_player_feature_builder.py"
       - "model-lab/v19_player_comparable_backtest.py"
+      - "model-lab/v19_player_position_summary.py"
       - "model-lab/v19_player_anomaly_engine.py"
       - "model-lab/v19_player_data_audit.py"
       - "model-lab/v19_player_environment_plan.md"
@@ -52,10 +53,12 @@ jobs:
           test -f model-lab/v19_player_data_audit.py
           test -f model-lab/v19_player_feature_builder.py
           test -f model-lab/v19_player_comparable_backtest.py
+          test -f model-lab/v19_player_position_summary.py
           test -f model-lab/v19_player_anomaly_engine.py
           test -f data/gridiron-history-data.json
           python -m py_compile model-lab/v19_player_feature_builder.py
           python -m py_compile model-lab/v19_player_comparable_backtest.py
+          python -m py_compile model-lab/v19_player_position_summary.py
           python -m py_compile model-lab/v19_player_anomaly_engine.py
 
       - name: Install research dependencies
@@ -77,6 +80,13 @@ jobs:
             --features model-lab/output/v19-player-features/player_features.csv \
             --out model-lab/output/v19-player-backtest \
             --test-start "$TEST_START_SEASON"
+
+      - name: Build position-specific research gates
+        run: |
+          python model-lab/v19_player_position_summary.py \
+            --predictions model-lab/output/v19-player-backtest/backtest_predictions.csv \
+            --season-metrics model-lab/output/v19-player-backtest/season_metrics.csv \
+            --out model-lab/output/v19-player-backtest
 
       - name: Smoke-test secondary anomaly guardrail
         run: |
@@ -103,11 +113,18 @@ jobs:
             cat model-lab/output/v19-player-backtest/stage_summary.csv
           fi
 
-      - name: Show promotion candidates
+      - name: Show position summary
         if: always()
         run: |
-          if [ -f model-lab/output/v19-player-backtest/promotion_candidates.csv ]; then
-            cat model-lab/output/v19-player-backtest/promotion_candidates.csv
+          if [ -f model-lab/output/v19-player-backtest/position_stage_summary.csv ]; then
+            cat model-lab/output/v19-player-backtest/position_stage_summary.csv
+          fi
+
+      - name: Show position promotion candidates
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-backtest/position_promotion_candidates.csv ]; then
+            cat model-lab/output/v19-player-backtest/position_promotion_candidates.csv
           fi
 
       - name: Upload v1.9 comparable lab outputs
@@ -123,6 +140,9 @@ jobs:
             model-lab/output/v19-player-backtest/stage_summary.csv
             model-lab/output/v19-player-backtest/season_metrics.csv
             model-lab/output/v19-player-backtest/promotion_candidates.csv
+            model-lab/output/v19-player-backtest/position_stage_summary.csv
+            model-lab/output/v19-player-backtest/position_checkpoint_summary.csv
+            model-lab/output/v19-player-backtest/position_promotion_candidates.csv
             model-lab/output/v19-player-backtest/sample_comparables.csv
           if-no-files-found: warn
           retention-days: 14
