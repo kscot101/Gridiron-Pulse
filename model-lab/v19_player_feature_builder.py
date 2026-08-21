@@ -142,7 +142,7 @@ def checkpoint_cutoff_date(games: pd.DataFrame, season: int, checkpoint: int) ->
     work = games[(pd.to_numeric(games["season"], errors="coerce") == season) & (pd.to_numeric(games["week"], errors="coerce") <= checkpoint)]
     if work.empty:
         return None
-    dates = pd.to_datetime(work[date_col], errors="coerce").dropna()
+    dates = pd.to_datetime(work[date_col], errors="coerce", utc=True).dropna()
     return dates.max() if not dates.empty else None
 
 
@@ -424,9 +424,11 @@ def depth_context(frame: pd.DataFrame, checkpoint: Optional[int], cutoff: Option
             work = work[work["_order"] <= checkpoint]
         rank_col = "depth_team" if "depth_team" in work.columns else None
     elif "dt" in work.columns:
-        work["_date"] = pd.to_datetime(work["dt"], errors="coerce")
+        work["_date"] = pd.to_datetime(work["dt"], errors="coerce", utc=True)
         if cutoff is not None:
-            work = work[work["_date"] <= cutoff]
+            cutoff = pd.to_datetime(cutoff, errors="coerce", utc=True)
+            if pd.notna(cutoff):
+                work = work[work["_date"] <= cutoff]
         work["_order"] = work["_date"].map(lambda value: value.value if pd.notna(value) else -1)
         rank_col = "pos_rank" if "pos_rank" in work.columns else None
     else:
