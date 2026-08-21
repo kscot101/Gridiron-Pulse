@@ -336,8 +336,8 @@ def player_stats_checkpoint_rows(frame: pd.DataFrame, season: int) -> pd.DataFra
         finalRecYards=("_receiving_yards", "sum"),
     )
     final_map = {
-        (row._player_key, row._position): row
-        for row in final_totals.itertuples(index=False)
+        (row["_player_key"], row["_position"]): row
+        for row in final_totals.to_dict("records")
     }
 
     for checkpoint in CHECKPOINTS:
@@ -353,38 +353,39 @@ def player_stats_checkpoint_rows(frame: pd.DataFrame, season: int) -> pd.DataFra
             recYards=("_receiving_yards", "sum"),
         )
 
-        for row in grouped.itertuples(index=False):
-            if row.games < 2:
+        for row in grouped.to_dict("records"):
+            if row["games"] < 2:
                 continue
-            if row._position == "QB":
-                eligible = row.passAttempts >= 20
-                current_primary = row.passYards
-            elif row._position == "RB":
-                eligible = (row.carries + row.targets) >= 12
-                current_primary = row.rushYards + row.recYards
+            position = row["_position"]
+            if position == "QB":
+                eligible = row["passAttempts"] >= 20
+                current_primary = row["passYards"]
+            elif position == "RB":
+                eligible = (row["carries"] + row["targets"]) >= 12
+                current_primary = row["rushYards"] + row["recYards"]
             else:
-                eligible = row.targets >= 6 or row.receptions >= 4
-                current_primary = row.recYards
+                eligible = row["targets"] >= 6 or row["receptions"] >= 4
+                current_primary = row["recYards"]
             if not eligible:
                 continue
-            final = final_map.get((row._player_key, row._position))
+            final = final_map.get((row["_player_key"], position))
             if final is None:
                 continue
-            if row._position == "QB":
-                final_primary = final.finalPassYards
-            elif row._position == "RB":
-                final_primary = final.finalRushYards + final.finalRecYards
+            if position == "QB":
+                final_primary = final["finalPassYards"]
+            elif position == "RB":
+                final_primary = final["finalRushYards"] + final["finalRecYards"]
             else:
-                final_primary = final.finalRecYards
+                final_primary = final["finalRecYards"]
             records.append(
                 {
                     "season": season,
                     "checkpoint": checkpoint,
-                    "playerKey": row._player_key,
-                    "position": row._position,
-                    "games": int(row.games),
+                    "playerKey": row["_player_key"],
+                    "position": position,
+                    "games": int(row["games"]),
                     "currentPrimary": float(current_primary),
-                    "finalGames": int(final.finalGames),
+                    "finalGames": int(final["finalGames"]),
                     "finalPrimary": float(final_primary),
                 }
             )
