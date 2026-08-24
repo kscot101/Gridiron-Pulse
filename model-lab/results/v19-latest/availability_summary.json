@@ -1,0 +1,309 @@
+{
+  "lab": "GRIDIRON PULSE v1.9g availability / games-played layer",
+  "researchOnly": true,
+  "productionWeightsSelected": false,
+  "rateModel": "v1.9f prior-only production/usage history gate with environment removed",
+  "availabilityStrategies": [
+    "full_available",
+    "current_availability",
+    "prior_availability",
+    "health_knn"
+  ],
+  "availabilityTarget": "remaining player games through the regular-season schedule; actual season-total production is the scoring target",
+  "scheduleAssumption": "16 regular-season games through 2020; 17 from 2021 onward",
+  "selection": "Each held-out season chooses availability strategy using only nested validation seasons before that season, minimizing finalPrimary MAE.",
+  "overall": [
+    {
+      "rows": 12423,
+      "paceFullAvailMae": 216.88781926102018,
+      "rateGateFullAvailMae": 208.73755504188313,
+      "availabilityMae": 177.10360781063628,
+      "rateGateImprovementPctVsPace": 3.757824780988911,
+      "availabilityIncrementalPctVsRateGate": 15.15489018011134,
+      "availabilityImprovementPctVsPace": 18.343220742380375,
+      "fullAvailGamesMae": 2.2161313692344846,
+      "selectedGamesMae": 1.8432732151763935,
+      "gamesMaeImprovementPct": 16.824731567555357
+    }
+  ],
+  "positionCheckpoint": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "rows": 425,
+      "paceFullAvailMae": 919.6258823529412,
+      "rateGateFullAvailMae": 852.9563443066895,
+      "availabilityMae": 746.9901475684836,
+      "rateGateImprovementPctVsPace": 7.249636980167627,
+      "availabilityIncrementalPctVsRateGate": 12.423402140743631,
+      "availabilityImprovementPctVsPace": 18.772387565120972,
+      "fullAvailGamesMae": 3.072941176470588,
+      "selectedGamesMae": 2.5351658751253714,
+      "gamesMaeImprovementPct": 17.500344798753225
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "rows": 512,
+      "paceFullAvailMae": 730.6992885044642,
+      "rateGateFullAvailMae": 709.1683383564258,
+      "availabilityMae": 569.4384455997241,
+      "rateGateImprovementPctVsPace": 2.9466225691975434,
+      "availabilityIncrementalPctVsRateGate": 19.703346187245305,
+      "availabilityImprovementPctVsPace": 22.069385510802352,
+      "fullAvailGamesMae": 2.87890625,
+      "selectedGamesMae": 2.0530537571806957,
+      "gamesMaeImprovementPct": 28.68632810878452
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "rows": 581,
+      "paceFullAvailMae": 478.2038176826042,
+      "rateGateFullAvailMae": 478.2038176826042,
+      "availabilityMae": 364.9488415553268,
+      "rateGateImprovementPctVsPace": 0.0,
+      "availabilityIncrementalPctVsRateGate": 23.683411118739244,
+      "availabilityImprovementPctVsPace": 23.683411118739244,
+      "fullAvailGamesMae": 1.9845094664371772,
+      "selectedGamesMae": 1.3579511610058668,
+      "gamesMaeImprovementPct": 31.572452337865684
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "rows": 880,
+      "paceFullAvailMae": 295.55918560606057,
+      "rateGateFullAvailMae": 279.2968005275245,
+      "availabilityMae": 247.3443265474311,
+      "rateGateImprovementPctVsPace": 5.502243161615542,
+      "availabilityIncrementalPctVsRateGate": 11.440329398597784,
+      "availabilityImprovementPctVsPace": 16.313097818212686,
+      "fullAvailGamesMae": 2.9170454545454545,
+      "selectedGamesMae": 2.5540735072937473,
+      "gamesMaeImprovementPct": 12.443136485450035
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "rows": 1129,
+      "paceFullAvailMae": 195.07521299928297,
+      "rateGateFullAvailMae": 195.11404825262304,
+      "availabilityMae": 169.03158038316369,
+      "rateGateImprovementPctVsPace": -0.019907835927986665,
+      "availabilityIncrementalPctVsRateGate": 13.36780621541366,
+      "availabilityImprovementPctVsPace": 13.350559620414211,
+      "fullAvailGamesMae": 2.3782108060230294,
+      "selectedGamesMae": 1.9789563392998994,
+      "gamesMaeImprovementPct": 16.788018358674623
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "rows": 1274,
+      "paceFullAvailMae": 122.00463850208747,
+      "rateGateFullAvailMae": 122.00463850208747,
+      "availabilityMae": 103.40156772898875,
+      "rateGateImprovementPctVsPace": 0.0,
+      "availabilityIncrementalPctVsRateGate": 15.247838935878185,
+      "availabilityImprovementPctVsPace": 15.247838935878185,
+      "fullAvailGamesMae": 1.5792778649921506,
+      "selectedGamesMae": 1.3170604726015476,
+      "gamesMaeImprovementPct": 16.60362613845071
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "rows": 634,
+      "paceFullAvailMae": 167.43375394321765,
+      "rateGateFullAvailMae": 153.4556019454471,
+      "availabilityMae": 137.17268012811496,
+      "rateGateImprovementPctVsPace": 8.348467180943093,
+      "availabilityIncrementalPctVsRateGate": 10.610835714632739,
+      "availabilityImprovementPctVsPace": 18.073460758315928,
+      "fullAvailGamesMae": 2.8722397476340693,
+      "selectedGamesMae": 2.370933773923513,
+      "gamesMaeImprovementPct": 17.453486399368085
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "rows": 872,
+      "paceFullAvailMae": 106.06082350371341,
+      "rateGateFullAvailMae": 100.58942636813975,
+      "availabilityMae": 84.71852703177137,
+      "rateGateImprovementPctVsPace": 5.158735294358796,
+      "availabilityIncrementalPctVsRateGate": 15.777900232061826,
+      "availabilityImprovementPctVsPace": 20.122695418440532,
+      "fullAvailGamesMae": 2.4954128440366974,
+      "selectedGamesMae": 1.9405174974087507,
+      "gamesMaeImprovementPct": 22.236614993546393
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "rows": 989,
+      "paceFullAvailMae": 64.80070424744339,
+      "rateGateFullAvailMae": 64.71292443587683,
+      "availabilityMae": 55.613160470603354,
+      "rateGateImprovementPctVsPace": 0.1354611999761189,
+      "availabilityIncrementalPctVsRateGate": 14.061741212592407,
+      "availabilityImprovementPctVsPace": 14.178154209184413,
+      "fullAvailGamesMae": 1.6774519716885743,
+      "selectedGamesMae": 1.36517378062142,
+      "gamesMaeImprovementPct": 18.6162224813391
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "rows": 1422,
+      "paceFullAvailMae": 220.60730192217537,
+      "rateGateFullAvailMae": 202.3977426781742,
+      "availabilityMae": 177.37826220136128,
+      "rateGateImprovementPctVsPace": 8.254286728199515,
+      "availabilityIncrementalPctVsRateGate": 12.361541263133335,
+      "availabilityImprovementPctVsPace": 19.595470931449128,
+      "fullAvailGamesMae": 2.7341772151898733,
+      "selectedGamesMae": 2.384088998904997,
+      "gamesMaeImprovementPct": 12.804152354863527
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "rows": 1765,
+      "paceFullAvailMae": 148.58861796843385,
+      "rateGateFullAvailMae": 144.0496580628357,
+      "availabilityMae": 124.50562546302297,
+      "rateGateImprovementPctVsPace": 3.054715743141513,
+      "availabilityIncrementalPctVsRateGate": 13.567566117572776,
+      "availabilityImprovementPctVsPace": 16.20783128255966,
+      "fullAvailGamesMae": 2.2339943342776203,
+      "selectedGamesMae": 1.943262853566237,
+      "gamesMaeImprovementPct": 13.013975740694683
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "rows": 1940,
+      "paceFullAvailMae": 91.3131896840273,
+      "rateGateFullAvailMae": 91.3131896840273,
+      "availabilityMae": 77.85490662486347,
+      "rateGateImprovementPctVsPace": 0.0,
+      "availabilityIncrementalPctVsRateGate": 14.738597026052602,
+      "availabilityImprovementPctVsPace": 14.738597026052602,
+      "fullAvailGamesMae": 1.4675257731958762,
+      "selectedGamesMae": 1.266056411842701,
+      "gamesMaeImprovementPct": 13.728505831582721
+    }
+  ],
+  "policy": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 50.0,
+      "availabilityIncrementalPctVsRateGate": 12.423402140743631,
+      "gamesMaeImprovementPct": 17.500344798753225,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "topAvailabilityStrategy": "current_availability",
+      "topStrategyPct": 50.0,
+      "availabilityIncrementalPctVsRateGate": 19.703346187245305,
+      "gamesMaeImprovementPct": 28.68632810878452,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "topAvailabilityStrategy": "current_availability",
+      "topStrategyPct": 50.0,
+      "availabilityIncrementalPctVsRateGate": 23.683411118739244,
+      "gamesMaeImprovementPct": 31.572452337865684,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 11.440329398597784,
+      "gamesMaeImprovementPct": 12.443136485450035,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 75.0,
+      "availabilityIncrementalPctVsRateGate": 13.36780621541366,
+      "gamesMaeImprovementPct": 16.788018358674623,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 58.333333333333336,
+      "availabilityIncrementalPctVsRateGate": 15.247838935878185,
+      "gamesMaeImprovementPct": 16.60362613845071,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 10.610835714632739,
+      "gamesMaeImprovementPct": 17.453486399368085,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 15.777900232061826,
+      "gamesMaeImprovementPct": 22.236614993546393,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 14.061741212592407,
+      "gamesMaeImprovementPct": 18.6162224813391,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 12.361541263133335,
+      "gamesMaeImprovementPct": 12.804152354863527,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 91.66666666666667,
+      "availabilityIncrementalPctVsRateGate": 13.567566117572776,
+      "gamesMaeImprovementPct": 13.013975740694683,
+      "availabilityRecommendation": "availability-layer"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "topAvailabilityStrategy": "health_knn",
+      "topStrategyPct": 58.333333333333336,
+      "availabilityIncrementalPctVsRateGate": 14.738597026052602,
+      "gamesMaeImprovementPct": 13.728505831582721,
+      "availabilityRecommendation": "availability-layer"
+    }
+  ]
+}
