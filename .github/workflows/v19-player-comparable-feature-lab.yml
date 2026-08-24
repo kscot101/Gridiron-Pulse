@@ -23,6 +23,7 @@ on:
       - "model-lab/v19_player_feature_builder.py"
       - "model-lab/v19_player_comparable_backtest.py"
       - "model-lab/v19_player_isolated_environment_backtest.py"
+      - "model-lab/v19_player_validated_combination_backtest.py"
       - "model-lab/v19_player_position_summary.py"
       - "model-lab/v19_player_anomaly_engine.py"
       - "model-lab/v19_player_data_audit.py"
@@ -34,7 +35,7 @@ permissions:
 jobs:
   player-comparable-lab:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
       END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
@@ -55,12 +56,14 @@ jobs:
           test -f model-lab/v19_player_feature_builder.py
           test -f model-lab/v19_player_comparable_backtest.py
           test -f model-lab/v19_player_isolated_environment_backtest.py
+          test -f model-lab/v19_player_validated_combination_backtest.py
           test -f model-lab/v19_player_position_summary.py
           test -f model-lab/v19_player_anomaly_engine.py
           test -f data/gridiron-history-data.json
           python -m py_compile model-lab/v19_player_feature_builder.py
           python -m py_compile model-lab/v19_player_comparable_backtest.py
           python -m py_compile model-lab/v19_player_isolated_environment_backtest.py
+          python -m py_compile model-lab/v19_player_validated_combination_backtest.py
           python -m py_compile model-lab/v19_player_position_summary.py
           python -m py_compile model-lab/v19_player_anomaly_engine.py
 
@@ -98,43 +101,22 @@ jobs:
             --out model-lab/output/v19-player-isolated \
             --test-start "$TEST_START_SEASON"
 
+      - name: Run v1.9c nested validated combination
+        run: |
+          python model-lab/v19_player_validated_combination_backtest.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --out model-lab/output/v19-player-validated \
+            --test-start "$TEST_START_SEASON"
+
       - name: Smoke-test secondary anomaly guardrail
         run: |
           python model-lab/v19_player_anomaly_engine.py
-
-      - name: Show feature manifest
-        if: always()
-        run: |
-          if [ -f model-lab/output/v19-player-features/feature_manifest.json ]; then
-            cat model-lab/output/v19-player-features/feature_manifest.json
-          fi
 
       - name: Show feature quality
         if: always()
         run: |
           if [ -f model-lab/output/v19-player-features/feature_quality.csv ]; then
             cat model-lab/output/v19-player-features/feature_quality.csv
-          fi
-
-      - name: Show original stage summary
-        if: always()
-        run: |
-          if [ -f model-lab/output/v19-player-backtest/stage_summary.csv ]; then
-            cat model-lab/output/v19-player-backtest/stage_summary.csv
-          fi
-
-      - name: Show original position promotion candidates
-        if: always()
-        run: |
-          if [ -f model-lab/output/v19-player-backtest/position_promotion_candidates.csv ]; then
-            cat model-lab/output/v19-player-backtest/position_promotion_candidates.csv
-          fi
-
-      - name: Show isolated position checkpoint summary
-        if: always()
-        run: |
-          if [ -f model-lab/output/v19-player-isolated/isolated_position_checkpoint_summary.csv ]; then
-            cat model-lab/output/v19-player-isolated/isolated_position_checkpoint_summary.csv
           fi
 
       - name: Show isolated promotion candidates
@@ -144,11 +126,25 @@ jobs:
             cat model-lab/output/v19-player-isolated/isolated_promotion_candidates.csv
           fi
 
-      - name: Show historical influence decay
+      - name: Show v1.9c position checkpoint summary
         if: always()
         run: |
-          if [ -f model-lab/output/v19-player-isolated/production_history_decay.csv ]; then
-            cat model-lab/output/v19-player-isolated/production_history_decay.csv
+          if [ -f model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv ]; then
+            cat model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv
+          fi
+
+      - name: Show v1.9c history policy
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-validated/validated_history_policy.csv ]; then
+            cat model-lab/output/v19-player-validated/validated_history_policy.csv
+          fi
+
+      - name: Show v1.9c signal selection frequency
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv ]; then
+            cat model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv
           fi
 
       - name: Upload v1.9 comparable lab outputs
@@ -175,5 +171,15 @@ jobs:
             model-lab/output/v19-player-isolated/isolated_position_checkpoint_summary.csv
             model-lab/output/v19-player-isolated/isolated_promotion_candidates.csv
             model-lab/output/v19-player-isolated/production_history_decay.csv
+            model-lab/output/v19-player-validated/validated_backtest_summary.json
+            model-lab/output/v19-player-validated/validated_predictions.csv
+            model-lab/output/v19-player-validated/validated_season_metrics.csv
+            model-lab/output/v19-player-validated/validated_selection_history.csv
+            model-lab/output/v19-player-validated/validated_selection_trace.csv
+            model-lab/output/v19-player-validated/validated_overall_summary.csv
+            model-lab/output/v19-player-validated/validated_position_summary.csv
+            model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv
+            model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv
+            model-lab/output/v19-player-validated/validated_history_policy.csv
           if-no-files-found: warn
           retention-days: 14
