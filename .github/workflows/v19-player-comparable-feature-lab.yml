@@ -24,6 +24,7 @@ on:
       - "model-lab/v19_player_comparable_backtest.py"
       - "model-lab/v19_player_isolated_environment_backtest.py"
       - "model-lab/v19_player_validated_combination_backtest.py"
+      - "model-lab/v19_player_history_blend_backtest.py"
       - "model-lab/v19_player_position_summary.py"
       - "model-lab/v19_player_anomaly_engine.py"
       - "model-lab/v19_player_data_audit.py"
@@ -35,7 +36,7 @@ permissions:
 jobs:
   player-comparable-lab:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
       START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
       END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
@@ -57,6 +58,7 @@ jobs:
           test -f model-lab/v19_player_comparable_backtest.py
           test -f model-lab/v19_player_isolated_environment_backtest.py
           test -f model-lab/v19_player_validated_combination_backtest.py
+          test -f model-lab/v19_player_history_blend_backtest.py
           test -f model-lab/v19_player_position_summary.py
           test -f model-lab/v19_player_anomaly_engine.py
           test -f data/gridiron-history-data.json
@@ -64,6 +66,7 @@ jobs:
           python -m py_compile model-lab/v19_player_comparable_backtest.py
           python -m py_compile model-lab/v19_player_isolated_environment_backtest.py
           python -m py_compile model-lab/v19_player_validated_combination_backtest.py
+          python -m py_compile model-lab/v19_player_history_blend_backtest.py
           python -m py_compile model-lab/v19_player_position_summary.py
           python -m py_compile model-lab/v19_player_anomaly_engine.py
 
@@ -108,6 +111,13 @@ jobs:
             --out model-lab/output/v19-player-validated \
             --test-start "$TEST_START_SEASON"
 
+      - name: Run v1.9d nested history shrinkage
+        run: |
+          python model-lab/v19_player_history_blend_backtest.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --out model-lab/output/v19-player-history-blend \
+            --test-start "$TEST_START_SEASON"
+
       - name: Smoke-test secondary anomaly guardrail
         run: |
           python model-lab/v19_player_anomaly_engine.py
@@ -133,18 +143,18 @@ jobs:
             cat model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv
           fi
 
-      - name: Show v1.9c history policy
+      - name: Show v1.9d position checkpoint summary
         if: always()
         run: |
-          if [ -f model-lab/output/v19-player-validated/validated_history_policy.csv ]; then
-            cat model-lab/output/v19-player-validated/validated_history_policy.csv
+          if [ -f model-lab/output/v19-player-history-blend/history_blend_position_checkpoint_summary.csv ]; then
+            cat model-lab/output/v19-player-history-blend/history_blend_position_checkpoint_summary.csv
           fi
 
-      - name: Show v1.9c signal selection frequency
+      - name: Show v1.9d history policy
         if: always()
         run: |
-          if [ -f model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv ]; then
-            cat model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv
+          if [ -f model-lab/output/v19-player-history-blend/history_blend_policy.csv ]; then
+            cat model-lab/output/v19-player-history-blend/history_blend_policy.csv
           fi
 
       - name: Publish latest v1.9 research summaries
@@ -162,6 +172,12 @@ jobs:
           cp model-lab/output/v19-player-validated/validated_history_policy.csv model-lab/results/v19-latest/
           cp model-lab/output/v19-player-validated/validated_selection_history.csv model-lab/results/v19-latest/
           cp model-lab/output/v19-player-validated/validated_selection_trace.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_summary.json model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_overall_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_position_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_position_checkpoint_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_policy.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-history-blend/history_blend_selection_history.csv model-lab/results/v19-latest/
           printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" > model-lab/results/v19-latest/run_manifest.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -207,5 +223,13 @@ jobs:
             model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv
             model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv
             model-lab/output/v19-player-validated/validated_history_policy.csv
+            model-lab/output/v19-player-history-blend/history_blend_summary.json
+            model-lab/output/v19-player-history-blend/history_blend_predictions.csv
+            model-lab/output/v19-player-history-blend/history_blend_selection_history.csv
+            model-lab/output/v19-player-history-blend/history_blend_selection_trace.csv
+            model-lab/output/v19-player-history-blend/history_blend_overall_summary.csv
+            model-lab/output/v19-player-history-blend/history_blend_position_summary.csv
+            model-lab/output/v19-player-history-blend/history_blend_position_checkpoint_summary.csv
+            model-lab/output/v19-player-history-blend/history_blend_policy.csv
           if-no-files-found: warn
           retention-days: 14
