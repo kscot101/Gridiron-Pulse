@@ -26,6 +26,7 @@ on:
       - "model-lab/v19_player_validated_combination_backtest.py"
       - "model-lab/v19_player_history_blend_backtest.py"
       - "model-lab/v19_player_hybrid_backtest.py"
+      - "model-lab/v19_player_environment_value_audit.py"
       - "model-lab/v19_player_position_summary.py"
       - "model-lab/v19_player_anomaly_engine.py"
       - "model-lab/v19_player_data_audit.py"
@@ -61,6 +62,7 @@ jobs:
           test -f model-lab/v19_player_validated_combination_backtest.py
           test -f model-lab/v19_player_history_blend_backtest.py
           test -f model-lab/v19_player_hybrid_backtest.py
+          test -f model-lab/v19_player_environment_value_audit.py
           test -f model-lab/v19_player_position_summary.py
           test -f model-lab/v19_player_anomaly_engine.py
           test -f data/gridiron-history-data.json
@@ -70,6 +72,7 @@ jobs:
           python -m py_compile model-lab/v19_player_validated_combination_backtest.py
           python -m py_compile model-lab/v19_player_history_blend_backtest.py
           python -m py_compile model-lab/v19_player_hybrid_backtest.py
+          python -m py_compile model-lab/v19_player_environment_value_audit.py
           python -m py_compile model-lab/v19_player_position_summary.py
           python -m py_compile model-lab/v19_player_anomaly_engine.py
 
@@ -128,6 +131,14 @@ jobs:
             --out model-lab/output/v19-player-hybrid \
             --test-start "$TEST_START_SEASON"
 
+      - name: Run v1.9f environment incremental value audit
+        run: |
+          python model-lab/v19_player_environment_value_audit.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --validated-predictions model-lab/output/v19-player-validated/validated_predictions.csv \
+            --out model-lab/output/v19-player-environment-value \
+            --test-start "$TEST_START_SEASON"
+
       - name: Smoke-test secondary anomaly guardrail
         run: |
           python model-lab/v19_player_anomaly_engine.py
@@ -146,13 +157,6 @@ jobs:
             cat model-lab/output/v19-player-history-blend/history_blend_policy.csv
           fi
 
-      - name: Show v1.9e position checkpoint summary
-        if: always()
-        run: |
-          if [ -f model-lab/output/v19-player-hybrid/hybrid_position_checkpoint_summary.csv ]; then
-            cat model-lab/output/v19-player-hybrid/hybrid_position_checkpoint_summary.csv
-          fi
-
       - name: Show v1.9e hybrid policy
         if: always()
         run: |
@@ -160,11 +164,18 @@ jobs:
             cat model-lab/output/v19-player-hybrid/hybrid_policy.csv
           fi
 
-      - name: Show v1.9e environment frequency
+      - name: Show v1.9f environment value summary
         if: always()
         run: |
-          if [ -f model-lab/output/v19-player-hybrid/hybrid_signal_frequency.csv ]; then
-            cat model-lab/output/v19-player-hybrid/hybrid_signal_frequency.csv
+          if [ -f model-lab/output/v19-player-environment-value/environment_value_overall_summary.csv ]; then
+            cat model-lab/output/v19-player-environment-value/environment_value_overall_summary.csv
+          fi
+
+      - name: Show v1.9f environment policy
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-environment-value/environment_value_policy.csv ]; then
+            cat model-lab/output/v19-player-environment-value/environment_value_policy.csv
           fi
 
       - name: Publish latest v1.9 research summaries
@@ -195,6 +206,12 @@ jobs:
           cp model-lab/output/v19-player-hybrid/hybrid_policy.csv model-lab/results/v19-latest/
           cp model-lab/output/v19-player-hybrid/hybrid_signal_frequency.csv model-lab/results/v19-latest/
           cp model-lab/output/v19-player-hybrid/hybrid_selection_history.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_summary.json model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_overall_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_position_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_position_checkpoint_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_policy.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-environment-value/environment_value_history_gate_selection.csv model-lab/results/v19-latest/
           printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" > model-lab/results/v19-latest/run_manifest.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -257,5 +274,12 @@ jobs:
             model-lab/output/v19-player-hybrid/hybrid_position_checkpoint_summary.csv
             model-lab/output/v19-player-hybrid/hybrid_signal_frequency.csv
             model-lab/output/v19-player-hybrid/hybrid_policy.csv
+            model-lab/output/v19-player-environment-value/environment_value_summary.json
+            model-lab/output/v19-player-environment-value/environment_value_hard_gate_predictions.csv
+            model-lab/output/v19-player-environment-value/environment_value_history_gate_selection.csv
+            model-lab/output/v19-player-environment-value/environment_value_overall_summary.csv
+            model-lab/output/v19-player-environment-value/environment_value_position_summary.csv
+            model-lab/output/v19-player-environment-value/environment_value_position_checkpoint_summary.csv
+            model-lab/output/v19-player-environment-value/environment_value_policy.csv
           if-no-files-found: warn
           retention-days: 14
