@@ -30,7 +30,7 @@ on:
       - "model-lab/v19_player_environment_plan.md"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   player-comparable-lab:
@@ -145,6 +145,32 @@ jobs:
         run: |
           if [ -f model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv ]; then
             cat model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv
+          fi
+
+      - name: Publish latest v1.9 research summaries
+        if: success() && github.ref == 'refs/heads/model-lab-v19-player-comparables'
+        run: |
+          mkdir -p model-lab/results/v19-latest
+          cp model-lab/output/v19-player-features/feature_quality.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-isolated/isolated_promotion_candidates.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-isolated/production_history_decay.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_backtest_summary.json model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_overall_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_position_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_position_checkpoint_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_signal_selection_frequency.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_history_policy.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_selection_history.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-validated/validated_selection_trace.csv model-lab/results/v19-latest/
+          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" > model-lab/results/v19-latest/run_manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- model-lab/results/v19-latest
+          if git diff --cached --quiet; then
+            echo "No research summary changes to publish."
+          else
+            git commit -m "Update latest v1.9 research summaries [skip ci]"
+            git push origin HEAD:model-lab-v19-player-comparables
           fi
 
       - name: Upload v1.9 comparable lab outputs
