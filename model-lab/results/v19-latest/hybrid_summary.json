@@ -1,0 +1,430 @@
+{
+  "lab": "GRIDIRON PULSE v1.9e nested history shrinkage + environment hybrid",
+  "researchOnly": true,
+  "productionWeightsSelected": false,
+  "testStart": 2014,
+  "testEnd": 2025,
+  "candidateHistoryWeights": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "environmentRule": "At most one eligible environment family may enter, and only if it improves the prior-only shrinkage baseline by >=0.50%, wins >=55% of validation blocks, and does not regress the recent validation window.",
+  "overall": [
+    {
+      "rows": 12423,
+      "paceMae": 147.22263387075327,
+      "fullHistoryMae": 139.80528503922247,
+      "shrinkageMae": 139.06200180877147,
+      "hybridMae": 139.2320719144099,
+      "hybridImprovementPctVsPace": 5.427536341564367,
+      "hybridImprovementPctVsFullHistory": 0.41000819436244285,
+      "hybridImprovementPctVsShrinkage": -0.12229804218717125,
+      "shrinkageImprovementPctVsPace": 5.5430553355987495
+    }
+  ],
+  "positionCheckpoint": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "rows": 425,
+      "paceMae": 474.21110422910425,
+      "fullHistoryMae": 400.27259347856335,
+      "shrinkageMae": 403.64832687999507,
+      "hybridMae": 403.4722633828495,
+      "hybridImprovementPctVsPace": 14.917162465280207,
+      "hybridImprovementPctVsFullHistory": -0.7993727165978268,
+      "hybridImprovementPctVsShrinkage": 0.043618042097791875,
+      "shrinkageImprovementPctVsPace": 14.880034803026964
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "rows": 512,
+      "paceMae": 360.2823775020552,
+      "fullHistoryMae": 338.288284201323,
+      "shrinkageMae": 340.72546095946177,
+      "hybridMae": 340.72546095946177,
+      "hybridImprovementPctVsPace": 5.428219020366017,
+      "hybridImprovementPctVsFullHistory": -0.72044373747462,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 5.428219020366017
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "rows": 581,
+      "paceMae": 241.50508532632026,
+      "fullHistoryMae": 251.15658155504846,
+      "shrinkageMae": 241.50508532632026,
+      "hybridMae": 241.64885023378838,
+      "hybridImprovementPctVsPace": -0.059528728877021514,
+      "hybridImprovementPctVsFullHistory": 3.7855792041731458,
+      "hybridImprovementPctVsShrinkage": -0.059528728877021514,
+      "shrinkageImprovementPctVsPace": 0.0
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "rows": 880,
+      "paceMae": 227.17729119838498,
+      "fullHistoryMae": 210.6207417328988,
+      "shrinkageMae": 212.3333332096162,
+      "hybridMae": 213.76164567300714,
+      "hybridImprovementPctVsPace": 5.905363804017932,
+      "hybridImprovementPctVsFullHistory": -1.4912605065703857,
+      "hybridImprovementPctVsShrinkage": -0.6726746299324106,
+      "shrinkageImprovementPctVsPace": 6.534085299840174
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "rows": 1129,
+      "paceMae": 143.90776776490907,
+      "fullHistoryMae": 147.41870517790227,
+      "shrinkageMae": 143.2501849859286,
+      "hybridMae": 143.2501849859286,
+      "hybridImprovementPctVsPace": 0.45694738317024763,
+      "hybridImprovementPctVsFullHistory": 2.8276738606157026,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 0.45694738317024763
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "rows": 1274,
+      "paceMae": 88.79914075437034,
+      "fullHistoryMae": 92.31732974982476,
+      "shrinkageMae": 88.79914075437034,
+      "hybridMae": 88.79914075437034,
+      "hybridImprovementPctVsPace": 0.0,
+      "hybridImprovementPctVsFullHistory": 3.810973524676824,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 0.0
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "rows": 634,
+      "paceMae": 139.59415302100632,
+      "fullHistoryMae": 124.89107090395254,
+      "shrinkageMae": 127.11982312922498,
+      "hybridMae": 128.03260102991592,
+      "hybridImprovementPctVsPace": 8.282260926323037,
+      "hybridImprovementPctVsFullHistory": -2.5154161168009987,
+      "hybridImprovementPctVsShrinkage": -0.7180452884701127,
+      "shrinkageImprovementPctVsPace": 8.936140677685966
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "rows": 872,
+      "paceMae": 86.09487820570101,
+      "fullHistoryMae": 80.66725913607058,
+      "shrinkageMae": 80.7769643196981,
+      "hybridMae": 81.08483626989512,
+      "hybridImprovementPctVsPace": 5.8192102018376906,
+      "hybridImprovementPctVsFullHistory": -0.5176538019224904,
+      "hybridImprovementPctVsShrinkage": -0.38113830197744697,
+      "shrinkageImprovementPctVsPace": 6.176806329056137
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "rows": 989,
+      "paceMae": 52.107730593751825,
+      "fullHistoryMae": 52.41764444206465,
+      "shrinkageMae": 51.987602197850784,
+      "hybridMae": 51.987602197850784,
+      "hybridImprovementPctVsPace": 0.23053852956598636,
+      "hybridImprovementPctVsFullHistory": 0.8204150506785473,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 0.23053852956598636
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "rows": 1422,
+      "paceMae": 182.16134460456718,
+      "fullHistoryMae": 161.99075650575847,
+      "shrinkageMae": 162.80577170234264,
+      "hybridMae": 162.80577170234264,
+      "hybridImprovementPctVsPace": 10.625510557270696,
+      "hybridImprovementPctVsFullHistory": -0.5031245079438825,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 10.625510557270696
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "rows": 1765,
+      "paceMae": 120.0505196636854,
+      "fullHistoryMae": 115.4399005560454,
+      "shrinkageMae": 116.10916216123303,
+      "hybridMae": 116.10916216123303,
+      "hybridImprovementPctVsPace": 3.2830824168807116,
+      "hybridImprovementPctVsFullHistory": -0.5797489446577494,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 3.2830824168807116
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "rows": 1940,
+      "paceMae": 72.71931259748271,
+      "fullHistoryMae": 73.55631955755739,
+      "shrinkageMae": 72.4990843640221,
+      "hybridMae": 72.4990843640221,
+      "hybridImprovementPctVsPace": 0.3028469681494765,
+      "hybridImprovementPctVsFullHistory": 1.437313883966164,
+      "hybridImprovementPctVsShrinkage": 0.0,
+      "shrinkageImprovementPctVsPace": 0.3028469681494765
+    }
+  ],
+  "policy": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "meanSelectedHistoryWeight": 0.8958333333333334,
+      "modeSelectedHistoryWeight": 1.0,
+      "historyRecommendation": "strong-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 8.333333333333334,
+      "hybridImprovementPctVsPace": 14.917162465280207,
+      "hybridImprovementPctVsFullHistory": -0.7993727165978268,
+      "hybridImprovementPctVsShrinkage": 0.043618042097791875
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "meanSelectedHistoryWeight": 0.625,
+      "modeSelectedHistoryWeight": 0.75,
+      "historyRecommendation": "blended-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 5.428219020366017,
+      "hybridImprovementPctVsFullHistory": -0.72044373747462,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "meanSelectedHistoryWeight": 0.020833333333333332,
+      "modeSelectedHistoryWeight": 0.0,
+      "historyRecommendation": "current-season-dominant",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 8.333333333333334,
+      "hybridImprovementPctVsPace": -0.059528728877021514,
+      "hybridImprovementPctVsFullHistory": 3.7855792041731458,
+      "hybridImprovementPctVsShrinkage": -0.059528728877021514
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "meanSelectedHistoryWeight": 0.7708333333333334,
+      "modeSelectedHistoryWeight": 0.75,
+      "historyRecommendation": "strong-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 33.333333333333336,
+      "hybridImprovementPctVsPace": 5.905363804017932,
+      "hybridImprovementPctVsFullHistory": -1.4912605065703857,
+      "hybridImprovementPctVsShrinkage": -0.6726746299324106
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "meanSelectedHistoryWeight": 0.25,
+      "modeSelectedHistoryWeight": 0.25,
+      "historyRecommendation": "light-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 0.45694738317024763,
+      "hybridImprovementPctVsFullHistory": 2.8276738606157026,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "meanSelectedHistoryWeight": 0.0,
+      "modeSelectedHistoryWeight": 0.0,
+      "historyRecommendation": "current-season-dominant",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 0.0,
+      "hybridImprovementPctVsFullHistory": 3.810973524676824,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "meanSelectedHistoryWeight": 0.9166666666666666,
+      "modeSelectedHistoryWeight": 1.0,
+      "historyRecommendation": "strong-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 8.333333333333334,
+      "hybridImprovementPctVsPace": 8.282260926323037,
+      "hybridImprovementPctVsFullHistory": -2.5154161168009987,
+      "hybridImprovementPctVsShrinkage": -0.7180452884701127
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "meanSelectedHistoryWeight": 0.7291666666666666,
+      "modeSelectedHistoryWeight": 0.75,
+      "historyRecommendation": "strong-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 8.333333333333334,
+      "hybridImprovementPctVsPace": 5.8192102018376906,
+      "hybridImprovementPctVsFullHistory": -0.5176538019224904,
+      "hybridImprovementPctVsShrinkage": -0.38113830197744697
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "meanSelectedHistoryWeight": 0.3333333333333333,
+      "modeSelectedHistoryWeight": 0.25,
+      "historyRecommendation": "light-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 0.23053852956598636,
+      "hybridImprovementPctVsFullHistory": 0.8204150506785473,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "meanSelectedHistoryWeight": 0.875,
+      "modeSelectedHistoryWeight": 1.0,
+      "historyRecommendation": "strong-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 10.625510557270696,
+      "hybridImprovementPctVsFullHistory": -0.5031245079438825,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "meanSelectedHistoryWeight": 0.625,
+      "modeSelectedHistoryWeight": 0.75,
+      "historyRecommendation": "blended-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 3.2830824168807116,
+      "hybridImprovementPctVsFullHistory": -0.5797489446577494,
+      "hybridImprovementPctVsShrinkage": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "meanSelectedHistoryWeight": 0.14583333333333334,
+      "modeSelectedHistoryWeight": 0.25,
+      "historyRecommendation": "light-history",
+      "environmentRecommendation": "none",
+      "topEnvironmentSelectionPct": 0.0,
+      "hybridImprovementPctVsPace": 0.3028469681494765,
+      "hybridImprovementPctVsFullHistory": 1.437313883966164,
+      "hybridImprovementPctVsShrinkage": 0.0
+    }
+  ],
+  "signalFrequency": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "environmentGroup": "05_coach_scheme_isolated",
+      "selectedSeasons": 1,
+      "outerSeasons": 12,
+      "selectionPct": 8.333333333333334
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "environmentGroup": "05_coach_scheme_isolated",
+      "selectedSeasons": 1,
+      "outerSeasons": 12,
+      "selectionPct": 8.333333333333334
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "environmentGroup": "02_role_isolated",
+      "selectedSeasons": 4,
+      "outerSeasons": 12,
+      "selectionPct": 33.333333333333336
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "environmentGroup": "06_trade_team_change_isolated",
+      "selectedSeasons": 1,
+      "outerSeasons": 12,
+      "selectionPct": 8.333333333333334
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "environmentGroup": "02_role_isolated",
+      "selectedSeasons": 1,
+      "outerSeasons": 12,
+      "selectionPct": 8.333333333333334
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "environmentGroup": "none",
+      "selectedSeasons": 0,
+      "outerSeasons": 12,
+      "selectionPct": 0.0
+    }
+  ]
+}
