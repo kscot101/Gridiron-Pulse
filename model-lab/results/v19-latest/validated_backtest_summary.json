@@ -1,0 +1,166 @@
+{
+  "lab": "GRIDIRON PULSE v1.9c nested validated environment combination",
+  "researchOnly": true,
+  "productionWeightsSelected": false,
+  "selectionLeakageGuard": "Each outer season selects history/environment signals using only earlier seasons.",
+  "testStart": 2014,
+  "testEnd": 2025,
+  "maxEnvironmentGroups": 2,
+  "baseGate": {
+    "minBlocks": 1,
+    "minImprovementPct": 0.0,
+    "minWinPct": 50.0,
+    "minRecentImprovementPct": -0.5
+  },
+  "environmentGate": {
+    "minBlocks": 2,
+    "minImprovementPct": 0.5,
+    "minWinPct": 55.0,
+    "minRecentImprovementPct": 0.0
+  },
+  "environmentRescueGate": {
+    "minBlocks": 2,
+    "minImprovementPct": 1.0,
+    "minWinPct": 60.0,
+    "minRecentImprovementPct": 0.0
+  },
+  "overall": [
+    {
+      "rows": 12423,
+      "paceMae": 147.22263387075327,
+      "productionMae": 139.80528503922247,
+      "nestedMae": 138.82104832465126,
+      "nestedImprovementPctVsPace": 5.7067213954871665,
+      "nestedImprovementPctVsProduction": 0.704005370251262,
+      "productionImprovementPctVsPace": 5.038185119037125
+    }
+  ],
+  "positionSummary": [
+    {
+      "position": "QB",
+      "rows": 1518,
+      "paceMae": 346.71854489658347,
+      "productionMae": 322.29343058165347,
+      "nestedMae": 319.6510221022251,
+      "nestedImprovementPctVsPace": 7.806770994159498,
+      "nestedImprovementPctVsProduction": 0.8198766182293923,
+      "productionImprovementPctVsPace": 7.044651829112669
+    },
+    {
+      "position": "RB",
+      "rows": 3283,
+      "paceMae": 144.8425194584919,
+      "productionMae": 142.9772308778798,
+      "nestedMae": 140.64908471448075,
+      "nestedImprovementPctVsPace": 2.8951683246664817,
+      "nestedImprovementPctVsProduction": 1.628333510940339,
+      "productionImprovementPctVsPace": 1.2878045670467857
+    },
+    {
+      "position": "TE",
+      "rows": 2495,
+      "paceMae": 86.21722339395184,
+      "productionMae": 80.70694960840135,
+      "nestedMae": 81.03389878157323,
+      "nestedImprovementPctVsPace": 6.011936372265758,
+      "nestedImprovementPctVsProduction": -0.40510659213150163,
+      "productionImprovementPctVsPace": 6.3911519863872615
+    },
+    {
+      "position": "WR",
+      "rows": 5127,
+      "paceMae": 119.36767420971636,
+      "productionMae": 112.50273847752487,
+      "nestedMae": 112.23193079935622,
+      "nestedImprovementPctVsPace": 5.9779529571996095,
+      "nestedImprovementPctVsProduction": 0.24071207673113826,
+      "productionImprovementPctVsPace": 5.751084435247117
+    }
+  ],
+  "historyPolicy": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "nestedImprovementPctVsPace": 14.799824042550576,
+      "nestedImprovementPctVsProduction": -0.9383859388810541,
+      "historyRecommendation": "light-history"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "nestedImprovementPctVsPace": 6.104681958974461,
+      "nestedImprovementPctVsProduction": 0.0,
+      "historyRecommendation": "validated-history"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "nestedImprovementPctVsPace": 0.0,
+      "nestedImprovementPctVsProduction": 3.842820350942224,
+      "historyRecommendation": "current-season-dominant"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "nestedImprovementPctVsPace": 7.197883182732255,
+      "nestedImprovementPctVsProduction": -0.09713830919387408,
+      "historyRecommendation": "validated-history"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "nestedImprovementPctVsPace": -0.3832509896816583,
+      "nestedImprovementPctVsProduction": 2.007485729327253,
+      "historyRecommendation": "current-season-dominant"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "nestedImprovementPctVsPace": 0.0,
+      "nestedImprovementPctVsProduction": 3.810973524676824,
+      "historyRecommendation": "current-season-dominant"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "nestedImprovementPctVsPace": 9.878855179763603,
+      "nestedImprovementPctVsProduction": -0.7308592152219919,
+      "historyRecommendation": "light-history"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "nestedImprovementPctVsPace": 5.790363008692592,
+      "nestedImprovementPctVsProduction": -0.548441950757624,
+      "historyRecommendation": "light-history"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "nestedImprovementPctVsPace": -0.30612005625589084,
+      "nestedImprovementPctVsProduction": 0.28692940269720957,
+      "historyRecommendation": "current-season-dominant"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "nestedImprovementPctVsPace": 10.982062630776694,
+      "nestedImprovementPctVsProduction": -0.1021756727608674,
+      "historyRecommendation": "validated-history"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "nestedImprovementPctVsPace": 3.8405657222945706,
+      "nestedImprovementPctVsProduction": 0.0,
+      "historyRecommendation": "validated-history"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "nestedImprovementPctVsPace": 0.0,
+      "nestedImprovementPctVsProduction": 1.1379130509917934,
+      "historyRecommendation": "current-season-dominant"
+    }
+  ]
+}
