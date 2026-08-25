@@ -1,0 +1,178 @@
+name: V1.9i Player Shadow Router
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_season:
+        description: "First historical season"
+        required: true
+        default: "2012"
+      end_season:
+        description: "Last historical season"
+        required: true
+        default: "2025"
+      test_start_season:
+        description: "First held-out replay season"
+        required: true
+        default: "2014"
+  push:
+    branches:
+      - model-lab-v19-player-comparables
+    paths:
+      - ".github/workflows/v19i-player-shadow-router.yml"
+      - "model-lab/v19_player_shadow_router.py"
+      - "model-lab/v19_player_worker_integration_replay.py"
+      - "model-lab/v19_player_availability_backtest.py"
+      - "model-lab/v19_player_environment_value_audit.py"
+      - "model-lab/v19_player_validated_combination_backtest.py"
+      - "model-lab/v19_player_isolated_environment_backtest.py"
+      - "model-lab/v19_player_comparable_backtest.py"
+      - "model-lab/v19_player_feature_builder.py"
+      - "model-lab/v19_player_data_audit.py"
+      - "data/gridiron-history-data.json"
+
+permissions:
+  contents: write
+
+jobs:
+  player-shadow-router:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
+      END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
+      TEST_START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_start_season || '2014' }}
+
+    steps:
+      - name: Checkout v1.9 research branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify v1.9i research files
+        run: |
+          test -f model-lab/v19_player_data_audit.py
+          test -f model-lab/v19_player_feature_builder.py
+          test -f model-lab/v19_player_comparable_backtest.py
+          test -f model-lab/v19_player_isolated_environment_backtest.py
+          test -f model-lab/v19_player_validated_combination_backtest.py
+          test -f model-lab/v19_player_environment_value_audit.py
+          test -f model-lab/v19_player_availability_backtest.py
+          test -f model-lab/v19_player_worker_integration_replay.py
+          test -f model-lab/v19_player_shadow_router.py
+          test -f data/gridiron-history-data.json
+          python -m py_compile model-lab/v19_player_feature_builder.py
+          python -m py_compile model-lab/v19_player_comparable_backtest.py
+          python -m py_compile model-lab/v19_player_isolated_environment_backtest.py
+          python -m py_compile model-lab/v19_player_validated_combination_backtest.py
+          python -m py_compile model-lab/v19_player_environment_value_audit.py
+          python -m py_compile model-lab/v19_player_availability_backtest.py
+          python -m py_compile model-lab/v19_player_worker_integration_replay.py
+          python -m py_compile model-lab/v19_player_shadow_router.py
+
+      - name: Install research dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyreadr
+
+      - name: Build point-in-time player features
+        run: |
+          python model-lab/v19_player_feature_builder.py \
+            --start "$START_SEASON" \
+            --end "$END_SEASON" \
+            --out model-lab/output/v19-player-features \
+            --history data/gridiron-history-data.json
+
+      - name: Run validated v1.9g availability layer
+        run: |
+          python model-lab/v19_player_availability_backtest.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --out model-lab/output/v19-player-availability \
+            --test-start "$TEST_START_SEASON"
+
+      - name: Run v1.9h Worker integration replay
+        run: |
+          python model-lab/v19_player_worker_integration_replay.py \
+            --features model-lab/output/v19-player-features/player_features.csv \
+            --availability-predictions model-lab/output/v19-player-availability/availability_predictions.csv \
+            --out model-lab/output/v19-player-worker-replay \
+            --test-start "$TEST_START_SEASON"
+
+      - name: Run v1.9i nested shadow router
+        run: |
+          python model-lab/v19_player_shadow_router.py \
+            --replay model-lab/output/v19-player-worker-replay/worker_replay_predictions.csv \
+            --out model-lab/output/v19-player-shadow-router \
+            --test-start "$TEST_START_SEASON"
+
+      - name: Show v1.9i overall summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-shadow-router/shadow_router_overall_summary.csv ]; then
+            cat model-lab/output/v19-player-shadow-router/shadow_router_overall_summary.csv
+          fi
+
+      - name: Show v1.9i position checkpoint summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-shadow-router/shadow_router_position_checkpoint_summary.csv ]; then
+            cat model-lab/output/v19-player-shadow-router/shadow_router_position_checkpoint_summary.csv
+          fi
+
+      - name: Show v1.9i routing policy
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-shadow-router/shadow_router_policy.csv ]; then
+            cat model-lab/output/v19-player-shadow-router/shadow_router_policy.csv
+          fi
+
+      - name: Show v1.9i selection frequency
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-player-shadow-router/shadow_router_selection_frequency.csv ]; then
+            cat model-lab/output/v19-player-shadow-router/shadow_router_selection_frequency.csv
+          fi
+
+      - name: Publish latest v1.9i summaries
+        if: success() && github.ref == 'refs/heads/model-lab-v19-player-comparables'
+        run: |
+          mkdir -p model-lab/results/v19-latest
+          cp model-lab/output/v19-player-shadow-router/shadow_router_summary.json model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_overall_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_position_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_position_checkpoint_summary.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_selection_frequency.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_selection_history.csv model-lab/results/v19-latest/
+          cp model-lab/output/v19-player-shadow-router/shadow_router_policy.csv model-lab/results/v19-latest/
+          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" > model-lab/results/v19-latest/shadow_router_run_manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- model-lab/results/v19-latest
+          if git diff --cached --quiet; then
+            echo "No v1.9i summary changes to publish."
+          else
+            git commit -m "Update latest v1.9i shadow router summaries [skip ci]"
+            git push origin HEAD:model-lab-v19-player-comparables
+          fi
+
+      - name: Upload v1.9i shadow router artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v19i-player-shadow-router-${{ env.START_SEASON }}-${{ env.END_SEASON }}
+          path: |
+            model-lab/output/v19-player-shadow-router/shadow_router_summary.json
+            model-lab/output/v19-player-shadow-router/shadow_router_predictions.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_selection_history.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_overall_summary.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_position_summary.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_position_checkpoint_summary.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_selection_frequency.csv
+            model-lab/output/v19-player-shadow-router/shadow_router_policy.csv
+            model-lab/output/v19-player-worker-replay/worker_replay_fidelity.json
+            model-lab/output/v19-player-availability/availability_policy.csv
+          if-no-files-found: warn
+          retention-days: 14
