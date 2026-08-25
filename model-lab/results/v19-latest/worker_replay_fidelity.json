@@ -1,0 +1,17 @@
+{
+  "replayFidelity": "reproducible-core",
+  "exactlyReplayed": [
+    "Season Worker v1.2.0 currentSeasonWeight(gamesPlayed) curve",
+    "realized current totals plus projected remaining production accounting",
+    "QB/RB/WR/TE primary-stat mapping used by the research dataset"
+  ],
+  "neutralizedOrProxied": {
+    "priorRate": "prior-year player primary production per game; current-rate fallback when prior data is unavailable",
+    "availability": "current availability rate is a proxy for the Worker's live status-driven expectedMissedGames logic",
+    "liveRoleAssignment": "not reconstructed because exact historical Ourlads/ESPN role snapshots and role-conflict state were not persisted",
+    "heatAndForm": "neutralized because historical live Heat Score/profile snapshots were not persisted",
+    "teamRating": "neutralized because exact historical point-in-time Season Worker team rating snapshots were not persisted",
+    "tradeAndScheme": "neutralized because exact live transaction classification and scheme snapshots were not persisted"
+  },
+  "interpretation": "Use this replay to test whether the validated v1.9 rate+availability stack improves on the reproducible Worker weighting bridge. Do not treat it as a byte-for-byte replay of historical Worker snapshots."
+}
