@@ -38,6 +38,11 @@ export function routeForWeek(position, week) {
 }
 
 function finiteNumber(value) {
+  // Number(null) and Number("") both equal 0 in JavaScript. For a shadow
+  // challenger those values mean "missing", not a legitimate zero projection,
+  // so reject them before numeric coercion and fail closed to the champion.
+  if (value === null || value === undefined) return null;
+  if (typeof value === "string" && value.trim() === "") return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
 }
