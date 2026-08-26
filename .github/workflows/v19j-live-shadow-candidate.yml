@@ -1,0 +1,101 @@
+name: V1.9j 2026 Live Shadow Candidate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - model-lab-v19-player-comparables
+    paths:
+      - ".github/workflows/v19j-live-shadow-candidate.yml"
+      - "model-lab/v19_shadow_policy_2026.json"
+      - "model-lab/v19_shadow_worker_candidate.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-live-shadow-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout v1.9 research branch
+        uses: actions/checkout@v4
+
+      - name: Validate frozen 2026 policy
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("model-lab/v19_shadow_policy_2026.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["season"] == 2026
+          assert data["mode"] == "shadow-only"
+          assert data["productionWorkerChanged"] is False
+          routes = {(row["position"], int(row["checkpoint"])): row["route"] for row in data["routes"]}
+          assert len(routes) == 12
+          expected_v19 = {("RB", 4), ("TE", 8), ("WR", 4), ("WR", 8)}
+          actual_v19 = {key for key, route in routes.items() if route == "v19"}
+          assert actual_v19 == expected_v19, (actual_v19, expected_v19)
+          assert all(routes[(position, 12)] == "worker" for position in ["QB", "RB", "TE", "WR"])
+          print("Frozen 2026 shadow policy validated:", sorted(actual_v19))
+          PY
+
+      - name: Check shadow adapter syntax
+        run: node --check model-lab/v19_shadow_worker_candidate.mjs
+
+      - name: Exercise fail-closed routing
+        run: |
+          node --input-type=module <<'NODE'
+          import {
+            checkpointForWeek,
+            routeForWeek,
+            buildShadowDecision,
+          } from "./model-lab/v19_shadow_worker_candidate.mjs";
+
+          const assert = (condition, message) => {
+            if (!condition) throw new Error(message);
+          };
+
+          assert(checkpointForWeek(3) === null, "Week 3 must stay pre-shadow");
+          assert(routeForWeek("QB", 4).route === "worker", "QB Week 4 must stay Worker");
+          assert(routeForWeek("RB", 4).route === "v19", "RB Week 4 must route to v1.9");
+          assert(routeForWeek("TE", 8).route === "v19", "TE Week 8 must route to v1.9");
+          assert(routeForWeek("WR", 4).route === "v19", "WR Week 4 must route to v1.9");
+          assert(routeForWeek("WR", 8).route === "v19", "WR Week 8 must route to v1.9");
+          assert(routeForWeek("WR", 12).route === "worker", "WR Week 12 must return to Worker");
+
+          const shadow = buildShadowDecision({
+            position: "WR",
+            week: 4,
+            championPrediction: 1000,
+            challengerPrediction: 1080,
+            championFinalGames: 17,
+            challengerFinalGames: 16,
+          });
+          assert(shadow.officialSource === "worker", "Shadow code must never change official source");
+          assert(shadow.officialPrediction === 1000, "Official projection must remain champion");
+          assert(shadow.shadowSource === "v19" && shadow.shadowPrediction === 1080, "Shadow should record challenger");
+
+          const failClosed = buildShadowDecision({
+            position: "WR",
+            week: 4,
+            championPrediction: 1000,
+            challengerPrediction: null,
+          });
+          assert(failClosed.shadowSource === "worker", "Missing challenger must fail closed");
+          assert(failClosed.shadowPrediction === 1000, "Fail-closed shadow must use champion");
+
+          console.log("v1.9j shadow adapter routing and fail-closed checks passed.");
+          NODE
+
+      - name: Summarize shadow candidate
+        run: |
+          echo "2026 shadow-only routes:"
+          echo "  RB Weeks 4-7 -> v1.9 challenger"
+          echo "  TE Weeks 8-11 -> v1.9 challenger"
+          echo "  WR Weeks 4-7 -> v1.9 challenger"
+          echo "  WR Weeks 8-11 -> v1.9 challenger"
+          echo "  All QB routes, all Week 12+ routes, and all other cases -> current Worker"
+          echo "Official output remains current Worker for every route."
