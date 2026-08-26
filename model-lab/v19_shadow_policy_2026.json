@@ -1,0 +1,152 @@
+{
+  "model": "GRIDIRON PULSE v1.9j live shadow candidate",
+  "season": 2026,
+  "mode": "shadow-only",
+  "productionWorkerChanged": false,
+  "source": {
+    "researchBranch": "model-lab-v19-player-comparables",
+    "shadowRouterWorkflowRun": 32797720911,
+    "shadowRouterSourceCommit": "ce5a109cfe0319c8e82e2ea6a736bb228fb4e230",
+    "artifactId": 9545774298,
+    "artifactDigest": "sha256:7896182e19143d3ba7fe0064f6ca63d9cdaf8ed58394a1c38df2c8a9359fe8cc",
+    "historicalEvidenceThrough": 2025,
+    "heldOutEvaluationStart": 2014
+  },
+  "routingGate": {
+    "minimumValidationBlocks": 3,
+    "minimumImprovementPct": 1.0,
+    "minimumSeasonBlockWinPct": 55.0,
+    "minimumRecent4ImprovementPct": 0.0,
+    "nearTieTolerancePct": 0.1
+  },
+  "activation": {
+    "beforeWeek4": "worker",
+    "week4Window": "weeks 4-7",
+    "week8Window": "weeks 8-11",
+    "week12Window": "week 12 and later",
+    "unknownPosition": "worker",
+    "missingChallengerPrediction": "worker"
+  },
+  "routes": [
+    {
+      "position": "QB",
+      "checkpoint": 4,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": 0.16072768581926328,
+      "validationWinPct": 50.0,
+      "validationRecent4ImprovementPct": 11.294966865374201,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 8,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": -0.14891655027209763,
+      "validationWinPct": 50.0,
+      "validationRecent4ImprovementPct": 10.05098409768482,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "QB",
+      "checkpoint": 12,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": -2.359026421137722,
+      "validationWinPct": 50.0,
+      "validationRecent4ImprovementPct": 3.0158171002138072,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 4,
+      "route": "v19",
+      "validationBlocks": 12,
+      "validationImprovementPct": 7.372076328321872,
+      "validationWinPct": 58.333333333333336,
+      "validationRecent4ImprovementPct": 7.687073518860227,
+      "reason": "prior-validation-pass"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 8,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": 0.16664980365779547,
+      "validationWinPct": 66.66666666666666,
+      "validationRecent4ImprovementPct": 4.229939068527645,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "RB",
+      "checkpoint": 12,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": -0.3739319794682201,
+      "validationWinPct": 58.333333333333336,
+      "validationRecent4ImprovementPct": 1.58153532049785,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 4,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": 1.1211062218504768,
+      "validationWinPct": 50.0,
+      "validationRecent4ImprovementPct": -2.3243143161143682,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 8,
+      "route": "v19",
+      "validationBlocks": 12,
+      "validationImprovementPct": 2.0294144308699513,
+      "validationWinPct": 91.66666666666666,
+      "validationRecent4ImprovementPct": 3.756100607039112,
+      "reason": "prior-validation-pass"
+    },
+    {
+      "position": "TE",
+      "checkpoint": 12,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": -1.6913132212700313,
+      "validationWinPct": 33.33333333333333,
+      "validationRecent4ImprovementPct": 1.8719195124362793,
+      "reason": "prior-validation-hold"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 4,
+      "route": "v19",
+      "validationBlocks": 12,
+      "validationImprovementPct": 7.751887955305321,
+      "validationWinPct": 83.33333333333334,
+      "validationRecent4ImprovementPct": 11.525174955486534,
+      "reason": "prior-validation-pass"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 8,
+      "route": "v19",
+      "validationBlocks": 12,
+      "validationImprovementPct": 4.643082260746096,
+      "validationWinPct": 91.66666666666666,
+      "validationRecent4ImprovementPct": 6.541113967161472,
+      "reason": "prior-validation-pass"
+    },
+    {
+      "position": "WR",
+      "checkpoint": 12,
+      "route": "worker",
+      "validationBlocks": 12,
+      "validationImprovementPct": -0.00529720511451018,
+      "validationWinPct": 50.0,
+      "validationRecent4ImprovementPct": 2.571661162307277,
+      "reason": "prior-validation-hold"
+    }
+  ]
+}
