@@ -27,9 +27,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: v19k-live-challenger-feed
+  cancel-in-progress: true
+
 jobs:
   validate-live-challenger-feed:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 60
 
     steps:
@@ -62,7 +66,7 @@ jobs:
 
   generate-live-challenger-feed:
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 180
     env:
       INPUT_WEEK: ${{ github.event_name == 'workflow_dispatch' && inputs.week || '0' }}
