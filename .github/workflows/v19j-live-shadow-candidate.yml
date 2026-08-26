@@ -9,6 +9,7 @@ on:
       - ".github/workflows/v19j-live-shadow-candidate.yml"
       - "model-lab/v19_shadow_policy_2026.json"
       - "model-lab/v19_shadow_worker_candidate.mjs"
+      - "model-lab/v19_live_challenger_feed.py"
 
 permissions:
   contents: read
@@ -16,11 +17,21 @@ permissions:
 jobs:
   validate-live-shadow-candidate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout v1.9 research branch
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install v1.9k validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyreadr
 
       - name: Validate frozen 2026 policy
         run: |
@@ -90,6 +101,13 @@ jobs:
           console.log("v1.9j shadow adapter routing and fail-closed checks passed.");
           NODE
 
+      - name: Validate v1.9k challenger feed contract
+        run: |
+          python -m py_compile model-lab/v19_live_challenger_feed.py
+          python model-lab/v19_live_challenger_feed.py \
+            --policy model-lab/v19_shadow_policy_2026.json \
+            --self-test
+
       - name: Summarize shadow candidate
         run: |
           echo "2026 shadow-only routes:"
@@ -99,3 +117,4 @@ jobs:
           echo "  WR Weeks 8-11 -> v1.9 challenger"
           echo "  All QB routes, all Week 12+ routes, and all other cases -> current Worker"
           echo "Official output remains current Worker for every route."
+          echo "v1.9k live challenger feed contract is syntax/self-test validated."
