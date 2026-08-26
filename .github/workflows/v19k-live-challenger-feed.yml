@@ -1,0 +1,177 @@
+name: V1.9k 2026 Live Challenger Feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Regular-season week; 0 infers the latest nflverse week"
+        required: true
+        default: "0"
+  schedule:
+    - cron: "15 13 * * 2"
+  push:
+    branches:
+      - model-lab-v19-player-comparables
+    paths:
+      - ".github/workflows/v19k-live-challenger-feed.yml"
+      - "model-lab/v19_live_challenger_feed.py"
+      - "model-lab/v19_shadow_policy_2026.json"
+      - "model-lab/v19_player_feature_builder.py"
+      - "model-lab/v19_player_availability_backtest.py"
+      - "model-lab/v19_player_environment_value_audit.py"
+      - "model-lab/v19_player_isolated_environment_backtest.py"
+      - "model-lab/v19_player_comparable_backtest.py"
+      - "model-lab/v19_player_data_audit.py"
+
+permissions:
+  contents: write
+
+jobs:
+  validate-live-challenger-feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout v1.9 research branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install v1.9k dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyreadr
+
+      - name: Verify v1.9k files
+        run: |
+          test -f model-lab/v19_live_challenger_feed.py
+          test -f model-lab/v19_shadow_policy_2026.json
+          python -m py_compile model-lab/v19_live_challenger_feed.py
+          python -m py_compile model-lab/v19_player_feature_builder.py
+          python -m py_compile model-lab/v19_player_availability_backtest.py
+
+      - name: Run v1.9k self-test
+        run: |
+          python model-lab/v19_live_challenger_feed.py \
+            --policy model-lab/v19_shadow_policy_2026.json \
+            --self-test
+
+  generate-live-challenger-feed:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      INPUT_WEEK: ${{ github.event_name == 'workflow_dispatch' && inputs.week || '0' }}
+
+    steps:
+      - name: Checkout v1.9 research branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install live research dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests pyreadr
+
+      - name: Resolve 2026 live week
+        id: liveweek
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          import sys
+          sys.path.insert(0, "model-lab")
+          from v19_live_challenger_feed import SEASON, checkpoint_for_week, max_regular_week
+          from v19_player_feature_builder import season_source
+
+          requested = int(os.environ.get("INPUT_WEEK", "0") or 0)
+          if requested > 0:
+              week = requested
+          else:
+              stats = season_source("player_stats", SEASON)
+              week = max_regular_week(stats) if not stats.empty else 0
+          checkpoint = checkpoint_for_week(week) or 0
+          print(f"week={week}")
+          print(f"checkpoint={checkpoint}")
+          PY
+
+      - name: Restore frozen historical feature cache
+        if: steps.liveweek.outputs.checkpoint != '0'
+        id: featurecache
+        uses: actions/cache@v4
+        with:
+          path: model-lab/cache/v19-player-features
+          key: v19k-player-features-2012-2025-${{ hashFiles('model-lab/v19_player_feature_builder.py', 'model-lab/v19_player_data_audit.py', 'data/gridiron-history-data.json') }}
+
+      - name: Build historical features on cache miss
+        if: steps.liveweek.outputs.checkpoint != '0' && steps.featurecache.outputs.cache-hit != 'true'
+        run: |
+          python model-lab/v19_player_feature_builder.py \
+            --start 2012 \
+            --end 2025 \
+            --out model-lab/cache/v19-player-features \
+            --history data/gridiron-history-data.json
+
+      - name: Generate 2026 live challenger feed
+        run: |
+          python model-lab/v19_live_challenger_feed.py \
+            --season 2026 \
+            --week "${{ steps.liveweek.outputs.week }}" \
+            --historical-features model-lab/cache/v19-player-features/player_features.csv \
+            --policy model-lab/v19_shadow_policy_2026.json \
+            --out model-lab/output/v19-live-shadow
+
+      - name: Show v1.9k feed summary
+        if: always()
+        run: |
+          if [ -f model-lab/output/v19-live-shadow/live_shadow_feed.json ]; then
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("model-lab/output/v19-live-shadow/live_shadow_feed.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          print(json.dumps({
+              "modelVersion": data.get("modelVersion"),
+              "season": data.get("season"),
+              "week": data.get("week"),
+              "checkpoint": data.get("checkpoint"),
+              "status": data.get("status"),
+              "summary": data.get("summary"),
+              "decisions": data.get("decisions"),
+          }, indent=2))
+          PY
+          fi
+
+      - name: Publish latest v1.9k shadow feed
+        if: success() && github.ref == 'refs/heads/model-lab-v19-player-comparables'
+        run: |
+          mkdir -p model-lab/results/v19-live
+          cp model-lab/output/v19-live-shadow/live_shadow_feed.json model-lab/results/v19-live/latest.json
+          cp model-lab/output/v19-live-shadow/live_shadow_players.csv model-lab/results/v19-live/latest_players.csv
+          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "season": 2026,\n  "week": "%s",\n  "checkpoint": "%s",\n  "mode": "shadow-only"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "${{ steps.liveweek.outputs.week }}" "${{ steps.liveweek.outputs.checkpoint }}" > model-lab/results/v19-live/run_manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- model-lab/results/v19-live
+          if git diff --cached --quiet; then
+            echo "No v1.9k live-shadow changes to publish."
+          else
+            git commit -m "Update v1.9k 2026 live shadow feed [skip ci]"
+            git push origin HEAD:model-lab-v19-player-comparables
+          fi
+
+      - name: Upload v1.9k live shadow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v19k-live-shadow-week-${{ steps.liveweek.outputs.week }}
+          path: |
+            model-lab/output/v19-live-shadow/live_shadow_feed.json
+            model-lab/output/v19-live-shadow/live_shadow_players.csv
+          if-no-files-found: warn
+          retention-days: 30
