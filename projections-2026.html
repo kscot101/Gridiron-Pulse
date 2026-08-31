@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07110d">
+  <title>2026 Projections | Gridiron Pulse</title>
+  <style>
+    :root{--ink:#07110d;--ink2:#102019;--paper:#f2f1e7;--acid:#b7ff3c;--mint:#61e6a8;--red:#ff5d5d;--muted:#92a398;--line:rgba(255,255,255,.13);--panel:#10231a;--panel2:#0b1912}
+    *{box-sizing:border-box}body{margin:0;background:var(--ink);color:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}.shell{width:min(1240px,calc(100% - 32px));margin:0 auto}.topbar{position:sticky;top:0;z-index:20;background:rgba(7,17,13,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+    .topbar-inner{min-height:68px;display:flex;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}.mark{width:34px;height:34px;display:grid;place-items:center;background:var(--acid);color:var(--ink);border-radius:50%;font-weight:1000}.back{margin-left:auto;padding:9px 13px;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:800;color:#dce8df}
+    .hero{padding:66px 0 34px;background:radial-gradient(circle at 75% 15%,rgba(183,255,60,.16),transparent 30%)}.eyebrow{color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{margin:12px 0 12px;font-size:clamp(48px,8vw,92px);line-height:.88;text-transform:uppercase}.hero p{max-width:760px;margin:0;color:#b9c9bf;line-height:1.65;font-size:16px}
+    .status-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0}.stat{padding:16px;background:linear-gradient(180deg,#12291e,#0c1c14);border:1px solid var(--line);border-radius:18px}.stat small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.stat strong{display:block;margin-top:5px;font-size:23px}.good{color:var(--mint)}.warn{color:#f6cf65}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:16px 0 20px}.toolbar button,.toolbar select,.toolbar input{min-height:40px;border:1px solid var(--line);background:#0c1b14;color:#fff;border-radius:999px;padding:0 14px;font-weight:800}.toolbar button{cursor:pointer}.toolbar button.active{background:var(--acid);border-color:var(--acid);color:var(--ink)}.toolbar input{min-width:230px;border-radius:12px}.toolbar select option{color:#111}
+    .notice{padding:14px 16px;margin:0 0 18px;border:1px solid rgba(183,255,60,.22);border-left:3px solid var(--acid);background:rgba(183,255,60,.06);border-radius:12px;color:#d9e9df;line-height:1.55}.notice b{color:var(--acid)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding-bottom:70px}.card{padding:17px;background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px}.head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.name{font-size:18px;font-weight:950}.meta{margin-top:3px;color:var(--muted);font-size:12px}.source{flex:0 0 auto;padding:5px 8px;border:1px solid var(--line);border-radius:999px;font-size:10px;font-weight:950;letter-spacing:.05em;text-transform:uppercase}.source.v19{color:var(--ink);background:var(--acid);border-color:var(--acid)}.source.worker{color:#dce8df;background:#13291f}
+    .metric{margin-top:15px;padding:12px;background:#09150f;border:1px solid rgba(255,255,255,.08);border-radius:13px}.metric small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:900;letter-spacing:.08em}.metric strong{display:block;margin-top:5px;font-size:28px}.compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.mini{padding:10px;background:#09150f;border:1px solid rgba(255,255,255,.07);border-radius:11px}.mini small{display:block;color:var(--muted);font-size:9px;text-transform:uppercase}.mini b{display:block;margin-top:4px;font-size:14px}.delta.pos{color:var(--mint)}.delta.neg{color:#ff8b8b}.empty{grid-column:1/-1;padding:30px;text-align:center;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}.footer{padding:0 0 45px;color:#71867a;font-size:12px;line-height:1.6}
+    @media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.grid{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr}.toolbar input{width:100%;min-width:0}.hero{padding-top:44px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="shell topbar-inner"><a class="brand" href="./"><span class="mark">GP</span><span>GRIDIRON PULSE</span></a><a class="back" href="./">Back to home</a></div></header>
+  <main>
+    <section class="hero"><div class="shell"><div class="eyebrow">2026 season outlook</div><h1>Player Projections</h1><p>This page is now part of the live Gridiron Pulse site. Before the validated v1.9 checkpoints, the current Season Worker remains the active model. When the scheduled v1.9 data build is ready, only the frozen challenger routes switch automatically.</p>
+      <div class="status-grid" id="stats"><div class="stat"><small>Status</small><strong>Loading…</strong></div></div>
+    </div></section>
+    <section class="shell">
+      <div class="notice" id="notice"><b>Model routing:</b> pre-Week 4 uses the current Worker. Weeks 4–7 can activate v1.9 for RB/WR; Weeks 8–11 can activate v1.9 for WR/TE; Week 12+ returns to the current Worker.</div>
+      <div class="toolbar">
+        <button class="active" data-pos="ALL">All</button><button data-pos="QB">QB</button><button data-pos="RB">RB</button><button data-pos="WR">WR</button><button data-pos="TE">TE</button>
+        <select id="team"><option value="ALL">All teams</option></select><input id="search" type="search" placeholder="Search player…"><button id="refresh">Refresh</button>
+      </div>
+      <div class="grid" id="grid"><div class="empty">Loading 2026 projections…</div></div>
+      <div class="footer">Active projections are selected by the frozen 2026 router. v1.9 does not replace routes that did not clear historical validation. Data falls back to the current Season Worker if the v1.9 feed is unavailable.</div>
+    </section>
+  </main>
+<script>
+(function(){
+  var SHADOW_URL='https://gridiron-shadow.kadescott97.workers.dev/projections';
+  var SEASON_URL='https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook';
+  var state={rows:[],position:'ALL',team:'ALL',search:'',meta:{}};
+  function list(x){return Array.isArray(x)?x:[]}
+  function num(v){if(v===null||v===undefined||v==='')return null;var n=Number(v);return Number.isFinite(n)?n:null}
+  function esc(s){return String(s??'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function teamOf(p){var t=p&& (p.team||p.teamAbbr||p.teamCode||p.teamAbbreviation);if(t&&typeof t==='object')t=t.abbreviation||t.abbr||t.code||t.name;return String(t||'').toUpperCase()}
+  function posOf(p){return String((p&&(p.positionGroup||p.position||p.pos))||'').toUpperCase()}
+  function nameOf(p){return String((p&&(p.name||p.playerName||p.displayName||p.fullName||p.shortName))||'Unknown Player')}
+  function idOf(p){return String((p&&(p.gsisId||p.gsis_id||p.playerKey||p.athleteId||p.id))||'')}
+  function projectionNumber(v){if(v===null||v===undefined||v==='')return null;if(typeof v==='number')return Number.isFinite(v)?v:null;if(typeof v==='object'){var xs=[v.projection,v.projected,v.value,v.total,v.mean,v.median,v.expected,v.projectedTotal,v.seasonTotal];for(var i=0;i<xs.length;i++){var n=num(xs[i]);if(n!==null)return n}}return num(v)}
+  function workerProjection(p){var metric=p&&p.primaryMetric;if(metric&&p&&p.projections&&typeof p.projections==='object'){var n=projectionNumber(p.projections[metric]);if(n!==null)return n}var xs=[p&&p.projection,p&&p.projectedTotal,p&&p.seasonProjection,p&&p.seasonTotal,p&&p.projectedSeasonTotal];for(var i=0;i<xs.length;i++){var x=projectionNumber(xs[i]);if(x!==null)return x}return null}
+  function metricLabel(p){var m=String((p&&p.primaryMetric)||'season total').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/_/g,' ');return m.replace(/\b\w/g,function(x){return x.toUpperCase()})}
+  function normalizeName(s){return String(s||'').toLowerCase().replace(/\b(jr|sr|ii|iii|iv|v)\b/g,'').replace(/[^a-z0-9]/g,'')}
+  function keyFor(p){var id=idOf(p);if(id)return 'id:'+id.toUpperCase();return 'ident:'+normalizeName(nameOf(p))+'|'+posOf(p)+'|'+teamOf(p)}
+  function routeFor(pos,week){week=Number(week)||1;if(week<4)return 'worker';if(week<8)return (pos==='RB'||pos==='WR')?'v19':'worker';if(week<12)return (pos==='WR'||pos==='TE')?'v19':'worker';return 'worker'}
+  async function load(){
+    document.getElementById('grid').innerHTML='<div class="empty">Loading 2026 projections…</div>';
+    try{
+      var r=await fetch(SHADOW_URL+'?t='+Date.now(),{cache:'no-store'});
+      if(!r.ok)throw new Error('shadow '+r.status);
+      var payload=await r.json();
+      if(!payload.ok||!Array.isArray(payload.players))throw new Error('shadow payload unavailable');
+      state.rows=payload.players.map(function(p){return Object.assign({},p,{activePrediction:num(p.activePrediction??p.projection),activeSource:String(p.activeSource||p.modelSource||'worker').toLowerCase()})});
+      state.meta=payload;
+    }catch(e){
+      var r2=await fetch(SEASON_URL+'?t='+Date.now(),{cache:'no-store'});var p2=await r2.json();if(!r2.ok||!p2.ok||!p2.seasonOutlook)throw new Error('Season projections unavailable');
+      var out=p2.seasonOutlook,week=Number(out.seasonWeek)||1;
+      state.rows=list(out.players).map(function(p){var wp=workerProjection(p);return {playerKey:idOf(p),playerName:nameOf(p),team:teamOf(p),position:posOf(p),primaryMetric:p.primaryMetric||'',activePrediction:wp,officialPrediction:wp,shadowPrediction:null,activeSource:'worker',route:routeFor(posOf(p),week)} });
+      state.meta={ok:true,season:out.seasonYear||2026,seasonWeek:week,shadowReady:false,fallback:true,generatedAt:out.generatedAt||null};
+    }
+    populateTeams();render();
+  }
+  function populateTeams(){var sel=document.getElementById('team'),current=state.team;var teams=[...new Set(state.rows.map(function(r){return String(r.team||'').toUpperCase()}).filter(Boolean))].sort();sel.innerHTML='<option value="ALL">All teams</option>'+teams.map(function(t){return '<option value="'+esc(t)+'">'+esc(t)+'</option>'}).join('');sel.value=teams.indexOf(current)>=0?current:'ALL';state.team=sel.value}
+  function renderStats(){var week=Number(state.meta.seasonWeek||state.meta.requestedWeek||1),v19=state.rows.filter(function(r){return String(r.activeSource).toLowerCase()==='v19'}).length,worker=state.rows.length-v19,shadowReady=Boolean(state.meta.shadowReady||state.meta.ready||v19>0);document.getElementById('stats').innerHTML='<div class="stat"><small>2026 week</small><strong>'+week+'</strong></div><div class="stat"><small>Players</small><strong>'+state.rows.length+'</strong></div><div class="stat"><small>v1.9 active</small><strong class="'+(v19?'good':'warn')+'">'+v19+'</strong></div><div class="stat"><small>Current Worker</small><strong>'+worker+'</strong></div>';document.getElementById('notice').innerHTML='<b>Active model:</b> '+(shadowReady?'v1.9 is available only on validated routes; all other players stay on the current Worker.':'The live v1.9 checkpoint feed is not ready yet, so the current Season Worker is serving the 2026 projections now. The page will switch validated routes automatically when the scheduled build becomes ready.')}
+  function fmt(n){return n===null||n===undefined||!Number.isFinite(Number(n))?'—':Number(n).toLocaleString(undefined,{maximumFractionDigits:1})}
+  function render(){renderStats();var q=normalizeName(state.search),rows=state.rows.filter(function(r){if(!['QB','RB','WR','TE'].includes(String(r.position||'').toUpperCase()))return false;if(state.position!=='ALL'&&String(r.position).toUpperCase()!==state.position)return false;if(state.team!=='ALL'&&String(r.team).toUpperCase()!==state.team)return false;if(q&&!normalizeName(r.playerName||r.name).includes(q))return false;return true}).sort(function(a,b){return (num(b.activePrediction)||-1)-(num(a.activePrediction)||-1)});var grid=document.getElementById('grid');if(!rows.length){grid.innerHTML='<div class="empty">No players match these filters.</div>';return}grid.innerHTML=rows.map(function(r){var active=num(r.activePrediction),official=num(r.officialPrediction),shadow=num(r.shadowPrediction),source=String(r.activeSource||'worker').toLowerCase()==='v19'?'v19':'worker',delta=(shadow!==null&&official!==null)?shadow-official:null;return '<article class="card"><div class="head"><div><div class="name">'+esc(r.playerName||r.name)+'</div><div class="meta">'+esc(r.team)+' · '+esc(r.position)+' · '+esc(r.primaryMetric||'season total')+'</div></div><span class="source '+source+'">'+(source==='v19'?'v1.9':'Worker')+'</span></div><div class="metric"><small>Active 2026 projection</small><strong>'+fmt(active)+'</strong></div><div class="compare"><div class="mini"><small>Current Worker</small><b>'+fmt(official)+'</b></div><div class="mini"><small>v1.9 Shadow</small><b>'+fmt(shadow)+'</b></div></div>'+(delta===null?'':'<div class="mini" style="margin-top:8px"><small>v1.9 difference</small><b class="delta '+(delta>=0?'pos':'neg')+'">'+(delta>=0?'+':'')+fmt(delta)+'</b></div>')+'</article>'}).join('')}
+  document.querySelectorAll('[data-pos]').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('[data-pos]').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');state.position=btn.dataset.pos;render()})});
+  document.getElementById('team').addEventListener('change',function(e){state.team=e.target.value;render()});document.getElementById('search').addEventListener('input',function(e){state.search=e.target.value;render()});document.getElementById('refresh').addEventListener('click',load);
+  load().catch(function(e){document.getElementById('grid').innerHTML='<div class="empty">'+esc(e.message||e)+'</div>'});
+})();
+</script>
+</body>
+</html>
