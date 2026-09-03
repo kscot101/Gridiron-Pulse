@@ -1,4 +1,4 @@
-name: V2.0 Player Identity Baseline Lab
+name: V2.0 Player Identity Baseline + Integration Lab
 
 on:
   workflow_dispatch:
@@ -27,6 +27,7 @@ on:
       - "model-lab/v20_player_identity_baseline.py"
       - "model-lab/v20_player_identity_core.py"
       - "model-lab/v20_player_identity_model.py"
+      - "model-lab/v20_player_identity_integration_replay.py"
       - "model-lab/v20_player_identity_plan.md"
       - "model-lab/v20_contract_context.json"
 
@@ -40,13 +41,14 @@ concurrency:
 jobs:
   player-identity-lab:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     env:
       START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
       END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
       TEST_START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_start_season || '2015' }}
       FORECAST_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.forecast_season || '2026' }}
       OUTPUT_DIR: model-lab/output/v20-player-identity
+      INTEGRATION_DIR: model-lab/output/v20-player-identity-integration
       CACHE_DIR: model-lab/output/v20-player-identity-cache
 
     steps:
@@ -63,21 +65,26 @@ jobs:
           test -f model-lab/v20_player_identity_baseline.py
           test -f model-lab/v20_player_identity_core.py
           test -f model-lab/v20_player_identity_model.py
+          test -f model-lab/v20_player_identity_integration_replay.py
           test -f model-lab/v20_player_identity_plan.md
           test -f model-lab/v20_contract_context.json
-          python -m py_compile model-lab/v20_player_identity_core.py model-lab/v20_player_identity_model.py model-lab/v20_player_identity_baseline.py
+          python -m py_compile \
+            model-lab/v20_player_identity_core.py \
+            model-lab/v20_player_identity_model.py \
+            model-lab/v20_player_identity_baseline.py \
+            model-lab/v20_player_identity_integration_replay.py
           python -m json.tool model-lab/v20_contract_context.json >/dev/null
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pandas numpy requests
+          python -m pip install pandas numpy requests pyreadr
 
       - name: Restore nflverse source cache
         uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIR }}
-          key: v20-player-identity-nflverse-${{ env.START_SEASON }}-${{ env.END_SEASON }}-${{ env.FORECAST_SEASON }}-v1
+          key: v20-player-identity-nflverse-${{ env.START_SEASON }}-${{ env.END_SEASON }}-${{ env.FORECAST_SEASON }}-v2
 
       - name: Run rolling Player Identity baseline lab
         run: |
@@ -90,50 +97,85 @@ jobs:
             --cache "$CACHE_DIR" \
             --contract-context model-lab/v20_contract_context.json
 
-      - name: Show overall model comparison
+      - name: Run verified-role integration replay
+        run: |
+          python model-lab/v20_player_identity_integration_replay.py \
+            --source "$OUTPUT_DIR/player_season_identity_source.csv" \
+            --backtest "$OUTPUT_DIR/backtest_predictions.csv" \
+            --forecast "$OUTPUT_DIR/forecast_${FORECAST_SEASON}_player_identity.csv" \
+            --start "$TEST_START_SEASON" \
+            --end "$END_SEASON" \
+            --out "$INTEGRATION_DIR" \
+            --cache "$CACHE_DIR"
+
+      - name: Show baseline model comparison
         if: always()
         run: |
           if [ -f "$OUTPUT_DIR/overall_model_summary.csv" ]; then
             cat "$OUTPUT_DIR/overall_model_summary.csv"
           fi
 
-      - name: Show established-star and shortened-season comparison
+      - name: Show baseline star and shortened-season comparison
         if: always()
         run: |
           if [ -f "$OUTPUT_DIR/star_and_shortened_summary.csv" ]; then
             cat "$OUTPUT_DIR/star_and_shortened_summary.csv"
           fi
 
-      - name: Show Stafford and Bowers sanity checks
+      - name: Show role integration comparison
         if: always()
         run: |
-          if [ -f "$OUTPUT_DIR/sanity_checks.csv" ]; then
-            cat "$OUTPUT_DIR/sanity_checks.csv"
+          if [ -f "$INTEGRATION_DIR/integration_overall_summary.csv" ]; then
+            cat "$INTEGRATION_DIR/integration_overall_summary.csv"
+          fi
+          if [ -f "$INTEGRATION_DIR/integration_subset_summary.csv" ]; then
+            cat "$INTEGRATION_DIR/integration_subset_summary.csv"
           fi
 
-      - name: Show promotion gate
+      - name: Show Stafford and Bowers integration sanity checks
+        if: always()
+        run: |
+          if [ -f "$INTEGRATION_DIR/integration_2026_sanity_checks.csv" ]; then
+            cat "$INTEGRATION_DIR/integration_2026_sanity_checks.csv"
+          fi
+
+      - name: Show research gates
         if: always()
         run: |
           if [ -f "$OUTPUT_DIR/baseline_policy.json" ]; then
             cat "$OUTPUT_DIR/baseline_policy.json"
           fi
+          if [ -f "$INTEGRATION_DIR/integration_policy.json" ]; then
+            cat "$INTEGRATION_DIR/integration_policy.json"
+          fi
 
       - name: Publish latest Player Identity summaries
         if: success() && github.ref == 'refs/heads/model-lab-v20-player-identity-baseline'
         run: |
-          mkdir -p model-lab/results/v20-player-identity-latest
-          cp "$OUTPUT_DIR/overall_model_summary.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/position_model_summary.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/career_state_model_summary.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/star_and_shortened_summary.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/sanity_checks.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/forecast_${FORECAST_SEASON}_player_identity.csv" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/run_summary.json" model-lab/results/v20-player-identity-latest/
-          cp "$OUTPUT_DIR/baseline_policy.json" model-lab/results/v20-player-identity-latest/
-          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s",\n  "forecastSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" "$FORECAST_SEASON" > model-lab/results/v20-player-identity-latest/run_manifest.json
+          RESULT_DIR=model-lab/results/v20-player-identity-latest
+          mkdir -p "$RESULT_DIR"
+          cp "$OUTPUT_DIR/overall_model_summary.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/position_model_summary.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/career_state_model_summary.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/star_and_shortened_summary.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/sanity_checks.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/forecast_${FORECAST_SEASON}_player_identity.csv" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/run_summary.json" "$RESULT_DIR/"
+          cp "$OUTPUT_DIR/baseline_policy.json" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_overall_summary.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_position_summary.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_subset_summary.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_role_coverage.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_source_coverage.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_2026_preview.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_2026_preview.json" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_2026_sanity_checks.csv" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_summary.json" "$RESULT_DIR/"
+          cp "$INTEGRATION_DIR/integration_policy.json" "$RESULT_DIR/"
+          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s",\n  "forecastSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" "$FORECAST_SEASON" > "$RESULT_DIR/run_manifest.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- model-lab/results/v20-player-identity-latest
+          git add -- "$RESULT_DIR"
           if git diff --cached --quiet; then
             echo "No research summary changes to publish."
           else
@@ -159,3 +201,14 @@ jobs:
             model-lab/output/v20-player-identity/sanity_checks.csv
             model-lab/output/v20-player-identity/run_summary.json
             model-lab/output/v20-player-identity/baseline_policy.json
+            model-lab/output/v20-player-identity-integration/integration_replay_predictions.csv
+            model-lab/output/v20-player-identity-integration/integration_role_coverage.csv
+            model-lab/output/v20-player-identity-integration/integration_source_coverage.csv
+            model-lab/output/v20-player-identity-integration/integration_overall_summary.csv
+            model-lab/output/v20-player-identity-integration/integration_position_summary.csv
+            model-lab/output/v20-player-identity-integration/integration_subset_summary.csv
+            model-lab/output/v20-player-identity-integration/integration_2026_preview.csv
+            model-lab/output/v20-player-identity-integration/integration_2026_preview.json
+            model-lab/output/v20-player-identity-integration/integration_2026_sanity_checks.csv
+            model-lab/output/v20-player-identity-integration/integration_summary.json
+            model-lab/output/v20-player-identity-integration/integration_policy.json
