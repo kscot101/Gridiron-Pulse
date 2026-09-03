@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06100b" />
+  <title>GRIDIRON PULSE — Last-Season Context v2.1</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #06100b;
+      --panel: #0c1b13;
+      --panel-2: #11281c;
+      --panel-3: #07130d;
+      --line: rgba(171, 224, 190, 0.18);
+      --line-strong: rgba(183, 255, 60, 0.34);
+      --text: #f4faf6;
+      --muted: #9fb2a7;
+      --acid: #b7ff3c;
+      --mint: #61e6a8;
+      --blue: #78bfff;
+      --gold: #f4cf6a;
+      --red: #ff7b7b;
+      --shadow: 0 22px 56px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 84% 0, rgba(183, 255, 60, 0.15), transparent 29%),
+        radial-gradient(circle at 8% 28%, rgba(97, 230, 168, 0.09), transparent 25%),
+        linear-gradient(180deg, #07140d, #030805 74%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    [hidden] { display: none !important; }
+
+    .wrap {
+      width: min(1280px, calc(100% - 34px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      background: rgba(6, 16, 11, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 950;
+      letter-spacing: 0.055em;
+    }
+
+    .mark {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      color: #07110d;
+      background: var(--acid);
+      border-radius: 50%;
+      font-weight: 1000;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .top-link,
+    .refresh {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 13px;
+      color: #dce9e1;
+      background: #0a1810;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .refresh:hover,
+    .top-link:hover { border-color: var(--line-strong); }
+
+    .hero { padding: 66px 0 27px; }
+    .eyebrow {
+      color: var(--acid);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 980px;
+      margin: 13px 0 15px;
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 0.86;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span { color: var(--acid); }
+    .hero p {
+      max-width: 900px;
+      margin: 0;
+      color: #bccbc2;
+      font-size: 16px;
+      line-height: 1.66;
+    }
+
+    .safety-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .safety-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 31px;
+      padding: 0 10px;
+      color: var(--mint);
+      background: rgba(97, 230, 168, 0.05);
+      border: 1px solid rgba(97, 230, 168, 0.27);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .safety-pill.gold {
+      color: var(--gold);
+      border-color: rgba(244, 207, 106, 0.28);
+      background: rgba(244, 207, 106, 0.05);
+    }
+
+    .safety-pill i {
+      width: 7px;
+      height: 7px;
+      background: currentColor;
+      border-radius: 50%;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin: 26px 0 20px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 15px;
+      background: linear-gradient(180deg, #122b1e, #0a1911);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 6px;
+      overflow: hidden;
+      font-size: 23px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .good { color: var(--mint); }
+    .warn { color: var(--gold); }
+    .bad { color: var(--red); }
+
+    .model-note {
+      margin: 0 0 22px;
+      padding: 15px 16px;
+      color: #dce8e0;
+      background: rgba(183, 255, 60, 0.055);
+      border: 1px solid rgba(183, 255, 60, 0.2);
+      border-left: 3px solid var(--acid);
+      border-radius: 13px;
+      line-height: 1.58;
+    }
+
+    .model-note b { color: var(--acid); }
+
+    .spotlight {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 21px;
+    }
+
+    .spotlight-card {
+      position: relative;
+      min-width: 0;
+      padding: 19px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 100% 100%, rgba(183, 255, 60, 0.11), transparent 42%),
+        linear-gradient(150deg, #153323, #0a1a11);
+      border: 1px solid rgba(183, 255, 60, 0.26);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .spotlight-card .name { font-size: 22px; }
+    .spotlight-card .why {
+      max-width: 600px;
+      margin-top: 10px;
+      color: #bdcec3;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .spot-values {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .controls {
+      position: sticky;
+      z-index: 20;
+      top: 68px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 0 18px;
+      background: linear-gradient(180deg, rgba(6, 16, 11, 0.985) 76%, rgba(6, 16, 11, 0));
+    }
+
+    .controls button,
+    .controls select,
+    .controls input {
+      min-height: 40px;
+      padding: 0 13px;
+      color: #fff;
+      background: #0a1810;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .controls button {
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .controls button.active {
+      color: #07110d;
+      background: var(--acid);
+      border-color: var(--acid);
+    }
+
+    .controls input {
+      min-width: 235px;
+      border-radius: 12px;
+    }
+
+    .controls select option { color: #111; }
+
+    .results-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 3px 0 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-bottom: 52px;
+    }
+
+    .card {
+      position: relative;
+      min-width: 0;
+      padding: 17px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--panel-2), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card::before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      content: "";
+      background: var(--accent, var(--mint));
+    }
+
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .name {
+      overflow-wrap: anywhere;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .shadow-pill {
+      flex: 0 0 auto;
+      padding: 5px 7px;
+      color: var(--acid);
+      background: rgba(183, 255, 60, 0.08);
+      border: 1px solid rgba(183, 255, 60, 0.23);
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 1000;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 11px;
+    }
+
+    .badge {
+      min-height: 23px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 7px;
+      color: #bbccc1;
+      background: #07130c;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 950;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge.acid { color: var(--acid); }
+    .badge.blue { color: var(--blue); }
+    .badge.gold { color: var(--gold); }
+    .badge.red { color: var(--red); }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .metric,
+    .mini {
+      min-width: 0;
+      padding: 10px;
+      background: var(--panel-3);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+    }
+
+    .metric small,
+    .mini small,
+    .context-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 24px;
+    }
+
+    .metric.candidate strong { color: var(--acid); }
+
+    .delta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 10px 11px;
+      color: #b7c9be;
+      background: #07130c;
+      border: 1px solid rgba(255, 255, 255, 0.065);
+      border-radius: 12px;
+      font-size: 11px;
+    }
+
+    .delta b.up { color: var(--mint); }
+    .delta b.down { color: var(--red); }
+
+    .rate-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .mini b {
+      display: block;
+      margin-top: 4px;
+      overflow: hidden;
+      font-size: 13px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .context-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .context-item {
+      min-width: 0;
+      padding: 9px;
+      background: rgba(5, 13, 8, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      border-radius: 10px;
+    }
+
+    .context-item b {
+      display: block;
+      margin-top: 4px;
+      overflow-wrap: anywhere;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    details {
+      margin-top: 10px;
+      background: rgba(6, 16, 10, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 11px;
+    }
+
+    summary {
+      padding: 10px 11px;
+      color: #c6d5cc;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      float: right;
+      content: "+";
+      color: var(--acid);
+      font-size: 15px;
+    }
+
+    details[open] summary::after { content: "−"; }
+
+    .news-list {
+      display: grid;
+      gap: 8px;
+      padding: 0 10px 11px;
+    }
+
+    .news-item {
+      display: block;
+      padding: 9px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      border-radius: 9px;
+    }
+
+    .news-item:hover { border-color: var(--line-strong); }
+    .news-item strong {
+      display: block;
+      font-size: 11px;
+      line-height: 1.42;
+    }
+
+    .news-item span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    .news-note {
+      padding: 0 10px 11px;
+      color: var(--gold);
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    .empty,
+    .error {
+      grid-column: 1 / -1;
+      padding: 32px;
+      border-radius: 16px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .empty {
+      color: var(--muted);
+      border: 1px dashed var(--line);
+    }
+
+    .error {
+      color: #ffc1c1;
+      background: rgba(255, 123, 123, 0.08);
+      border: 1px solid rgba(255, 123, 123, 0.24);
+    }
+
+    .footer {
+      padding: 0 0 46px;
+      color: #70847a;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 1120px) {
+      .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .spotlight,
+      .grid { grid-template-columns: 1fr; }
+      .controls { position: static; }
+      .controls input { width: 100%; min-width: 0; }
+      .spot-values { grid-template-columns: 1fr; }
+      .top-link { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .comparison { grid-template-columns: 1fr; }
+      .rate-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { padding-top: 43px; }
+      .results-line { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/"><span class="mark">GP</span><span>GRIDIRON PULSE</span></a>
+      <div class="top-actions">
+        <a class="top-link" href="/">Research home</a>
+        <button class="refresh" id="topRefresh" type="button">Refresh</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Previous-season production + live context • Shadow only</div>
+        <h1>Player Context <span>v2.1</span></h1>
+        <p>
+          Every established projection begins with that player’s own previous regular-season production—not a career-state label and not a generic “star” tag. Target role, projected games, quarterback changes, team changes, coaching and scheme changes, season matchups and the next opponent are layered on separately.
+        </p>
+        <div class="safety-row">
+          <span class="safety-pill"><i></i>Career state removed</span>
+          <span class="safety-pill"><i></i>Production unchanged</span>
+          <span class="safety-pill gold"><i></i>News is display-only</span>
+        </div>
+        <section class="stats" id="stats">
+          <div class="stat"><small>Status</small><strong>Loading…</strong></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="model-note">
+        <b>Model order:</b> last year’s per-game production → small-sample fallback only when needed → verified 2026 role → separate games-played estimate → bounded QB, team, coach, scheme and matchup context. Recent reports are shown with their source and date, but they do not change the number in this version.
+      </div>
+
+      <div class="spotlight" id="spotlight"></div>
+
+      <div class="controls">
+        <button class="active" data-position="ALL" type="button">All</button>
+        <button data-position="QB" type="button">QB</button>
+        <button data-position="RB" type="button">RB</button>
+        <button data-position="WR" type="button">WR</button>
+        <button data-position="TE" type="button">TE</button>
+
+        <select id="team" aria-label="Team filter">
+          <option value="ALL">All teams</option>
+        </select>
+
+        <select id="context" aria-label="Context filter">
+          <option value="ELIGIBLE">Context eligible</option>
+          <option value="ALL">All players</option>
+          <option value="NEW_TEAM">New team</option>
+          <option value="NEW_QB">New quarterback</option>
+          <option value="NEW_COACH">New coach / OC</option>
+          <option value="NEWS">Recent news evidence</option>
+        </select>
+
+        <select id="sort" aria-label="Sort players">
+          <option value="CANDIDATE">Highest context projection</option>
+          <option value="DELTA">Largest change</option>
+          <option value="LAST_RATE">Highest last-year rate</option>
+          <option value="NEXT_RATE">Highest next-game rate</option>
+          <option value="NAME">Player name</option>
+        </select>
+
+        <input id="search" type="search" placeholder="Search player…" />
+        <button id="refresh" type="button">Refresh</button>
+      </div>
+
+      <div class="results-line">
+        <span id="results">Loading players…</span>
+        <span id="updated">Waiting for feed</span>
+      </div>
+
+      <div class="grid" id="grid">
+        <div class="empty">Loading the last-season context feed…</div>
+      </div>
+
+      <div class="footer">
+        This is a research comparison feed. The current Season Worker remains official. Career-state and contract-year fields are excluded from the v2.1 output. News evidence is attributed and display-only; no headline or sentiment score changes the projection.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var FEED_URL = "https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026_news.json";
+
+      var state = {
+        payload: null,
+        rows: [],
+        position: "ALL",
+        team: "ALL",
+        context: "ELIGIBLE",
+        sort: "CANDIDATE",
+        search: ""
+      };
+
+      var $ = function (selector) { return document.querySelector(selector); };
+      var $$ = function (selector) { return Array.from(document.querySelectorAll(selector)); };
+
+      function num(value) {
+        if (value === null || value === undefined || value === "") return null;
+        var number = Number(value);
+        return Number.isFinite(number) ? number : null;
+      }
+
+      function fmt(value, digits) {
+        var number = num(value);
+        return number === null
+          ? "—"
+          : number.toLocaleString(undefined, { maximumFractionDigits: digits === undefined ? 1 : digits });
+      }
+
+      function signed(value, suffix) {
+        var number = num(value);
+        if (number === null) return "—";
+        return (number > 0 ? "+" : "") + fmt(number) + (suffix || "");
+      }
+
+      function factor(value) {
+        var number = num(value);
+        if (number === null) return "—";
+        return number.toFixed(3) + "×";
+      }
+
+      function escapeHtml(value) {
+        return String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, function (char) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#39;"
+          }[char];
+        });
+      }
+
+      function normalize(value) {
+        return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      }
+
+      function safeUrl(value) {
+        try {
+          var url = new URL(String(value || ""));
+          return /^https?:$/.test(url.protocol) ? url.href : "";
+        } catch (_) {
+          return "";
+        }
+      }
+
+      function labelMetric(value) {
+        var text = String(value || "season total")
+          .replace(/([a-z])([A-Z])/g, "$1 $2")
+          .replace(/_/g, " ");
+        return text.replace(/\b\w/g, function (char) { return char.toUpperCase(); });
+      }
+
+      function bool(value) { return value === true || value === "true" || value === 1 || value === "1"; }
+
+      function candidateOf(row) {
+        return num(row.candidateProjection !== undefined ? row.candidateProjection : row.last_season_context_total);
+      }
+
+      function officialOf(row) { return num(row.officialProjection); }
+      function deltaOf(row) {
+        var direct = num(row.delta);
+        if (direct !== null) return direct;
+        var candidate = candidateOf(row);
+        var official = officialOf(row);
+        return candidate !== null && official !== null ? candidate - official : null;
+      }
+
+      function lastReportedRate(row) {
+        return num(row.last_year_reported_rate !== undefined ? row.last_year_reported_rate : row.latest_rate);
+      }
+
+      function baselineRate(row) {
+        return num(row.last_year_rate !== undefined ? row.last_year_rate : row.last_season_rate);
+      }
+
+      function contextRate(row) {
+        return num(row.last_year_context_rate !== undefined ? row.last_year_context_rate : row.last_season_context_rate);
+      }
+
+      function projectedGames(row) {
+        return num(row.projected_games_v21 !== undefined ? row.projected_games_v21 : row.candidateRemainingGames);
+      }
+
+      function newsEvidence(row) {
+        return Array.isArray(row.newsEvidence) ? row.newsEvidence : [];
+      }
+
+      function contextBadges(row) {
+        var badges = ["<span class=\"badge acid\">Last season first</span>"];
+        if (bool(row.context_eligible)) badges.push("<span class=\"badge\">Context eligible</span>");
+        if (bool(row.newTeam)) badges.push("<span class=\"badge blue\">New team</span>");
+        if (bool(row.newQuarterback)) badges.push("<span class=\"badge blue\">New QB</span>");
+        if (bool(row.newHeadCoach)) badges.push("<span class=\"badge gold\">New head coach</span>");
+        if (bool(row.newOffensiveCoordinator)) badges.push("<span class=\"badge gold\">New OC</span>");
+        if (newsEvidence(row).length) {
+          var newsClass = String(row.newsSignal || "").toUpperCase() === "NEGATIVE" ? "red" : "gold";
+          badges.push("<span class=\"badge " + newsClass + "\">News: " + escapeHtml(row.newsSignal || "evidence") + "</span>");
+        }
+        return badges.join("");
+      }
+
+      function contextText(row) {
+        var pieces = [];
+        if (bool(row.newTeam)) pieces.push("team change");
+        if (bool(row.newQuarterback)) pieces.push("new quarterback");
+        if (bool(row.newHeadCoach)) pieces.push("new head coach");
+        if (bool(row.newOffensiveCoordinator)) pieces.push("new offensive coordinator");
+        if (num(row.seasonMatchupFactor) !== null) pieces.push("season matchup " + factor(row.seasonMatchupFactor));
+        return pieces.length ? pieces.join(" • ") : "Role and prior-season production are stable; bounded matchup and scheme context still apply.";
+      }
+
+      function newsHtml(row) {
+        var evidence = newsEvidence(row);
+        if (!evidence.length) {
+          return "<details><summary>Recent reports: no matched evidence</summary><div class=\"news-note\">No attributed headline in the collection window matched this player strongly enough to display.</div></details>";
+        }
+
+        var items = evidence.slice(0, 5).map(function (item) {
+          var url = safeUrl(item.url);
+          var date = item.publishedAt ? new Date(item.publishedAt).toLocaleString() : "Date unavailable";
+          var reasons = Array.isArray(item.reasons) && item.reasons.length ? " • " + item.reasons.join(", ") : "";
+          var inner =
+            "<strong>" + escapeHtml(item.title || "Player report") + "</strong>" +
+            "<span>" + escapeHtml(item.source || item.sourceDomain || "Source") + " • " + escapeHtml(date) + escapeHtml(reasons) + "</span>";
+          return url
+            ? "<a class=\"news-item\" href=\"" + escapeHtml(url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + inner + "</a>"
+            : "<div class=\"news-item\">" + inner + "</div>";
+        }).join("");
+
+        return (
+          "<details>" +
+            "<summary>Recent reports: " + evidence.length + " matched</summary>" +
+            "<div class=\"news-list\">" + items + "</div>" +
+            "<div class=\"news-note\">Display-only evidence. News applied to projection: No.</div>" +
+          "</details>"
+        );
+      }
+
+      function playerCard(row) {
+        var delta = deltaOf(row);
+        var up = delta === null || delta >= 0;
+        var metric = labelMetric(row.primaryMetric);
+        var qbDelta = num(row.quarterbackRateDeltaPct);
+        var coach = bool(row.newHeadCoach) && bool(row.newOffensiveCoordinator)
+          ? "New HC + OC"
+          : bool(row.newHeadCoach)
+            ? "New head coach"
+            : bool(row.newOffensiveCoordinator)
+              ? "New offensive coordinator"
+              : "Continuity";
+        var nextOpponent = row.nextOpponent ? "vs " + row.nextOpponent : "Not loaded";
+        var accent = bool(row.newQuarterback) ? "var(--blue)" : newsEvidence(row).length ? "var(--gold)" : "var(--mint)";
+
+        return (
+          "<article class=\"card\" style=\"--accent:" + accent + "\">" +
+            "<div class=\"head\">" +
+              "<div>" +
+                "<div class=\"name\">" + escapeHtml(row.playerName || row.player_name || "Unknown player") + "</div>" +
+                "<div class=\"meta\">" + escapeHtml(row.team || row.targetTeam || "") + " • " + escapeHtml(row.position || row.target_position || "") + " • " + escapeHtml(row.role || row.target_role || "") + "<br>" + escapeHtml(metric) + " • " + escapeHtml(row.roleSource || row.target_role_source || "role source unavailable") + "</div>" +
+              "</div>" +
+              "<span class=\"shadow-pill\">v2.1 shadow</span>" +
+            "</div>" +
+            "<div class=\"badges\">" + contextBadges(row) + "</div>" +
+            "<div class=\"comparison\">" +
+              "<div class=\"metric\"><small>Current Worker</small><strong>" + fmt(officialOf(row)) + "</strong></div>" +
+              "<div class=\"metric candidate\"><small>Last year + context</small><strong>" + fmt(candidateOf(row)) + "</strong></div>" +
+            "</div>" +
+            "<div class=\"delta\"><span>Projection difference</span><b class=\"" + (up ? "up" : "down") + "\">" + signed(delta) + "</b></div>" +
+            "<div class=\"rate-row\">" +
+              "<div class=\"mini\"><small>Last-year rate</small><b>" + fmt(lastReportedRate(row)) + "/g</b></div>" +
+              "<div class=\"mini\"><small>Sample-adjusted</small><b>" + fmt(baselineRate(row)) + "/g</b></div>" +
+              "<div class=\"mini\"><small>Context rate</small><b>" + fmt(contextRate(row)) + "/g</b></div>" +
+              "<div class=\"mini\"><small>Projected games</small><b>" + fmt(projectedGames(row)) + "</b></div>" +
+            "</div>" +
+            "<div class=\"context-grid\">" +
+              "<div class=\"context-item\"><small>Quarterback</small><b>" + escapeHtml(row.targetQuarterback || (bool(row.newQuarterback) ? "New QB" : "Team QB continuity")) + (qbDelta !== null ? " (" + signed(qbDelta, "%") + ")" : "") + "</b></div>" +
+              "<div class=\"context-item\"><small>Coaching</small><b>" + escapeHtml(coach) + " • " + escapeHtml(row.offensiveContinuity || "Unknown continuity") + "</b></div>" +
+              "<div class=\"context-item\"><small>Scheme factor</small><b>" + factor(row.schemeFactor) + "</b></div>" +
+              "<div class=\"context-item\"><small>Season matchup</small><b>" + factor(row.seasonMatchupFactor) + "</b></div>" +
+              "<div class=\"context-item\"><small>Next opponent</small><b>" + escapeHtml(nextOpponent) + "</b></div>" +
+              "<div class=\"context-item\"><small>Next-game rate</small><b>" + fmt(row.nextGameRate) + (num(row.nextGameRate) !== null ? "/g" : "") + "</b></div>" +
+            "</div>" +
+            "<div class=\"flags\">" + escapeHtml(contextText(row)) + "</div>" +
+            newsHtml(row) +
+          "</article>"
+        );
+      }
+
+      function spotlightCard(row, reason) {
+        if (!row) return "";
+        return (
+          "<article class=\"spotlight-card\">" +
+            "<div class=\"name\">" + escapeHtml(row.playerName || row.player_name) + "</div>" +
+            "<div class=\"meta\">" + escapeHtml(row.team || "") + " • " + escapeHtml(row.position || "") + " • " + escapeHtml(labelMetric(row.primaryMetric)) + "</div>" +
+            "<div class=\"why\">" + escapeHtml(reason) + "</div>" +
+            "<div class=\"spot-values\">" +
+              "<div class=\"mini\"><small>Current Worker</small><b>" + fmt(officialOf(row)) + "</b></div>" +
+              "<div class=\"mini\"><small>Last year + context</small><b class=\"good\">" + fmt(candidateOf(row)) + "</b></div>" +
+              "<div class=\"mini\"><small>Previous-season rate</small><b>" + fmt(lastReportedRate(row)) + "/g</b></div>" +
+            "</div>" +
+          "</article>"
+        );
+      }
+
+      function populateFilters() {
+        var teams = Array.from(new Set(state.rows.map(function (row) {
+          return String(row.team || row.targetTeam || "").toUpperCase();
+        }).filter(Boolean))).sort();
+        $("#team").innerHTML = "<option value=\"ALL\">All teams</option>" + teams.map(function (team) {
+          return "<option value=\"" + escapeHtml(team) + "\">" + escapeHtml(team) + "</option>";
+        }).join("");
+      }
+
+      function renderStats() {
+        var payload = state.payload || {};
+        var rows = state.rows;
+        var eligible = rows.filter(function (row) { return bool(row.context_eligible); }).length;
+        var official = num(payload.meta && payload.meta.workerPlayers);
+        var newsPlayers = rows.filter(function (row) { return newsEvidence(row).length > 0; }).length;
+        var safe = payload.productionChanged === false;
+        var careerRemoved = payload.careerStateUsed === false;
+        var newsApplied = payload.newsApplyToProjection === true;
+
+        var values = [
+          ["Feed", payload.ready === false ? "Waiting" : "Ready", payload.ready === false ? "warn" : "good"],
+          ["Official players", official === null ? rows.length : official, ""],
+          ["Context eligible", eligible, ""],
+          ["Career state used", careerRemoved ? "No" : "Check", careerRemoved ? "good" : "bad"],
+          ["News applied", newsApplied ? "Yes" : "No", newsApplied ? "bad" : "good"],
+          ["Production changed", safe ? "No" : "Check", safe ? "good" : "bad"]
+        ];
+
+        $("#stats").innerHTML = values.map(function (item) {
+          return "<div class=\"stat\"><small>" + escapeHtml(item[0]) + "</small><strong class=\"" + item[2] + "\">" + escapeHtml(item[1]) + "</strong></div>";
+        }).join("");
+
+        $("#updated").textContent = payload.newsGeneratedAt
+          ? "News checked " + new Date(payload.newsGeneratedAt).toLocaleString() + " • " + newsPlayers + " players with matched evidence"
+          : payload.generatedAt
+            ? "Generated " + new Date(payload.generatedAt).toLocaleString()
+            : "Feed loaded";
+      }
+
+      function renderSpotlight() {
+        function find(name) {
+          var key = normalize(name);
+          return state.rows.find(function (row) { return normalize(row.playerName || row.player_name) === key; });
+        }
+        var stafford = find("Matthew Stafford");
+        var bowers = find("Brock Bowers");
+        var cards = [
+          spotlightCard(stafford, "His projection now starts with his own previous-season passing rate, then applies the Rams’ 2026 role, games estimate, offensive context and schedule—rather than treating him as a generic QB slot."),
+          spotlightCard(bowers, "A shortened prior season is interpreted as a per-game performance sample. Games-played risk remains separate, so the same missed time is not used to lower both ability and availability.")
+        ].filter(Boolean);
+        $("#spotlight").innerHTML = cards.join("");
+        $("#spotlight").hidden = cards.length === 0;
+      }
+
+      function matchesContext(row) {
+        if (state.context === "ALL") return true;
+        if (state.context === "ELIGIBLE") return bool(row.context_eligible);
+        if (state.context === "NEW_TEAM") return bool(row.newTeam);
+        if (state.context === "NEW_QB") return bool(row.newQuarterback);
+        if (state.context === "NEW_COACH") return bool(row.newHeadCoach) || bool(row.newOffensiveCoordinator);
+        if (state.context === "NEWS") return newsEvidence(row).length > 0;
+        return true;
+      }
+
+      function filteredRows() {
+        var query = normalize(state.search);
+        var rows = state.rows.filter(function (row) {
+          var position = String(row.position || row.target_position || "").toUpperCase();
+          var team = String(row.team || row.targetTeam || "").toUpperCase();
+          var name = row.playerName || row.player_name || "";
+          if (!["QB", "RB", "WR", "TE"].includes(position)) return false;
+          if (state.position !== "ALL" && position !== state.position) return false;
+          if (state.team !== "ALL" && team !== state.team) return false;
+          if (!matchesContext(row)) return false;
+          if (query && !normalize(name).includes(query)) return false;
+          return true;
+        });
+
+        rows.sort(function (a, b) {
+          if (state.sort === "NAME") return String(a.playerName || a.player_name || "").localeCompare(String(b.playerName || b.player_name || ""));
+          if (state.sort === "DELTA") return Math.abs(deltaOf(b) || 0) - Math.abs(deltaOf(a) || 0);
+          if (state.sort === "LAST_RATE") return (lastReportedRate(b) || -1) - (lastReportedRate(a) || -1);
+          if (state.sort === "NEXT_RATE") return (num(b.nextGameRate) || -1) - (num(a.nextGameRate) || -1);
+          return (candidateOf(b) || -1) - (candidateOf(a) || -1);
+        });
+        return rows;
+      }
+
+      function renderGrid() {
+        var rows = filteredRows();
+        $("#results").textContent = rows.length + " player" + (rows.length === 1 ? "" : "s") + " shown";
+        $("#grid").innerHTML = rows.length
+          ? rows.map(playerCard).join("")
+          : "<div class=\"empty\">No players match these filters.</div>";
+      }
+
+      function render() {
+        renderStats();
+        renderSpotlight();
+        renderGrid();
+      }
+
+      async function load() {
+        var buttons = [$("#refresh"), $("#topRefresh")];
+        buttons.forEach(function (button) { if (button) button.disabled = true; });
+        $("#grid").innerHTML = "<div class=\"empty\">Loading the last-season context feed…</div>";
+
+        try {
+          var response = await fetch(FEED_URL + "?t=" + Date.now(), { cache: "no-store" });
+          if (!response.ok) throw new Error("Feed returned HTTP " + response.status);
+          var payload = await response.json();
+          if (!payload || !Array.isArray(payload.players)) throw new Error("The v2.1 feed does not contain a player array.");
+          if (payload.productionChanged !== false) throw new Error("Safety check failed: productionChanged must be false.");
+          if (payload.careerStateUsed !== false) throw new Error("Safety check failed: career-state logic was not explicitly disabled.");
+          if (payload.newsApplyToProjection === true) throw new Error("Safety check failed: news is not allowed to modify v2.1 projections.");
+
+          state.payload = payload;
+          state.rows = payload.players.filter(function (row) {
+            return row && row.productionChanged === false;
+          });
+          populateFilters();
+          render();
+        } catch (error) {
+          $("#stats").innerHTML = "<div class=\"stat\"><small>Status</small><strong class=\"bad\">Load error</strong></div>";
+          $("#grid").innerHTML = "<div class=\"error\"><b>The v2.1 feed could not be loaded.</b><br>" + escapeHtml(error && error.message ? error.message : String(error)) + "</div>";
+          $("#results").textContent = "No data loaded";
+          $("#updated").textContent = "Refresh after the research build finishes";
+        } finally {
+          buttons.forEach(function (button) { if (button) button.disabled = false; });
+        }
+      }
+
+      $$("[data-position]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          state.position = button.dataset.position;
+          $$("[data-position]").forEach(function (item) { item.classList.toggle("active", item === button); });
+          renderGrid();
+        });
+      });
+
+      $("#team").addEventListener("change", function (event) {
+        state.team = event.target.value;
+        renderGrid();
+      });
+
+      $("#context").addEventListener("change", function (event) {
+        state.context = event.target.value;
+        renderGrid();
+      });
+
+      $("#sort").addEventListener("change", function (event) {
+        state.sort = event.target.value;
+        renderGrid();
+      });
+
+      $("#search").addEventListener("input", function (event) {
+        state.search = event.target.value;
+        renderGrid();
+      });
+
+      $("#refresh").addEventListener("click", load);
+      $("#topRefresh").addEventListener("click", load);
+      load();
+    })();
+  </script>
+</body>
+</html>
