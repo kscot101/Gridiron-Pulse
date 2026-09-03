@@ -116,7 +116,7 @@ def preseason_depth(depth: pd.DataFrame, games: pd.DataFrame, season: int) -> pd
     id_col = first_column(work, ["gsis_id", "player_id", "player_gsis_id", "nfl_id"])
     name_col = first_column(work, ["full_name", "player_name", "display_name", "player_display_name", "name"])
     team_col = first_column(work, ["team", "club_code", "recent_team", "team_abbr", "team_abbreviation"])
-    pos_col = first_column(work, ["position", "position_group", "pos", "depth_position", "pos_grp", "pos_name", "pos_abb"])
+    pos_col = first_column(work, ["pos_abb", "pos_name", "position", "depth_position", "position_group", "pos", "pos_grp"])
     rank_col = first_column(work, ["pos_rank", "depth_team", "rank", "depth_rank"])
     date_col = first_column(work, ["dt", "date", "game_date"])
     week_col = first_column(work, ["week", "game_week"])
@@ -144,11 +144,14 @@ def preseason_depth(depth: pd.DataFrame, games: pd.DataFrame, season: int) -> pd
     if work.empty:
         return pd.DataFrame(columns=columns)
 
+    # The legacy schema calls the numeric depth rank "depth_team". Preserve
+    # it before creating our normalized output team column with the same name.
+    raw_rank = pd.to_numeric(work[rank_col], errors="coerce")
     work["player_id"] = work[id_col].map(clean_id)
     work["depth_name"] = work[name_col].fillna("").astype(str) if name_col else ""
     work["depth_team"] = work[team_col].map(normalize_team) if team_col else ""
     work["depth_position"] = work[pos_col].map(normalize_position)
-    work["depth_rank"] = pd.to_numeric(work[rank_col], errors="coerce")
+    work["depth_rank"] = raw_rank
     work = work[
         work["player_id"].ne("")
         & work["depth_position"].isin(["QB", "RB", "WR", "TE"])
@@ -482,6 +485,7 @@ def promotion_gate(frame: pd.DataFrame, summaries: Mapping[str, pd.DataFrame]) -
         and stable_total > 0
         and star_rate >= 5
         and role_coverage >= 90
+        and depth_coverage >= 60
     )
     return {
         "version": "v2.0-player-identity-role-integration-1",
@@ -497,6 +501,7 @@ def promotion_gate(frame: pd.DataFrame, summaries: Mapping[str, pd.DataFrame]) -
             "stableStarterTotalMaeImprovementPctGreaterThan": 0,
             "stableStarRateMaeImprovementPctAtLeast": 5,
             "roleCoveragePctAtLeast": 90,
+            "depthVerifiedCoveragePctAtLeast": 60,
         },
         "observed": {
             "overallRateMaeImprovementPct": overall_rate,
