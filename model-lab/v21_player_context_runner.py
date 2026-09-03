@@ -2,9 +2,9 @@
 """Compatibility runner for the v2.1 last-season context lab.
 
 The first v2.1 draft used descriptive output fields named ``last_year_*`` while
-the comparison table expected model keys named ``last_season_*``.  This runner
-adds the aliases in one isolated place so the original research module remains
-readable and the workflow can continue without touching production code.
+the comparison table expected model keys named ``last_season_*``. This runner
+adds the aliases and removes inherited v2.0 career-state fields so the v2.1
+feed contains only last-season, role, availability and current-context inputs.
 """
 from __future__ import annotations
 
@@ -14,6 +14,43 @@ import v21_player_context_baseline as lab
 
 
 _ORIGINAL_APPLY_ROW = lab.apply_row
+
+# These columns belong to the retired v2.0 identity/career-state experiment.
+# They are removed from both historical and current v2.1 outputs so they cannot
+# silently influence, label or confuse the last-season-first model.
+_RETIRED_FIELDS = {
+    "career_state",
+    "career_flags",
+    "state_adjustment",
+    "star_flag",
+    "evidence_floor",
+    "role_stability",
+    "rate_trend_pct",
+    "opportunity_trend_pct",
+    "latest_percentile",
+    "cohort_rate",
+    "cohort_rows",
+    "history_weight",
+    "shortened_prior",
+    "contract_status",
+    "contract_decision_type",
+    "contract_rebound",
+    "generic_role_rate",
+    "generic_role_total",
+    "identity_raw_rate",
+    "identity_raw_total",
+    "identity_shrunk_rate",
+    "identity_shrunk_total",
+    "identity_state_rate",
+    "identity_state_total",
+    "identity_guardrail_rate",
+    "identity_guardrail_total",
+    "identity_contract_rate",
+    "identity_contract_total",
+    "predicted_games",
+    "latest_rate",
+    "older_rate",
+}
 
 
 def _finite(value, default=0.0):
@@ -25,10 +62,10 @@ def _finite(value, default=0.0):
 
 
 def apply_row_with_model_aliases(*args, **kwargs):
-    """Run the original row builder and add canonical comparison aliases."""
+    """Run the original row builder, add canonical aliases and sanitize it."""
     models = lab.MODELS
     try:
-        # The original function computes errors at the end.  Limit that first
+        # The original function computes errors at the end. Limit that first
         # pass to the field that already has an exact name, then add the two
         # canonical aliases and their errors below.
         lab.MODELS = ("role_generic",)
@@ -50,6 +87,11 @@ def apply_row_with_model_aliases(*args, **kwargs):
                 output.get(f"{model}_total"), 0.0
             ) - actual_total
 
+    for field in _RETIRED_FIELDS:
+        output.pop(field, None)
+
+    output["careerStateUsed"] = False
+    output["contractContextUsed"] = False
     return output
 
 
