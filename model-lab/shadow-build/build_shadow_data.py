@@ -29,6 +29,13 @@ SEASON = 2026
 WORKER_URL = "https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook"
 PACK_PATH = MODEL_LAB / "v19_shadow_model_pack.json"
 DIST = HERE.parent / "dist"
+V20_BRANCH = "model-lab-v20-player-identity-baseline"
+V20_RESULTS_BASE = (
+    "https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/"
+    f"{V20_BRANCH}/model-lab/results/v20-player-identity-latest"
+)
+V20_IDENTITY_URL = f"{V20_RESULTS_BASE}/integration_2026_preview.json"
+V20_POLICY_URL = f"{V20_RESULTS_BASE}/integration_policy.json"
 ROUTES = {
     ("RB", 4): "v19",
     ("WR", 4): "v19",
@@ -74,7 +81,7 @@ def load_worker_snapshot():
         response = requests.get(
             WORKER_URL,
             timeout=30,
-            headers={"Accept": "application/json", "User-Agent": "GridironPulse-shadow-build/1.0"},
+            headers={"Accept": "application/json", "User-Agent": "GridironPulse-shadow-build/1.1"},
         )
         response.raise_for_status()
         payload = response.json()
@@ -328,6 +335,72 @@ def build_rehearsal(pack):
     }
 
 
+def fetch_remote_json(url: str):
+    response = requests.get(
+        url,
+        timeout=30,
+        headers={"Accept": "application/json", "User-Agent": "GridironPulse-shadow-build/1.1"},
+    )
+    response.raise_for_status()
+    payload = response.json()
+    if not isinstance(payload, Mapping):
+        raise RuntimeError("Remote JSON was not an object")
+    return dict(payload)
+
+
+def build_identity_v2():
+    synced_at = datetime.now(timezone.utc).isoformat()
+    try:
+        preview = fetch_remote_json(V20_IDENTITY_URL)
+        policy = fetch_remote_json(V20_POLICY_URL)
+
+        if not str(preview.get("version") or "").startswith("v2.0-player-identity"):
+            raise RuntimeError("Unexpected Player Identity preview version")
+        if not preview.get("researchOnly"):
+            raise RuntimeError("Player Identity preview is not marked research-only")
+        if preview.get("productionChanged") is not False:
+            raise RuntimeError("Player Identity preview did not fail closed")
+        if policy.get("productionChanged") is not False:
+            raise RuntimeError("Player Identity policy did not fail closed")
+
+        players = [dict(row) for row in (preview.get("players") or []) if isinstance(row, Mapping)]
+        if any(row.get("productionChanged") is not False for row in players):
+            raise RuntimeError("At least one Player Identity row was not shadow-only")
+
+        preview["ready"] = bool(players)
+        preview["syncedAt"] = synced_at
+        preview["sourceBranch"] = V20_BRANCH
+        preview["sourceUrl"] = V20_IDENTITY_URL
+        preview["policy"] = policy
+        preview["summary"] = {
+            "workerPlayers": int(preview.get("workerPlayers") or len(players)),
+            "identityMatches": int(preview.get("identityMatches") or 0),
+            "identityEligiblePlayers": int(preview.get("identityEligiblePlayers") or 0),
+            "displayRows": len(players),
+            "productionChanged": False,
+        }
+        return preview, None
+    except Exception as exc:
+        return {
+            "ok": False,
+            "ready": False,
+            "version": "v2.0-player-identity-shadow-sync-1",
+            "researchOnly": True,
+            "productionChanged": False,
+            "syncedAt": synced_at,
+            "sourceBranch": V20_BRANCH,
+            "error": f"identity-v2-sync-failed: {exc}",
+            "players": [],
+            "summary": {
+                "workerPlayers": 0,
+                "identityMatches": 0,
+                "identityEligiblePlayers": 0,
+                "displayRows": 0,
+                "productionChanged": False,
+            },
+        }, str(exc)
+
+
 def write_json(name, payload):
     DIST.mkdir(parents=True, exist_ok=True)
     (DIST / name).write_text(json.dumps(payload, indent=2, allow_nan=False), encoding="utf-8")
@@ -339,8 +412,11 @@ def main():
     live = build_live(pack, snapshot, worker_players)
     live["workerFetchError"] = worker_error
     rehearsal = build_rehearsal(pack)
+    identity_v2, identity_error = build_identity_v2()
+
     write_json("shadow-data.json", live)
     write_json("collector-test.json", rehearsal)
+    write_json("identity-v2.json", identity_v2)
     write_json(
         "index.json",
         {
@@ -350,11 +426,32 @@ def main():
             "liveReady": live.get("ready", False),
             "liveReason": live.get("reason"),
             "collectorReady": rehearsal.get("ready", False),
+            "identityV2Ready": identity_v2.get("ready", False),
+            "identityV2EligiblePlayers": identity_v2.get("summary", {}).get("identityEligiblePlayers", 0),
+            "identityV2Error": identity_error,
             "productionChanged": False,
-            "files": ["shadow-data.json", "collector-test.json"],
+            "files": [
+                "shadow-data.json",
+                "collector-test.json",
+                "identity-v2.json",
+                "identity-v2.html",
+            ],
         },
     )
-    print(json.dumps({"liveReady": live.get("ready"), "liveReason": live.get("reason"), "collectorReady": rehearsal.get("ready"), "dist": str(DIST)}, indent=2))
+    print(
+        json.dumps(
+            {
+                "liveReady": live.get("ready"),
+                "liveReason": live.get("reason"),
+                "collectorReady": rehearsal.get("ready"),
+                "identityV2Ready": identity_v2.get("ready"),
+                "identityV2EligiblePlayers": identity_v2.get("summary", {}).get("identityEligiblePlayers", 0),
+                "identityV2Error": identity_error,
+                "dist": str(DIST),
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
