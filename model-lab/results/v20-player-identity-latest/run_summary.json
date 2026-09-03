@@ -11,6 +11,7 @@
   "playerSeasonRows": 8305,
   "backtestRows": 4380,
   "forecastRows": 564,
+  "integrationStatus": "RATE_CANDIDATE_ONLY",
   "contractContext": {
     "records": 0,
     "activeResearchAdjustments": 0,
@@ -29,7 +30,9 @@
   "promotionGate": {
     "productionChanged": false,
     "candidateModel": "identity_guardrail",
-    "recommendedForProductionIntegration": true,
+    "rateCandidatePassed": true,
+    "integrationReplayRequired": true,
+    "recommendedForProductionIntegration": false,
     "requirements": {
       "overallRateMaeImprovementPctGreaterThan": 0,
       "starRateMaeImprovementPctAtLeast": 5,
@@ -40,11 +43,11 @@
       "starRateMaeImprovementPct": 14.417692609028585,
       "worstPositionRateMaeImprovementPct": 18.138572721008067
     },
-    "note": "A green research gate still requires manual player sanity review before any Season Worker change."
+    "note": "This gate evaluates the player-specific RATE only. The identity rate must still be replayed inside the existing verified role and projected-games engine before any Season Worker change."
   },
   "method": {
     "rate": "Each player's own prior one-to-three season per-game production and opportunity/efficiency identity, dynamically weighted by career state and shrunk toward a no-lookahead role/age cohort.",
-    "availability": "Projected games are estimated separately from production rate so a shortened season is not counted twice.",
+    "availability": "Projected games are estimated separately from production rate so a shortened season is not counted twice. The current 2026 file is a rate audit, not a final role-aware depth-chart projection.",
     "starGuardrail": "Strong multi-season, high-percentile starter evidence limits over-regression toward a generic role average; it does not create production above the player's own evidence.",
     "contractContext": "Contract year is a context flag. No blanket boost is allowed. The optional research adjustment only restores a small part of an older baseline when a verified contract-year player had a down prior season and retained a stable role."
   }

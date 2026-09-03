@@ -1,7 +1,9 @@
 {
   "productionChanged": false,
   "candidateModel": "identity_guardrail",
-  "recommendedForProductionIntegration": true,
+  "rateCandidatePassed": true,
+  "integrationReplayRequired": true,
+  "recommendedForProductionIntegration": false,
   "requirements": {
     "overallRateMaeImprovementPctGreaterThan": 0,
     "starRateMaeImprovementPctAtLeast": 5,
@@ -12,5 +14,5 @@
     "starRateMaeImprovementPct": 14.417692609028585,
     "worstPositionRateMaeImprovementPct": 18.138572721008067
   },
-  "note": "A green research gate still requires manual player sanity review before any Season Worker change."
+  "note": "This gate evaluates the player-specific RATE only. The identity rate must still be replayed inside the existing verified role and projected-games engine before any Season Worker change."
 }
