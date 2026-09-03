@@ -1,0 +1,22 @@
+{
+  "version": "v2.1-last-season-context-policy-1",
+  "researchOnly": true,
+  "productionChanged": false,
+  "candidateModel": "last_season_context",
+  "historicalReplayPassed": true,
+  "recommendedForProductionIntegration": false,
+  "requirements": {
+    "overallRateMaeImprovementPctGreaterThan": 0,
+    "noPositionRateRegressionWorseThanPct": -2,
+    "stableStarterRateImprovementPctAtLeast": 5,
+    "stableStarterTotalImprovementPctGreaterThan": 0
+  },
+  "observed": {
+    "overallRateMaeImprovementPct": 5.811102063356757,
+    "worstPositionRateMaeImprovementPct": 4.209265950911389,
+    "stableStarterRateMaeImprovementPct": 18.207563313835724,
+    "stableStarterTotalMaeImprovementPct": 21.545837556744083,
+    "contextEligibleRows": 1604
+  },
+  "note": "Career-state labels are not used. News is collected separately and remains display-only until it has its own validation gate."
+}
