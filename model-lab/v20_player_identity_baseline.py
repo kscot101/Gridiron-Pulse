@@ -172,8 +172,12 @@ def build_sanity_checks(forecast: pd.DataFrame) -> pd.DataFrame:
         return forecast
     names = {"matthewstafford", "brockbowers"}
     direct = forecast[forecast["player_name"].map(normalize_name).isin(names)].copy()
-    largest = forecast.assign(
-        _gap=forecast["identity_guardrail_total"] - forecast["generic_role_total"]
+    review_pool = forecast[
+        forecast["role_bucket"].isin(["STARTER", "CO_STARTER"])
+        & forecast["role_stability"].isin(["HIGH", "MEDIUM"])
+    ].copy()
+    largest = review_pool.assign(
+        _gap=review_pool["identity_guardrail_eq17"] - review_pool["generic_role_eq17"]
     ).sort_values("_gap", ascending=False).head(20)
     combined = pd.concat([direct, largest], ignore_index=True).drop_duplicates("player_id")
     columns = [
@@ -211,11 +215,13 @@ def promotion_gate(summaries: Mapping[str, pd.DataFrame]) -> dict:
     overall_improvement = safe_float(overall_row["rate_mae_improvement_vs_generic_pct"].iloc[0], -999) if not overall_row.empty else -999
     star_improvement = safe_float(star_row["rate_mae_improvement_vs_generic_pct"].iloc[0], -999) if not star_row.empty else -999
     worst_position = safe_float(position_rows["rate_mae_improvement_vs_generic_pct"].min(), -999) if not position_rows.empty else -999
-    recommended = bool(overall_improvement > 0 and star_improvement >= 5 and worst_position >= -2)
+    rate_candidate = bool(overall_improvement > 0 and star_improvement >= 5 and worst_position >= -2)
     return {
         "productionChanged": False,
         "candidateModel": model,
-        "recommendedForProductionIntegration": recommended,
+        "rateCandidatePassed": rate_candidate,
+        "integrationReplayRequired": True,
+        "recommendedForProductionIntegration": False,
         "requirements": {
             "overallRateMaeImprovementPctGreaterThan": 0,
             "starRateMaeImprovementPctAtLeast": 5,
@@ -226,7 +232,7 @@ def promotion_gate(summaries: Mapping[str, pd.DataFrame]) -> dict:
             "starRateMaeImprovementPct": star_improvement,
             "worstPositionRateMaeImprovementPct": worst_position,
         },
-        "note": "A green research gate still requires manual player sanity review before any Season Worker change.",
+        "note": "This gate evaluates the player-specific RATE only. The identity rate must still be replayed inside the existing verified role and projected-games engine before any Season Worker change.",
     }
 
 
@@ -328,12 +334,13 @@ def main() -> None:
         "playerSeasonRows": int(len(seasons)),
         "backtestRows": int(len(backtest)),
         "forecastRows": int(len(forecast)),
+        "integrationStatus": "RATE_CANDIDATE_ONLY",
         "contractContext": contract_coverage,
         "careerStates": sorted(backtest["career_state"].dropna().astype(str).unique().tolist()),
         "promotionGate": gate,
         "method": {
             "rate": "Each player's own prior one-to-three season per-game production and opportunity/efficiency identity, dynamically weighted by career state and shrunk toward a no-lookahead role/age cohort.",
-            "availability": "Projected games are estimated separately from production rate so a shortened season is not counted twice.",
+            "availability": "Projected games are estimated separately from production rate so a shortened season is not counted twice. The current 2026 file is a rate audit, not a final role-aware depth-chart projection.",
             "starGuardrail": "Strong multi-season, high-percentile starter evidence limits over-regression toward a generic role average; it does not create production above the player's own evidence.",
             "contractContext": "Contract year is a context flag. No blanket boost is allowed. The optional research adjustment only restores a small part of an older baseline when a verified contract-year player had a down prior season and retained a stable role.",
         },
