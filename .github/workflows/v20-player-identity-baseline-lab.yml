@@ -19,6 +19,8 @@ on:
         description: "Season to build current player baselines for"
         required: true
         default: "2026"
+  schedule:
+    - cron: "0 12 * * 2,4"
   push:
     branches:
       - model-lab-v20-player-identity-baseline
