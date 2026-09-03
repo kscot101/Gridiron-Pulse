@@ -1,0 +1,161 @@
+name: V2.0 Player Identity Baseline Lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_season:
+        description: "First source season"
+        required: true
+        default: "2012"
+      end_season:
+        description: "Last completed source season"
+        required: true
+        default: "2025"
+      test_start_season:
+        description: "First rolling held-out season"
+        required: true
+        default: "2015"
+      forecast_season:
+        description: "Season to build current player baselines for"
+        required: true
+        default: "2026"
+  push:
+    branches:
+      - model-lab-v20-player-identity-baseline
+    paths:
+      - ".github/workflows/v20-player-identity-baseline-lab.yml"
+      - "model-lab/v20_player_identity_baseline.py"
+      - "model-lab/v20_player_identity_core.py"
+      - "model-lab/v20_player_identity_model.py"
+      - "model-lab/v20_player_identity_plan.md"
+      - "model-lab/v20_contract_context.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v20-player-identity-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  player-identity-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.start_season || '2012' }}
+      END_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.end_season || '2025' }}
+      TEST_START_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.test_start_season || '2015' }}
+      FORECAST_SEASON: ${{ github.event_name == 'workflow_dispatch' && inputs.forecast_season || '2026' }}
+      OUTPUT_DIR: model-lab/output/v20-player-identity
+      CACHE_DIR: model-lab/output/v20-player-identity-cache
+
+    steps:
+      - name: Checkout Player Identity research branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify research files
+        run: |
+          test -f model-lab/v20_player_identity_baseline.py
+          test -f model-lab/v20_player_identity_core.py
+          test -f model-lab/v20_player_identity_model.py
+          test -f model-lab/v20_player_identity_plan.md
+          test -f model-lab/v20_contract_context.json
+          python -m py_compile model-lab/v20_player_identity_core.py model-lab/v20_player_identity_model.py model-lab/v20_player_identity_baseline.py
+          python -m json.tool model-lab/v20_contract_context.json >/dev/null
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas numpy requests
+
+      - name: Restore nflverse source cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.CACHE_DIR }}
+          key: v20-player-identity-nflverse-${{ env.START_SEASON }}-${{ env.END_SEASON }}-${{ env.FORECAST_SEASON }}-v1
+
+      - name: Run rolling Player Identity baseline lab
+        run: |
+          python model-lab/v20_player_identity_baseline.py \
+            --start "$START_SEASON" \
+            --end "$END_SEASON" \
+            --test-start "$TEST_START_SEASON" \
+            --forecast-season "$FORECAST_SEASON" \
+            --out "$OUTPUT_DIR" \
+            --cache "$CACHE_DIR" \
+            --contract-context model-lab/v20_contract_context.json
+
+      - name: Show overall model comparison
+        if: always()
+        run: |
+          if [ -f "$OUTPUT_DIR/overall_model_summary.csv" ]; then
+            cat "$OUTPUT_DIR/overall_model_summary.csv"
+          fi
+
+      - name: Show established-star and shortened-season comparison
+        if: always()
+        run: |
+          if [ -f "$OUTPUT_DIR/star_and_shortened_summary.csv" ]; then
+            cat "$OUTPUT_DIR/star_and_shortened_summary.csv"
+          fi
+
+      - name: Show Stafford and Bowers sanity checks
+        if: always()
+        run: |
+          if [ -f "$OUTPUT_DIR/sanity_checks.csv" ]; then
+            cat "$OUTPUT_DIR/sanity_checks.csv"
+          fi
+
+      - name: Show promotion gate
+        if: always()
+        run: |
+          if [ -f "$OUTPUT_DIR/baseline_policy.json" ]; then
+            cat "$OUTPUT_DIR/baseline_policy.json"
+          fi
+
+      - name: Publish latest Player Identity summaries
+        if: success() && github.ref == 'refs/heads/model-lab-v20-player-identity-baseline'
+        run: |
+          mkdir -p model-lab/results/v20-player-identity-latest
+          cp "$OUTPUT_DIR/overall_model_summary.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/position_model_summary.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/career_state_model_summary.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/star_and_shortened_summary.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/sanity_checks.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/forecast_${FORECAST_SEASON}_player_identity.csv" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/run_summary.json" model-lab/results/v20-player-identity-latest/
+          cp "$OUTPUT_DIR/baseline_policy.json" model-lab/results/v20-player-identity-latest/
+          printf '{\n  "sourceCommit": "%s",\n  "workflowRun": "%s",\n  "startSeason": "%s",\n  "endSeason": "%s",\n  "testStartSeason": "%s",\n  "forecastSeason": "%s"\n}\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$START_SEASON" "$END_SEASON" "$TEST_START_SEASON" "$FORECAST_SEASON" > model-lab/results/v20-player-identity-latest/run_manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- model-lab/results/v20-player-identity-latest
+          if git diff --cached --quiet; then
+            echo "No research summary changes to publish."
+          else
+            git commit -m "Update latest v2.0 player identity research summaries [skip ci]"
+            git push origin HEAD:model-lab-v20-player-identity-baseline
+          fi
+
+      - name: Upload Player Identity lab outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v20-player-identity-${{ env.START_SEASON }}-${{ env.END_SEASON }}
+          retention-days: 14
+          path: |
+            model-lab/output/v20-player-identity/player_season_identity_source.csv
+            model-lab/output/v20-player-identity/source_coverage.csv
+            model-lab/output/v20-player-identity/backtest_predictions.csv
+            model-lab/output/v20-player-identity/overall_model_summary.csv
+            model-lab/output/v20-player-identity/position_model_summary.csv
+            model-lab/output/v20-player-identity/career_state_model_summary.csv
+            model-lab/output/v20-player-identity/star_and_shortened_summary.csv
+            model-lab/output/v20-player-identity/forecast_${{ env.FORECAST_SEASON }}_player_identity.csv
+            model-lab/output/v20-player-identity/sanity_checks.csv
+            model-lab/output/v20-player-identity/run_summary.json
+            model-lab/output/v20-player-identity/baseline_policy.json
