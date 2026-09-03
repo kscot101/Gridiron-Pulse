@@ -1,0 +1,16 @@
+{
+  "productionChanged": false,
+  "candidateModel": "identity_guardrail",
+  "recommendedForProductionIntegration": true,
+  "requirements": {
+    "overallRateMaeImprovementPctGreaterThan": 0,
+    "starRateMaeImprovementPctAtLeast": 5,
+    "noPositionRateMaeRegressionWorseThanPct": -2
+  },
+  "observed": {
+    "overallRateMaeImprovementPct": 26.54612761070421,
+    "starRateMaeImprovementPct": 14.417692609028585,
+    "worstPositionRateMaeImprovementPct": 18.138572721008067
+  },
+  "note": "A green research gate still requires manual player sanity review before any Season Worker change."
+}

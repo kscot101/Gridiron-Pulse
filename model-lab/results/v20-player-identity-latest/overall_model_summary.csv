@@ -1,0 +1,7 @@
+group,model,model_label,rows,rate_mae,rate_rmse,rate_bias,rate_median_ae,rate_mae_improvement_vs_generic_pct,total_mae,total_rmse,total_bias,total_median_ae,total_mae_improvement_vs_generic_pct
+ALL,generic_role,Current generic role model,4380,22.812350,41.107692,-3.734275,13.207143,0.000000,343.544730,597.179323,-0.376449,198.635750,0.000000
+ALL,identity_raw,Own-history rate,4380,17.282177,29.640509,0.491414,10.701809,24.242013,287.266384,490.848021,16.873669,169.730983,16.381665
+ALL,identity_shrunk,Own history + cohort shrinkage,4380,16.778648,27.478268,0.965401,10.328302,26.449281,287.842660,491.889628,18.330337,166.890078,16.213921
+ALL,identity_state,Career-state adjusted identity,4380,16.756479,27.484533,1.133933,10.420259,26.546459,287.060179,491.310101,20.546914,166.751736,16.441688
+ALL,identity_guardrail,Identity + established-star evidence floor,4380,16.756555,27.484432,1.134948,10.416957,26.546128,287.052688,491.307752,20.563071,166.751736,16.443868
+ALL,identity_contract,Identity + conditional contract context,4380,16.756555,27.484432,1.134948,10.416957,26.546128,287.052688,491.307752,20.563071,166.751736,16.443868

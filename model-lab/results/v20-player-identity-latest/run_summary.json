@@ -1,0 +1,51 @@
+{
+  "version": "v2.0-player-identity-baseline-1",
+  "researchOnly": true,
+  "productionChanged": false,
+  "seasonRange": [
+    2012,
+    2025
+  ],
+  "testStartSeason": 2015,
+  "forecastSeason": 2026,
+  "playerSeasonRows": 8305,
+  "backtestRows": 4380,
+  "forecastRows": 564,
+  "contractContext": {
+    "records": 0,
+    "activeResearchAdjustments": 0,
+    "status": "loaded"
+  },
+  "careerStates": [
+    "ASCENDING",
+    "DECLINING",
+    "DEVELOPING",
+    "ESTABLISHED",
+    "LOW_SAMPLE",
+    "PEAK",
+    "RETURNING_FROM_INJURY_OR_SHORTENED",
+    "ROLE_CHANGED"
+  ],
+  "promotionGate": {
+    "productionChanged": false,
+    "candidateModel": "identity_guardrail",
+    "recommendedForProductionIntegration": true,
+    "requirements": {
+      "overallRateMaeImprovementPctGreaterThan": 0,
+      "starRateMaeImprovementPctAtLeast": 5,
+      "noPositionRateMaeRegressionWorseThanPct": -2
+    },
+    "observed": {
+      "overallRateMaeImprovementPct": 26.54612761070421,
+      "starRateMaeImprovementPct": 14.417692609028585,
+      "worstPositionRateMaeImprovementPct": 18.138572721008067
+    },
+    "note": "A green research gate still requires manual player sanity review before any Season Worker change."
+  },
+  "method": {
+    "rate": "Each player's own prior one-to-three season per-game production and opportunity/efficiency identity, dynamically weighted by career state and shrunk toward a no-lookahead role/age cohort.",
+    "availability": "Projected games are estimated separately from production rate so a shortened season is not counted twice.",
+    "starGuardrail": "Strong multi-season, high-percentile starter evidence limits over-regression toward a generic role average; it does not create production above the player's own evidence.",
+    "contractContext": "Contract year is a context flag. No blanket boost is allowed. The optional research adjustment only restores a small part of an older baseline when a verified contract-year player had a down prior season and retained a stable role."
+  }
+}
