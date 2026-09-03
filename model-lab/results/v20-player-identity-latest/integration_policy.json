@@ -1,0 +1,26 @@
+{
+  "version": "v2.0-player-identity-role-integration-1",
+  "researchOnly": true,
+  "productionChanged": false,
+  "candidateModel": "identity_integrated",
+  "roleIntegrationReplayPassed": true,
+  "recommendedForProductionIntegration": false,
+  "requirements": {
+    "overallRateMaeImprovementPctGreaterThan": 0,
+    "noPositionRateMaeRegressionWorseThanPct": -2,
+    "stableStarterRateMaeImprovementPctAtLeast": 5,
+    "stableStarterTotalMaeImprovementPctGreaterThan": 0,
+    "stableStarRateMaeImprovementPctAtLeast": 5,
+    "roleCoveragePctAtLeast": 90
+  },
+  "observed": {
+    "overallRateMaeImprovementPct": 8.020475915498169,
+    "worstPositionRateMaeImprovementPct": 5.194051312845879,
+    "stableStarterRateMaeImprovementPct": 22.298290008306093,
+    "stableStarterTotalMaeImprovementPct": 26.294287117670372,
+    "stableStarRateMaeImprovementPct": 17.947042476074312,
+    "roleCoveragePct": 100.0,
+    "depthVerifiedCoveragePct": 0.0
+  },
+  "note": "Passing this replay allows a separate shadow implementation. It does not authorize a live Season Worker replacement."
+}

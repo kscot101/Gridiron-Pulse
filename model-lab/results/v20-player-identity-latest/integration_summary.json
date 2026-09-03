@@ -1,0 +1,53 @@
+{
+  "version": "v2.0-player-identity-role-integration-1",
+  "researchOnly": true,
+  "productionChanged": false,
+  "seasons": [
+    2015,
+    2025
+  ],
+  "replayRows": 4373,
+  "depthVerifiedRows": 0,
+  "identityActiveRows": 1575,
+  "preview": {
+    "workerError": null,
+    "workerPlayers": 544,
+    "identityMatches": 390,
+    "identityEligiblePlayers": 124,
+    "seasonWeek": 1,
+    "workerVersion": "1.1.2",
+    "productionChanged": false
+  },
+  "gate": {
+    "version": "v2.0-player-identity-role-integration-1",
+    "researchOnly": true,
+    "productionChanged": false,
+    "candidateModel": "identity_integrated",
+    "roleIntegrationReplayPassed": true,
+    "recommendedForProductionIntegration": false,
+    "requirements": {
+      "overallRateMaeImprovementPctGreaterThan": 0,
+      "noPositionRateMaeRegressionWorseThanPct": -2,
+      "stableStarterRateMaeImprovementPctAtLeast": 5,
+      "stableStarterTotalMaeImprovementPctGreaterThan": 0,
+      "stableStarRateMaeImprovementPctAtLeast": 5,
+      "roleCoveragePctAtLeast": 90
+    },
+    "observed": {
+      "overallRateMaeImprovementPct": 8.020475915498169,
+      "worstPositionRateMaeImprovementPct": 5.194051312845879,
+      "stableStarterRateMaeImprovementPct": 22.298290008306093,
+      "stableStarterTotalMaeImprovementPct": 26.294287117670372,
+      "stableStarRateMaeImprovementPct": 17.947042476074312,
+      "roleCoveragePct": 100.0,
+      "depthVerifiedCoveragePct": 0.0
+    },
+    "note": "Passing this replay allows a separate shadow implementation. It does not authorize a live Season Worker replacement."
+  },
+  "method": {
+    "role": "Target-season preseason depth chart when available; otherwise target roster plus prior-role continuity. Low-confidence roles remain generic.",
+    "rate": "Player Identity rate is blended only for stable starter/co-starter continuities. Backups, developmental players, low samples, and role changes remain on the generic role baseline.",
+    "availability": "Historical game availability remains separate from rate and is applied only to identity-eligible stable starters.",
+    "contract": "Contract context remains an optional flag from the baseline layer and never creates a blanket boost."
+  }
+}
