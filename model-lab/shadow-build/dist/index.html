@@ -8,10 +8,10 @@
     :root{color-scheme:dark;--bg:#07110d;--panel:#0e1c15;--panel2:#12271d;--line:#244637;--text:#f4f8f5;--muted:#9fb4a8;--good:#3ddc84;--warn:#f4c95d;--bad:#ff6b6b;--accent:#8bf0b4}
     *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#123321 0,#07110d 38%,#050b08 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
     .wrap{max-width:1180px;margin:auto;padding:28px 18px 60px}.top{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}.title{font-size:clamp(30px,5vw,54px);line-height:1;margin:7px 0 10px;font-weight:900}.sub{color:var(--muted);max-width:760px;line-height:1.55}
-    .btn{border:1px solid var(--line);background:#10261b;color:#fff;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}}
+    .actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#10261b;color:#fff;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer;text-decoration:none}.btn.primary{color:#07110d;background:#b7ff3c;border-color:#b7ff3c}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}}
     .stat,.panel,.card{background:linear-gradient(180deg,rgba(20,47,34,.96),rgba(10,25,18,.96));border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.24)}.stat{padding:16px}.stat b{display:block;font-size:24px;margin-top:5px}.label{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:800}.panel{padding:18px;margin-top:16px}.panel h2{margin:0 0 6px;font-size:19px}.status{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}.status.good .dot{background:var(--good)}.status.warn .dot{background:var(--warn)}.status.bad .dot{background:var(--bad)}
     .notice{margin-top:14px;padding:13px 14px;border-left:3px solid var(--warn);background:#201b0b;border-radius:10px;color:#f2df9e;line-height:1.5}.players{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}@media(max-width:800px){.players{grid-template-columns:1fr}}.card{padding:16px}.name{font-size:18px;font-weight:900}.meta{color:var(--muted);font-size:13px;margin-top:3px}.compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}.metric{background:#091710;border:1px solid #1a392b;border-radius:12px;padding:10px}.metric small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.07em}.metric strong{display:block;margin-top:4px;font-size:18px}.delta.up strong{color:var(--good)}.delta.down strong{color:var(--bad)}
-    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #1b392c}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.07em}.muted{color:var(--muted)}.footer{margin-top:24px;color:#70867a;font-size:12px}.error{color:#ff9b9b;white-space:pre-wrap}.pill{font-size:11px;font-weight:900;padding:4px 7px;border-radius:999px;background:#0a1a12;border:1px solid var(--line);color:var(--accent)}
+    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #1b392c}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.07em}.muted{color:var(--muted)}.footer{margin-top:24px;color:#70867a;font-size:12px;line-height:1.6}.footer a{color:var(--accent);font-weight:800}.error{color:#ff9b9b;white-space:pre-wrap}.pill{font-size:11px;font-weight:900;padding:4px 7px;border-radius:999px;background:#0a1a12;border:1px solid var(--line);color:var(--accent)}
   </style>
 </head>
 <body>
@@ -22,7 +22,10 @@
         <h1 class="title">v1.9 Shadow Test</h1>
         <div class="sub">Visual comparison layer for the current Season Worker versus the frozen v1.9 challenger. Nothing on this page can replace the official projection or change the production site.</div>
       </div>
-      <button class="btn" id="refresh">Refresh data</button>
+      <div class="actions">
+        <a class="btn primary" href="/player-context-v21.html">Open Player Context v2.1</a>
+        <button class="btn" id="refresh">Refresh v1.9 data</button>
+      </div>
     </div>
 
     <section class="grid" id="stats"></section>
@@ -43,7 +46,7 @@
       <div id="rehearsal"></div>
     </section>
 
-    <div class="footer">Official source: current Season Worker • v1.9 routes: RB W4, WR W4, WR W8, TE W8 • This page is isolated from production.</div>
+    <div class="footer">Official source: current Season Worker • v1.9 routes: RB W4, WR W4, WR W8, TE W8 • This page is isolated from production. The separate <a href="/player-context-v21.html">Player Context v2.1 page</a> starts from each player’s previous-season production and does not use career-state labels.</div>
   </main>
 
   <script>
