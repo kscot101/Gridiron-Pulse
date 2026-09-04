@@ -6,6 +6,9 @@ on:
     paths:
       - ".github/workflows/sync-v21-context-to-main.yml"
   workflow_dispatch:
+  workflow_run:
+    workflows: ["V2.1 Last-Season Player Context Lab"]
+    types: [completed]
   schedule:
     - cron: "30 12 * * 2,4"
 
@@ -14,6 +17,7 @@ permissions:
 
 jobs:
   sync:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'model-lab-v21-player-context-baseline') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out main
@@ -33,7 +37,7 @@ jobs:
           git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026.json > data/player-context-v21.json
           git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026_news.json > data/player-context-v21-news.json
 
-      - name: Validate feed and patch production page to same-origin data
+      - name: Validate feed and patch production projection cards
         shell: bash
         run: |
           python - <<'PY'
@@ -55,6 +59,14 @@ jobs:
           assert stafford.get('context_eligible') is True
           assert float(stafford.get('candidateProjection')) > 4000
 
+          touchdown_players = [
+              p for p in feed['players']
+              if p.get('candidateTouchdowns') is not None
+          ]
+          if touchdown_players:
+              assert float(stafford.get('candidateTouchdowns')) > 0
+              assert all(float(p['candidateTouchdowns']) >= 0 for p in touchdown_players)
+
           page_path = Path('projections-2026.html')
           page = page_path.read_text(encoding='utf-8')
           page = page.replace(
@@ -65,13 +77,43 @@ jobs:
               'https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026_news.json',
               './data/player-context-v21-news.json'
           )
-          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD D', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD E')
-          page = page.replace('Build GP-2026-09-04D.', 'Build GP-2026-09-04E.')
+
+          old_hero = '<p>Eligible players start from their own 2025 production instead of a generic depth-chart average. New team, quarterback, coaching, scheme and matchup context make bounded adjustments, while availability stays separate from per-game ability.</p>'
+          new_hero = '<p>Eligible players start from their own 2025 production instead of a generic depth-chart average. New team, quarterback, coaching, scheme and matchup context make bounded adjustments, while availability stays separate from per-game ability. Projected touchdowns use each player\'s 2025 touchdown rate with the same model adjustment and projected games.</p>'
+          page = page.replace(old_hero, new_hero)
+
+          old_note = '<div class="notice note">Context v2.1 is now the primary player feed for eligible projections. The Season Worker remains the fallback, and v1.9 remains available for comparison and its validated in-season routes.</div>'
+          new_note = '<div class="notice note">Context v2.1 is now the primary player feed for eligible projections. The Season Worker remains the fallback, and v1.9 remains available for comparison and its validated in-season routes. Touchdowns use the same net projection factors and availability as the active 2026 projection.</div>'
+          page = page.replace(old_note, new_note)
+
+          if '.metricrow{' not in page:
+              page = page.replace(
+                  '.metric,.mini,.detail div{background:#08140e;border:1px solid rgba(255,255,255,.07);border-radius:11px}',
+                  '.metricrow{display:grid;grid-template-columns:minmax(0,2fr) minmax(125px,1fr);gap:7px}.metricrow .metric{margin-top:13px}.tdmetric strong{color:var(--b)}.metric,.mini,.detail div{background:#08140e;border:1px solid rgba(255,255,255,.07);border-radius:11px}'
+              )
+              page = page.replace(
+                  '@media(max-width:430px){.stats{grid-template-columns:1fr}.cmp,.detail{grid-template-columns:1fr 1fr}}',
+                  '@media(max-width:430px){.stats{grid-template-columns:1fr}.metricrow{grid-template-columns:1fr}.cmp,.detail{grid-template-columns:1fr 1fr}}'
+              )
+
+          old_card = '<div class="metric '+"'+(r.src==='v21'?'v21':'')+'"+'"><small>Active 2026 projection</small><strong>'+"'+F(r.active)+'"+'</strong></div><div class="cmp">'
+          new_card = '<div class="metricrow"><div class="metric '+"'+(r.src==='v21'?'v21':'')+'"+'"><small>Active 2026 projection</small><strong>'+"'+F(r.active)+'"+'</strong></div><div class="metric tdmetric"><small>Projected touchdowns</small><strong>'+"'+F(c.candidateTouchdowns)+'"+'</strong></div></div><div class="cmp">'
+          page = page.replace(old_card, new_card)
+
+          old_games = '<div><small>Projected games</small><b>'+"'+F(c.projected_games_v21)+'"+'</b></div>'+"'+(c.nextOpponent?" 
+          new_games = '<div><small>Projected games</small><b>'+"'+F(c.projected_games_v21)+'"+'</b></div>'+"'+(N(c.lastYearTouchdownsPerGame)!==null?'<div><small>2025 TD rate</small><b>'+F(c.lastYearTouchdownsPerGame)+'/g</b></div>':'')+(c.nextOpponent?"
+          page = page.replace(old_games, new_games)
+
+          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD D', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD F')
+          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD E', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD F')
+          page = page.replace('Build GP-2026-09-04D.', 'Build GP-2026-09-04F.')
+          page = page.replace('Build GP-2026-09-04E.', 'Build GP-2026-09-04F.')
           page_path.write_text(page, encoding='utf-8')
 
           assert news.get('ok') is True
           print('Stafford candidate projection:', stafford.get('candidateProjection'))
           print('Context eligible players:', feed.get('meta', {}).get('contextEligiblePlayers'))
+          print('Touchdown projections:', len(touchdown_players))
           PY
 
       - name: Commit synced production feed
