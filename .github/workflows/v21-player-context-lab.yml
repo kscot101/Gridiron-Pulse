@@ -24,6 +24,7 @@ on:
       - ".github/workflows/v21-player-context-lab.yml"
       - "model-lab/v21_player_context_baseline.py"
       - "model-lab/v21_player_context_runner.py"
+      - "model-lab/v21_touchdown_projection.py"
       - "model-lab/v21_news_pulse.py"
       - "model-lab/v21_context_config.json"
       - "model-lab/v21_player_context_plan.md"
@@ -64,6 +65,7 @@ jobs:
         run: |
           test -f model-lab/v21_player_context_baseline.py
           test -f model-lab/v21_player_context_runner.py
+          test -f model-lab/v21_touchdown_projection.py
           test -f model-lab/v21_news_pulse.py
           test -f model-lab/v21_context_config.json
           test -f model-lab/v21_player_context_plan.md
@@ -74,6 +76,7 @@ jobs:
             model-lab/v20_player_identity_integration_replay.py \
             model-lab/v21_player_context_baseline.py \
             model-lab/v21_player_context_runner.py \
+            model-lab/v21_touchdown_projection.py \
             model-lab/v21_news_pulse.py
           python -m json.tool model-lab/v21_context_config.json >/dev/null
 
@@ -112,6 +115,14 @@ jobs:
             --forecast-season "$FORECAST_SEASON" \
             --cache "$CACHE_DIR" \
             --out "$V21_DIR"
+
+      - name: Add projected touchdowns using the v2.1 factors
+        run: |
+          python model-lab/v21_touchdown_projection.py \
+            --preview "$V21_DIR/preview_${FORECAST_SEASON}.json" \
+            --source "$V20_DIR/player_season_identity_source.csv" \
+            --season "$FORECAST_SEASON" \
+            --worker-url "https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook"
 
       - name: Collect attributed player news context
         run: |
@@ -158,6 +169,7 @@ jobs:
               "newsPlayersWithEvidence": data.get("newsPlayersWithEvidence"),
               "newsPlayersActionable": data.get("newsPlayersActionable"),
               "newsApplyToProjection": data.get("newsApplyToProjection"),
+              "touchdownProjectionPlayers": (data.get("meta") or {}).get("touchdownProjectionPlayers"),
               "productionChanged": data.get("productionChanged"),
           }, indent=2))
           PY
