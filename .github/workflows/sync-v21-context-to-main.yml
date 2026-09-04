@@ -1,0 +1,89 @@
+name: Sync v2.1 context to main
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync-v21-context-to-main.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "30 12 * * 2,4"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch v2.1 research branch
+        run: git fetch origin model-lab-v21-player-context-baseline:refs/remotes/origin/model-lab-v21-player-context-baseline
+
+      - name: Copy validated v2.1 feeds into the production site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026.json > data/player-context-v21.json
+          git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026_news.json > data/player-context-v21-news.json
+
+      - name: Validate feed and patch production page to same-origin data
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          feed_path = Path('data/player-context-v21.json')
+          news_path = Path('data/player-context-v21-news.json')
+          feed = json.loads(feed_path.read_text(encoding='utf-8'))
+          news = json.loads(news_path.read_text(encoding='utf-8'))
+
+          assert feed.get('ok') is True
+          assert feed.get('productionChanged') is False
+          assert feed.get('careerStateUsed') is False
+          assert isinstance(feed.get('players'), list)
+
+          stafford = next((p for p in feed['players'] if p.get('playerName') == 'Matthew Stafford'), None)
+          assert stafford is not None
+          assert stafford.get('context_eligible') is True
+          assert float(stafford.get('candidateProjection')) > 4000
+
+          page_path = Path('projections-2026.html')
+          page = page_path.read_text(encoding='utf-8')
+          page = page.replace(
+              'https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026.json',
+              './data/player-context-v21.json'
+          )
+          page = page.replace(
+              'https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026_news.json',
+              './data/player-context-v21-news.json'
+          )
+          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD D', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD E')
+          page = page.replace('Build GP-2026-09-04D.', 'Build GP-2026-09-04E.')
+          page_path.write_text(page, encoding='utf-8')
+
+          assert news.get('ok') is True
+          print('Stafford candidate projection:', stafford.get('candidateProjection'))
+          print('Context eligible players:', feed.get('meta', {}).get('contextEligiblePlayers'))
+          PY
+
+      - name: Commit synced production feed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projections-2026.html data/player-context-v21.json data/player-context-v21-news.json
+          if git diff --cached --quiet; then
+            echo "No production feed changes."
+            exit 0
+          fi
+          git commit -m "Sync v2.1 player context feed to production"
+          git push origin main
