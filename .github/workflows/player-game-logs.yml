@@ -1,0 +1,56 @@
+name: Player Game Logs
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/player-game-logs.yml
+      - assets/player-game-logs.js
+      - scripts/install-player-game-logs.py
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  player-game-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect source format
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          targets = {
+              'gamelog': 'https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/3139477/gamelog?season=2025',
+              'roster': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/KC/roster',
+          }
+          for name, url in targets.items():
+              try:
+                  req = urllib.request.Request(url, headers={'User-Agent': 'GridironPulse/1.0'})
+                  with urllib.request.urlopen(req, timeout=25) as r:
+                      data = json.load(r)
+                      print(name, 'CORS:', r.headers.get('Access-Control-Allow-Origin'))
+                  if name == 'gamelog':
+                      print('ROOT KEYS', list(data))
+                      print('NAMES', json.dumps(data.get('names')))
+                      print('CATEGORIES', json.dumps(data.get('categories'))[:5000])
+                      print('SEASON TYPES', json.dumps(data.get('seasonTypes'))[:9000])
+                      print('EVENT SAMPLE', json.dumps(list((data.get('events') or {}).items())[:2]))
+                  else:
+                      print('ROSTER SAMPLE', json.dumps(data.get('athletes', [])[:1])[:6500])
+              except Exception as e:
+                  print(name, type(e).__name__, str(e))
+          PY
+      - name: Validate and install game-log feature
+        run: |
+          if [ -f assets/player-game-logs.js ] && [ -f scripts/install-player-game-logs.py ]; then
+            node --check assets/player-game-logs.js
+            python scripts/install-player-game-logs.py
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add index.html projections-2026.html projections-2026-build-c.html
+            if ! git diff --cached --quiet; then
+              git commit -m 'Enable clickable player game logs across Gridiron Pulse'
+              git push origin HEAD:main
+            fi
+          else
+            echo 'Source inspection complete; integration files not installed yet.'
+          fi
