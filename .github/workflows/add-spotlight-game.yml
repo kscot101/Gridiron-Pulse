@@ -1,10 +1,11 @@
-name: Add Spotlight Game to Homepage
+name: Update Spotlight Game
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - ".github/workflows/add-spotlight-game.yml"
+      - .github/workflows/add-spotlight-game.yml
   workflow_dispatch:
 
 permissions:
@@ -20,18 +21,29 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Install dynamic spotlight game
+      - name: Simplify spotlight signals
         shell: bash
         run: |
-          printf '%s' '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' | base64 -d | gzip -d > /tmp/add_spotlight_game.py
-          python /tmp/add_spotlight_game.py
-          python -c "from pathlib import Path; p=Path('index.html').read_text(encoding='utf-8'); s=p.rsplit('<script>',1)[1].split('</script>',1)[0]; Path('/tmp/gridiron-index.js').write_text(s,encoding='utf-8')"
-          node --check /tmp/gridiron-index.js
-          grep -q 'id="spotlight-game"' index.html
-          grep -q 'function renderSpotlight()' index.html
-          grep -q 'Signals caught' index.html
+          python - <<'PY'
+          from pathlib import Path
 
-      - name: Commit spotlight homepage
+          path = Path("index.html")
+          page = path.read_text(encoding="utf-8")
+          old = '''        '<div class="spotlight-signal-head"><strong>Why this game surfaced</strong><span>' +
+        escapeHtml(picks.length) +
+        (picks.length === 1 ? " player path" : " player paths") +
+        "</span></div>" +'''
+          new = '''        '<div class="spotlight-signal-head"><strong>Game signals</strong></div>' +'''
+
+          if old in page:
+              page = page.replace(old, new, 1)
+          elif 'spotlight-signal-head"><strong>Game signals</strong>' not in page:
+              raise RuntimeError("Spotlight signal header was not found")
+
+          path.write_text(page, encoding="utf-8")
+          PY
+
+      - name: Commit homepage update
         shell: bash
         run: |
           set -euo pipefail
@@ -42,5 +54,5 @@ jobs:
             echo "No homepage changes to commit."
             exit 0
           fi
-          git commit -m "Add dynamic spotlight game to homepage"
+          git commit -m "Simplify spotlight game signals"
           git push origin main
