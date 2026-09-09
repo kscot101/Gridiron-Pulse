@@ -2,8 +2,7 @@ name: Update Spotlight Game
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - .github/workflows/add-spotlight-game.yml
   workflow_dispatch:
@@ -15,44 +14,20 @@ jobs:
   spotlight-homepage:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out main
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
 
-      - name: Simplify spotlight signals
-        shell: bash
+      - name: Remove spotlight explanation text
         run: |
-          python - <<'PY'
-          from pathlib import Path
+          python -c "from pathlib import Path; p=Path('index.html'); s=p.read_text(); s=s.replace('<strong>Why this game surfaced</strong><span>', '<strong>Game signals</strong><span style=\"display:none\">', 1); p.write_text(s)"
 
-          path = Path("index.html")
-          page = path.read_text(encoding="utf-8")
-          old = '''        '<div class="spotlight-signal-head"><strong>Why this game surfaced</strong><span>' +
-        escapeHtml(picks.length) +
-        (picks.length === 1 ? " player path" : " player paths") +
-        "</span></div>" +'''
-          new = '''        '<div class="spotlight-signal-head"><strong>Game signals</strong></div>' +'''
-
-          if old in page:
-              page = page.replace(old, new, 1)
-          elif 'spotlight-signal-head"><strong>Game signals</strong>' not in page:
-              raise RuntimeError("Spotlight signal header was not found")
-
-          path.write_text(page, encoding="utf-8")
-          PY
-
-      - name: Commit homepage update
-        shell: bash
+      - name: Commit update
         run: |
-          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          if git diff --cached --quiet; then
-            echo "No homepage changes to commit."
-            exit 0
-          fi
-          git commit -m "Simplify spotlight game signals"
+          git diff --cached --quiet && exit 0
+          git commit -m "Remove spotlight explanation text"
           git push origin main
