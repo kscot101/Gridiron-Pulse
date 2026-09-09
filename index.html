@@ -2508,6 +2508,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">
 </head>
 
 <body>
@@ -2929,7 +2930,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script>
+    <script src="./assets/player-game-log.js?v=20260909a"></script>
+<script>
     "use strict";
 
     var AGENT_URL =
@@ -3464,7 +3466,7 @@
           return (
             '<article class="spotlight-player-projection">' +
             '<div class="projection-name"><b>' +
-            escapeHtml(text(pick.name, "Player")) +
+            GPPlayerStats.link(pick, text(pick.name, "Player")) +
             "</b><small>" +
             escapeHtml(
               text(pick.team, "NFL") +
@@ -3554,6 +3556,7 @@
       list(board && board.picks).forEach(function(pick) {
         list(pick && pick.signals).forEach(function(signal) {
           items.push({
+            sourcePlayer: pick,
             label: text(signal && signal.label, "Player signal"),
             detail: text(
               signal && signal.detail,
@@ -3711,7 +3714,7 @@
               '<article class="spotlight-signal" style="--signal-color:' +
               escapeHtml(signal.color) +
               '"><small>' +
-              escapeHtml(signal.source) +
+              (signal.sourcePlayer ? GPPlayerStats.link(signal.sourcePlayer) + escapeHtml(" / " + text(signal.sourcePlayer.team, "NFL") + " / Edge " + number(signal.sourcePlayer.score, "")) : escapeHtml(signal.source)) +
               "</small><b>" +
               escapeHtml(signal.label) +
               "</b><span>" +
@@ -6867,6 +6870,8 @@
         '<div class="modal-grid">' +
         contextMarkup +
         "</div></section>";
+
+      if (!teamMode) GPPlayerStats.attach(entity, document.getElementById("detail-body"));
 
       openOverlay("detail-overlay");
     }

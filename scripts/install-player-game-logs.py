@@ -1,81 +1,72 @@
 #!/usr/bin/env python3
-"""Install the shared player popup without changing existing models or page layouts."""
+"""Connect shared recent-game UI without changing projection math or layouts."""
 from pathlib import Path
-import json
 import re
 import subprocess
 import tempfile
-import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET = ROOT / 'assets/player-game-logs.js'
-PAGES = ['index.html', 'projections-2026.html', 'projections-2026-build-c.html']
-TAG = '<script src="./assets/player-game-logs.js?v=20260909-1" defer></script>'
+CSS = '  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">\n'
+JS = '  <script src="./assets/player-game-log.js?v=20260909a"></script>\n'
 
 
-def get_json(url):
-    request = urllib.request.Request(url, headers={'User-Agent': 'GridironPulse/1.0', 'Accept': 'application/json'})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
+def connect(page):
+    if 'href="./assets/player-game-log.css' not in page:
+        page = page.replace('</head>', CSS + '</head>', 1)
+    if 'src="./assets/player-game-log.js' not in page:
+        page = page.replace('<script>', JS + '<script>', 1)
+    return page
 
 
-def main():
-    subprocess.run(['node', '--check', str(ASSET)], check=True)
-    # Exercise the exact parser used by the browser against real source responses.
-    samples = []
-    for athlete, position in [('3139477', 'QB'), ('3117251', 'RB'), ('3121023', 'TE'), ('3133487', 'DEF')]:
-        url = 'https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/' + athlete + '/gamelog?season=2025'
-        samples.append({'id': athlete, 'position': position, 'data': get_json(url)})
-    check = r'''
-const fs=require('node:fs');
-const assert=require('node:assert/strict');
-const api=require(process.argv[1]);
-const samples=JSON.parse(fs.readFileSync(0,'utf8'));
-for(const sample of samples){
-  const rows=api.parseGameLog(sample.data,2025);
-  assert(rows.length>=3, 'Expected recent source games for '+sample.id);
-  const columns=api.columns(sample.position,rows);
-  assert(columns.length>=3, 'Expected position-specific source stats for '+sample.position);
-  assert(rows.every(r=>r.timestamp<=Date.now()));
-  assert(rows.every(r=>r.phase!=='Preseason'));
-  console.log('LIVE SOURCE PASS',sample.position,sample.id,rows.length,'games;',columns.map(x=>x.label).join(', '));
-}
-assert.equal(api.num(null),null);assert.equal(api.num(''),null);assert.equal(api.num('-'),null);assert.equal(api.num('0'),0);
-assert.equal(api.athleteId({player_id:'00-0033873'}),'');assert.equal(api.athleteId({id:'12'}),'');
-console.log('PASS: missing statistics stay missing; GSIS and team IDs are not used as athlete IDs.');
-'''
-    subprocess.run(['node', '-e', check, str(ASSET)], input=json.dumps(samples), text=True, check=True)
-    try:
-        payload = get_json('https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook')
-        players = payload.get('seasonOutlook', {}).get('players', [])
-        verified = [p for p in players if re.fullmatch(r'[1-9][0-9]{3,9}', str(p.get('athleteId') or p.get('id') or ''))]
-        print('Season directory:', len(players), 'players;', len(verified), 'numeric athlete IDs')
-        print('Directory sample:', json.dumps([{k:p.get(k) for k in ['name','playerName','athleteId','id','position','positionGroup','team']} for p in players[:3]]))
-    except Exception as error:
-        print('Directory check unavailable:', error)
-
-    updated = {}
-    for name in PAGES:
+def install():
+    path = ROOT / 'index.html'
+    page = connect(path.read_text(encoding='utf-8'))
+    start = page.index('    function openProfile(kind, key) {')
+    end = page.index('    function openSearch()', start)
+    profile = page[start:end]
+    if 'GPPlayerStats.attach' not in profile:
+        target = '      openOverlay("detail-overlay");'
+        assert profile.count(target) == 1
+        profile = profile.replace(target, '      if (!teamMode) GPPlayerStats.attach(entity, document.getElementById("detail-body"));\n\n' + target, 1)
+        page = page[:start] + profile + page[end:]
+    # The spotlight's newly added name labels need structured links, too.
+    target = 'escapeHtml(text(pick.name, "Player"))'
+    page = page.replace(target, 'GPPlayerStats.link(pick, text(pick.name, "Player"))')
+    # Link the source name with its identity rather than guessing from prose.
+    start = page.index('    function spotlightSignalItems(')
+    end = page.index('    function spotlightTeamMarkup(', start)
+    piece = page[start:end]
+    if 'sourcePlayer: pick,' not in piece:
+        piece = piece.replace('          items.push({\n', '          items.push({\n            sourcePlayer: pick,\n', 1)
+        page = page[:start] + piece + page[end:]
+    old = 'escapeHtml(signal.source)'
+    new = '(signal.sourcePlayer ? GPPlayerStats.link(signal.sourcePlayer) + escapeHtml(" / " + text(signal.sourcePlayer.team, "NFL") + " / Edge " + number(signal.sourcePlayer.score, "")) : escapeHtml(signal.source))'
+    if 'signal.sourcePlayer ? GPPlayerStats.link' not in page:
+        page = page.replace(old, new, 1)
+    assert 'Why this game surfaced</strong>' not in page
+    assert 'GPPlayerStats.attach(entity' in page
+    assert 'id="spotlight-game"' in page
+    assert 'playerProjectionMarkup(pick)' in page
+    path.write_text(page, encoding='utf-8')
+    for name in ('projections-2026.html',):
         path = ROOT / name
-        page = path.read_text(encoding='utf-8')
-        if 'assets/player-game-logs.js' not in page:
-            if '</body>' not in page:
-                raise RuntimeError('Missing body closing tag: ' + name)
-            page = page.replace('</body>', TAG + '\n</body>', 1)
-        assert page.count('assets/player-game-logs.js') == 1
-        # Check existing inline scripts as well as the added shared asset before writing.
-        for script in re.findall(r'<script\b[^>]*>(.*?)</script>', page, flags=re.S | re.I):
-            if not script.strip():
-                continue
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.js', encoding='utf-8') as handle:
-                handle.write(script)
-                handle.flush()
-                subprocess.run(['node', '--check', handle.name], check=True)
-        updated[path] = page
-    for path, page in updated.items():
+        page = connect(path.read_text(encoding='utf-8'))
+        old = "<div class=\"name\">'+E(r.name)+'</div>"
+        new = "<div class=\"name\">'+GPPlayerStats.link(r,r.name)+'</div>"
+        if new not in page:
+            assert old in page, 'Projection card name anchor changed'
+            page = page.replace(old, new, 1)
         path.write_text(page, encoding='utf-8')
-        print('Enabled clickable game logs:', path.name)
+    # Validate every inline script, not just the newly added asset.
+    for name in ('index.html', 'projections-2026.html'):
+        page = (ROOT / name).read_text(encoding='utf-8')
+        for code in re.findall(r'<script>([\s\S]*?)</script>', page):
+            with tempfile.NamedTemporaryFile(suffix='.js', mode='w', encoding='utf-8') as tmp:
+                tmp.write(code); tmp.flush()
+                subprocess.run(['node', '--check', tmp.name], check=True)
+    subprocess.run(['node', '--check', str(ROOT / 'assets/player-game-log.js')], check=True)
+    print('Player links and recent-game profiles installed; JavaScript validation passed.')
 
 
 if __name__ == '__main__':
-    main()
+    install()
