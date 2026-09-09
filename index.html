@@ -817,6 +817,211 @@
         width: 100%;
       }
     }
+
+    /* PLAYER PROJECTION ENHANCEMENT START */
+    .hero {
+      min-height: 0;
+    }
+
+    .hero-inner {
+      padding-top: 48px;
+    }
+
+    .hero-stage {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .hero-intro {
+      order: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 28px;
+      row-gap: 6px;
+      align-items: end;
+      padding: 0;
+    }
+
+    .spotlight-wrap {
+      order: 2;
+    }
+
+    .hero-intro .hero-status {
+      grid-column: 1 / -1;
+    }
+
+    .hero h1 {
+      grid-column: 1;
+      max-width: none;
+      margin: 10px 0 4px;
+      font-size: clamp(50px, 7vw, 86px);
+      line-height: 0.82;
+      white-space: nowrap;
+    }
+
+    .hero-copy {
+      grid-column: 1;
+      max-width: 770px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      grid-column: 2;
+      grid-row: 2 / 4;
+      align-self: center;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+
+    .spotlight-card {
+      min-height: 0;
+    }
+
+    .spotlight-player-block {
+      margin-top: 16px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .spotlight-player-block > strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #fff;
+      font: 900 10px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-player-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .spotlight-player-projection {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .spotlight-player-projection .projection-name {
+      min-width: 0;
+    }
+
+    .spotlight-player-projection .projection-name b {
+      display: block;
+      overflow: hidden;
+      color: #fff;
+      font-size: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .spotlight-player-projection .projection-name small {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.4);
+      font: 800 7px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .spotlight-proj-stat {
+      min-width: 72px;
+      text-align: right;
+    }
+
+    .spotlight-proj-stat strong {
+      display: block;
+      color: var(--acid);
+      font: 800 20px/1 var(--mono);
+    }
+
+    .spotlight-proj-stat small {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.42);
+      font: 800 7px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .spotlight-proj-stat.td strong {
+      color: #78bfff;
+    }
+
+    .pick-projection-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .pick-projection-stat {
+      padding: 11px 12px;
+      background: #f6f8f4;
+      border: 1px solid var(--line);
+    }
+
+    .pick-projection-stat strong {
+      display: block;
+      font: 900 22px/1 var(--mono);
+    }
+
+    .pick-projection-stat small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font: 850 8px/1.2 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .pick-projection-stat.td strong {
+      color: #267cb8;
+    }
+
+    @media (max-width: 900px) {
+      .hero-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        grid-column: 1;
+        grid-row: auto;
+        justify-content: flex-start;
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-inner {
+        padding-top: 34px;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 16vw, 70px);
+        white-space: normal;
+      }
+
+      .spotlight-player-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .spotlight-player-projection {
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 8px;
+      }
+
+      .spotlight-proj-stat {
+        min-width: 58px;
+      }
+    }
+    /* PLAYER PROJECTION ENHANCEMENT END */
+
     /* SPOTLIGHT GAME END */
 
     .toolbar {
@@ -2360,7 +2565,7 @@
               <span id="connection-label">Live feed connecting</span>
             </div>
 
-            <h1>READ THE<br><span>GAME.</span></h1>
+            <h1>READ THE <span>GAME.</span></h1>
 
             <p class="hero-copy" id="hero-copy">
               The strongest matchup on the slate is promoted automatically with
@@ -2736,10 +2941,14 @@
     var HISTORY_URL =
       "https://gridiron-pulse-history.kadescott97.workers.dev";
 
+    var PLAYER_CONTEXT_URL = "./data/player-context-v21.json";
+
     var FAVORITES_KEY = "gridironPulseFavoritesV1";
 
     var state = {
       snapshot: null,
+      playerContext: null,
+      playerContextError: "",
       seasonOutlook: null,
       seasonError: "",
       historicalOutlook: null,
@@ -3122,6 +3331,175 @@
     }
 
     /* SPOTLIGHT GAME START */
+
+    function projectionNameKey(value) {
+      return text(value, "")
+        .toLowerCase()
+        .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "")
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function projectionPosition(value) {
+      var position = text(value, "").toUpperCase();
+      if (["FB", "HB", "TB"].includes(position)) return "RB";
+      if (["LWR", "RWR", "SWR", "FL", "SE"].includes(position)) return "WR";
+      if (["LTE", "RTE"].includes(position)) return "TE";
+      return position;
+    }
+
+    function projectionTeam(value) {
+      var team = text(value, "").toUpperCase();
+      return {
+        JAC: "JAX",
+        LA: "LAR",
+        STL: "LAR",
+        OAK: "LV",
+        SD: "LAC",
+        WSH: "WAS"
+      }[team] || team;
+    }
+
+    function finiteProjection(value) {
+      var parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function findProjectionForPick(pick) {
+      var rows = list(state.playerContext && state.playerContext.players);
+      if (!rows.length || !pick) return null;
+
+      var name = projectionNameKey(pick.name);
+      var position = projectionPosition(pick.position || pick.positionGroup);
+      var team = projectionTeam(pick.team || pick.teamId);
+
+      var exact = rows.find(function(row) {
+        return (
+          projectionNameKey(
+            row.playerName || row.player_name || row.name
+          ) === name &&
+          projectionPosition(
+            row.position || row.positionGroup || row.target_position
+          ) === position &&
+          projectionTeam(
+            row.team || row.targetTeam || row.forecast_team
+          ) === team
+        );
+      });
+
+      if (exact) return exact;
+
+      return rows.find(function(row) {
+        return (
+          projectionNameKey(
+            row.playerName || row.player_name || row.name
+          ) === name &&
+          projectionPosition(
+            row.position || row.positionGroup || row.target_position
+          ) === position
+        );
+      }) || null;
+    }
+
+    function projectionMetricLabel(row, pick) {
+      var metric = text(row && row.primaryMetric, "").toLowerCase();
+      var position = projectionPosition(
+        pick && (pick.position || pick.positionGroup)
+      );
+
+      if (metric.includes("passing")) return "Proj pass yds";
+      if (metric.includes("rushing")) return "Proj rush yds";
+      if (metric.includes("receiving")) return "Proj rec yds";
+      if (metric.includes("yards")) return "Proj yards";
+      if (position === "QB") return "Proj pass yds";
+      if (position === "RB") return "Proj rush yds";
+      if (position === "WR" || position === "TE") return "Proj rec yds";
+      return "Projected stat";
+    }
+
+    function projectionDisplay(value, decimals) {
+      var parsed = finiteProjection(value);
+      if (parsed == null) return "—";
+      return parsed.toLocaleString(undefined, {
+        minimumFractionDigits: decimals || 0,
+        maximumFractionDigits: decimals || 0
+      });
+    }
+
+    function playerProjectionMarkup(pick) {
+      var row = findProjectionForPick(pick);
+      if (!row) return "";
+
+      var stat = finiteProjection(row.nextGameRate);
+      var touchdowns = finiteProjection(row.nextGameTouchdownRate);
+      if (stat == null && touchdowns == null) return "";
+
+      return (
+        '<div class="pick-projection-strip">' +
+        (stat == null
+          ? ""
+          : '<div class="pick-projection-stat"><strong>' +
+            escapeHtml(projectionDisplay(stat, 0)) +
+            "</strong><small>" +
+            escapeHtml(projectionMetricLabel(row, pick)) +
+            "</small></div>") +
+        (touchdowns == null
+          ? ""
+          : '<div class="pick-projection-stat td"><strong>' +
+            escapeHtml(projectionDisplay(touchdowns, 1)) +
+            "</strong><small>Projected TD</small></div>") +
+        "</div>"
+      );
+    }
+
+    function spotlightPickedProjections(picks) {
+      var cards = list(picks)
+        .map(function(pick) {
+          var row = findProjectionForPick(pick);
+          if (!row) return "";
+
+          var stat = finiteProjection(row.nextGameRate);
+          var touchdowns = finiteProjection(row.nextGameTouchdownRate);
+          if (stat == null && touchdowns == null) return "";
+
+          return (
+            '<article class="spotlight-player-projection">' +
+            '<div class="projection-name"><b>' +
+            escapeHtml(text(pick.name, "Player")) +
+            "</b><small>" +
+            escapeHtml(
+              text(pick.team, "NFL") +
+              " · " +
+              text(pick.position, "PLAYER")
+            ) +
+            "</small></div>" +
+            (stat == null
+              ? ""
+              : '<div class="spotlight-proj-stat"><strong>' +
+                escapeHtml(projectionDisplay(stat, 0)) +
+                "</strong><small>" +
+                escapeHtml(projectionMetricLabel(row, pick)) +
+                "</small></div>") +
+            (touchdowns == null
+              ? ""
+              : '<div class="spotlight-proj-stat td"><strong>' +
+                escapeHtml(projectionDisplay(touchdowns, 1)) +
+                "</strong><small>Proj TD</small></div>") +
+            "</article>"
+          );
+        })
+        .filter(Boolean)
+        .slice(0, 4);
+
+      if (!cards.length) return "";
+
+      return (
+        '<div class="spotlight-player-block"><strong>Projected player stats</strong>' +
+        '<div class="spotlight-player-grid">' +
+        cards.join("") +
+        "</div></div>"
+      );
+    }
+
     function spotlightGameScore(game) {
       var board = findBoard(game && game.id);
       var picks = list(board && board.picks);
@@ -3365,6 +3743,7 @@
         '<div class="spotlight-read"><small>Game read</small><p>' +
         escapeHtml(gameRead) +
         "</p></div>" +
+        spotlightPickedProjections(picks) +
         '<div class="spotlight-summary"><div><strong>' +
         escapeHtml(signals.length) +
         "</strong><small>Signals caught</small></div><div><strong>" +
@@ -3475,6 +3854,33 @@
 
       if (!document.querySelector(".overlay.open")) {
         document.body.classList.remove("modal-open");
+      }
+    }
+
+
+    async function loadPlayerContext(silent) {
+      try {
+        var response = await fetch(
+          PLAYER_CONTEXT_URL + "?t=" + Date.now(),
+          {
+            headers: { Accept: "application/json" },
+            cache: "no-store"
+          }
+        );
+        var payload = await response.json();
+        if (!response.ok || !payload || !Array.isArray(payload.players)) {
+          throw new Error("Player projection feed unavailable");
+        }
+        state.playerContext = payload;
+        state.playerContextError = "";
+        renderSpotlight();
+        renderEdges();
+      } catch (error) {
+        state.playerContextError = text(
+          error && error.message,
+          "Player projections temporarily unavailable"
+        );
+        if (!silent) toast(state.playerContextError);
       }
     }
 
@@ -5211,7 +5617,9 @@
             )
           )
         ) +
-        '</p><div class="signals">' +
+        "</p>" +
+        playerProjectionMarkup(pick) +
+        '<div class="signals">' +
         signals
           .map(function(signal) {
             return (
@@ -6914,6 +7322,7 @@
       "visibilitychange",
       function() {
         if (!document.hidden) {
+          loadPlayerContext(true);
           loadSnapshot(true);
           loadSeasonOutlook(true);
           loadHistoricalOutlook(true);
@@ -6922,6 +7331,7 @@
     );
 
     renderAll();
+    loadPlayerContext(true);
     loadSnapshot(true);
     loadSeasonOutlook(true);
     loadHistoricalOutlook(true);
