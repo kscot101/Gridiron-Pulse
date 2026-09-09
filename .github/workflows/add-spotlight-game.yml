@@ -1,0 +1,848 @@
+name: Add Spotlight Game to Homepage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/add-spotlight-game.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  spotlight-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Build the dynamic spotlight game hero
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+          page = path.read_text(encoding="utf-8")
+
+          if "SPOTLIGHT GAME START" in page:
+              print("Spotlight game is already installed.")
+              raise SystemExit(0)
+
+          style_anchor = "    .toolbar {"
+          if style_anchor not in page:
+              raise RuntimeError("Could not find the hero style insertion point")
+
+          spotlight_styles = r'''    /* SPOTLIGHT GAME START */
+    .hero {
+      min-height: 790px;
+    }
+
+    .hero-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.24fr) minmax(300px, 0.76fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .hero-intro {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 22px 0;
+    }
+
+    .hero h1 {
+      max-width: 560px;
+      font-size: clamp(68px, 9vw, 126px);
+    }
+
+    .hero-copy {
+      max-width: 540px;
+      font-size: clamp(15px, 1.6vw, 19px);
+    }
+
+    .spotlight-wrap {
+      min-width: 0;
+    }
+
+    .spotlight-card {
+      --spot-accent: var(--acid);
+      position: relative;
+      height: 100%;
+      min-height: 610px;
+      padding: 24px;
+      overflow: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at 88% 4%, color-mix(in srgb, var(--spot-accent) 24%, transparent), transparent 29%),
+        linear-gradient(150deg, rgba(20, 42, 31, 0.98), rgba(6, 15, 10, 0.99));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.32);
+    }
+
+    .spotlight-card::before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      content: "";
+      background: var(--spot-accent);
+      box-shadow: 0 0 28px color-mix(in srgb, var(--spot-accent) 72%, transparent);
+    }
+
+    .spotlight-card::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(145deg, #000, transparent 82%);
+    }
+
+    .spotlight-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .spotlight-card-head,
+    .spotlight-signal-head,
+    .spotlight-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .spotlight-overline {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--acid);
+      font: 900 10px/1 var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-card-head b {
+      color: rgba(255, 255, 255, 0.58);
+      font: 800 8px/1.35 var(--mono);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-state {
+      flex: 0 0 auto;
+      min-height: 29px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      color: var(--ink);
+      background: var(--acid);
+      border-radius: 999px;
+      font: 900 9px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .spotlight-state.live {
+      color: #fff;
+      background: var(--red);
+      box-shadow: 0 0 22px rgba(255, 93, 93, 0.35);
+    }
+
+    .spotlight-matchup {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin: 24px 0 16px;
+    }
+
+    .spotlight-team {
+      min-width: 0;
+      padding: 15px 10px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+    }
+
+    .spotlight-team .team-logo {
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 10px;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .spotlight-team strong {
+      display: block;
+      color: #fff;
+      font: 400 clamp(39px, 5.2vw, 62px)/0.8 var(--display);
+      text-transform: uppercase;
+    }
+
+    .spotlight-team-name {
+      max-width: 100%;
+      margin-top: 8px;
+      padding: 0;
+      overflow: hidden;
+      color: rgba(255, 255, 255, 0.76);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 850;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .spotlight-team small {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.42);
+      font: 800 8px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .spotlight-team-score {
+      display: block;
+      margin-top: 10px;
+      color: var(--acid);
+      font: 400 42px/0.8 var(--display);
+    }
+
+    .spotlight-at {
+      color: rgba(255, 255, 255, 0.36);
+      font: 900 10px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .spotlight-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 14px;
+      margin-bottom: 16px;
+      color: rgba(255, 255, 255, 0.49);
+      font: 750 8px/1.4 var(--mono);
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .spotlight-read {
+      padding: 15px 16px;
+      background: rgba(183, 255, 60, 0.065);
+      border: 1px solid rgba(183, 255, 60, 0.18);
+      border-left: 3px solid var(--acid);
+    }
+
+    .spotlight-read small {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--acid);
+      font: 900 8px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-read p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.77);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .spotlight-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+
+    .spotlight-summary div {
+      min-width: 0;
+      padding: 11px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .spotlight-summary strong {
+      display: block;
+      overflow: hidden;
+      color: #fff;
+      font: 800 18px/1 var(--mono);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .spotlight-summary small {
+      display: block;
+      margin-top: 7px;
+      color: rgba(255, 255, 255, 0.4);
+      font: 800 7px/1.25 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-signal-head {
+      margin-bottom: 10px;
+    }
+
+    .spotlight-signal-head strong {
+      color: #fff;
+      font: 900 10px/1 var(--mono);
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .spotlight-signal-head span {
+      color: var(--mint);
+      font: 800 8px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .spotlight-signals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .spotlight-signal {
+      min-width: 0;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 2px solid var(--signal-color, var(--mint));
+    }
+
+    .spotlight-signal small {
+      display: block;
+      margin-bottom: 6px;
+      overflow: hidden;
+      color: rgba(255, 255, 255, 0.4);
+      font: 800 7px/1.25 var(--mono);
+      letter-spacing: 0.04em;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .spotlight-signal b {
+      display: block;
+      margin-bottom: 5px;
+      color: #fff;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .spotlight-signal span {
+      display: -webkit-box;
+      overflow: hidden;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 10px;
+      line-height: 1.45;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .spotlight-actions {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .spotlight-actions .secondary {
+      min-height: 42px;
+      padding-inline: 16px;
+      font-size: 11px;
+    }
+
+    .spotlight-actions .primary {
+      min-height: 42px;
+      padding-inline: 16px;
+      font-size: 11px;
+    }
+
+    .spotlight-empty {
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .spotlight-empty strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--acid);
+      font: 400 clamp(42px, 7vw, 78px)/0.85 var(--display);
+      text-transform: uppercase;
+    }
+
+    .spotlight-empty p {
+      max-width: 390px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.56);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-intro {
+        padding-top: 0;
+      }
+
+      .hero h1,
+      .hero-copy {
+        max-width: 780px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stage {
+        gap: 24px;
+      }
+
+      .spotlight-card {
+        min-height: 0;
+        padding: 18px;
+      }
+
+      .spotlight-matchup {
+        gap: 7px;
+      }
+
+      .spotlight-team {
+        padding: 12px 6px;
+      }
+
+      .spotlight-team .team-logo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .spotlight-team strong {
+        font-size: clamp(34px, 12vw, 50px);
+      }
+
+      .spotlight-summary,
+      .spotlight-signals {
+        grid-template-columns: 1fr;
+      }
+
+      .spotlight-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .spotlight-actions button {
+        width: 100%;
+      }
+    }
+    /* SPOTLIGHT GAME END */
+
+'''
+          page = page.replace(style_anchor, spotlight_styles + style_anchor, 1)
+
+          hero_start = page.find('    <section class="hero" id="top">')
+          next_section = page.find('    <section class="section soft" id="my-pulse">')
+          if hero_start < 0 or next_section < 0 or next_section <= hero_start:
+              raise RuntimeError("Could not locate the current homepage hero")
+
+          spotlight_hero = r'''    <section class="hero" id="top">
+      <div class="shell hero-inner">
+        <div class="hero-stage">
+          <div class="spotlight-wrap" id="spotlight-game">
+            <article class="spotlight-card spotlight-empty">
+              <div>
+                <strong>Scanning the slate</strong>
+                <p>The strongest game signal cluster will rise here as soon as the live football feed connects.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="hero-intro">
+            <div class="hero-status">
+              <i></i>
+              <span id="connection-label">Live feed connecting</span>
+            </div>
+
+            <h1>READ THE<br><span>GAME.</span></h1>
+
+            <p class="hero-copy" id="hero-copy">
+              The strongest matchup on the slate is promoted automatically with
+              its game read, player-edge signals, availability pressure and the
+              context that made it stand out.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary" data-scroll="games">
+                View Full Game Board ↘
+              </button>
+
+              <button class="secondary" data-scroll="player-edge">
+                Open Player Edge
+              </button>
+
+              <button class="secondary" type="button" onclick="window.location.href='projections-2026.html'">
+                2026 Projections
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-meta">
+          <div>
+            <strong id="meta-games">—</strong>
+            <small>Games</small>
+          </div>
+
+          <div>
+            <strong id="meta-edges">—</strong>
+            <small>Player edges</small>
+          </div>
+
+          <div>
+            <strong id="meta-concerns">—</strong>
+            <small>Availability flags</small>
+          </div>
+
+          <div>
+            <strong id="meta-updated">—</strong>
+            <small>Last update</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+'''
+          page = page[:hero_start] + spotlight_hero + page[next_section:]
+
+          nav_anchor = '      <nav class="nav" aria-label="Main navigation">\n        <button data-scroll="season-outlook">Season Outlook</button>'
+          if nav_anchor in page:
+              page = page.replace(
+                  nav_anchor,
+                  '      <nav class="nav" aria-label="Main navigation">\n        <button data-scroll="top">Spotlight</button>\n        <button data-scroll="season-outlook">Season Outlook</button>',
+                  1,
+              )
+
+          js_anchor = "    function toggleFavorite(kind, key) {"
+          if js_anchor not in page:
+              raise RuntimeError("Could not find the spotlight JavaScript insertion point")
+
+          spotlight_js = r'''    /* SPOTLIGHT GAME START */
+    function spotlightGameScore(game) {
+      var board = findBoard(game && game.id);
+      var picks = list(board && board.picks);
+      var signalCount = picks.reduce(function(total, pick) {
+        return total + list(pick && pick.signals).length;
+      }, 0);
+      var topEdge = picks.reduce(function(best, pick) {
+        return Math.max(best, number(pick && pick.score, 0));
+      }, 0);
+      var gameState = text(game && game.status && game.status.state, "pre");
+      var stateWeight = gameState === "in"
+        ? 300000
+        : gameState === "pre"
+          ? 200000
+          : 100000;
+      var kickoff = new Date(game && game.date).getTime();
+      var proximity = Number.isFinite(kickoff)
+        ? Math.max(0, 700 - Math.abs(kickoff - Date.now()) / 3600000)
+        : 0;
+
+      return (
+        stateWeight +
+        signalCount * 1000 +
+        topEdge * 18 +
+        picks.length * 250 +
+        proximity
+      );
+    }
+
+    function spotlightGame() {
+      return allGames()
+        .slice()
+        .sort(function(a, b) {
+          return spotlightGameScore(b) - spotlightGameScore(a);
+        })[0] || null;
+    }
+
+    function spotlightConcernCount(game) {
+      return list(game && game.injuries).filter(function(item) {
+        var status = text(
+          item && (item.status || item.type || item.level),
+          "monitor"
+        ).toLowerCase();
+
+        return !/(available|active|probable|healthy)/.test(status);
+      }).length;
+    }
+
+    function spotlightSignalItems(game, board) {
+      var items = [];
+
+      list(board && board.picks).forEach(function(pick) {
+        list(pick && pick.signals).forEach(function(signal) {
+          items.push({
+            label: text(signal && signal.label, "Player signal"),
+            detail: text(
+              signal && signal.detail,
+              text(pick && pick.forecast, "Matchup signal detected.")
+            ),
+            source:
+              text(pick && pick.name, "Player") +
+              " · " +
+              text(pick && pick.team, "NFL") +
+              " · Edge " +
+              number(pick && pick.score, "—"),
+            color: color(pick && pick.accent)
+          });
+        });
+      });
+
+      var seen = {};
+      items = items.filter(function(item) {
+        var key = (item.label + "|" + item.detail).toLowerCase();
+        if (seen[key]) return false;
+        seen[key] = true;
+        return true;
+      });
+
+      list(game && game.comparisonStats).forEach(function(stat) {
+        if (items.length >= 6) return;
+        var away = game && game.teams && game.teams.away || {};
+        var home = game && game.teams && game.teams.home || {};
+        var item = {
+          label: text(stat && stat.label, "Team comparison"),
+          detail:
+            text(away.abbreviation, "AWAY") +
+            " " +
+            text(stat && stat.away, "—") +
+            " · " +
+            text(home.abbreviation, "HOME") +
+            " " +
+            text(stat && stat.home, "—"),
+          source: "Team comparison",
+          color: color(home.color)
+        };
+        var key = (item.label + "|" + item.detail).toLowerCase();
+        if (!seen[key]) {
+          seen[key] = true;
+          items.push(item);
+        }
+      });
+
+      var weather = text(game && game.weather && game.weather.display, "");
+      if (weather && items.length < 6) {
+        items.push({
+          label: "Weather",
+          detail: weather,
+          source: "Game conditions",
+          color: "#78bfff"
+        });
+      }
+
+      var concerns = spotlightConcernCount(game);
+      if (concerns && items.length < 6) {
+        items.push({
+          label: "Availability pressure",
+          detail:
+            concerns +
+            (concerns === 1 ? " player concern is" : " player concerns are") +
+            " attached to this matchup.",
+          source: "Availability monitor",
+          color: "#ff8c42"
+        });
+      }
+
+      return items;
+    }
+
+    function spotlightTeamMarkup(team, game) {
+      team = team || {};
+      var gameState = text(game && game.status && game.status.state, "pre");
+      var showScore = gameState !== "pre";
+      var key = teamKey(team);
+      var name = text(
+        team.displayName || team.teamName || team.name,
+        team.abbreviation || "NFL Team"
+      );
+
+      return (
+        '<div class="spotlight-team">' +
+        imageOrFallback(
+          team.logo,
+          team.abbreviation || name,
+          "team-logo",
+          color(team.color)
+        ) +
+        "<strong>" +
+        escapeHtml(text(team.abbreviation, initials(name))) +
+        "</strong>" +
+        '<button type="button" class="spotlight-team-name" data-profile-kind="team" data-profile-key="' +
+        escapeHtml(key) +
+        '">' +
+        escapeHtml(name) +
+        "</button>" +
+        "<small>" +
+        escapeHtml(text(team.record, "Record forming")) +
+        "</small>" +
+        (showScore
+          ? '<b class="spotlight-team-score">' +
+            escapeHtml(text(team.score, "0")) +
+            "</b>"
+          : "") +
+        "</div>"
+      );
+    }
+
+    function renderSpotlight() {
+      var box = document.getElementById("spotlight-game");
+      if (!box) return;
+
+      var game = spotlightGame();
+      if (!game) {
+        box.innerHTML =
+          '<article class="spotlight-card spotlight-empty"><div><strong>Scanning the slate</strong><p>The strongest game signal cluster will rise here as soon as the live football feed connects.</p></div></article>';
+        return;
+      }
+
+      var board = findBoard(game.id);
+      var picks = list(board && board.picks);
+      var signals = spotlightSignalItems(game, board);
+      var away = game.teams && game.teams.away || {};
+      var home = game.teams && game.teams.home || {};
+      var gameState = text(game.status && game.status.state, "pre");
+      var statusLabel = gameState === "in"
+        ? text(game.status && game.status.shortDetail, "LIVE")
+        : gameState === "post"
+          ? "FINAL"
+          : timeLabel(game.date);
+      var topEdge = picks.length
+        ? picks.reduce(function(best, pick) {
+            return Math.max(best, number(pick && pick.score, 0));
+          }, 0)
+        : null;
+      var concerns = spotlightConcernCount(game);
+      var metadata = [
+        gameState === "pre" ? timeLabel(game.date) : text(game.status && game.status.shortDetail, statusLabel),
+        game.venue && game.venue.name,
+        game.weather && game.weather.display,
+        board && board.lockStatus
+      ].filter(Boolean);
+      var gameRead = text(
+        board && board.read,
+        picks[0] && picks[0].forecast ||
+          "The signal board is still building its matchup read."
+      );
+      var signalMarkup = signals.length
+        ? signals.slice(0, 6).map(function(signal) {
+            return (
+              '<article class="spotlight-signal" style="--signal-color:' +
+              escapeHtml(signal.color) +
+              '"><small>' +
+              escapeHtml(signal.source) +
+              "</small><b>" +
+              escapeHtml(signal.label) +
+              "</b><span>" +
+              escapeHtml(signal.detail) +
+              "</span></article>"
+            );
+          }).join("")
+        : '<div class="spotlight-signal" style="grid-column:1/-1"><small>Signal board</small><b>Collecting matchup context</b><span>Player, team, weather and availability signals will appear here as the slate is verified.</span></div>';
+
+      box.innerHTML =
+        '<article class="spotlight-card" style="--spot-accent:' +
+        escapeHtml(color(home.color || away.color)) +
+        '">' +
+        '<div class="spotlight-card-head"><div><span class="spotlight-overline">Spotlight Game</span><b>Strongest signal cluster on the current slate</b></div><span class="spotlight-state ' +
+        (gameState === "in" ? "live" : "") +
+        '">' +
+        escapeHtml(statusLabel) +
+        "</span></div>" +
+        '<div class="spotlight-matchup">' +
+        spotlightTeamMarkup(away, game) +
+        '<div class="spotlight-at">AT</div>' +
+        spotlightTeamMarkup(home, game) +
+        "</div>" +
+        '<div class="spotlight-meta">' +
+        metadata.map(function(item) {
+          return "<span>" + escapeHtml(item) + "</span>";
+        }).join("") +
+        "</div>" +
+        '<div class="spotlight-read"><small>Game read</small><p>' +
+        escapeHtml(gameRead) +
+        "</p></div>" +
+        '<div class="spotlight-summary"><div><strong>' +
+        escapeHtml(signals.length) +
+        "</strong><small>Signals caught</small></div><div><strong>" +
+        escapeHtml(topEdge == null ? "—" : topEdge) +
+        "</strong><small>Top player edge</small></div><div><strong>" +
+        escapeHtml(concerns) +
+        "</strong><small>Availability flags</small></div></div>" +
+        '<div class="spotlight-signal-head"><strong>Why this game surfaced</strong><span>' +
+        escapeHtml(picks.length) +
+        (picks.length === 1 ? " player path" : " player paths") +
+        "</span></div>" +
+        '<div class="spotlight-signals">' +
+        signalMarkup +
+        "</div>" +
+        '<div class="spotlight-actions"><button type="button" class="primary" data-game="' +
+        escapeHtml(game.id) +
+        '">Open Spotlight Game Hub ↗</button><button type="button" class="secondary" data-scroll="games">See Every Game</button></div>' +
+        "</article>";
+    }
+    /* SPOTLIGHT GAME END */
+
+'''
+          page = page.replace(js_anchor, spotlight_js + js_anchor, 1)
+
+          render_anchor = "      renderHeader();\n      renderScores();"
+          if render_anchor not in page:
+              raise RuntimeError("Could not connect spotlight rendering to renderAll")
+          page = page.replace(
+              render_anchor,
+              "      renderHeader();\n      renderSpotlight();\n      renderScores();",
+              1,
+          )
+
+          required = [
+              "SPOTLIGHT GAME START",
+              'id="spotlight-game"',
+              "function renderSpotlight()",
+              "renderSpotlight();",
+              "Signals caught",
+              "Open Spotlight Game Hub",
+          ]
+          missing = [item for item in required if item not in page]
+          if missing:
+              raise RuntimeError(f"Spotlight validation failed: {missing}")
+
+          path.write_text(page, encoding="utf-8")
+          print("Dynamic spotlight game installed successfully.")
+          PY
+
+      - name: Commit spotlight homepage
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No homepage changes to commit."
+            exit 0
+          fi
+          git commit -m "Add dynamic spotlight game to homepage"
+          git push origin main
