@@ -1,0 +1,56 @@
+name: Refresh Player Game Logs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build-player-game-logs.py
+      - .github/workflows/refresh-player-game-logs.yml
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: player-recent-games
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Build verified recent game records
+        run: python scripts/build-player-game-logs.py
+      - name: Capture read-only data for integration checks
+        if: github.event_name != 'schedule'
+        continue-on-error: true
+        run: |
+          mkdir -p /tmp/gp-fixtures
+          curl -fLsS --max-time 45 https://grid-pulse-agent.kadescott97.workers.dev/latest -o /tmp/gp-fixtures/snapshot.json
+          curl -fLsS --max-time 45 https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook -o /tmp/gp-fixtures/season.json
+      - name: Upload verification data
+        if: github.event_name != 'schedule'
+        uses: actions/upload-artifact@v4
+        with:
+          name: player-log-verification
+          path: |
+            data/player-recent-games.json
+            /tmp/gp-fixtures/*.json
+          retention-days: 2
+      - name: Publish updated recent stats
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/player-recent-games.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Refresh published player game logs'
+          git pull --rebase origin main
+          git push origin main
