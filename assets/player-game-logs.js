@@ -55,6 +55,8 @@
             id, date, timestamp, year: Number(year), season: label || str(year),
             phase: /postseason|playoff/i.test(label) || type === '3' ? 'Playoffs' : 'Regular season',
             week: event.week, team: team(event.team) || team(season.displayTeam),
+            opponentTeam: team(event.opponent),
+            opponentName: str((event.opponent || {}).displayName || (event.opponent || {}).abbreviation || 'Unknown'),
             opponent: (event.atVs === '@' ? '@ ' : 'vs ') + str((event.opponent || {}).abbreviation || (event.opponent || {}).displayName || 'Unknown'),
             result: str(event.gameResult) + (event.score ? ' ' + str(event.score) : ''),
             stats: Object.assign({}, previous && previous.stats, stats)
@@ -157,6 +159,140 @@
     const d = new Date();
     return d.getUTCFullYear() - (d.getUTCMonth() < 2 ? 1 : 0);
   }
+
+  /* HEAD-TO-HEAD VS CURRENT OPPONENT */
+  const offensivePositions = new Set(['QB','RB','WR','TE']);
+  function gameSideTeam(game, side) {
+    const item = game && game.teams && game.teams[side] || {};
+    return team(item.abbreviation || item.team || item.teamAbbreviation || item.code);
+  }
+  function gameSideName(game, side) {
+    const item = game && game.teams && game.teams[side] || {};
+    return str(item.displayName || item.teamName || item.name || item.abbreviation || item.team || 'NFL Team');
+  }
+  function gameForId(id) {
+    if (!id) return null;
+    try {
+      if (typeof window.findGame === 'function') {
+        const found = window.findGame(id);
+        if (found) return found;
+      }
+    } catch (_) {}
+    try {
+      const games = typeof window.allGames === 'function' ? arr(window.allGames()) : arr((window.state || {}).snapshot && (window.state || {}).snapshot.games);
+      return games.find(game => str(game && game.id) === str(id)) || null;
+    } catch (_) { return null; }
+  }
+  function currentOpponent(p) {
+    if (!p || !offensivePositions.has(pos(p.position))) return null;
+    const raw = p.raw || {};
+    let game = gameForId(raw.gameId || raw.eventId || raw.game_id);
+
+    if (!game && typeof window.allBoards === 'function') {
+      try {
+        const board = arr(window.allBoards()).find(item => arr(item && item.picks).some(pick => {
+          return norm(nameOf(pick)) === norm(p.name) && (!p.team || team(pick && pick.team) === p.team);
+        }));
+        if (board) game = gameForId(board.gameId || board.id);
+      } catch (_) {}
+    }
+
+    if (!game) {
+      try {
+        const now = Date.now();
+        const games = (typeof window.allGames === 'function' ? arr(window.allGames()) : arr((window.state || {}).snapshot && (window.state || {}).snapshot.games))
+          .filter(item => {
+            const away = gameSideTeam(item, 'away');
+            const home = gameSideTeam(item, 'home');
+            const state = str(item && item.status && item.status.state);
+            return (away === p.team || home === p.team) && state !== 'post';
+          })
+          .sort((a,b) => {
+            const aLive = str(a && a.status && a.status.state) === 'in' ? 1 : 0;
+            const bLive = str(b && b.status && b.status.state) === 'in' ? 1 : 0;
+            if (aLive !== bLive) return bLive - aLive;
+            const ad = Date.parse(a && a.date), bd = Date.parse(b && b.date);
+            const av = Number.isFinite(ad) ? Math.abs(ad - now) : Number.MAX_SAFE_INTEGER;
+            const bv = Number.isFinite(bd) ? Math.abs(bd - now) : Number.MAX_SAFE_INTEGER;
+            return av - bv;
+          });
+        game = games[0] || null;
+      } catch (_) {}
+    }
+
+    if (!game) return null;
+    const away = gameSideTeam(game, 'away');
+    const home = gameSideTeam(game, 'home');
+    let side = '';
+    if (p.team && away === p.team) side = 'home';
+    else if (p.team && home === p.team) side = 'away';
+    if (!side) return null;
+    return {
+      team: gameSideTeam(game, side),
+      name: gameSideName(game, side),
+      gameId: str(game.id),
+      date: game.date || null
+    };
+  }
+  async function headToHead(p) {
+    if (!p || !offensivePositions.has(pos(p.position))) return null;
+    const opponent = currentOpponent(p);
+    if (!opponent || !opponent.team) return null;
+    p = await resolve(p);
+    const year = seasonYear();
+    const oldest = Math.max(2017, year - 9);
+    let rows = [], failed = [];
+    for (let y = year; y >= oldest; y--) {
+      try {
+        const data = await json('https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/' + p.id + '/gamelog?season=' + y,300000);
+        rows = rows.concat(parseGameLog(data,y).filter(row => row.opponentTeam === opponent.team));
+      } catch (error) { failed.push(y); }
+    }
+    rows = Array.from(new Map(rows.map(row => [row.id,row])).values()).sort((a,b)=>b.timestamp-a.timestamp);
+    return { opponent, rows, failed, year, oldest };
+  }
+  function touchdownValue(row, position) {
+    const get = key => num(row && row.stats && row.stats[key]) || 0;
+    if (position === 'QB') return get('passingTouchdowns') + get('rushingTouchdowns');
+    if (position === 'RB') return get('rushingTouchdowns') + get('receivingTouchdowns');
+    return get('receivingTouchdowns');
+  }
+  function primaryYardField(position) {
+    if (position === 'QB') return field('passingYards','Pass yards');
+    if (position === 'RB') return field('rushingYards','Rush yards');
+    return field('receivingYards','Rec yards');
+  }
+  function renderHeadToHead(data, p) {
+    if (!data) return '';
+    if (data.error) {
+      return '<section class="gp-h2h"><div class="gp-h2h-head"><p>HEAD TO HEAD</p><h4>Vs current opponent</h4></div><p class="gp-note">'+esc(data.error)+'</p></section>';
+    }
+    const opponent = data.opponent || {};
+    const rows = arr(data.rows);
+    const label = opponent.name || opponent.team || 'Current opponent';
+    const heading = '<div class="gp-h2h-head"><p>HEAD TO HEAD</p><h4>Vs '+esc(label)+(opponent.team && label.indexOf(opponent.team) === -1 ? ' · '+esc(opponent.team) : '')+'</h4></div>';
+    if (!rows.length) {
+      return '<section class="gp-h2h">'+heading+'<p class="gp-note">No completed regular-season or playoff meetings were found against this opponent from '+esc(data.oldest)+' through '+esc(data.year)+'.</p></section>';
+    }
+    const fs = columns(p.position,rows);
+    const yardField = primaryYardField(p.position);
+    const yardValues = rows.map(row => num(stat(row,yardField))).filter(value => value !== null);
+    const yardAverage = yardValues.length ? (yardValues.reduce((a,b)=>a+b,0)/yardValues.length).toFixed(1) : '\u2014';
+    const tdTotal = rows.reduce((sum,row)=>sum+touchdownValue(row,p.position),0);
+    const record = rows.reduce((out,row) => {
+      const result = str(row.result).charAt(0);
+      if (result === 'W') out.w += 1;
+      if (result === 'L') out.l += 1;
+      if (result === 'T') out.t += 1;
+      return out;
+    },{w:0,l:0,t:0});
+    const recordLabel = record.w+'-'+record.l+(record.t ? '-'+record.t : '');
+    const summaries = '<div class="gp-h2h-summary"><div><strong>'+rows.length+'</strong><small>Meetings</small></div><div><strong>'+esc(yardAverage)+'</strong><small>Avg '+esc(yardField.label)+'</small></div><div><strong>'+esc(tdTotal)+'</strong><small>Total TD</small></div><div><strong>'+esc(recordLabel)+'</strong><small>Team record</small></div></div>';
+    const table = '<div class="gp-table-scroll" role="region" aria-label="Head-to-head game box scores; scroll for more stats" tabindex="0"><table class="gp-game-table gp-h2h-table"><caption>'+rows.length+' previous meeting'+(rows.length===1?'':'s')+' vs '+esc(opponent.team || label)+'</caption><thead><tr><th scope="col">Date / season</th><th scope="col">Result</th>'+fs.map(f=>'<th scope="col">'+esc(f.label)+'</th>').join('')+'<th scope="col">Box score</th></tr></thead><tbody>'+rows.map(row=>'<tr><th scope="row">'+esc(new Date(row.date).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}))+'<small>'+esc(row.year+' '+row.phase)+(row.team?' \u00b7 '+esc(row.team):'')+'</small></th><td>'+esc(row.result)+'</td>'+fs.map(f=>'<td>'+esc(stat(row,f)==null?'\u2014':stat(row,f))+'</td>').join('')+'<td><a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(row.id)+'" target="_blank" rel="noopener noreferrer">View &#8599;</a></td></tr>').join('')+'</tbody></table></div>';
+    const note = data.failed.length ? '<p class="gp-note">Some seasons could not be loaded ('+esc(data.failed.join(', '))+'). Showing all verified meetings that were available.</p>' : '<p class="gp-note">Actual completed games only. Preseason is excluded.</p>';
+    return '<section class="gp-h2h">'+heading+summaries+note+table+'</section>';
+  }
+
   async function recent(p) {
     p = await resolve(p);
     const year = seasonYear();
@@ -223,8 +359,9 @@
   function renderGames(box, data) {
     const p = data.player, rows = data.rows, fs = columns(p.position,rows);
     const external = '<a class="gp-source" href="https://www.espn.com/nfl/player/gamelog/_/id/' + p.id + '" target="_blank" rel="noopener noreferrer">ESPN game log &#8599;</a>';
+    const h2hMarkup = renderHeadToHead(data.headToHead, p);
     if (!rows.length) {
-      box.innerHTML = '<p class="gp-note">No completed regular-season or playoff game stats were returned for this player in the last three seasons. Preseason games are excluded.</p>' + external;
+      box.innerHTML = '<p class="gp-note">No completed regular-season or playoff game stats were returned for this player in the last three seasons. Preseason games are excluded.</p>' + external + h2hMarkup;
       return;
     }
     const summaries = fs.slice(0,3).map(f => {
@@ -235,7 +372,7 @@
     const prior = rows.some(r=>r.year<data.year);
     const notes = (prior ? 'Includes previous-season games; each season is labeled. ' : '') + (data.failed.length ? 'Some seasons could not be loaded ('+data.failed.join(', ')+'). Showing available results. ' : '') + 'Actual completed games only. Preseason excluded. A dash means the source did not report that stat.';
     const table = '<div class="gp-table-scroll" role="region" aria-label="Recent game box scores; scroll for more stats" tabindex="0"><table class="gp-game-table"><caption>Last '+rows.length+' completed game'+(rows.length===1?'':'s')+' with stats</caption><thead><tr><th scope="col">Date / season</th><th scope="col">Opponent</th><th scope="col">Result</th>'+fs.map(f=>'<th scope="col">'+esc(f.label)+'</th>').join('')+'<th scope="col">Box score</th></tr></thead><tbody>'+rows.map(r=>'<tr><th scope="row">'+esc(new Date(r.date).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}))+'<small>'+esc(r.year+' '+r.phase)+(r.team?' \u00b7 '+esc(r.team):'')+'</small></th><td>'+esc(r.opponent)+'</td><td>'+esc(r.result)+'</td>'+fs.map(f=>'<td>'+esc(stat(r,f)==null?'\u2014':stat(r,f))+'</td>').join('')+'<td><a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(r.id)+'" target="_blank" rel="noopener noreferrer" aria-label="Full box score for '+esc(r.opponent)+' on '+esc(r.date.slice(0,10))+'">View &#8599;</a></td></tr>').join('')+'</tbody></table></div>';
-    box.innerHTML = '<p class="gp-note">'+esc(notes)+'</p><div class="gp-averages">'+summaries+'</div>'+table+'<div class="gp-log-foot"><span>Source: ESPN \u00b7 Loaded '+esc(new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}))+'</span>'+external+'</div>';
+    box.innerHTML = '<p class="gp-note">'+esc(notes)+'</p><div class="gp-averages">'+summaries+'</div>'+table+'<div class="gp-log-foot"><span>Source: ESPN \u00b7 Loaded '+esc(new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}))+'</span>'+external+'</div>'+h2hMarkup;
   }
   function mount(p, parent, before) {
     const section = doc.createElement('section');
@@ -250,6 +387,13 @@
       content.innerHTML='<p class="gp-note">Loading completed games...</p>';
       try {
         const data = await recent(p);
+        if (offensivePositions.has(pos(data.player.position))) {
+          try {
+            data.headToHead = await headToHead(data.player);
+          } catch (headError) {
+            data.headToHead = { error: 'Opponent history is temporarily unavailable. Please try again.' };
+          }
+        }
         if (version===revision && content.isConnected) renderGames(content,data);
       } catch(e) {
         if (version===revision && content.isConnected) content.innerHTML='<p class="gp-note">'+esc(e.message || 'Recent game stats could not be loaded.')+'</p>';
@@ -321,7 +465,7 @@
   },true);
   const style=doc.createElement('style'); style.id='gp-game-log-styles';
   style.textContent=`
-.gp-player-link{display:inline;border:0;padding:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;text-align:inherit;text-decoration:underline;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer;white-space:normal}.gp-player-link:hover{opacity:.78}.gp-player-link:focus-visible{outline:2px solid #61e6a8;outline-offset:4px;border-radius:2px}.gp-game-section{padding:22px;margin:24px 0;border:1px solid #2e483b;border-radius:14px;background:#0b1b13;color:#f5faf7;font:400 14px/1.5 Inter,system-ui,sans-serif}.gp-log-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.gp-log-head p{margin:0 0 4px;color:#b7ff3c;font-size:10px;font-weight:800;letter-spacing:.12em}.gp-log-head h3{margin:0;color:#fff;font-size:23px;line-height:1.2}.gp-log-head h3:focus{outline:0}.gp-retry{min-height:42px;padding:8px 12px;border:1px solid #42614f;border-radius:9px;background:transparent;color:#e9f4ed;font:700 12px system-ui;cursor:pointer}.gp-retry:disabled{opacity:.45;cursor:wait}.gp-note{margin:14px 0!important;color:#b8cbbf!important;font-size:12px!important;line-height:1.7!important}.gp-averages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}.gp-averages>div{padding:12px;border:1px solid #294132;background:#12271b;border-radius:9px}.gp-averages strong{display:block;color:#b7ff3c;font:800 25px/1.1 Consolas,monospace}.gp-averages small,.gp-averages span{display:block;margin-top:5px;color:#d2e0d7;font-size:11px}.gp-averages span{color:#9bb3a3;font-size:10px}.gp-table-scroll{max-width:100%;overflow-x:auto;border:1px solid #2e483b;border-radius:9px}.gp-game-table{border-collapse:collapse;width:100%;min-width:640px;background:#0b1b13;color:#ecf5ef;font:500 13px/1.4 system-ui;white-space:nowrap}.gp-game-table caption{padding:12px;text-align:left;color:#c2d3c8;font-weight:700;font-size:12px}.gp-game-table th,.gp-game-table td{padding:13px 12px;border-top:1px solid #2e483b;text-align:right}.gp-game-table th:first-child,.gp-game-table td:nth-child(2),.gp-game-table td:nth-child(3){text-align:left}.gp-game-table thead{background:#182f21;color:#bdd1c5;font-size:11px}.gp-game-table tbody tr:nth-child(even){background:#102217}.gp-game-table th small{display:block;color:#a0b9aa;font-size:10px;font-weight:500;margin-top:4px}.gp-game-table a,.gp-source{color:#b7ff3c;text-underline-offset:3px}.gp-log-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;color:#9db6a7;font-size:11px}.gp-player-dialog{width:min(960px,calc(100% - 24px));max-height:90dvh;padding:24px;border:1px solid #385842;border-radius:18px;background:#07110d;color:#fff;box-sizing:border-box;overflow:auto;font-family:Inter,system-ui,sans-serif}.gp-player-dialog::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(5px)}.gp-player-dialog>header{display:flex;align-items:center;justify-content:space-between;gap:12px}.gp-player-dialog h2{font-size:clamp(24px,5vw,36px);margin:0}.gp-player-dialog header p{font-size:12px;color:#b7ff3c;margin:0 0 5px}.gp-dialog-close{flex:0 0 auto;width:44px;height:44px;border:1px solid #42614f;border-radius:50%;background:transparent;color:#fff;font-size:25px;cursor:pointer}.gp-player-dialog .gp-game-section{margin-bottom:0}.gp-game-section button:focus-visible,.gp-player-dialog button:focus-visible,.gp-table-scroll:focus-visible{outline:2px solid #b7ff3c;outline-offset:3px}@media(max-width:600px){.gp-game-section{padding:14px;margin:18px 0}.gp-player-dialog{padding:16px}.gp-log-head h3{font-size:20px}.gp-averages{gap:6px}.gp-averages>div{padding:9px}.gp-averages strong{font-size:22px}.gp-averages small{font-size:10px}.gp-log-head{align-items:flex-start}.gp-retry{font-size:11px}}
+.gp-player-link{display:inline;border:0;padding:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;text-align:inherit;text-decoration:underline;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer;white-space:normal}.gp-player-link:hover{opacity:.78}.gp-player-link:focus-visible{outline:2px solid #61e6a8;outline-offset:4px;border-radius:2px}.gp-game-section{padding:22px;margin:24px 0;border:1px solid #2e483b;border-radius:14px;background:#0b1b13;color:#f5faf7;font:400 14px/1.5 Inter,system-ui,sans-serif}.gp-log-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.gp-log-head p{margin:0 0 4px;color:#b7ff3c;font-size:10px;font-weight:800;letter-spacing:.12em}.gp-log-head h3{margin:0;color:#fff;font-size:23px;line-height:1.2}.gp-log-head h3:focus{outline:0}.gp-retry{min-height:42px;padding:8px 12px;border:1px solid #42614f;border-radius:9px;background:transparent;color:#e9f4ed;font:700 12px system-ui;cursor:pointer}.gp-retry:disabled{opacity:.45;cursor:wait}.gp-note{margin:14px 0!important;color:#b8cbbf!important;font-size:12px!important;line-height:1.7!important}.gp-averages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}.gp-averages>div{padding:12px;border:1px solid #294132;background:#12271b;border-radius:9px}.gp-averages strong{display:block;color:#b7ff3c;font:800 25px/1.1 Consolas,monospace}.gp-averages small,.gp-averages span{display:block;margin-top:5px;color:#d2e0d7;font-size:11px}.gp-averages span{color:#9bb3a3;font-size:10px}.gp-table-scroll{max-width:100%;overflow-x:auto;border:1px solid #2e483b;border-radius:9px}.gp-game-table{border-collapse:collapse;width:100%;min-width:640px;background:#0b1b13;color:#ecf5ef;font:500 13px/1.4 system-ui;white-space:nowrap}.gp-game-table caption{padding:12px;text-align:left;color:#c2d3c8;font-weight:700;font-size:12px}.gp-game-table th,.gp-game-table td{padding:13px 12px;border-top:1px solid #2e483b;text-align:right}.gp-game-table th:first-child,.gp-game-table td:nth-child(2),.gp-game-table td:nth-child(3){text-align:left}.gp-game-table thead{background:#182f21;color:#bdd1c5;font-size:11px}.gp-game-table tbody tr:nth-child(even){background:#102217}.gp-game-table th small{display:block;color:#a0b9aa;font-size:10px;font-weight:500;margin-top:4px}.gp-game-table a,.gp-source{color:#b7ff3c;text-underline-offset:3px}.gp-log-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;color:#9db6a7;font-size:11px}.gp-h2h{margin-top:24px;padding-top:22px;border-top:1px solid #31503d}.gp-h2h-head p{margin:0 0 5px;color:#61e6a8;font-size:10px;font-weight:900;letter-spacing:.12em}.gp-h2h-head h4{margin:0;color:#fff;font-size:21px}.gp-h2h-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:15px 0}.gp-h2h-summary>div{padding:11px;border:1px solid #31503d;border-radius:9px;background:#102218}.gp-h2h-summary strong{display:block;color:#61e6a8;font:800 22px/1.1 Consolas,monospace}.gp-h2h-summary small{display:block;margin-top:5px;color:#a9c0b2;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.gp-h2h-table td:nth-child(2){text-align:left}.gp-player-dialog{width:min(960px,calc(100% - 24px));max-height:90dvh;padding:24px;border:1px solid #385842;border-radius:18px;background:#07110d;color:#fff;box-sizing:border-box;overflow:auto;font-family:Inter,system-ui,sans-serif}.gp-player-dialog::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(5px)}.gp-player-dialog>header{display:flex;align-items:center;justify-content:space-between;gap:12px}.gp-player-dialog h2{font-size:clamp(24px,5vw,36px);margin:0}.gp-player-dialog header p{font-size:12px;color:#b7ff3c;margin:0 0 5px}.gp-dialog-close{flex:0 0 auto;width:44px;height:44px;border:1px solid #42614f;border-radius:50%;background:transparent;color:#fff;font-size:25px;cursor:pointer}.gp-player-dialog .gp-game-section{margin-bottom:0}.gp-game-section button:focus-visible,.gp-player-dialog button:focus-visible,.gp-table-scroll:focus-visible{outline:2px solid #b7ff3c;outline-offset:3px}@media(max-width:600px){.gp-h2h-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-game-section{padding:14px;margin:18px 0}.gp-player-dialog{padding:16px}.gp-log-head h3{font-size:20px}.gp-averages{gap:6px}.gp-averages>div{padding:9px}.gp-averages strong{font-size:22px}.gp-averages small{font-size:10px}.gp-log-head{align-items:flex-start}.gp-retry{font-size:11px}}
 `;
   doc.head.append(style);
   observer=new MutationObserver(changes=>{
