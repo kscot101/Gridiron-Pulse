@@ -1,0 +1,42 @@
+name: Add Offensive Head to Head
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/add-offensive-head-to-head.py"
+      - ".github/workflows/add-offensive-head-to-head.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-h2h:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch player game logs
+        run: python scripts/add-offensive-head-to-head.py
+
+      - name: Validate JavaScript
+        run: node --check assets/player-game-logs.js
+
+      - name: Commit update
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/player-game-logs.js
+          if git diff --cached --quiet; then
+            echo "No head-to-head changes to commit."
+            exit 0
+          fi
+          git commit -m "Add offensive player head-to-head history"
+          git push origin main
