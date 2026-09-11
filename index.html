@@ -2509,6 +2509,7 @@
 
   </style>
   <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">
+<script src="./assets/projection-safety.js?v=20260911r1"></script>
 </head>
 
 <body>
@@ -2590,6 +2591,7 @@
           </div>
         </div>
 
+        <p id="projection-feed-status" role="status" style="font-size:12px;line-height:1.5;margin:12px 0">Checking projection freshness...</p>
         <div class="hero-meta">
           <div>
             <strong id="meta-games">—</strong>
@@ -3362,11 +3364,10 @@
     }
 
     function finiteProjection(value) {
-      var parsed = Number(value);
-      return Number.isFinite(parsed) ? parsed : null;
+      return GPProjectionSafety.number(value);
     }
 
-    function findProjectionForPick(pick) {
+    function findProjectionForPickUnchecked(pick) {
       var rows = list(state.playerContext && state.playerContext.players);
       if (!rows.length || !pick) return null;
 
@@ -3402,12 +3403,20 @@
       }) || null;
     }
 
+    /* PROJECTION RELIABILITY V1 */
+    function findProjectionForPick(pick) {
+      if (!GPProjectionSafety.fresh(state.playerContext)) return null;
+      var row = findProjectionForPickUnchecked(pick);
+      return GPProjectionSafety.forGame(row, pick, allGames(), allBoards()) ? row : null;
+    }
+
     function projectionMetricLabel(row, pick) {
       var metric = text(row && row.primaryMetric, "").toLowerCase();
       var position = projectionPosition(
         pick && (pick.position || pick.positionGroup)
       );
 
+      if (metric.includes("scrimmage")) return "Proj rush + rec yds";
       if (metric.includes("passing")) return "Proj pass yds";
       if (metric.includes("rushing")) return "Proj rush yds";
       if (metric.includes("receiving")) return "Proj rec yds";
@@ -3875,10 +3884,13 @@
           throw new Error("Player projection feed unavailable");
         }
         state.playerContext = payload;
+        GPProjectionSafety.paint(payload);
         state.playerContextError = "";
         renderSpotlight();
         renderEdges();
       } catch (error) {
+        state.playerContext = null;
+        GPProjectionSafety.paint(null);
         state.playerContextError = text(
           error && error.message,
           "Player projections temporarily unavailable"
@@ -7342,5 +7354,20 @@
     loadHistoricalOutlook(true);
   </script>
 <script src="./assets/player-game-logs.js?v=20260909-1" defer></script>
+<script>
+setInterval(function () {
+  if (document.hidden) return;
+  if (typeof loadPlayerContext === 'function') loadPlayerContext(true);
+}, 300000);
+setInterval(function () {
+  if (typeof state !== 'undefined') {
+    GPProjectionSafety.paint(state.playerContext);
+    if (!GPProjectionSafety.fresh(state.playerContext)) {
+      if (typeof renderSpotlight === 'function') renderSpotlight();
+      if (typeof renderEdges === 'function') renderEdges();
+    }
+  }
+}, 60000);
+</script>
 </body>
 </html>
