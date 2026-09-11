@@ -2,6 +2,7 @@
 import math
 import re
 from numbers import Real
+from datetime import datetime, timezone
 
 
 def number(value):
@@ -63,19 +64,41 @@ def changed(prior_id, prior_name, current_id, current_name, resolved=True):
 
 
 def depth_starter(payload):
-    """Accept a unique rank-one QB; never use arbitrary iteration order."""
+    """Read rank-one wrappers OR the site's ordered flat depth-list schema.
+
+    Flat athlete lists are explicitly in depth order in the team depth endpoint,
+    unlike the unordered Worker player collection. All formations must agree.
+    """
     candidates = []
+    stamp = payload.get('timestamp')
+    if stamp:
+        try:
+            dt = datetime.fromisoformat(stamp.replace('Z','+00:00'))
+            age = (datetime.now(timezone.utc)-dt).total_seconds()
+            if age > 10800 or age < -300:
+                return None
+        except (ValueError, TypeError):
+            return None
     for chart in payload.get('depthchart', payload.get('depthChart', [])):
         positions = chart.get('positions') or {}
         for key, entry in positions.items():
             label = str((entry.get('position') or {}).get('abbreviation') or key).upper()
             if label != 'QB':
                 continue
-            for item in entry.get('athletes') or []:
-                if number(item.get('rank')) != 1:
+            athletes = entry.get('athletes') or []
+            if not athletes:
+                continue
+            flat_ordered = all(isinstance(item,dict) and item.get('id') and 'athlete' not in item and 'rank' not in item for item in athletes)
+            if flat_ordered:
+                # Ordered depth lists must carry source time, not just fetch time.
+                if not stamp:
                     continue
-                athlete = item.get('athlete') or {}
-                candidates.append({'id':str(athlete.get('id') or ''), 'name':player_name(athlete)})
+                selected = [athletes[0]]
+            else:
+                selected = [item.get('athlete') or item for item in athletes if number(item.get('rank'))==1]
+            for athlete in selected:
+                if espn_id(athlete) and player_name(athlete):
+                    candidates.append({'id':espn_id(athlete),'name':player_name(athlete),'sourceGeneratedAt':stamp})
     unique = {(x['id'], norm(x['name'])): x for x in candidates}
     return next(iter(unique.values())) if len(unique) == 1 else None
 
@@ -121,5 +144,5 @@ def select_qbs(players, forecasts, verified=None):
         ids = {str(p.get('player_id') or '') for p in matched}
         h = matched[0] if len(ids)==1 and matched else {}
         cid = canonical_id(h.get('player_id')) or canonical_id(espn_id(chosen))
-        result[tm] = {'playerId':cid, 'espnId':espn_id(chosen), 'playerName':player_name(chosen), 'rate':number(h.get('latest_rate')), 'resolved':True, 'source':source, 'candidates':[player_name(p) for p in room]}
+        result[tm] = {'playerId':cid, 'espnId':espn_id(chosen), 'playerName':player_name(chosen), 'rate':number(h.get('latest_rate')), 'resolved':True, 'source':source, 'sourceGeneratedAt':(v or {}).get('sourceGeneratedAt'), 'candidates':[player_name(p) for p in room]}
     return result
