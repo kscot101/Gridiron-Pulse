@@ -1,131 +1,92 @@
-name: Sync v2.1 context to main
+name: Refresh v2.1 production projections
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
   push:
     branches: [main]
     paths:
-      - ".github/workflows/sync-v21-context-to-main.yml"
-  workflow_dispatch:
-  workflow_run:
-    workflows: ["V2.1 Last-Season Player Context Lab"]
-    types: [completed]
-  schedule:
-    - cron: "30 12 * * 2,4"
+      - '.github/workflows/sync-v21-context-to-main.yml'
+      - 'scripts/projection_identity.py'
+      - 'scripts/refresh_projection_feed.py'
+      - 'scripts/install_projection_safety.py'
+      - 'scripts/test_projection_reliability.py'
+      - 'scripts/test_projection_safety.js'
+      - 'assets/projection-safety.js'
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: v21-production-refresh
+  cancel-in-progress: false
 
 jobs:
-  sync:
-    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'model-lab-v21-player-context-baseline') }}
+  refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
-      - name: Check out main
+      - name: Check out production
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
-
-      - name: Fetch v2.1 research branch
-        run: git fetch origin model-lab-v21-player-context-baseline:refs/remotes/origin/model-lab-v21-player-context-baseline
-
-      - name: Copy validated v2.1 feeds into the production site
-        shell: bash
+      - name: Check out pinned existing model
+        uses: actions/checkout@v4
+        with:
+          ref: a5fc82a259d68f72b34637faaafb3fb4f07a1586
+          path: research
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install model dependencies
+        run: python -m pip install pandas numpy requests pyreadr feedparser
+      - name: Restore completed-season inputs
+        uses: actions/cache@v4
+        with:
+          path: .cache/projections-v21
+          key: v21-reliability-source-2012-2025-v1
+      - name: Test identity and missing-stat guardrails
+        run: python scripts/test_projection_reliability.py
+      - name: Install and validate page guardrails
+        run: |
+          python scripts/install_projection_safety.py
+          python scripts/install_projection_safety.py
+          node scripts/test_projection_safety.js
+      - name: Generate fresh production forecasts
+        run: python -u scripts/refresh_projection_feed.py --research research --season 2026 --cache .cache/projections-v21 --out data
+      - name: Publish only validated fresh results
         run: |
           set -euo pipefail
-          mkdir -p data
-          git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026.json > data/player-context-v21.json
-          git show origin/model-lab-v21-player-context-baseline:model-lab/results/v21-player-context-latest/preview_2026_news.json > data/player-context-v21-news.json
-
-      - name: Validate feed and patch production projection cards
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          feed_path = Path('data/player-context-v21.json')
-          news_path = Path('data/player-context-v21-news.json')
-          feed = json.loads(feed_path.read_text(encoding='utf-8'))
-          news = json.loads(news_path.read_text(encoding='utf-8'))
-
-          assert feed.get('ok') is True
-          assert feed.get('productionChanged') is False
-          assert feed.get('careerStateUsed') is False
-          assert isinstance(feed.get('players'), list)
-
-          stafford = next((p for p in feed['players'] if p.get('playerName') == 'Matthew Stafford'), None)
-          assert stafford is not None
-          assert stafford.get('context_eligible') is True
-          assert float(stafford.get('candidateProjection')) > 4000
-
-          touchdown_players = [
-              p for p in feed['players']
-              if p.get('candidateTouchdowns') is not None
-          ]
-          if touchdown_players:
-              assert float(stafford.get('candidateTouchdowns')) > 0
-              assert all(float(p['candidateTouchdowns']) >= 0 for p in touchdown_players)
-
-          page_path = Path('projections-2026.html')
-          page = page_path.read_text(encoding='utf-8')
-          page = page.replace(
-              'https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026.json',
-              './data/player-context-v21.json'
-          )
-          page = page.replace(
-              'https://raw.githubusercontent.com/kscot101/Gridiron-Pulse/model-lab-v21-player-context-baseline/model-lab/results/v21-player-context-latest/preview_2026_news.json',
-              './data/player-context-v21-news.json'
-          )
-
-          old_hero = '<p>Eligible players start from their own 2025 production instead of a generic depth-chart average. New team, quarterback, coaching, scheme and matchup context make bounded adjustments, while availability stays separate from per-game ability.</p>'
-          new_hero = '<p>Eligible players start from their own 2025 production instead of a generic depth-chart average. New team, quarterback, coaching, scheme and matchup context make bounded adjustments, while availability stays separate from per-game ability. Projected touchdowns use each player\'s 2025 touchdown rate with the same model adjustment and projected games.</p>'
-          page = page.replace(old_hero, new_hero)
-
-          old_note = '<div class="notice note">Context v2.1 is now the primary player feed for eligible projections. The Season Worker remains the fallback, and v1.9 remains available for comparison and its validated in-season routes.</div>'
-          new_note = '<div class="notice note">Context v2.1 is now the primary player feed for eligible projections. The Season Worker remains the fallback, and v1.9 remains available for comparison and its validated in-season routes. Touchdowns use the same net projection factors and availability as the active 2026 projection.</div>'
-          page = page.replace(old_note, new_note)
-
-          if '.metricrow{' not in page:
-              page = page.replace(
-                  '.metric,.mini,.detail div{background:#08140e;border:1px solid rgba(255,255,255,.07);border-radius:11px}',
-                  '.metricrow{display:grid;grid-template-columns:minmax(0,2fr) minmax(125px,1fr);gap:7px}.metricrow .metric{margin-top:13px}.tdmetric strong{color:var(--b)}.metric,.mini,.detail div{background:#08140e;border:1px solid rgba(255,255,255,.07);border-radius:11px}'
-              )
-              page = page.replace(
-                  '@media(max-width:430px){.stats{grid-template-columns:1fr}.cmp,.detail{grid-template-columns:1fr 1fr}}',
-                  '@media(max-width:430px){.stats{grid-template-columns:1fr}.metricrow{grid-template-columns:1fr}.cmp,.detail{grid-template-columns:1fr 1fr}}'
-              )
-
-          old_card = '<div class="metric '+"'+(r.src==='v21'?'v21':'')+'"+'"><small>Active 2026 projection</small><strong>'+"'+F(r.active)+'"+'</strong></div><div class="cmp">'
-          new_card = '<div class="metricrow"><div class="metric '+"'+(r.src==='v21'?'v21':'')+'"+'"><small>Active 2026 projection</small><strong>'+"'+F(r.active)+'"+'</strong></div><div class="metric tdmetric"><small>Projected touchdowns</small><strong>'+"'+F(c.candidateTouchdowns)+'"+'</strong></div></div><div class="cmp">'
-          page = page.replace(old_card, new_card)
-
-          old_games = '<div><small>Projected games</small><b>'+"'+F(c.projected_games_v21)+'"+'</b></div>'+"'+(c.nextOpponent?" 
-          new_games = '<div><small>Projected games</small><b>'+"'+F(c.projected_games_v21)+'"+'</b></div>'+"'+(N(c.lastYearTouchdownsPerGame)!==null?'<div><small>2025 TD rate</small><b>'+F(c.lastYearTouchdownsPerGame)+'/g</b></div>':'')+(c.nextOpponent?"
-          page = page.replace(old_games, new_games)
-
-          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD D', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD F')
-          page = page.replace('LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD E', 'LAST-SEASON CONTEXT v2.1 ACTIVE · BUILD F')
-          page = page.replace('Build GP-2026-09-04D.', 'Build GP-2026-09-04F.')
-          page = page.replace('Build GP-2026-09-04E.', 'Build GP-2026-09-04F.')
-          page_path.write_text(page, encoding='utf-8')
-
-          assert news.get('ok') is True
-          print('Stafford candidate projection:', stafford.get('candidateProjection'))
-          print('Context eligible players:', feed.get('meta', {}).get('contextEligiblePlayers'))
-          print('Touchdown projections:', len(touchdown_players))
-          PY
-
-      - name: Commit synced production feed
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projections-2026.html data/player-context-v21.json data/player-context-v21-news.json
-          if git diff --cached --quiet; then
-            echo "No production feed changes."
-            exit 0
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html projections-2026.html data/player-context-v21.json data/projection-refresh-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh projections with source freshness and QB identity safeguards'
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
-          git commit -m "Sync v2.1 player context feed to production"
-          git push origin main
+      - name: Request GitHub Pages build explicitly
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"; then
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+      - name: Retain refresh diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: projection-reliability-${{ github.run_id }}
+          retention-days: 14
+          path: data/projection-refresh-status.json
+          if-no-files-found: ignore
