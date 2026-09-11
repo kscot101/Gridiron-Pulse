@@ -1,0 +1,33 @@
+name: Inspect projection source schema
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/projection-source-check.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect QB depth and Worker records
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          def get(url):
+              request=urllib.request.Request(url,headers={'User-Agent':'GridironPulse-Reliability/1','Accept':'application/json'})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  return json.load(response)
+          for team in ('dal','det'):
+              try:
+                  data=get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/'+team+'/depthcharts')
+                  print('DEPTH',team,json.dumps(data)[:16000],flush=True)
+              except Exception as error: print('DEPTH ERROR',team,str(error),flush=True)
+          data=get('https://gridiron-pulse-season.kadescott97.workers.dev/season-outlook')
+          snapshot=data.get('seasonOutlook',{})
+          print('WORKER KEYS',list(snapshot),flush=True)
+          for p in snapshot.get('players',[]):
+              if p.get('team') in ('DAL','DET') and (p.get('positionGroup') or p.get('position'))=='QB':
+                  print('QB RECORD',json.dumps(p),flush=True)
+          PY
