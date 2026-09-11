@@ -1,16 +1,19 @@
 import copy
 import unittest
+from datetime import datetime, timezone, timedelta
+import numpy as np
 from projection_identity import canonical_id, changed, depth_starter, number, select_qbs
 from refresh_projection_feed import stat_total
 
 
 class ReliabilityTests(unittest.TestCase):
     def test_missing_is_not_zero(self):
-        for value in (None,'','  ',True,False,{},[],float('nan'),float('inf'),'unavailable'):
+        for value in (None,'','  ',True,False,{},[],float('nan'),float('inf'),'unavailable',np.bool_(False)):
             self.assertIsNone(number(value))
-        self.assertEqual(number(0),0)
-        self.assertEqual(number('0'),0)
+        for value in (0,'0',np.int64(0),np.float64(0)):
+            self.assertEqual(number(value),0)
         self.assertEqual(number(' 1.9 '),1.9)
+        self.assertEqual(number(np.int64(7)),7)
 
     def test_namespaces(self):
         self.assertEqual(canonical_id('00-0026498'),'gsis:00-0026498')
@@ -23,7 +26,7 @@ class ReliabilityTests(unittest.TestCase):
 
     def test_order_independent_conflict(self):
         a={'name':'Dak Prescott','team':'DAL','position':'QB','role':'STARTER','athleteId':'2577417'}
-        b={'name':'Joe Milton III','team':'DAL','position':'QB','role':'STARTER','athleteId':'4362887'}
+        b={'name':'Joe Milton III','team':'DAL','position':'QB','role':'STARTER','athleteId':'4360698'}
         self.assertFalse(select_qbs([a,b],[])['DAL']['resolved'])
         self.assertEqual(select_qbs([a,b],[])['DAL']['playerId'],select_qbs([b,a],[])['DAL']['playerId'])
         historical=[{'player_name':'Dak Prescott','position':'QB','player_id':'00-0033077','latest_rate':260}]
@@ -59,6 +62,21 @@ class ReliabilityTests(unittest.TestCase):
         data['depthchart'][0]['positions']['qb']['athletes'][0]['rank']=1
         self.assertIsNone(depth_starter(data))
         self.assertIsNone(depth_starter({}))
+
+    def test_current_ordered_site_depth_schema(self):
+        data={'timestamp':datetime.now(timezone.utc).isoformat(),'depthchart':[{'positions':{'qb':{'position':{'abbreviation':'QB'},'athletes':[
+            {'id':'2577417','displayName':'Dak Prescott'},
+            {'id':'4360698','displayName':'Joe Milton III'}]}}}]}
+        self.assertEqual(depth_starter(data)['id'],'2577417')
+        other=copy.deepcopy(data['depthchart'][0])
+        other['positions']['qb']['athletes'].reverse()
+        data['depthchart'].append(other)
+        self.assertIsNone(depth_starter(data))
+        data['depthchart'].pop()
+        data['timestamp']=(datetime.now(timezone.utc)-timedelta(days=7)).isoformat()
+        self.assertIsNone(depth_starter(data))
+        data.pop('timestamp')
+        self.assertIsNone(depth_starter(data))
 
 
 if __name__=='__main__':
