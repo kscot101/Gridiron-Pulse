@@ -1,0 +1,57 @@
+name: Add Projection Favorites
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/add-projection-favorites.yml"
+      - ".github/scripts/add_projection_favorites.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Add shared projection favorites
+        run: python .github/scripts/add_projection_favorites.py
+
+      - name: Validate projection JavaScript
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, subprocess, tempfile
+          text = Path('projections-2026.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script>(.*?)</script>', text, flags=re.S)
+          if not scripts:
+              raise SystemExit('No inline script found')
+          code = '\n'.join(scripts)
+          with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as f:
+              f.write(code)
+              name = f.name
+          subprocess.run(['node', '--check', name], check=True)
+          print('Projection JavaScript syntax is valid.')
+          PY
+
+      - name: Commit projection favorites
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projections-2026.html
+          if git diff --cached --quiet; then
+            echo "No projection changes to commit."
+            exit 0
+          fi
+          git commit -m "Allow following players from projections"
+          git push origin main
