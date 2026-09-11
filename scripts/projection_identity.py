@@ -1,10 +1,11 @@
 """Identity-only guardrails for the production v2.1 refresh."""
 import math
 import re
+from numbers import Real
 
 
 def number(value):
-    if value is None or isinstance(value, bool) or not isinstance(value, (str, int, float)):
+    if value is None or isinstance(value, bool) or not isinstance(value, (str, Real)):
         return None
     if isinstance(value, str) and not value.strip():
         return None
@@ -91,7 +92,6 @@ def select_qbs(players, forecasts, verified=None):
             groups.setdefault(team(p.get('team')), []).append(p)
     result = {}
     for tm, room in groups.items():
-        # Remove repeated rows for the same athlete, but not different athletes.
         room = list({(espn_id(p), norm(player_name(p))):p for p in room}.values())
         chosen, source = None, 'unresolved-conflict'
         v = verified.get(tm)
