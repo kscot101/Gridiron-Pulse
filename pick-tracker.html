@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07100d">
+  <meta name="description" content="Every saved Gridiron Pulse pick, organized by position and player. Compare pregame forecasts with final stats, one player and one game at a time.">
+  <title>Pick Tracker | Gridiron Pulse</title>
+  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">
+  <link rel="stylesheet" href="./assets/pick-tracker.css?v=1">
+  <script src="./assets/player-game-log.js?v=20260909a" defer></script>
+  <script src="./assets/pick-tracker.js?v=1" defer></script>
+</head>
+<body>
+  <a class="pt-skip" href="#tracker">Skip to picks</a>
+  <header class="pt-topbar"><div class="pt-wrap pt-header-inner">
+    <a class="pt-brand" href="./"><span class="pt-ball" aria-hidden="true">+</span><span>GRIDIRON <b>PULSE</b></span></a>
+    <nav aria-label="Main navigation"><a href="./">Home</a><a href="projection-trial.html">Projection Lab</a><a href="projections-2026.html">2026 Projections</a><a href="pick-tracker.html" aria-current="page">Pick Tracker</a></nav>
+  </div></header>
+  <section class="pt-hero"><div class="pt-wrap">
+    <div class="pt-kicker"><span aria-hidden="true"></span> THE RECEIPTS / INDIVIDUAL PICK TRACKING</div>
+    <div class="pt-title-row"><div><h1>PICK <em>TRACKER.</em></h1><p>Player by player. Position by position. The numbers saved before kickoff, next to the results that actually count.</p></div><div class="pt-hero-note"><b>FORECAST &rarr; FINAL &rarr; ERROR</b><p>v2.1 and the workload trial stay separate. No moving the goalposts. No generic HIT label replacing a stat comparison.</p></div></div>
+    <div class="pt-totals" aria-label="Filtered pick counts"><div><strong id="pt-total">&mdash;</strong><span>Player-game picks</span></div><div><strong id="pt-graded">&mdash;</strong><span>Fully graded</span></div><div><strong id="pt-awaiting">&mdash;</strong><span>Awaiting / live</span></div><div><strong id="pt-review">&mdash;</strong><span>Partial / unavailable</span></div></div>
+  </div></section>
+  <main class="pt-wrap" id="tracker">
+    <div class="pt-feed"><p id="pt-feed-status" role="status">Loading saved picks...</p><button type="button" id="pt-refresh">Refresh results</button></div>
+    <div id="pt-warning" role="status" hidden></div>
+    <nav class="pt-positions" aria-label="Filter picks by position" id="pt-positions"></nav>
+    <form class="pt-filters" id="pt-filters" role="search" aria-label="Find tracked picks">
+      <label class="pt-search-label" for="pt-search">Player, team or opponent<input type="search" id="pt-search" placeholder="Search a player name..." autocomplete="off"></label>
+      <label for="pt-week">Season / week<select id="pt-week"><option value="all">All saved weeks</option></select></label>
+      <label for="pt-team">Team<select id="pt-team"><option value="all">All teams</option></select></label>
+      <label for="pt-status">Result status<select id="pt-status"><option value="all">All statuses</option><option value="graded">Fully graded</option><option value="awaiting">Awaiting results</option><option value="live">Live (verified feed)</option><option value="partial">Partial results</option><option value="unavailable">No data / excluded</option></select></label>
+      <label class="pt-favorites"><input type="checkbox" id="pt-favorites"> Favorites only</label><button type="reset" class="pt-reset">Clear filters</button>
+    </form>
+    <div class="pt-list-head"><p id="pt-count" role="status" aria-live="polite">Saved picks will appear below.</p><label><input type="checkbox" id="pt-expand"> Expand every pick</label></div>
+    <div id="pt-groups" aria-busy="true"><div class="pt-empty">Connecting to the saved forecast ledger...</div></div>
+    <section class="pt-explainer" aria-labelledby="pt-how"><h2 id="pt-how">What this tracker counts</h2><div><p><b>One pick = one player in one game.</b> The same player stays separate across different weeks. Model values appear side by side inside that pick; missing model forecasts are not invented.</p><p><b>Frozen, not rewritten.</b> Each model's first eligible forecast is saved before kickoff. Open a pick to see every statistic, its capture time and forecast fingerprint.</p><p><b>Errors, not artificial wins.</b> Error is the absolute difference from the actual stat. Above/below describes the result versus the forecast, not betting advice. Missing stats stay ungraded. Decimal TDs are expected counts, not scoring probabilities.</p></div><p>Historical picks without a saved numerical forecast are not backfilled here. <a href="./#results">Earlier threshold-based results remain on the homepage.</a></p></section>
+  </main>
+  <footer class="pt-footer"><div class="pt-wrap"><b>GRIDIRON PULSE / PICK TRACKER</b><span>Saved predictions. Separate models. Transparent results.</span></div></footer>
+  <noscript><p class="pt-wrap">JavaScript is required to display and filter saved picks.</p></noscript>
+</body>
+</html>
