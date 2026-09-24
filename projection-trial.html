@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07100d">
+  <meta name="description" content="Compare frozen pregame projections with actual player stats. Gridiron Pulse's workload trial stays separate from its established season model.">
+  <title>Projection Lab | Gridiron Pulse</title>
+  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">
+  <link rel="stylesheet" href="./assets/projection-trial.css?v=20260924-trial1">
+  <script src="./assets/player-game-log.js?v=20260909a" defer></script>
+  <script src="./assets/projection-trial.js?v=20260924-trial1" defer></script>
+</head>
+<body class="gp-trial-page">
+  <header class="gp-trial-topbar">
+    <a href="./">THE GRIDIRON PULSE</a>
+    <nav aria-label="Main navigation"><a href="./">Home</a><a href="projections-2026.html">2026 Projections</a><a href="#exact-results">Exact Results</a></nav>
+  </header>
+  <main class="gp-trial-main">
+    <section class="gp-trial-hero" aria-labelledby="page-title">
+      <p class="gp-trial-kicker">Experimental model / transparent scorekeeping</p>
+      <h1 id="page-title">PROJECTION LAB.</h1>
+      <p>Same player. Same game. The exact number we saved before kickoff, next to what actually happened. Compare the current v2.1 model with an opportunity-based workload trial without changing the season projections.</p>
+      <div class="gp-trial-banner"><b>A trial, not an accuracy claim.</b> The first eligible forecast is frozen at least five minutes before kickoff. Later refreshes do not rewrite it. Every statistic is graded separately using its absolute error, not a generic HIT label. Missing statistics remain ungraded.</div>
+      <p id="gp-trial-status" role="status">Loading saved forecasts...</p>
+      <p id="gp-trial-warnings" role="status"></p>
+    </section>
+    <section aria-label="Saved player forecasts">
+      <div class="gp-trial-toolbar">
+        <label for="gp-position">Position <select id="gp-position"><option value="all">All positions</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option></select></label>
+        <label for="gp-search">Find a player <input id="gp-search" type="search" placeholder="Player, team, or opponent" autocomplete="off"></label>
+        <label for="gp-favorites"><input id="gp-favorites" type="checkbox"> Favorites only</label>
+        <span id="gp-trial-count" aria-live="polite"></span>
+      </div>
+      <div class="gp-trial-cards" id="gp-trial-cards"><p>Saved forecasts will appear here when the trial feed connects.</p></div>
+    </section>
+    <section class="gp-trial-results" id="exact-results" aria-labelledby="live-results-title">
+      <h2 id="live-results-title">Prospective results</h2>
+      <p>The comparison below uses the same player, game and statistic, with both model versions captured within five minutes of each other. Lower average absolute error is better. It stays empty until qualifying games finish.</p>
+      <div id="gp-trial-live-results"><p>No completed paired forecasts loaded yet.</p></div>
+    </section>
+    <section class="gp-trial-results" aria-labelledby="historical-title">
+      <h2 id="historical-title">2025 historical test</h2>
+      <div id="gp-trial-holdout"></div>
+      <p>Settings were chosen using an earlier season, not this test year. The evaluation includes players with a recorded game and at least two earlier appearances for that team. It does not test whether a player will be active, future injuries, or every possible roster change. These results are not a live win rate.</p>
+    </section>
+    <section class="gp-trial-results" aria-labelledby="method-title">
+      <h2 id="method-title">What the trial changes</h2>
+      <p><b>Quarterbacks:</b> expected team attempts, the quarterback's share of those attempts, and passing efficiency. <b>Running backs:</b> expected carries and rushing efficiency, plus a separate receiving estimate. <b>Receivers and tight ends:</b> expected team attempts, target share, receiving efficiency and catch rate.</p>
+      <p>Player and team usage come from earlier completed games. Smaller efficiency samples are blended with position-level historical averages using settings selected on the validation season. Touchdowns use their own scoring-per-opportunity estimates, not the yardage multiplier.</p>
+      <p><b>TD decimals are expected counts, not scoring probabilities.</b> A projection of 0.6 touchdowns is not a 60% chance of scoring. The current trial does not claim to incorporate route participation, snap forecasts, red-zone tracking or opponent-adjusted coverage. Positions are resolved with athlete IDs and roster data; a missing identity is not guessed from a receiving-stat category.</p>
+    </section>
+    <p class="gp-trial-bottom">The original Player Edge HIT/MISS record remains available on the homepage as a legacy threshold-based record. It is not combined with these exact-stat errors. All projections are estimates conditional on playing, not guarantees or betting recommendations.</p>
+  </main>
+</body>
+</html>
