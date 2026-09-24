@@ -1,0 +1,119 @@
+name: Install and verify homepage feed safety
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-homepage-feed-safety.yml'
+      - 'assets/homepage-feed.js'
+      - 'scripts/install_homepage_feed.py'
+      - 'scripts/test_homepage_feed.js'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: homepage-safety-install
+  cancel-in-progress: false
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test and install homepage guards
+        run: |
+          node --check assets/homepage-feed.js
+          node scripts/test_homepage_feed.js
+          python scripts/install_homepage_feed.py
+      - name: Install browser test tools
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify current games, history and existing controls
+        run: |
+          python -m http.server 8765 > /tmp/homepage-http.log 2>&1 &
+          node <<'JS'
+          const {chromium}=require('playwright');
+          const assert=require('node:assert/strict');
+          const fs=require('node:fs');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1365,height:900},timezoneId:'America/New_York'});
+            const page=await context.newPage(),errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>window.state&&state.snapshot&&state.snapshot.feedStatus&&state.snapshot.games.length>0,{},{timeout:90000});
+            const report=await page.evaluate(()=>({
+              season:state.snapshot.season,feedStatus:state.snapshot.feedStatus,
+              gameCount:allGames().length,spotlight:spotlightGame()?.shortName,
+              oldWeekOneGameInCurrentSlate:allGames().some(g=>g.id==='401872931'),
+              expiredPregame:allGames().some(g=>g.status.state==='pre'&&Date.parse(g.date)<Date.now()-6*3600000),
+              recentFinalGames:state.snapshot.recentGames.length,
+              finalScoreRows:document.querySelectorAll('#results-list > .result-row').length,
+              archiveVisible:!!document.querySelector('#results-list details'),
+              archiveCollapsed:!document.querySelector('#results-list details')?.open,
+              currentEdgeBoards:allBoards().length
+            }));
+            assert.equal(report.oldWeekOneGameInCurrentSlate,false);
+            assert.equal(report.expiredPregame,false);
+            assert.ok(report.gameCount>0);
+            assert.equal(report.feedStatus.available,true);
+            if(!report.feedStatus.analysisCurrent)assert.equal(report.currentEdgeBoards,0);
+            await page.screenshot({path:'homepage-current-desktop.png'});
+            await page.locator('#results').scrollIntoViewIfNeeded();
+            await page.screenshot({path:'homepage-current-results.png'});
+            await page.locator('#score-track [data-game]').first().click();
+            await page.locator('#detail-overlay.open').waitFor();
+            await page.keyboard.press('Escape');
+            await page.setViewportSize({width:390,height:844});
+            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.screenshot({path:'homepage-current-mobile.png'});
+            report.mobileOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);
+            assert.equal(report.mobileOverflow,false);
+            await page.goto('http://127.0.0.1:8765/projections-2026.html',{waitUntil:'domcontentloaded'});
+            await page.locator('[data-proj-follow]').first().waitFor({timeout:90000});
+            const b=page.locator('[data-proj-follow]').first(),key=await b.getAttribute('data-proj-follow');
+            await b.click();
+            await page.reload({waitUntil:'domcontentloaded'});
+            await page.waitForFunction(k=>Array.from(document.querySelectorAll('[data-proj-follow]')).some(b=>b.dataset.projFollow===k&&b.getAttribute('aria-pressed')==='true'),key,{timeout:90000});
+            report.projectionFollowPersists=true;
+            report.pageErrors=errors;
+            assert.deepEqual(errors,[]);
+            fs.writeFileSync('data/homepage-safety-verification.json',JSON.stringify(report,null,2));
+            console.log(JSON.stringify(report,null,2));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Publish verified homepage
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html data/homepage-safety-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Show current game data and keep old model results explicitly historical'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Request Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-current-browser-verification
+          retention-days: 14
+          path: |
+            data/homepage-safety-verification.json
+            homepage-current-desktop.png
+            homepage-current-results.png
+            homepage-current-mobile.png
