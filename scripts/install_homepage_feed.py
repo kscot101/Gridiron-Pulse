@@ -64,6 +64,9 @@ if marker not in page:
 transport = '<script src="./assets/homepage-score-source.js?v=20260924a"></script>'
 if transport not in page:
     page = page.replace('</head>', transport+'\n</head>',1)
+responsive = '<link rel="stylesheet" href="./assets/homepage-responsive.css?v=20260924a">'
+if responsive not in page:
+    page = page.replace('</head>', responsive+'\n</head>',1)
 
 # Validate every inline script before touching the production file.
 for i, source in enumerate(re.findall(r'<script\b[^>]*>(.*?)</script>',page,flags=re.S|re.I)):
@@ -75,5 +78,6 @@ for i, source in enumerate(re.findall(r'<script\b[^>]*>(.*?)</script>',page,flag
         subprocess.run(['node','--check',test.name],check=True)
 assert page.count(marker)==1
 assert page.count(transport)==1
+assert page.count(responsive)==1
 path.write_text(page,encoding='utf-8')
 print('Homepage data safety installed; existing sections and projection code retained.')
