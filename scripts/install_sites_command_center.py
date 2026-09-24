@@ -10,12 +10,17 @@ import tempfile
 
 path = Path("index.html")
 page = path.read_text(encoding="utf-8")
-link = '<link rel="stylesheet" href="./assets/sites-command-center.css?v=20260924-sites1">'
+link = '<link rel="stylesheet" href="./assets/sites-command-center.css?v=20260924-sites2">'
 
-if link not in page:
-    if "</head>" not in page:
-        raise RuntimeError("index.html has no closing head tag")
-    page = page.replace("</head>", link + "\n</head>", 1)
+page = re.sub(
+    r'<link rel="stylesheet" href="\./assets/sites-command-center\.css\?v=[^"]+">\n?',
+    "",
+    page,
+)
+
+if "</head>" not in page:
+    raise RuntimeError("index.html has no closing head tag")
+page = page.replace("</head>", link + "\n</head>", 1)
 
 # Keep the current dynamic Spotlight copy and all live-data IDs intact.
 required = [
