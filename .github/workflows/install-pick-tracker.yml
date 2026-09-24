@@ -1,0 +1,89 @@
+name: Install and verify Pick Tracker
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-pick-tracker.yml'
+      - 'pick-tracker.html'
+      - 'assets/pick-tracker.js'
+      - 'assets/pick-tracker.css'
+      - 'scripts/install_pick_tracker.py'
+      - 'scripts/test_pick_tracker.js'
+      - 'scripts/check_pick_tracker.js'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: install-pick-tracker
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Protect frozen data and model files
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          paths=['data/projection-trial-ledger.json','data/projection-trial.json','data/player-context-v21.json','data/homepage-result-archive.json','scripts/projection_trial.py','projections-2026.html']
+          Path('/tmp/pick-tracker-protected.json').write_text(json.dumps({p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in paths}))
+          PY
+      - name: Install navigation and run result-state tests
+        run: |
+          python scripts/install_pick_tracker.py
+          python scripts/install_pick_tracker.py
+          node --check assets/pick-tracker.js
+          node --check scripts/check_pick_tracker.js
+          node scripts/test_pick_tracker.js
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify saved picks, names, filters, follows and mobile
+        run: node scripts/check_pick_tracker.js
+      - name: Confirm model and forecast files are unchanged
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          for p,digest in json.loads(Path('/tmp/pick-tracker-protected.json').read_text()).items():
+              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==digest, p+' was modified'
+          print('Frozen predictions, existing outcomes, season projections and model code are unchanged.')
+          PY
+      - name: Publish verified tracker navigation
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html projection-trial.html data/pick-tracker-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Link verified Pick Tracker organized by player and position'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Request Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pick-tracker-verification
+          retention-days: 14
+          path: |
+            data/pick-tracker-verification.json
+            pick-tracker*.png
+            pick-tracker-browser-error.json
+            pick-tracker.html
+            assets/pick-tracker.*
