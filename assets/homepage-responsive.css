@@ -1,0 +1,32 @@
+/* Preserve the homepage layout while keeping wide data inside its container. */
+#model-table {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+#results-list, #results-list > *, #model-overview > *, .section-head > * {
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  .section-head h2 {
+    font-size: clamp(36px, 12vw, 54px);
+    overflow-wrap: anywhere;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 14vw, 70px);
+    white-space: normal;
+  }
+  .hero-inner {
+    padding-top: 34px;
+  }
+  .result-row {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .result-row > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
