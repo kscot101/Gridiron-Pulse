@@ -61,6 +61,10 @@ if marker not in page:
     page = page.replace('Final scores and locked Player Edge outcomes post automatically\n            after each game.', 'Recent final scores and originally locked Player Edge outcomes are\n            shown separately. Older model results stay in the history section.',1)
     page = page.replace('No active Player Edge spotlight is attached to this profile.', 'No current Player Edge spotlight is attached to this profile.',1)
 
+transport = '<script src="./assets/homepage-score-source.js?v=20260924a"></script>'
+if transport not in page:
+    page = page.replace('</head>', transport+'\n</head>',1)
+
 # Validate every inline script before touching the production file.
 for i, source in enumerate(re.findall(r'<script\b[^>]*>(.*?)</script>',page,flags=re.S|re.I)):
     if not source.strip():
@@ -70,5 +74,6 @@ for i, source in enumerate(re.findall(r'<script\b[^>]*>(.*?)</script>',page,flag
         test.flush()
         subprocess.run(['node','--check',test.name],check=True)
 assert page.count(marker)==1
+assert page.count(transport)==1
 path.write_text(page,encoding='utf-8')
 print('Homepage data safety installed; existing sections and projection code retained.')
