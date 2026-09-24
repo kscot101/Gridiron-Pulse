@@ -269,6 +269,10 @@ body {
 .hero-intro {
   grid-area: copy;
   min-width: 0;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding: 0;
 }
 
@@ -292,9 +296,10 @@ body {
 .hero h1 {
   margin: 22px 0 0;
   max-width: 800px;
-  font: 400 clamp(64px, 8.5vw, 132px)/.78 var(--display);
+  font: 400 clamp(64px, 7.4vw, 112px)/.78 var(--display);
   letter-spacing: -.035em;
   text-transform: uppercase;
+  white-space: normal !important;
 }
 
 .hero h1 span {
@@ -302,6 +307,7 @@ body {
 }
 
 .hero-copy {
+  width: 100%;
   max-width: 680px;
   margin-top: 30px;
   color: rgba(255,255,255,.66);
@@ -310,7 +316,11 @@ body {
 }
 
 .hero-actions {
-  margin-top: 32px;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  align-self: flex-start !important;
+  justify-content: flex-start !important;
+  margin-top: 32px !important;
   gap: 12px;
 }
 
