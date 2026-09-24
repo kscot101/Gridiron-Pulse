@@ -1,0 +1,56 @@
+name: Refresh current homepage feed
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-homepage-feed.yml'
+      - 'scripts/refresh_homepage_feed.py'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: homepage-feed-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Regenerate and validate the current slate
+        env:
+          GRIDIRON_AGENT_RUN_KEY: ${{ secrets.GRIDIRON_AGENT_RUN_KEY }}
+        run: python scripts/refresh_homepage_feed.py
+      - name: Publish validated mirror and diagnostic status
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in data/homepage-feed-status.json data/homepage-snapshot.json data/homepage-result-archive.json; do
+            if test -f "$f"; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Refresh current homepage feed and source status'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Request Pages build
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-refresh-status
+          retention-days: 14
+          path: data/homepage-feed-status.json
