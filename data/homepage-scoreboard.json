@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-09-24T20:07:39.082371+00:00",
+  "fetchedAt": "2026-09-24T23:26:41.114848+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -707,24 +707,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "0-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-1"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "0-1"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -736,32 +718,20 @@
                         "displayValue": "22/39, 229 YDS, 1 TD, 4 INT",
                         "value": 229.0,
                         "athlete": {
-                          "id": "2972515",
-                          "fullName": "Cooper Rush",
-                          "displayName": "Cooper Rush",
-                          "shortName": "C. Rush",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/2972515/cooper-rush"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2972515.png",
-                          "jersey": "13",
-                          "position": {
-                            "abbreviation": "QB"
-                          },
-                          "team": {
-                            "id": "1"
-                          },
-                          "active": true
+                          "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/athletes/2972515?lang=en&region=us"
                         },
                         "team": {
-                          "id": "1"
+                          "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/teams/1?lang=en&region=us"
+                        }
+                      },
+                      {
+                        "displayValue": "8/15, 59 YDS, 1 INT",
+                        "value": 59.0,
+                        "athlete": {
+                          "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/athletes/5344782?lang=en&region=us"
+                        },
+                        "team": {
+                          "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/teams/1?lang=en&region=us"
                         }
                       }
                     ]
@@ -845,6 +815,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "0-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-1"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "0-1"
                   }
                 ]
               }
@@ -1005,8 +993,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $102",
-                "numberAvailable": 3390,
+                "summary": "Tickets as low as $127",
+                "numberAvailable": 2609,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/green-bay-packers-tickets-green-bay-lambeau-field-3-4-2026/production/6489939?wsUser=717"
@@ -1059,7 +1047,7 @@
                   "displayName": "Draft Kings"
                 },
                 "details": "GB -4.5",
-                "overUnder": 42.5,
+                "overUnder": 43.5,
                 "spread": -4.5,
                 "awayTeamOdds": {
                   "favorite": false,
@@ -1092,7 +1080,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-245",
+                      "odds": "-238",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1124,7 +1112,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+200",
+                      "odds": "+195",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1161,7 +1149,7 @@
                   "home": {
                     "close": {
                       "line": "-4.5",
-                      "odds": "-115",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1195,7 +1183,7 @@
                   "away": {
                     "close": {
                       "line": "+4.5",
-                      "odds": "-105",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1232,8 +1220,8 @@
                   "shortDisplayName": "Total",
                   "over": {
                     "close": {
-                      "line": "o42.5",
-                      "odds": "-118",
+                      "line": "o43.5",
+                      "odds": "-102",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1241,7 +1229,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118180%3Foutcomes%3D0OU84695613O4250_1",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118180%3Foutcomes%3D0OU84695613O4350_1",
                         "text": "Over Odds",
                         "shortText": "Over Odds",
                         "isExternal": true,
@@ -1254,7 +1242,7 @@
                             "gameId": 401872948,
                             "betSide": "over",
                             "betType": "straight",
-                            "betDetails": "Over:42.5"
+                            "betDetails": "Over:43.5"
                           }
                         }
                       }
@@ -1266,8 +1254,8 @@
                   },
                   "under": {
                     "close": {
-                      "line": "u42.5",
-                      "odds": "-102",
+                      "line": "u43.5",
+                      "odds": "-118",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1275,7 +1263,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118180%3Foutcomes%3D0OU84695613U4250_3",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118180%3Foutcomes%3D0OU84695613U4350_3",
                         "text": "Under Odds",
                         "shortText": "Under Odds",
                         "isExternal": true,
@@ -1288,7 +1276,7 @@
                             "gameId": 401872948,
                             "betSide": "under",
                             "betType": "straight",
-                            "betDetails": "Under:42.5"
+                            "betDetails": "Under:43.5"
                           }
                         }
                       }
@@ -2083,8 +2071,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $279",
-                "numberAvailable": 1939,
+                "summary": "Tickets as low as $271",
+                "numberAvailable": 1917,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/buffalo-bills-tickets-orchard-park-highmark-stadium-3-3-2026/production/6488324?wsUser=717"
@@ -2169,7 +2157,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-345",
+                      "odds": "-325",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2201,7 +2189,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+275",
+                      "odds": "+260",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2238,7 +2226,7 @@
                   "home": {
                     "close": {
                       "line": "-7",
-                      "odds": "-115",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2272,7 +2260,7 @@
                   "away": {
                     "close": {
                       "line": "+7",
-                      "odds": "-105",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2601,24 +2589,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "1-1"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-0"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-1"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -2739,6 +2709,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "1-1"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-0"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-1"
                   }
                 ]
               },
@@ -3149,8 +3137,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $47",
-                "numberAvailable": 5255,
+                "summary": "Tickets as low as $44",
+                "numberAvailable": 5439,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/cleveland-browns-tickets-cleveland-huntington-bank-field-3-7-2026/production/6489438?wsUser=717"
@@ -4226,8 +4214,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $142",
-                "numberAvailable": 3173,
+                "summary": "Tickets as low as $150",
+                "numberAvailable": 3269,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/detroit-lions-tickets-detroit-ford-field-3-7-2026/production/6489893?wsUser=717"
@@ -4312,7 +4300,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-290",
+                      "odds": "-298",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -4344,7 +4332,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+235",
+                      "odds": "+240",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -4576,8 +4564,8 @@
         ],
         "weather": {
           "displayValue": "Sunny",
-          "temperature": 70,
-          "highTemperature": 70,
+          "temperature": 69,
+          "highTemperature": 69,
           "conditionId": "1",
           "link": {
             "language": "en-US",
@@ -4755,6 +4743,24 @@
                   "current": 99
                 },
                 "statistics": [],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "0-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-1"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "0-1"
+                  }
+                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -4875,24 +4881,6 @@
                         }
                       }
                     ]
-                  }
-                ],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "0-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-1"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "0-1"
                   }
                 ]
               },
@@ -5303,8 +5291,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $35",
-                "numberAvailable": 4505,
+                "summary": "Tickets as low as $27",
+                "numberAvailable": 4433,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/indianapolis-colts-tickets-indianapolis-lucas-oil-stadium-3-1-2026/production/6490109?wsUser=717"
@@ -6380,8 +6368,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $81",
-                "numberAvailable": 4773,
+                "summary": "Tickets as low as $86",
+                "numberAvailable": 4652,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/miami-dolphins-tickets-miami-gardens-hard-rock-stadium-3-4-2026/production/6492066?wsUser=717"
@@ -6730,8 +6718,8 @@
         ],
         "weather": {
           "displayValue": "Mostly sunny",
-          "temperature": 85,
-          "highTemperature": 85,
+          "temperature": 86,
+          "highTemperature": 86,
           "conditionId": "2",
           "link": {
             "language": "en-US",
@@ -7458,7 +7446,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $24",
-                "numberAvailable": 7841,
+                "numberAvailable": 8012,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-giants-tickets-east-rutherford-metlife-stadium-3-9-2027/production/6494198?wsUser=717"
@@ -7806,10 +7794,10 @@
           }
         ],
         "weather": {
-          "displayValue": "Cloudy",
-          "temperature": 61,
-          "highTemperature": 61,
-          "conditionId": "7",
+          "displayValue": "Rain",
+          "temperature": 62,
+          "highTemperature": 62,
+          "conditionId": "18",
           "link": {
             "language": "en-US",
             "rel": [
@@ -8534,8 +8522,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $100",
-                "numberAvailable": 4651,
+                "summary": "Tickets as low as $92",
+                "numberAvailable": 4849,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/pittsburgh-steelers-tickets-pittsburgh-acrisure-stadium-3-2-2027/production/6495079?wsUser=717"
@@ -8884,8 +8872,8 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 69,
-          "highTemperature": 69,
+          "temperature": 67,
+          "highTemperature": 67,
           "conditionId": "4",
           "link": {
             "language": "en-US",
@@ -9612,7 +9600,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $81",
-                "numberAvailable": 4502,
+                "numberAvailable": 4382,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/washington-commanders-tickets-landover-northwest-stadium-3-5-2026/production/6493321?wsUser=717"
@@ -10688,8 +10676,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $176",
-                "numberAvailable": 3387,
+                "summary": "Tickets as low as $161",
+                "numberAvailable": 3436,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/jacksonville-jaguars-tickets-jacksonville-everbank-stadium-3-8-2026/production/6490174?wsUser=717"
@@ -11765,8 +11753,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $100",
-                "numberAvailable": 7009,
+                "summary": "Tickets as low as $94",
+                "numberAvailable": 7105,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/san-francisco-49ers-tickets-santa-clara-levis-stadium-3-1-2027/production/6495869?wsUser=717"
@@ -12115,8 +12103,8 @@
         ],
         "weather": {
           "displayValue": "Mostly cloudy",
-          "temperature": 71,
-          "highTemperature": 71,
+          "temperature": 68,
+          "highTemperature": 68,
           "conditionId": "6",
           "link": {
             "language": "en-US",
@@ -12842,8 +12830,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $63",
-                "numberAvailable": 3796,
+                "summary": "Tickets as low as $64",
+                "numberAvailable": 3770,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tampa-bay-buccaneers-tickets-tampa-raymond-james-stadium-3-7-2027/production/6496279?wsUser=717"
@@ -13192,8 +13180,8 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 88,
-          "highTemperature": 88,
+          "temperature": 87,
+          "highTemperature": 87,
           "conditionId": "4",
           "link": {
             "language": "en-US",
@@ -14970,7 +14958,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $73",
-                "numberAvailable": 2934,
+                "numberAvailable": 2813,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-orleans-saints-tickets-new-orleans-caesars-superdome-3-6-2027/production/6493135?wsUser=717"
@@ -15055,7 +15043,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-185",
+                      "odds": "-180",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -15087,7 +15075,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+154",
+                      "odds": "+150",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -15124,7 +15112,7 @@
                   "home": {
                     "close": {
                       "line": "-3",
-                      "odds": "-122",
+                      "odds": "-120",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -15158,7 +15146,7 @@
                   "away": {
                     "close": {
                       "line": "+3",
-                      "odds": "+102",
+                      "odds": "+100",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -16046,8 +16034,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $143",
-                "numberAvailable": 5361,
+                "summary": "Tickets as low as $139",
+                "numberAvailable": 5558,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/denver-broncos-tickets-denver-empower-field-at-mile-high-3-6-2026/production/6489686?wsUser=717"
@@ -16132,7 +16120,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "+114",
+                      "odds": "+110",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -16164,7 +16152,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "-135",
+                      "odds": "-130",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -16273,7 +16261,7 @@
                   "over": {
                     "close": {
                       "line": "o44.5",
-                      "odds": "-115",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -16307,7 +16295,7 @@
                   "under": {
                     "close": {
                       "line": "u44.5",
-                      "odds": "-105",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -16396,8 +16384,8 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 80,
-          "highTemperature": 80,
+          "temperature": 82,
+          "highTemperature": 82,
           "conditionId": "4",
           "link": {
             "language": "en-US",
@@ -16825,6 +16813,24 @@
                   "current": 99
                 },
                 "statistics": [],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "2-0"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "1-0"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-0"
+                  }
+                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -16945,24 +16951,6 @@
                         }
                       }
                     ]
-                  }
-                ],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "2-0"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "1-0"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-0"
                   }
                 ]
               }
@@ -17124,8 +17112,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $250",
-                "numberAvailable": 4610,
+                "summary": "Tickets as low as $244",
+                "numberAvailable": 4680,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/chicago-bears-tickets-chicago-soldier-field-3-5-2026/production/6488786?wsUser=717"
@@ -17298,7 +17286,7 @@
                   "home": {
                     "close": {
                       "line": "+4.5",
-                      "odds": "-105",
+                      "odds": "+100",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17332,7 +17320,7 @@
                   "away": {
                     "close": {
                       "line": "-4.5",
-                      "odds": "-115",
+                      "odds": "-120",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17493,8 +17481,8 @@
         ],
         "weather": {
           "displayValue": "Clear",
-          "temperature": 65,
-          "highTemperature": 65,
+          "temperature": 66,
+          "highTemperature": 66,
           "conditionId": "33",
           "link": {
             "language": "en-US",
@@ -19569,14 +19557,14 @@
                 "region": "us"
               }
             ],
-            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Dallas Turner threw Tyson Bagent to the ground, then took off down the field in celebration. It rained on his parade, for sure, but that was just fine with him.",
                 "shortLinkText": "Rodgers and Turner help the Vikings shut down the Bears for a 9-3 win in the rain"
               }
-            ]
+            ],
+            "highlights": []
           }
         ],
         "links": [
