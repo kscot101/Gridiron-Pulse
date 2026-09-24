@@ -1,0 +1,53 @@
+name: Collect projection trial inputs
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/projection-trial-inputs.yml']
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Read public historical statistics and current schema
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          import requests, json, pandas as pd
+          out=Path('trial-inputs');out.mkdir(exist_ok=True)
+          base='https://github.com/nflverse/nflverse-data/releases/download/'
+          urls={f'stats_{y}.csv':base+f'stats_player/stats_player_week_{y}.csv' for y in range(2022,2026)}
+          urls['roster_2025.csv']=base+'rosters/roster_2025.csv'
+          urls['roster_2026.csv']=base+'rosters/roster_2026.csv'
+          urls['agent.json']='https://grid-pulse-agent.kadescott97.workers.dev/latest'
+          def get(item):
+            name,url=item
+            r=requests.get(url,timeout=80);r.raise_for_status();(out/name).write_bytes(r.content)
+            if name.endswith('.csv'):
+              d=pd.read_csv(out/name,low_memory=False); print(name,len(d),list(d.columns),flush=True)
+          with ThreadPoolExecutor(max_workers=3) as pool:list(pool.map(get,urls.items()))
+          for f in ['index.html','projections-2026.html','data/player-context-v21.json','assets/projection-safety.js','assets/player-game-log.js']:
+            dest=out/f;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(Path(f).read_bytes())
+          s=json.loads((out/'agent.json').read_text())['snapshot'];year=s['season']['year'];week=s['season']['week']
+          for w in range(max(1,week-3),week):
+            r=requests.get(f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates={year}&seasontype=2&week={w}',timeout=40);r.raise_for_status()
+            board=r.json();(out/f'week-{w}.json').write_text(json.dumps(board))
+            events=[e for e in board['events'] if (e.get('status',{}).get('type',{})).get('completed')]
+            summaries={f'summary-{e["id"]}.json':'https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='+e['id'] for e in events}
+            with ThreadPoolExecutor(max_workers=4) as pool:list(pool.map(get,summaries.items()))
+          print('INPUTS READY',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: projection-trial-inputs
+          path: trial-inputs/
+          retention-days: 7
