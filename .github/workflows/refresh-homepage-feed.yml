@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/refresh-homepage-feed.yml'
       - 'scripts/refresh_homepage_feed.py'
+      - 'scripts/refresh_homepage_scores.py'
 permissions:
   contents: write
   pages: write
@@ -23,17 +24,19 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Regenerate and validate the current slate
+      - name: Update current and previous-week public scores
+        run: python scripts/refresh_homepage_scores.py
+      - name: Regenerate and validate the current analysis slate
         env:
           GRIDIRON_AGENT_RUN_KEY: ${{ secrets.GRIDIRON_AGENT_RUN_KEY }}
         run: python scripts/refresh_homepage_feed.py
-      - name: Publish validated mirror and diagnostic status
+      - name: Publish validated scores, mirror and diagnostic status
         if: always()
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for f in data/homepage-feed-status.json data/homepage-snapshot.json data/homepage-result-archive.json; do
+          for f in data/homepage-feed-status.json data/homepage-snapshot.json data/homepage-result-archive.json data/homepage-scoreboard.json; do
             if test -f "$f"; then git add "$f"; fi
           done
           if git diff --cached --quiet; then exit 0; fi
