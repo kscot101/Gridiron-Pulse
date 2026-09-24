@@ -1,0 +1,62 @@
+name: Audit matchup signal inputs
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/audit-signal-inputs.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check analysis coverage and completed-game sources
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          from urllib.request import Request, urlopen
+          from urllib.parse import urlencode
+          out=Path('signal-audit'); out.mkdir(exist_ok=True)
+          def get(url):
+              req=Request(url,headers={'User-Agent':'GridironPulse-SignalAudit/1','Accept':'application/json','Cache-Control':'no-cache'})
+              with urlopen(req,timeout=30) as r: return json.load(r)
+          base='https://grid-pulse-agent.kadescott97.workers.dev'
+          espn='https://site.api.espn.com/apis/site/v2/sports/football/nfl'
+          report={'checkedAt':datetime.now(timezone.utc).isoformat(),'mode':'read-only public inputs; no regeneration or regrading'}
+          health=get(base+'/health'); report['health']=health
+          payload=get(base+'/latest'); snapshot=payload.get('snapshot') or {}
+          (out/'latest.json').write_text(json.dumps(payload,indent=2))
+          report['snapshot']={k:snapshot.get(k) for k in ['version','generatedAt','season','summary','baseline','dataCoverage','warnings']}
+          wanted={'Patrick Mahomes','Travis Kelce',"De'Von Achane"}
+          report['samplePicks']=[{'gameId':b.get('gameId'),'name':p.get('name'),'team':p.get('team'),'score':p.get('score'),'signals':p.get('signals'),'inputs':p.get('inputs'),'components':p.get('components')} for b in snapshot.get('playerEdge',[]) for p in b.get('picks',[]) if p.get('name') in wanted]
+          signals=[s for b in snapshot.get('playerEdge',[]) for p in b.get('picks',[]) for s in p.get('signals',[])]
+          report['signalCount']=len(signals)
+          report['fallbackSignalCount']=sum(any(t in str(s.get('detail','')).lower() for t in ['still being established','baseline unavailable','history is warming']) for s in signals)
+          current=get(espn+'/scoreboard'); season=current.get('season') or {}; week=(current.get('week') or {}).get('number')
+          report['completedSlates']=[]
+          for w in range(max(1,int(week)-2),int(week)):
+              url=espn+'/scoreboard?'+urlencode({'dates':season['year'],'seasontype':season['type'],'week':w,'limit':1000})
+              board=get(url); (out/('scoreboard-week-'+str(w)+'.json')).write_text(json.dumps(board,indent=2))
+              events=[e for e in board.get('events',[]) if ((e.get('status') or {}).get('type') or {}).get('completed')]
+              entry={'requestedWeek':w,'returnedWeek':board.get('week'),'completedGames':len(events),'sampleSummaries':[]}
+              relevant=[e for e in events if any((c.get('team') or {}).get('abbreviation') in ['KC','MIA'] for c in (e.get('competitions') or [{}])[0].get('competitors',[]))][:2]
+              for e in relevant:
+                  try:
+                      summary=get(espn+'/summary?event='+str(e['id']))
+                      (out/('summary-'+str(e['id'])+'.json')).write_text(json.dumps(summary,indent=2))
+                      entry['sampleSummaries'].append({'id':e['id'],'matchup':e.get('shortName'),'topKeys':list(summary),'headerCompleted':(((summary.get('header') or {}).get('competitions') or [{}])[0].get('status') or {}).get('type',{}).get('completed'),'boxscoreTeams':len((summary.get('boxscore') or {}).get('teams',[])),'playerTeams':len((summary.get('boxscore') or {}).get('players',[]))})
+                  except Exception as ex: entry['sampleSummaries'].append({'id':e['id'],'error':str(ex)})
+              report['completedSlates'].append(entry)
+          (out/'report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matchup-signal-input-audit
+          retention-days: 7
+          path: signal-audit/
