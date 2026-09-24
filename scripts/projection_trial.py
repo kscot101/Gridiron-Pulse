@@ -229,7 +229,7 @@ def roster_index(rosters):
             continue
         key = (eid,team(row.get('team')))
         val = {'id':gsis,'position':pos(row.get('position')),'name':row.get('full_name')}
-        if key in idx and idx[key]['position']!=val['position']:
+        if key in idx and (idx[key].get('conflict') or idx[key]['position']!=val['position'] or idx[key]['id']!=val['id']):
             idx[key]['conflict']=True
         else:
             idx[key]=val
@@ -299,6 +299,14 @@ def grade(record, actual, final, now, source_hash):
     return {'status':'FINAL','evaluatedAt':now.isoformat(),'actualSourceHash':source_hash,'metrics':values}
 
 
+def verify_ledger(ledger):
+    for key, record in ledger.items():
+        computed=digest({k:v for k,v in record.items() if k!='forecastHash'})
+        if record.get('id')!=key or computed!=record.get('forecastHash'):
+            raise ValueError('Frozen forecast integrity failed: '+str(key))
+
+
+# EXACT_TRACKER_CAPTURE_GUARDS_V1
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--cache',type=Path,default=Path('.cache/projection-trial'));ap.add_argument('--out',type=Path,default=Path('data'));ap.add_argument('--offline',action='store_true');args=ap.parse_args()
     cache=args.cache;cache.mkdir(parents=True,exist_ok=True);now=utc();warnings=[]
@@ -313,7 +321,17 @@ def main():
         calibration['inputHashes']={str(y):hashlib.sha256((cache/f'stats_{y}.csv').read_bytes()).hexdigest() for y in range(2022,2026)}
         save(calibration_path,calibration)
     s=json.loads((cache/'agent.json').read_text())['snapshot'] if args.offline else get(AGENT).json()['snapshot']
-    if not fresh(s.get('generatedAt'),now,2):raise ValueError('Current agent snapshot stale; no forecasts frozen')
+    capture_allowed=fresh(s.get('generatedAt'),now,2)
+    if not args.offline:
+        current_board=get(ESPN+'/scoreboard').json()
+        current_season=current_board.get('season') or {}
+        current_week=(current_board.get('week') or {}).get('number')
+        expected={str(e['id']) for e in current_board.get('events',[])}
+        supplied={str(g['id']) for g in s.get('games',[])}
+        capture_allowed=capture_allowed and bool(expected) and expected.issubset(supplied) and all(str(s['season'].get(k))==str(current_season.get(k)) for k in ['year','type']) and str(s['season'].get('week'))==str(current_week)
+    if not capture_allowed:
+        warnings.append('Current analysis failed freshness/slate validation. No new forecasts captured; existing records still evaluated.')
+        s={**s,'playerEdge':[]}
     year=s['season']['year'];week=s['season']['week']
     rp=cache/f'roster_{year}.csv'
     if not args.offline:rp.unlink(missing_ok=True)
@@ -340,13 +358,13 @@ def main():
                 skipped.append({'name':pick.get('name'),'reason':'Unresolved athlete ID/position'});continue
             p=known['position']
             candidates.append({'player_id':known['id'],'athleteId':eid,'player_display_name':pick['name'],'position':p,'team':tm,'season':year,'week':week,'game_id':str(game['id']),'gameDate':game['date'],'opponent':team(game['teams']['home' if team(game['teams']['away']['abbreviation'])==tm else 'away']['abbreviation']),'future':True,**{k:np.nan for k in STATS+['team_attempts','team_carries','scrimmage_yards','scrimmage_tds']}})
-    if not candidates:raise ValueError('No verified upcoming offensive players')
+    if not candidates:warnings.append('No eligible upcoming players; existing forecasts will still be graded.')
     historical['future']=False;live['future']=False
     combined=pd.concat([historical,live,pd.DataFrame(candidates)],ignore_index=True)
-    fs={n:features(combined,n) for n in {x['window'] for x in calibration['parameters'].values()}}
+    fs={n:features(combined,n) for n in {x['window'] for x in calibration['parameters'].values()}} if candidates else {}
     history_path=args.out/'projection-trial-ledger.json'
     old=json.loads(history_path.read_text()) if history_path.exists() else {'forecasts':{},'outcomes':{}}
-    ledger=old['forecasts'];outcomes=old['outcomes'];initial_hashes={k:v['forecastHash'] for k,v in ledger.items()}
+    ledger=old['forecasts'];outcomes=old['outcomes'];verify_ledger(ledger);initial_hashes={k:v['forecastHash'] for k,v in ledger.items()}
     context_path=args.out/'player-context-v21.json';context=json.loads(context_path.read_text()) if context_path.exists() else {}
     baseline_fresh=fresh(context.get('generatedAt'),now) and fresh(context.get('sourceGeneratedAt'),now)
     if not baseline_fresh:warnings.append('Existing v2.1 feed stale or missing; no new v2.1 comparisons captured this run.')
@@ -362,7 +380,7 @@ def main():
         evidence=live[live.player_id.eq(c['player_id'])&live.team.eq(c['team'])]
         if values:
             rec={**info,'id':'|'.join([c['game_id'],c['athleteId'],VERSION]),'model':VERSION,'predictions':values,'sourceGeneratedAt':s['generatedAt'],'sourceHash':digest(s),'historyGames':int(f['sample'].iloc[0]),'currentSeasonGames':len(evidence),'conditionalOnPlaying':True}
-            new_records+=freeze(ledger,rec,now)
+            new_records+=freeze(ledger,rec,utc())
         else:skipped.append({'name':c['player_display_name'],'reason':'Fewer than two usable same-team observations'})
         if not baseline_fresh:continue
         matches=[r for r in context_rows if str(r.get('player_id'))==c['player_id'] and team(r.get('team'))==c['team'] and pos(r.get('position'))==p and str(r.get('nextGameId'))==c['game_id'] and team(r.get('nextOpponent'))==c['opponent']]
@@ -375,9 +393,9 @@ def main():
         if t is not None:preds['passing_tds' if p=='QB' else 'scrimmage_tds' if p=='RB' else 'receiving_tds']=round(t,1)
         if preds:
             rec={**info,'id':'|'.join([c['game_id'],c['athleteId'],'v2.1-tracked-1']),'model':'v2.1-tracked-1','predictions':preds,'sourceGeneratedAt':context['generatedAt'],'sourceHash':digest(context),'historyGames':None,'conditionalOnPlaying':True}
-            new_records+=freeze(ledger,rec,now)
+            new_records+=freeze(ledger,rec,utc())
     finals={str(x.get('header',{}).get('id')):x for x in summaries}
-    needed={r['gameId'] for r in ledger.values() if dt(r['kickoff'])<=now and r['gameId'] not in finals}
+    needed={r['gameId'] for r in ledger.values() if dt(r['kickoff'])<=now}
     for gid in sorted(needed):
         try:finals[gid]=get(ESPN+'/summary?event='+gid).json()
         except requests.RequestException:warnings.append('Final box score unavailable: '+gid)
@@ -389,8 +407,13 @@ def main():
         if not final:continue
         grade_roster={**roster,(rec['athleteId'],rec['team']):{'id':rec['player_id'],'position':rec['position']}}
         actual=next((r for r in parse_summary(summary,grade_roster) if r['athleteId']==rec['athleteId'] and r['team']==rec['team']),None)
-        result=grade(rec,actual,True,now,digest(summary))
+        actual_start=dt(comp.get('date'))
+        if actual_start and dt(rec['recordedAt'])>=min(actual_start,dt(rec['kickoff'])):
+            result={'status':'INVALID_CAPTURE','reason':'Capture was not before verified game start','actualSourceHash':digest(summary)}
+        else:
+            result=grade(rec,actual,True,now,digest(summary))
         if outcomes.get(rec['id'],{}).get('actualSourceHash')!=result['actualSourceHash']:outcomes[rec['id']]=result
+    verify_ledger(ledger)
     assert all(ledger[k]['forecastHash']==v for k,v in initial_hashes.items()), 'Frozen forecasts changed'
     save(history_path,{'version':1,'forecasts':ledger,'outcomes':outcomes})
     metrics=[]

@@ -1,0 +1,172 @@
+{
+  "version": "workload-trial-1",
+  "parameters": {
+    "QB": {
+      "window": 8,
+      "efficiencyPriorOpportunities": 60,
+      "tdPriorOpportunities": 120
+    },
+    "RB": {
+      "window": 8,
+      "efficiencyPriorOpportunities": 20,
+      "tdPriorOpportunities": 120
+    },
+    "WR": {
+      "window": 8,
+      "efficiencyPriorOpportunities": 60,
+      "tdPriorOpportunities": 120
+    },
+    "TE": {
+      "window": 5,
+      "efficiencyPriorOpportunities": 20,
+      "tdPriorOpportunities": 60
+    }
+  },
+  "leagueRates": {
+    "QB": {
+      "passing_yards": 7.022483055050421,
+      "passing_tds": 0.041081170441395275,
+      "rushing_yards": 4.281175190424374,
+      "rushing_tds": 0.045266594124047876,
+      "receiving_yards": -0.125,
+      "receiving_tds": 0.0625,
+      "receptions": 0.875
+    },
+    "RB": {
+      "passing_yards": 5.928571428571429,
+      "passing_tds": 0.42857142857142855,
+      "rushing_yards": 4.271015353295445,
+      "rushing_tds": 0.02909491899228094,
+      "receiving_yards": 5.575018811136193,
+      "receiving_tds": 0.02874341610233258,
+      "receptions": 0.7711060948081264
+    },
+    "WR": {
+      "passing_yards": 5.233333333333333,
+      "passing_tds": 0.13333333333333333,
+      "rushing_yards": 6.017989417989418,
+      "rushing_tds": 0.050793650793650794,
+      "receiving_yards": 7.948528702363724,
+      "receiving_tds": 0.045248432223830196,
+      "receptions": 0.631259044862518
+    },
+    "TE": {
+      "passing_yards": 10.419354838709678,
+      "passing_tds": 0.0967741935483871,
+      "rushing_yards": 4.755458515283843,
+      "rushing_tds": 0.06550218340611354,
+      "receiving_yards": 7.263072338119751,
+      "receiving_tds": 0.050392847466811164,
+      "receptions": 0.7010295312923327
+    }
+  },
+  "holdout": [
+    {
+      "position": "QB",
+      "metric": "passing_yards",
+      "eligibleHoldoutRows": 664,
+      "pairedRows": 510,
+      "trial": {
+        "n": 510,
+        "mae": 67.41111099365567,
+        "bias": 6.5342595802543615
+      },
+      "last5": {
+        "n": 510,
+        "mae": 71.04499999999999,
+        "bias": 7.963823529411765
+      },
+      "lastSeason": {
+        "n": 510,
+        "mae": 74.42884547625897,
+        "bias": 2.835957831416311
+      },
+      "tdExpectedCountMSE": 1.2742924485738303
+    },
+    {
+      "position": "RB",
+      "metric": "scrimmage_yards",
+      "eligibleHoldoutRows": 1646,
+      "pairedRows": 1217,
+      "trial": {
+        "n": 1217,
+        "mae": 23.0121856433228,
+        "bias": 0.6199844009350625
+      },
+      "last5": {
+        "n": 1217,
+        "mae": 23.76431114763079,
+        "bias": 1.1408107367844424
+      },
+      "lastSeason": {
+        "n": 1217,
+        "mae": 25.87537155817099,
+        "bias": 2.7768941616463243
+      },
+      "tdExpectedCountMSE": 0.3290962123110305
+    },
+    {
+      "position": "WR",
+      "metric": "receiving_yards",
+      "eligibleHoldoutRows": 2511,
+      "pairedRows": 1851,
+      "trial": {
+        "n": 1851,
+        "mae": 21.85629048326169,
+        "bias": 1.8512744319171266
+      },
+      "last5": {
+        "n": 1851,
+        "mae": 22.40198091121916,
+        "bias": 1.5406266882766075
+      },
+      "lastSeason": {
+        "n": 1851,
+        "mae": 23.104272719491043,
+        "bias": 3.1879030628696943
+      },
+      "tdExpectedCountMSE": 0.19174488255970432
+    },
+    {
+      "position": "TE",
+      "metric": "receiving_yards",
+      "eligibleHoldoutRows": 1287,
+      "pairedRows": 1030,
+      "trial": {
+        "n": 1030,
+        "mae": 14.895141294721268,
+        "bias": -0.2623317993690848
+      },
+      "last5": {
+        "n": 1030,
+        "mae": 15.32990291262136,
+        "bias": -0.17786407766990295
+      },
+      "lastSeason": {
+        "n": 1030,
+        "mae": 15.903500182712776,
+        "bias": 0.5921036071771366
+      },
+      "tdExpectedCountMSE": 0.1874035371079616
+    }
+  ],
+  "trainingSeasons": [
+    2022,
+    2023
+  ],
+  "validationSeason": 2024,
+  "holdoutSeason": 2025,
+  "automaticallyPromoted": false,
+  "limitations": [
+    "Retrospective test uses corrected historical box scores, not archived pregame forecasts.",
+    "Cohort includes players with an observed game row and at least two earlier same-team appearances; not an injury/participation forecast.",
+    "2025 comparison is against last-five and prior-season means, not against v2.1 archived next-game forecasts.",
+    "No routes, snap forecasts, red-zone opportunities, or opponent adjustments are claimed in trial v1."
+  ],
+  "inputHashes": {
+    "2022": "ad426c3fe5bf1cc30c3f137fdfe96d054e19d400879ee4413129da49fa7b54be",
+    "2023": "f19cb71a5de0dce7fd09376026237c9ee9d5a93fe13815a2ea3ec2d37204cb17",
+    "2024": "3ddc45a84f759aa348ce465ae001752c530575455717657cdfe1f8abfcdb4759",
+    "2025": "e5e0615b3d96a3eaebfaee91e55afb4a4e7fe0caf057454177bcd7d6ad4bcfc2"
+  }
+}

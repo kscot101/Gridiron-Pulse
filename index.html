@@ -2518,6 +2518,7 @@
 <script src="./assets/homepage-score-source.js?v=20260924a"></script>
 <link rel="stylesheet" href="./assets/homepage-responsive.css?v=20260924a">
 <link rel="stylesheet" href="./assets/sites-command-center.css?v=20260924-sites2">
+<link rel="stylesheet" href="./assets/projection-trial.css?v=20260924-trial1">
 </head>
 
 <body>
@@ -2585,6 +2586,7 @@
             </p>
 
             <div class="hero-actions">
+              <a id="gp-trial-home-link" class="secondary gp-exact-link" href="projection-trial.html">Projection Lab / Exact Results</a>
               <button class="primary" data-scroll="games">
                 View Full Game Board ↘
               </button>
@@ -2848,7 +2850,8 @@
           </p>
         </div>
 
-        <div id="model-feed-status"></div>
+        <p class="gp-exact-legacy-note" id="gp-exact-legacy-note"><b>Legacy performance thresholds.</b> These HIT/MISS results do not measure numerical projection accuracy. The original record is unchanged. <a href="projection-trial.html">See exact-stat errors and the workload trial</a>.</p>
+<div id="model-feed-status"></div>
         <div class="model-overview" id="model-overview"></div>
 
         <div class="toolbar">
@@ -7288,5 +7291,6 @@ setInterval(function () {
   }
 }, 60000);
 </script>
+<script src="./assets/projection-trial.js?v=20260924-trial1" defer></script>
 </body>
 </html>
