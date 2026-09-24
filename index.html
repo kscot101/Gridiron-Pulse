@@ -2510,6 +2510,13 @@
   </style>
   <link rel="stylesheet" href="./assets/player-game-log.css?v=20260909a">
 <script src="./assets/projection-safety.js?v=20260911r1"></script>
+<!-- HOMEPAGE FEED SAFETY 20260924 -->
+<script src="./assets/homepage-feed.js?v=20260924a"></script>
+<style>
+#homepage-feed-status{margin:0 0 18px;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(5,13,10,.9);color:#e9f1ed;font-size:12px;line-height:1.6;overflow-wrap:anywhere}#homepage-feed-status[data-mode="scores-only"],#homepage-feed-status[data-mode="unavailable"]{border-left:3px solid #ffaf70}#model-feed-status{color:rgba(255,255,255,.7);line-height:1.6;font-size:12px;margin-bottom:16px}#results-list details summary{padding:14px 0}#results-list>.result-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto}@media(max-width:600px){#results-list>.result-row{grid-template-columns:1fr}#results-list .actual{overflow-wrap:anywhere}}
+</style>
+<script src="./assets/homepage-score-source.js?v=20260924a"></script>
+<link rel="stylesheet" href="./assets/homepage-responsive.css?v=20260924a">
 </head>
 
 <body>
@@ -2551,6 +2558,7 @@
   <main>
     <section class="hero" id="top">
       <div class="shell hero-inner">
+        <div id="homepage-feed-status" role="status">Checking the current game slate...</div>
         <div class="hero-stage">
           <div class="spotlight-wrap" id="spotlight-game">
             <article class="spotlight-card spotlight-empty">
@@ -2839,6 +2847,7 @@
           </p>
         </div>
 
+        <div id="model-feed-status"></div>
         <div class="model-overview" id="model-overview"></div>
 
         <div class="toolbar">
@@ -2861,8 +2870,8 @@
           </div>
 
           <p>
-            Final scores and locked Player Edge outcomes post automatically
-            after each game.
+            Recent final scores and originally locked Player Edge outcomes are
+            shown separately. Older model results stay in the history section.
           </p>
         </div>
 
@@ -3319,9 +3328,8 @@
     }
 
     function findGame(id) {
-      return allGames().find(function(game) {
-        return text(game.id) === text(id);
-      });
+      return allGames().concat(list(state.snapshot && state.snapshot.recentGames))
+        .find(function(game) { return String(game.id) === String(id); });
     }
 
     function findBoard(id) {
@@ -3541,11 +3549,7 @@
     }
 
     function spotlightGame() {
-      return allGames()
-        .slice()
-        .sort(function(a, b) {
-          return spotlightGameScore(b) - spotlightGameScore(a);
-        })[0] || null;
+      return GPHomepageFeed.pickSpotlight(allGames(), spotlightGameScore, Date.now());
     }
 
     function spotlightConcernCount(game) {
@@ -3901,52 +3905,18 @@
 
     async function loadSnapshot(silent) {
       try {
-        var response = await fetch(
-          AGENT_URL + "/latest",
-          {
-            headers: {
-              Accept: "application/json"
-            },
-            cache: "no-store"
-          }
-        );
-
-        var payload = await response.json();
-
-        if (
-          !response.ok ||
-          !payload.ok ||
-          !payload.snapshot
-        ) {
-          throw new Error(
-            payload.message || "Snapshot unavailable"
-          );
-        }
-
-        state.snapshot = payload.snapshot;
-
+        state.snapshot = await GPHomepageFeed.load(AGENT_URL);
         renderAll();
-        scheduleRefresh();
-
-        if (!silent) {
-          toast("Gridiron Pulse updated");
-        }
+        if (!silent) toast(state.snapshot.feedStatus.analysisCurrent
+          ? "Games and analysis refreshed"
+          : "Current game data loaded; analysis awaiting refresh");
       } catch (error) {
-        document.getElementById(
-          "connection-label"
-        ).textContent = "Feed temporarily unavailable";
-
-        document.getElementById(
-          "hero-copy"
-        ).textContent =
-          "The site is ready, but the latest football snapshot could not be reached. It will retry automatically.";
-
-        if (!silent) {
-          toast(
-            error.message ||
-            "Could not load the latest snapshot"
-          );
-        }
+        state.snapshot = GPHomepageFeed.compose(null, [], null, null, Date.now());
+        renderAll();
+        document.getElementById("connection-label").textContent = "Game feed temporarily unavailable";
+        if (!silent) toast("Game data is unavailable. Old games are not presented as live.");
+      } finally {
+        scheduleRefresh();
       }
     }
 
@@ -4114,6 +4084,7 @@
       renderPower();
       renderModel();
       renderResults();
+      GPHomepageFeed.paint(state.snapshot);
     }
 
     function renderHeader() {
@@ -6206,60 +6177,7 @@
     }
 
     function renderResults() {
-      var results = list(
-        state.snapshot &&
-        state.snapshot.results
-      );
-
-      document.getElementById(
-        "results-list"
-      ).innerHTML = results.length
-        ? results
-            .map(function(result) {
-              var outcome = text(
-                result.outcome,
-                "NO DATA"
-              );
-
-              return (
-                '<article class="result-row"><div><h3>' +
-                escapeHtml(
-                  result.player +
-                  " · " +
-                  result.team
-                ) +
-                "</h3><p>" +
-                escapeHtml(
-                  result.matchup +
-                  " · " +
-                  text(
-                    result.spotlightRole,
-                    result.position
-                  )
-                ) +
-                '</p></div><div class="actual">' +
-                escapeHtml(
-                  text(
-                    result.actual,
-                    "Player line unavailable"
-                  )
-                ) +
-                "</div><strong>" +
-                number(
-                  result.edgeScore,
-                  "—"
-                ) +
-                '</strong><span class="outcome ' +
-                outcome
-                  .toLowerCase()
-                  .replace(/\s+/g, "-") +
-                '">' +
-                escapeHtml(outcome) +
-                "</span></article>"
-              );
-            })
-            .join("")
-        : '<div class="empty">No final locked Player Edge outcomes are available yet.</div>';
+      GPHomepageFeed.renderResults(state.snapshot);
     }
 
     function openGame(id) {
@@ -6819,7 +6737,7 @@
               );
             })
             .join("")
-        : '<div class="empty">No active Player Edge spotlight is attached to this profile.</div>';
+        : '<div class="empty">No current Player Edge spotlight is attached to this profile.</div>';
 
       document.getElementById(
         "detail-body"
