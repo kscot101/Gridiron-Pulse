@@ -39,15 +39,32 @@
     repaint();
   }
   function repaint(){if(typeof root.renderSpotlight==='function')root.renderSpotlight();if(typeof root.renderEdges==='function')root.renderEdges();}
+  function resultDetails(group, outcomes){
+    return group.map(function(x){
+      var o=outcomes[x.id];
+      if(!o)return '';
+      if(o.status==='INVALID_CAPTURE')return '<p>Not graded: pregame capture could not be verified.</p>';
+      if(!o.metrics)return '';
+      var heading='<p><b>'+esc(x.model==='workload-trial-1'?'Workload trial':'v2.1')+'</b></p>';
+      var body=Object.keys(o.metrics).map(function(k){
+        var e=o.metrics[k];
+        return '<p>'+esc(labels[k]||k)+': '+(e.status==='GRADED'?'absolute error '+fmt(e.absoluteError)+'; actual minus forecast '+fmt(e.error):'Not graded: statistic unavailable')+'</p>';
+      }).join('');
+      return heading+body;
+    }).join('');
+  }
   function card(group){
     var r=group[0],baseline=group.find(function(x){return x.model==='v2.1-tracked-1';}),trial=group.find(function(x){return x.model==='workload-trial-1';});
     var metrics=Array.from(new Set(group.flatMap(function(x){return Object.keys(x.predictions);}))),outcomes=data.outcomes||{};
     var rows=metrics.map(function(k){
-      var b=baseline&&baseline.predictions[k],t=trial&&trial.predictions[k],bo=baseline&&((outcomes[baseline.id]||{}).metrics||{})[k],to=trial&&((outcomes[trial.id]||{}).metrics||{})[k],actual=to&&to.actual!=null?to.actual:bo&&bo.actual;
+      var b=baseline&&baseline.predictions[k],t=trial&&trial.predictions[k];
+      var bo=baseline&&((outcomes[baseline.id]||{}).metrics||{})[k],to=trial&&((outcomes[trial.id]||{}).metrics||{})[k];
+      var actual=to&&to.actual!=null?to.actual:bo&&bo.actual;
       return '<tr><th scope="row">'+esc(labels[k]||k)+'</th><td>'+fmt(b)+'</td><td class="gp-trial-value">'+fmt(t)+'</td><td>'+fmt(actual)+'</td></tr>';
     }).join('');
-    var errors=group.map(function(x){var o=outcomes[x.id];if(!o||!o.metrics)return '';return '<p><b>'+esc(x.model==='workload-trial-1'?'Workload trial':'v2.1')+'</b></p>'+Object.keys(o.metrics).map(function(k){var e=o.metrics[k];return '<p>'+esc(labels[k]||k)+': '+(e.status==='GRADED'?'absolute error '+fmt(e.absoluteError)+'; actual minus forecast '+fmt(e.error):'Not graded: statistic unavailable')+'</p>';}).join('');
-    return '<article class="gp-trial-card" data-athlete="'+esc(r.athleteId)+'"><header><div><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+' \u00b7 '+esc(date(r.kickoff))+'</small><h2>'+nameLink(r)+'</h2></div><button type="button" class="gp-trial-follow" data-follow="'+esc(r.id)+'" aria-pressed="'+followed(r)+'">'+(followed(r)?'Following':'Follow')+'</button></header><div class="gp-trial-table-wrap"><table><thead><tr><th>Stat</th><th>v2.1</th><th>Trial</th><th>Actual</th></tr></thead><tbody>'+rows+'</tbody></table></div><footer><span>'+esc(errors?'Final stats available':'Awaiting final stats')+'</span><details><summary>Saved forecast details</summary>'+group.map(function(x){return '<p>'+esc(x.model)+': captured '+esc(date(x.recordedAt))+'. '+(x.historyGames?esc(x.historyGames+' earlier same-team appearances; '+x.currentSeasonGames+' this season. '):'')+'Forecast fingerprint '+esc(x.forecastHash.slice(0,12))+'.</p>';}).join('')+errors+'<p>Forecasts are conditional on playing and do not update after capture. A missing line is not a zero.</p></details></footer></article>';
+    var errors=resultDetails(group,outcomes);
+    var detail=group.map(function(x){return '<p>'+esc(x.model)+': captured '+esc(date(x.recordedAt))+'. '+(x.historyGames?esc(x.historyGames+' earlier same-team appearances; '+x.currentSeasonGames+' this season. '):'')+'Forecast fingerprint '+esc(x.forecastHash.slice(0,12))+'.</p>';}).join('');
+    return '<article class="gp-trial-card" data-athlete="'+esc(r.athleteId)+'"><header><div><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+' \u00b7 '+esc(date(r.kickoff))+'</small><h2>'+nameLink(r)+'</h2></div><button type="button" class="gp-trial-follow" data-follow="'+esc(r.id)+'" aria-pressed="'+followed(r)+'">'+(followed(r)?'Following':'Follow')+'</button></header><div class="gp-trial-table-wrap"><table><thead><tr><th>Stat</th><th>v2.1</th><th>Trial</th><th>Actual</th></tr></thead><tbody>'+rows+'</tbody></table></div><footer><span>'+esc(errors?'Final / see grading details':'Awaiting final stats')+'</span><details><summary>Saved forecast details</summary>'+detail+errors+'<p>Forecasts are conditional on playing and do not update after capture. A missing line is not a zero.</p></details></footer></article>';
   }
   function renderPage(){
     if(!data||!document.getElementById('gp-trial-cards'))return;
