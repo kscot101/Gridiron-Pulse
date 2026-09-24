@@ -1,0 +1,82 @@
+name: Install Sites command center layout
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/sites-command-center.css"
+      - "scripts/install_sites_command_center.py"
+      - ".github/workflows/install-sites-command-center.yml"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sites-command-center-layout
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install command center presentation
+        run: |
+          python scripts/install_sites_command_center.py
+          node --check assets/homepage-feed.js
+          node --check assets/homepage-score-source.js
+          node scripts/test_homepage_feed.js
+
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Verify live homepage behavior and mobile layout
+        run: node scripts/check_homepage_browser.js
+
+      - name: Commit verified layout
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html data/homepage-safety-verification.json
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "Apply Sites Sunday command center layout"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+
+      - name: Request Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sites-command-center-verification
+          retention-days: 14
+          path: |
+            data/homepage-safety-verification.json
+            homepage-current-desktop.png
+            homepage-current-results.png
+            homepage-current-mobile.png
+            homepage-current-error.png
+            homepage-browser-error.json
