@@ -1,0 +1,114 @@
+name: Refresh exact-stat projection trial
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 * * * *'
+  workflow_run:
+    workflows: ['Refresh v2.1 production projections', 'Refresh current homepage feed']
+    types: [completed]
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/projection-trial.yml'
+      - 'scripts/projection_trial.py'
+      - 'scripts/test_projection_trial.py'
+      - 'scripts/install_projection_trial.py'
+      - 'scripts/check_projection_trial.js'
+      - 'assets/projection-trial.js'
+      - 'assets/projection-trial.css'
+      - 'projection-trial.html'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: projection-trial-ledger
+  cancel-in-progress: false
+jobs:
+  trial:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install model dependencies
+        run: pip install pandas numpy requests
+      - uses: actions/cache@v4
+        with:
+          path: .cache/projection-trial
+          key: workload-trial-source-2022-2025-v1
+      - name: Preserve existing records and apply isolated adapter
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          names=['data/homepage-result-archive.json','data/player-context-v21.json','projections-2026.html']
+          Path('/tmp/trial-protected.json').write_text(json.dumps({p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in names if Path(p).exists()}))
+          PY
+          python scripts/install_projection_trial.py
+          python scripts/install_projection_trial.py
+          python scripts/test_projection_trial.py
+          node --check assets/projection-trial.js
+      - name: Generate and freeze the first eligible pregame forecasts
+        run: python -u scripts/projection_trial.py --cache .cache/projection-trial --out data
+      - name: Verify forecast integrity and protected records
+        run: |
+          python - <<'PY'
+          import sys,hashlib,json
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from projection_trial import verify_ledger
+          ledger=json.loads(Path('data/projection-trial-ledger.json').read_text())
+          verify_ledger(ledger['forecasts'])
+          for p,h in json.loads(Path('/tmp/trial-protected.json').read_text()).items():
+              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==h, p+' was changed'
+          print('Frozen forecast hashes and protected season/legacy files passed.')
+          PY
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify card values, model switch, filters, follows and mobile
+        run: node scripts/check_projection_trial.js
+      - name: Publish only tested trial files
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/projection_trial.py index.html data/projection-trial.json data/projection-trial-calibration.json data/projection-trial-ledger.json data/projection-trial-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish frozen exact-stat forecasts and separate workload trial'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Build public site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: projection-trial-verification
+          retention-days: 14
+          path: |
+            data/projection-trial*.json
+            projection-trial*.png
+            projection-trial-browser-error.json
+            assets/projection-trial.*
+            scripts/projection_trial.py
+            scripts/test_projection_trial.py
+            scripts/install_projection_trial.py
+            scripts/check_projection_trial.js
+            projection-trial.html
+            index.html
