@@ -1,21 +1,23 @@
 {
-  "checkedAt": "2026-09-27T14:17:38.082291+00:00",
-  "workflowRun": "36325377308",
+  "checkedAt": "2026-09-27T18:38:53.881131+00:00",
+  "workflowRun": "36341411678",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-09-27T14:17:38.864Z",
-      "teamsWithHistory": 30,
-      "teamsMeetingSampleTarget": 30,
-      "fallbackSignalCount": 5,
-      "warnings": []
+      "generatedAt": "2026-09-27T18:38:54.629Z",
+      "teamsWithHistory": 12,
+      "teamsMeetingSampleTarget": 12,
+      "fallbackSignalCount": 1,
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 3,
-  "previousGeneratedAt": "2026-09-27T08:33:28.205Z",
+  "previousGeneratedAt": "2026-09-27T14:17:38.864Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -74,7 +76,7 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-09-27T14:17:38.864Z",
+  "generatedAt": "2026-09-27T18:38:54.629Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -88,28 +90,10 @@
   "analysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 2,
-    "pregameTeams": 30,
-    "teamsWithHistory": 30,
-    "teamsMeetingSampleTarget": 30,
+    "pregameTeams": 12,
+    "teamsWithHistory": 12,
+    "teamsMeetingSampleTarget": 12,
     "teamSamples": {
-      "LAC": 3,
-      "BUF": 3,
-      "CAR": 3,
-      "CLE": 3,
-      "NYJ": 3,
-      "DET": 3,
-      "HOU": 3,
-      "IND": 3,
-      "KC": 3,
-      "MIA": 3,
-      "TEN": 3,
-      "NYG": 3,
-      "CIN": 3,
-      "PIT": 3,
-      "SEA": 3,
-      "WSH": 3,
-      "NE": 3,
-      "JAX": 3,
       "ARI": 3,
       "SF": 3,
       "MIN": 3,
@@ -123,11 +107,11 @@
       "PHI": 3,
       "CHI": 3
     },
-    "playerPicks": 57,
-    "picksWithGameHistory": 57,
+    "playerPicks": 23,
+    "picksWithGameHistory": 23,
     "playersWithoutGameHistory": [],
-    "signalCount": 228,
-    "fallbackSignalCount": 5,
+    "signalCount": 92,
+    "fallbackSignalCount": 1,
     "sampleSeasons": [
       "2025",
       "2026"
@@ -228,64 +212,9 @@
           "detail": "Comparable RB groups averaged 135.7 scrimmage yards, 7 catches and 1 TD across 3 recent games vs KC."
         }
       ]
-    },
-    {
-      "name": "Travis Kelce",
-      "team": "KC",
-      "position": "TE",
-      "score": 81,
-      "baselineAvailable": true,
-      "recentGames": [
-        {
-          "gameId": "401872945",
-          "date": "2026-09-21T00:20Z",
-          "opponent": "IND",
-          "headline": "9 REC \u00b7 101 YDS \u00b7 1 TD",
-          "productionScore": 91.5,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 2
-        },
-        {
-          "gameId": "401872931",
-          "date": "2026-09-15T00:15Z",
-          "opponent": "DEN",
-          "headline": "3 REC \u00b7 71 YDS \u00b7 0 TD",
-          "productionScore": 44.5,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 1
-        },
-        {
-          "gameId": "401772957",
-          "date": "2026-01-04T21:25Z",
-          "opponent": "LV",
-          "headline": "3 REC \u00b7 12 YDS \u00b7 0 TD",
-          "productionScore": 15,
-          "seasonYear": 2025,
-          "seasonType": 2,
-          "seasonWeek": 18
-        }
-      ],
-      "signals": [
-        {
-          "label": "Opponent defense",
-          "detail": "MIA has allowed 220.3 net passing yards per game across 3 recent samples."
-        },
-        {
-          "label": "Current form",
-          "detail": "3-game form is rising; latest vs IND: 9 REC \u00b7 101 YDS \u00b7 1 TD."
-        },
-        {
-          "label": "Team scheme",
-          "detail": "KC's recent yardage mix is 58% passing and 42% rushing. The strongest recent non-QB production has come from RB."
-        },
-        {
-          "label": "Position history",
-          "detail": "MIA's recent results against comparable TE roles are still being established."
-        }
-      ]
     }
   ],
-  "warnings": []
+  "warnings": [
+    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+  ]
 }
