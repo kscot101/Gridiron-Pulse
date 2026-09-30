@@ -38,3 +38,27 @@
 
 .gp-log-swipe{display:none;font:750 11px/1.4 system-ui,sans-serif;color:#376348}
 @media(max-width:600px){.gp-log-swipe{display:block}.modal-body:has(> .gp-recent-root) > div:first-child > div{min-width:0;flex:1}.modal-body:has(> .gp-recent-root) .modal-title{font-size:30px;overflow-wrap:anywhere}.modal-body:has(> .gp-recent-root) > div:first-child{gap:10px!important}.modal-body:has(> .gp-recent-root) > div:first-child .avatar{width:42px;height:42px;flex-shrink:0}}
+
+
+/* Current opponent matchup history */
+.gp-h2h-root{margin:18px 0 22px;padding:20px;color:#f6fbf7;background:linear-gradient(145deg,rgba(183,255,60,.12),rgba(8,27,18,.98));border:2px solid #b7ff3c;border-radius:14px;box-shadow:0 16px 44px rgba(0,0,0,.18);min-width:0}
+.gp-h2h-root[hidden]{display:none!important}
+.gp-h2h-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.gp-h2h-head small{display:block;margin-bottom:7px;color:#b7ff3c;font:900 10px/1.2 Consolas,ui-monospace,monospace;letter-spacing:.1em}
+.gp-h2h-head h3{margin:0!important;color:#fff!important;font:900 clamp(24px,4vw,34px)/1.05 system-ui,sans-serif!important;letter-spacing:-.02em!important;text-transform:none!important}
+.gp-h2h-head h3 span{color:#8fae9a;font-size:.55em;white-space:nowrap}
+.gp-h2h-head>b{padding:7px 9px;border:1px solid rgba(183,255,60,.35);border-radius:999px;color:#dfffb1;background:rgba(183,255,60,.07);font:850 10px/1 Consolas,ui-monospace,monospace;text-transform:uppercase}
+.gp-h2h-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:17px 0}
+.gp-h2h-summary>div{padding:13px 11px;border:1px solid rgba(183,255,60,.27);border-radius:9px;background:rgba(3,16,10,.66)}
+.gp-h2h-summary strong{display:block;color:#b7ff3c;font:900 27px/1 Consolas,ui-monospace,monospace}
+.gp-h2h-summary span{display:block;margin-top:6px;color:#d1dfd6;font:800 9px/1.25 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.045em}
+.gp-h2h-note{margin:11px 0 14px;color:#c9d8cf;font:12px/1.6 system-ui,sans-serif}
+.gp-h2h-scroll{border-color:rgba(183,255,60,.25);background:#09170f}
+.gp-h2h-table{background:#09170f;color:#f5faf7}
+.gp-h2h-table thead th,.gp-h2h-table thead th:first-child{background:#16311f;color:#d9e9df}
+.gp-h2h-table th:first-child{background:#0d2015;color:#fff;box-shadow:1px 0 0 rgba(183,255,60,.15)}
+.gp-h2h-table tbody td{color:#eef7f1}
+.gp-h2h-table small{color:#9db3a5}
+.gp-h2h-table a{color:#b7ff3c;font-weight:850}
+.gp-h2h-root[aria-busy="true"]{min-height:92px}
+@media(max-width:600px){.gp-h2h-root{padding:14px 10px;margin:14px 0 18px}.gp-h2h-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-h2h-summary strong{font-size:24px}.gp-h2h-head h3{font-size:24px!important}}
