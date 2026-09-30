@@ -311,17 +311,31 @@
     section.hidden=false; section.setAttribute('aria-busy','true');
     section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>Loading current opponent…</h3></div></div>';
     try{
-      var data=await load(false), entry=resolve(d,data);
       var opponent=await resolvedH2HOpponent(d);
       var year=seasonYear(), oldest=Math.max(2017,year-9);
-      var espnId=String(d.espnId || (entry && entry.espnId) || '');
       if(!opponent){
-        renderH2H(section,d,{opponent:null,rows:[],failed:[],message:'Next opponent is not available yet.',year:year,oldest:oldest,espnId:espnId});
+        renderH2H(section,d,{opponent:null,rows:[],failed:[],message:'Next opponent is not available yet.',year:year,oldest:oldest,espnId:String(d.espnId||'')});
         return;
       }
+
+      // Show the matchup immediately. Large local history and older ESPN
+      // meetings enhance this card afterward instead of blocking the popup.
+      renderH2H(section,d,{opponent:opponent,rows:[],failed:[],year:year,oldest:oldest,espnId:String(d.espnId||''),loadingExtended:true});
+
+      var data, entry;
+      try{
+        data=await load(false);
+        entry=resolve(d,data);
+      }catch(localError){
+        data=null; entry=null;
+      }
+      if(!section.isConnected)return;
+
       var localRows=localH2H(entry,opponent.team);
+      var espnId=String(d.espnId || (entry && entry.espnId) || '');
       renderH2H(section,d,{opponent:opponent,rows:localRows,failed:[],year:year,oldest:oldest,espnId:espnId,loadingExtended:!!espnId});
       if(!espnId)return;
+
       try{
         var result=await loadH2H(d,entry);
         if(section.isConnected)renderH2H(section,d,result);
