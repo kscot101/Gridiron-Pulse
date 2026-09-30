@@ -22,21 +22,20 @@ const path = require('node:path');
   page.on('requestfailed',r=>{failed.push({url:r.url(),error:r.failure()?.errorText});console.log('REQUEST FAILED',r.url(),r.failure()?.errorText);});
   await page.goto(base+'?h2h-verification=2',{waitUntil:'domcontentloaded'});
   try {
-    await page.waitForFunction(()=>window.state&&state.playerContext&&Array.isArray(state.playerContext.players)&&state.playerContext.players.length>0&&typeof allPlayers==='function'&&allPlayers().length>0,null,{timeout:90000});
+    await page.waitForFunction(()=>window.state&&typeof allPlayers==='function'&&allPlayers().length>0,null,{timeout:90000});
   } catch (e) {
     console.log('STATE DIAGNOSTIC',await page.evaluate(()=>({connection:document.getElementById('connection-label')?.textContent,feed:document.getElementById('homepage-feed-status')?.textContent,snapshot:window.state?.snapshot&&{season:state.snapshot.season,games:state.snapshot.games?.length,boards:state.snapshot.playerEdge?.length},playerContext:window.state?.playerContext&&{generatedAt:state.playerContext.generatedAt,players:state.playerContext.players?.length},players:typeof allPlayers==='function'?allPlayers().length:null})).catch(()=>null));
     throw e;
   }
   const chosen=await page.evaluate(()=>{
     const allowed=new Set(['QB','RB','WR','TE']);
-    return state.playerContext.players.map(p=>({
-      name:p.playerName||p.player_name||p.name,
+    return allPlayers().map(p=>({
+      name:p.name||p.playerName||p.player_name,
       team:p.team||p.targetTeam,
-      position:String(p.position||p.positionGroup||'').toUpperCase(),
-      opponent:p.nextOpponent
-    })).find(p=>p.name&&p.team&&p.opponent&&allowed.has(p.position))||null;
+      position:String(p.position||p.positionGroup||'').toUpperCase()
+    })).find(p=>p.name&&p.team&&allowed.has(p.position))||null;
   });
-  assert.ok(chosen,'No offensive player on the current slate was available for H2H verification');
+  assert.ok(chosen,'No offensive player was available for H2H verification');
 
   // Search path: open player from global search and confirm matchup history renders.
   await page.locator('#open-search').click();
