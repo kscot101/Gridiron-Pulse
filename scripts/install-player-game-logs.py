@@ -6,8 +6,8 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS = '  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260930h2h3">\n'
-JS = '  <script src="./assets/player-game-log.js?v=20260930h2h3"></script>\n'
+CSS = '  <link rel="stylesheet" href="./assets/player-game-log.css?v=20260930h2h4">\n'
+JS = '  <script src="./assets/player-game-log.js?v=20260930h2h4"></script>\n'
 
 
 def connect(page):
