@@ -46,7 +46,7 @@ const path = require('node:path');
   await searchH2H.waitFor({timeout:45000});
   await page.waitForFunction(()=>{
     const el=document.querySelector('#gp-h2h-test-host .gp-h2h-root:not([hidden])');
-    return el&&!el.getAttribute('aria-busy');
+    return el&&el.getAttribute('aria-busy')!=='true';
   },null,{timeout:45000});
   const searchText=(await searchH2H.innerText()).replace(/\s+/g,' ').trim();
   assert.match(searchText,/MATCHUP HISTORY \/ HEAD TO HEAD/i);
@@ -66,7 +66,7 @@ const path = require('node:path');
   await directH2H.waitFor({timeout:45000});
   await page.waitForFunction(()=>{
     const els=[...document.querySelectorAll('dialog.gp-player-dialog .gp-h2h-root:not([hidden]), #detail-body .gp-h2h-root:not([hidden])')];
-    return els.some(el=>!el.getAttribute('aria-busy')&&/MATCHUP HISTORY \/ HEAD TO HEAD/i.test(el.textContent));
+    return els.some(el=>el.getAttribute('aria-busy')!=='true'&&/MATCHUP HISTORY \/ HEAD TO HEAD/i.test(el.textContent));
   },null,{timeout:45000});
   const directText=(await directH2H.innerText()).replace(/\s+/g,' ').trim();
   assert.match(directText,/MATCHUP HISTORY \/ HEAD TO HEAD/i);
