@@ -293,7 +293,7 @@
     var recordLabel=record.w+'-'+record.l+(record.t?'-'+record.t:'');
     var heading='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>vs '+esc(opponent.name||opponent.team)+(opponent.team&&String(opponent.name||'').indexOf(opponent.team)<0?' <span>· '+esc(opponent.team)+'</span>':'')+'</h3></div><b>'+rows.length+' meeting'+(rows.length===1?'':'s')+'</b></div>';
     if(!rows.length){
-      var source=result.espnId?'No completed regular-season or playoff meetings were found from '+result.oldest+' through '+result.year+'.':'No prior meeting is available in the verified local history for this player.';
+      var source=result.loadingExtended?'Checking older completed meetings…':result.espnId?'No completed regular-season or playoff meetings were found from '+result.oldest+' through '+result.year+'.':'No prior meeting is available in the verified local history for this player.';
       section.innerHTML=heading+'<p class="gp-h2h-note">'+esc(source)+'</p>';
       return;
     }
@@ -303,7 +303,7 @@
       var stats=row.stats||{},box=row.gameId&&/^\d+$/.test(row.gameId)?'<a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(row.gameId)+'" target="_blank" rel="noopener noreferrer">View ↗</a>':'—';
       return '<tr><th scope="row">'+esc(dateLabel(String(row.date||'').slice(0,10)))+'<small>'+esc(row.season)+' · '+(row.seasonType==='POST'?'Playoffs':'Week '+esc(row.week))+'</small></th><td><span class="gp-log-result '+(row.result==='W'?'win':row.result==='L'?'loss':'tie')+'">'+esc(row.result||'—')+'</span><small>'+esc(row.score||'')+'</small></td>'+fields.map(function(f){return '<td>'+esc(cell(stats,f[1]))+'</td>';}).join('')+'<td>'+box+'</td></tr>';
     }).join('')+'</tbody></table></div>';
-    var partial=result.failed.length?'<p class="gp-h2h-note">Some older seasons could not be loaded. Showing every verified meeting that was available.</p>':'<p class="gp-h2h-note">Completed regular-season and playoff meetings only. Preseason excluded.</p>';
+    var partial=result.loadingExtended?'<p class="gp-h2h-note">Showing verified recent meetings while older matchup history loads…</p>':result.failed.length?'<p class="gp-h2h-note">Some older seasons could not be loaded. Showing every verified meeting that was available.</p>':'<p class="gp-h2h-note">Completed regular-season and playoff meetings only. Preseason excluded.</p>';
     section.innerHTML=heading+summary+partial+table;
   }
   async function fillH2H(section,d) {
@@ -311,8 +311,23 @@
     section.hidden=false; section.setAttribute('aria-busy','true');
     section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>Loading current opponent…</h3></div></div>';
     try{
-      var data=await load(false), entry=resolve(d,data), result=await loadH2H(d,entry);
-      renderH2H(section,d,result);
+      var data=await load(false), entry=resolve(d,data);
+      var opponent=await resolvedH2HOpponent(d);
+      var year=seasonYear(), oldest=Math.max(2017,year-9);
+      var espnId=String(d.espnId || (entry && entry.espnId) || '');
+      if(!opponent){
+        renderH2H(section,d,{opponent:null,rows:[],failed:[],message:'Next opponent is not available yet.',year:year,oldest:oldest,espnId:espnId});
+        return;
+      }
+      var localRows=localH2H(entry,opponent.team);
+      renderH2H(section,d,{opponent:opponent,rows:localRows,failed:[],year:year,oldest:oldest,espnId:espnId,loadingExtended:!!espnId});
+      if(!espnId)return;
+      try{
+        var result=await loadH2H(d,entry);
+        if(section.isConnected)renderH2H(section,d,result);
+      }catch(extendedError){
+        if(section.isConnected)renderH2H(section,d,{opponent:opponent,rows:localRows,failed:[year],year:year,oldest:oldest,espnId:espnId});
+      }
     }catch(err){
       if(!section.isConnected)return;
       section.setAttribute('aria-busy','false');
