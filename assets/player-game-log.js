@@ -21,6 +21,7 @@
       espnId:String(p.athleteId || p.espnId || p.espn_id || ''),
       team:team(p.team || p.targetTeam || p.target_team || p.toTeam),
       position:pos(p.position || p.positionGroup || p.pos || p.target_position),
+      gameId:String(p.gameId || p.eventId || p.game_id || ''),
       headshot:p.headshot || p.headshot_url || ''};
   }
   function link(p, label) {
@@ -65,6 +66,211 @@
     if (!value) return '\u2014';
     var d = new Date(value + 'T12:00:00Z');
     return Number.isNaN(d.getTime()) ? value : d.toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'});
+  }
+
+  /* Current-opponent head-to-head. Kept inside the active player popup so
+     search results and clickable names use one player-profile system. */
+  var h2hCache = new Map();
+  var offensivePositions = new Set(['QB','RB','WR','TE']);
+  function seasonYear() {
+    var d = new Date();
+    return d.getUTCFullYear() - (d.getUTCMonth() < 2 ? 1 : 0);
+  }
+  function gameSide(game, side) {
+    var item = game && game.teams && game.teams[side] || {};
+    return {
+      team: team(item.abbreviation || item.team || item.teamAbbreviation || item.code),
+      name: String(item.displayName || item.teamName || item.name || item.abbreviation || item.team || '')
+    };
+  }
+  function liveGames() {
+    try {
+      if (typeof window.allGames === 'function') return arr(window.allGames());
+      return arr(window.state && window.state.snapshot && window.state.snapshot.games);
+    } catch (e) { return []; }
+  }
+  function h2hOpponent(d) {
+    if (!d || !offensivePositions.has(pos(d.position))) return null;
+    var games = liveGames(), now = Date.now(), direct = null;
+    if (d.gameId) direct = games.find(function(g){ return String(g.id) === String(d.gameId); });
+    var pool = direct ? [direct] : games.filter(function(g) {
+      var away = gameSide(g,'away').team, home = gameSide(g,'home').team;
+      var state = String(g && g.status && g.status.state || '');
+      return (away === d.team || home === d.team) && state !== 'post';
+    }).sort(function(a,b) {
+      var as = String(a && a.status && a.status.state || ''), bs = String(b && b.status && b.status.state || '');
+      if (as === 'in' && bs !== 'in') return -1;
+      if (bs === 'in' && as !== 'in') return 1;
+      var at = Date.parse(a && a.date), bt = Date.parse(b && b.date);
+      var av = Number.isFinite(at) ? Math.abs(at-now) : Number.MAX_SAFE_INTEGER;
+      var bv = Number.isFinite(bt) ? Math.abs(bt-now) : Number.MAX_SAFE_INTEGER;
+      return av-bv;
+    });
+    var game = pool[0];
+    if (!game) return null;
+    var away = gameSide(game,'away'), home = gameSide(game,'home'), other = null;
+    if (away.team === d.team) other = home;
+    else if (home.team === d.team) other = away;
+    if (!other || !other.team) return null;
+    return {team:other.team,name:other.name || other.team,gameId:String(game.id || ''),date:game.date || null};
+  }
+  function h2hNumeric(v) {
+    if (v == null || v === '' || typeof v === 'boolean') return null;
+    var n = Number(String(v).replace(/,/g,''));
+    return Number.isFinite(n) ? n : null;
+  }
+  function h2hStatMap(names, values) {
+    var raw = {};
+    arr(names).forEach(function(name,i){ raw[name] = values && values[i] != null ? values[i] : null; });
+    function get() {
+      for (var i=0;i<arguments.length;i++) if (raw[arguments[i]] != null && h2hNumeric(raw[arguments[i]]) != null) return h2hNumeric(raw[arguments[i]]);
+      return null;
+    }
+    return {
+      completions:get('completions'),
+      attempts:get('passingAttempts','attempts'),
+      passingYards:get('passingYards'),
+      passingTouchdowns:get('passingTouchdowns'),
+      interceptions:get('interceptions','passingInterceptions'),
+      carries:get('rushingAttempts','carries'),
+      rushingYards:get('rushingYards'),
+      rushingTouchdowns:get('rushingTouchdowns'),
+      targets:get('receivingTargets','targets'),
+      receptions:get('receptions'),
+      receivingYards:get('receivingYards'),
+      receivingTouchdowns:get('receivingTouchdowns')
+    };
+  }
+  function parseEspnH2H(data, year, opponent) {
+    if (!data || !Array.isArray(data.names) || !Array.isArray(data.seasonTypes)) return [];
+    var rows = new Map();
+    arr(data.seasonTypes).forEach(function(season) {
+      var label = String(season.displayName || '');
+      if (/preseason|all.star|pro bowl/i.test(label)) return;
+      arr(season.categories).forEach(function(category) {
+        if (category.type && category.type !== 'event') return;
+        var split = String(category.splitType || '');
+        if (split && split !== '2' && split !== '3') return;
+        arr(category.events).forEach(function(line) {
+          var id = String(line.eventId || ''), event = (data.events || {})[id];
+          if (!id || !event) return;
+          var opp = team(event.opponent);
+          if (opp !== opponent) return;
+          var result = String(event.gameResult || '');
+          if (!/^[WLT]/.test(result)) return;
+          var date = event.gameDate || event.date || '';
+          var time = Date.parse(date);
+          if (!Number.isFinite(time) || time > Date.now()) return;
+          var stats = h2hStatMap(data.names,line.stats);
+          rows.set(id,{
+            gameId:id,date:date,season:Number(year),week:event.week,
+            seasonType:/postseason|playoff/i.test(label) || split === '3' ? 'POST' : 'REG',
+            team:team(event.team),opponent:opp,homeAway:event.atVs === '@' ? 'away' : 'home',
+            result:result.charAt(0),score:String(event.score || ''),stats:stats
+          });
+        });
+      });
+    });
+    return Array.from(rows.values());
+  }
+  async function fetchH2HSeason(espnId, year) {
+    var key = String(espnId)+'|'+year, cached = h2hCache.get(key);
+    if (cached) return cached;
+    var promise = (async function() {
+      var controller = new AbortController();
+      var timeout = setTimeout(function(){controller.abort();},15000);
+      try {
+        var url='https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/'+encodeURIComponent(espnId)+'/gamelog?season='+year;
+        var response=await fetch(url,{cache:'no-store',headers:{Accept:'application/json'},signal:controller.signal});
+        if(!response.ok) throw Error('HTTP '+response.status);
+        return await response.json();
+      } finally { clearTimeout(timeout); }
+    })();
+    h2hCache.set(key,promise);
+    try { return await promise; } catch (e) { h2hCache.delete(key); throw e; }
+  }
+  function localH2H(entry, opponent) {
+    return arr(entry && entry.games).filter(function(g){return team(g.opponent)===opponent;}).map(function(g){
+      return {
+        gameId:String(g.gameId||''),date:g.date,season:g.season,week:g.week,seasonType:g.seasonType,
+        team:team(g.team),opponent:team(g.opponent),homeAway:g.homeAway,result:g.result,score:g.score,stats:g.stats||{}
+      };
+    });
+  }
+  async function loadH2H(d, entry) {
+    if (!d || !offensivePositions.has(pos((entry && entry.position) || d.position))) return null;
+    var opponent = h2hOpponent(d);
+    if (!opponent) return {opponent:null,rows:[],failed:[],message:'Next opponent is not available yet.'};
+    var espnId = String(d.espnId || (entry && entry.espnId) || '');
+    var year = seasonYear(), oldest = Math.max(2017,year-9), rows = localH2H(entry,opponent.team), failed=[];
+    if (espnId) {
+      var years=[]; for(var y=year;y>=oldest;y--) years.push(y);
+      var remote=await Promise.allSettled(years.map(function(y){return fetchH2HSeason(espnId,y).then(function(data){return parseEspnH2H(data,y,opponent.team);});}));
+      remote.forEach(function(result,i){if(result.status==='fulfilled') rows=rows.concat(result.value); else failed.push(years[i]);});
+    }
+    var unique=new Map();
+    rows.forEach(function(row){if(row && row.gameId) unique.set(String(row.gameId),row);});
+    rows=Array.from(unique.values()).sort(function(a,b){return String(b.date).localeCompare(String(a.date));});
+    return {opponent:opponent,rows:rows,failed:failed,year:year,oldest:oldest,espnId:espnId};
+  }
+  function h2hYards(row, position) {
+    var s=row&&row.stats||{}, p=pos(position);
+    if(p==='QB') return numeric(s.passingYards);
+    if(p==='RB') {
+      var rush=numeric(s.rushingYards), rec=numeric(s.receivingYards);
+      return rush==null && rec==null ? null : (rush||0)+(rec||0);
+    }
+    return numeric(s.receivingYards);
+  }
+  function h2hTd(row, position) {
+    var s=row&&row.stats||{}, p=pos(position);
+    if(p==='QB') return (numeric(s.passingTouchdowns)||0)+(numeric(s.rushingTouchdowns)||0);
+    if(p==='RB') return (numeric(s.rushingTouchdowns)||0)+(numeric(s.receivingTouchdowns)||0);
+    return numeric(s.receivingTouchdowns)||0;
+  }
+  function renderH2H(section,d,result) {
+    if (!section || !section.isConnected) return;
+    section.setAttribute('aria-busy','false');
+    if (!result || !offensivePositions.has(pos(d.position))) { section.hidden=true; return; }
+    section.hidden=false;
+    var opponent=result.opponent;
+    if(!opponent){
+      section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY</small><h3>Head to head</h3></div></div><p class="gp-h2h-note">'+esc(result.message||'Next opponent is not available yet.')+'</p>';
+      return;
+    }
+    var rows=arr(result.rows), position=pos(d.position), yardLabel=position==='QB'?'Pass yds':position==='RB'?'Scrimmage yds':'Rec yds';
+    var yards=rows.map(function(r){return h2hYards(r,position);}).filter(function(v){return v!=null;});
+    var avg=yards.length?yards.reduce(function(a,b){return a+b;},0)/yards.length:null;
+    var totalTd=rows.reduce(function(sum,row){return sum+h2hTd(row,position);},0);
+    var record=rows.reduce(function(out,row){if(row.result==='W')out.w++;else if(row.result==='L')out.l++;else if(row.result==='T')out.t++;return out;},{w:0,l:0,t:0});
+    var recordLabel=record.w+'-'+record.l+(record.t?'-'+record.t:'');
+    var heading='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>vs '+esc(opponent.name||opponent.team)+(opponent.team&&String(opponent.name||'').indexOf(opponent.team)<0?' <span>· '+esc(opponent.team)+'</span>':'')+'</h3></div><b>'+rows.length+' meeting'+(rows.length===1?'':'s')+'</b></div>';
+    if(!rows.length){
+      var source=result.espnId?'No completed regular-season or playoff meetings were found from '+result.oldest+' through '+result.year+'.':'No prior meeting is available in the verified local history for this player.';
+      section.innerHTML=heading+'<p class="gp-h2h-note">'+esc(source)+'</p>';
+      return;
+    }
+    var summary='<div class="gp-h2h-summary"><div><strong>'+rows.length+'</strong><span>Meetings</span></div><div><strong>'+esc(avg==null?'\u2014':avg.toFixed(1))+'</strong><span>Avg '+esc(yardLabel)+'</span></div><div><strong>'+esc(totalTd)+'</strong><span>Total TD</span></div><div><strong>'+esc(recordLabel)+'</strong><span>Team record</span></div></div>';
+    var fields=columns(position,rows).slice(0,6);
+    var table='<div class="gp-log-scroll gp-h2h-scroll" role="region" aria-label="Head-to-head game statistics for '+esc(d.name)+'" tabindex="0"><table class="gp-log-table gp-h2h-table"><caption class="gp-sr-only">'+esc(d.name)+' head-to-head games versus '+esc(opponent.team)+'</caption><thead><tr><th scope="col">Game</th><th scope="col">Result</th>'+fields.map(function(f){return '<th scope="col">'+esc(f[0])+'</th>';}).join('')+'<th scope="col">Box</th></tr></thead><tbody>'+rows.map(function(row){
+      var stats=row.stats||{},box=row.gameId&&/^\d+$/.test(row.gameId)?'<a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(row.gameId)+'" target="_blank" rel="noopener noreferrer">View ↗</a>':'—';
+      return '<tr><th scope="row">'+esc(dateLabel(String(row.date||'').slice(0,10)))+'<small>'+esc(row.season)+' · '+(row.seasonType==='POST'?'Playoffs':'Week '+esc(row.week))+'</small></th><td><span class="gp-log-result '+(row.result==='W'?'win':row.result==='L'?'loss':'tie')+'">'+esc(row.result||'—')+'</span><small>'+esc(row.score||'')+'</small></td>'+fields.map(function(f){return '<td>'+esc(cell(stats,f[1]))+'</td>';}).join('')+'<td>'+box+'</td></tr>';
+    }).join('')+'</tbody></table></div>';
+    var partial=result.failed.length?'<p class="gp-h2h-note">Some older seasons could not be loaded. Showing every verified meeting that was available.</p>':'<p class="gp-h2h-note">Completed regular-season and playoff meetings only. Preseason excluded.</p>';
+    section.innerHTML=heading+summary+partial+table;
+  }
+  async function fillH2H(section,d) {
+    if(!offensivePositions.has(pos(d.position))){section.hidden=true;return;}
+    section.hidden=false; section.setAttribute('aria-busy','true');
+    section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>Loading current opponent…</h3></div></div>';
+    try{
+      var data=await load(false), entry=resolve(d,data), result=await loadH2H(d,entry);
+      renderH2H(section,d,result);
+    }catch(err){
+      if(!section.isConnected)return;
+      section.setAttribute('aria-busy','false');
+      section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY / HEAD TO HEAD</small><h3>Current opponent</h3></div></div><p class="gp-h2h-note">Head-to-head history is temporarily unavailable. Recent games are still shown below.</p>';
+    }
   }
   function columns(position, games) {
     var qb = [['C/ATT',['completions','attempts']],['Pass Yds','passingYards'],['Pass TD','passingTouchdowns'],['INT','interceptions'],['Rush Yds','rushingYards'],['Rush TD','rushingTouchdowns']];
@@ -127,14 +333,18 @@
   function attach(player, container) {
     if (typeof container === 'string') container = document.querySelector(container);
     if (!container) return;
+    var d=describe(player);
     var old = container.querySelector('.gp-recent-root'); if (old) old.remove();
+    var oldH2H = container.querySelector('.gp-h2h-root'); if (oldH2H) oldH2H.remove();
+    var h2h = document.createElement('section'); h2h.className='gp-h2h-root';
     var section = document.createElement('section'); section.className = 'gp-recent-root';
     var first = container.querySelector('.modal-section');
-    if (first) first.before(section); else container.appendChild(section);
-    fill(section,describe(player));
+    if (first) { first.before(h2h); first.before(section); } else { container.appendChild(h2h); container.appendChild(section); }
+    fillH2H(h2h,d);
+    fill(section,d);
     var overlay = container.closest('.overlay');
     if (overlay) {
-      overlay.setAttribute('aria-label', describe(player).name + ' player profile and recent games');
+      overlay.setAttribute('aria-label', d.name + ' player profile, head-to-head and recent games');
       requestAnimationFrame(function() { if (section.isConnected && overlay.classList.contains('open')) { overlay.scrollTop = 0; var close = overlay.querySelector('[data-close]'); if(close) close.focus(); } });
     }
   }
