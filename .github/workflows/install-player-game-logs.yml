@@ -19,34 +19,28 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Restore checksum-verified source assets
+      - name: Validate current player profile assets and source feed
         run: |
           python - <<'PY'
-          import base64, gzip, hashlib, json, subprocess
+          import json
           from pathlib import Path
-          original = subprocess.check_output(['git', 'show', 'b95967c58883375399c304d978326e44056cd4f1:.github/workflows/install-player-game-logs.yml'], text=True)
-          bundle = original.split('BUNDLE: ', 1)[1].splitlines()[0].strip()
-          bundle = bundle.replace('P/gz+839', 'P/gz839')
-          raw = gzip.decompress(base64.b64decode(bundle))
-          assert hashlib.sha256(raw).hexdigest() == 'a6e82e277cc7346d2df51e9e640611acb5f7d09f68d8b3a2946d954f2d4f7daf', 'Source asset checksum mismatch'
-          files = json.loads(raw)
-          assert set(files) == {'assets/player-game-log.js', 'assets/player-game-log.css', 'scripts/install-player-game-logs.py'}
-          for name, contents in files.items():
-              path = Path(name)
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(contents, encoding='utf-8')
-          feed = json.loads(Path('data/player-recent-games.json').read_text())
+          feed=json.loads(Path('data/player-recent-games.json').read_text())
           assert feed['ok'] is True and len(feed['players']) > 500
+          js=Path('assets/player-game-log.js').read_text()
+          assert 'function h2hOpponent(' in js
+          assert 'MATCHUP HISTORY / HEAD TO HEAD' in js
+          print('Current player profile includes recent games and restored H2H.')
           PY
-      - name: Connect profiles and validate JavaScript
+          node --check assets/player-game-log.js
+      - name: Connect current profiles without restoring archived assets
         run: python scripts/install-player-game-logs.py
       - name: Publish player stats interface
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/player-game-log.js assets/player-game-log.css scripts/install-player-game-logs.py index.html projections-2026.html
+          git add scripts/install-player-game-logs.py index.html projections-2026.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Make player names clickable with recent recorded game stats'
+          git commit -m 'Keep current player profiles and head-to-head integration'
           git pull --rebase origin main
           git push origin main
