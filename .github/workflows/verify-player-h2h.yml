@@ -42,7 +42,7 @@ jobs:
           from pathlib import Path
           for name in ['index.html','projections-2026.html','projection-trial.html','pick-tracker.html']:
               text=Path(name).read_text()
-              assert 'player-game-log.js?v=20260930h2h1' in text, name
+              assert 'player-game-log.js?v=20260930h2h2' in text, name
               assert 'player-game-logs.js?v=20260909-1' not in text, name
           print('Consolidated player profile assets are linked on all live player pages.')
           PY
