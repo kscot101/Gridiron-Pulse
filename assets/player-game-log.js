@@ -127,6 +127,40 @@
     if (!other || !other.team) return null;
     return {team:other.team,name:other.name || other.team,gameId:String(game.id || ''),date:game.date || null};
   }
+  async function scoreboardOpponent(d) {
+    try {
+      var response=await fetch('./data/homepage-scoreboard.json?v='+Math.floor(Date.now()/900000),{cache:'no-cache',headers:{Accept:'application/json'}});
+      if(!response.ok) return null;
+      var payload=await response.json(), board=payload && payload.scoreboard;
+      var events=arr(board && board.events);
+      var matches=[];
+      events.forEach(function(event){
+        var competition=arr(event && event.competitions)[0]||{};
+        var competitors=arr(competition.competitors);
+        var mine=competitors.find(function(x){return team(x && x.team)===d.team;});
+        if(!mine)return;
+        var other=competitors.find(function(x){return x!==mine;});
+        if(!other)return;
+        var type=(event.status&&event.status.type)||(competition.status&&competition.status.type)||{};
+        matches.push({
+          team:team(other.team),
+          name:String((other.team||{}).displayName||(other.team||{}).shortDisplayName||(other.team||{}).name||(other.team||{}).abbreviation||''),
+          gameId:String(event.id||''),
+          date:event.date||null,
+          state:String(type.state||'pre')
+        });
+      });
+      matches.sort(function(a,b){
+        if(a.state==='in'&&b.state!=='in')return -1;
+        if(b.state==='in'&&a.state!=='in')return 1;
+        return (Date.parse(a.date)||Number.MAX_SAFE_INTEGER)-(Date.parse(b.date)||Number.MAX_SAFE_INTEGER);
+      });
+      return matches[0]||null;
+    } catch(e) { return null; }
+  }
+  async function resolvedH2HOpponent(d) {
+    return h2hOpponent(d) || await scoreboardOpponent(d);
+  }
   function h2hNumeric(v) {
     if (v == null || v === '' || typeof v === 'boolean') return null;
     var n = Number(String(v).replace(/,/g,''));
@@ -212,7 +246,7 @@
   }
   async function loadH2H(d, entry) {
     if (!d || !offensivePositions.has(pos((entry && entry.position) || d.position))) return null;
-    var opponent = h2hOpponent(d);
+    var opponent = await resolvedH2HOpponent(d);
     if (!opponent) return {opponent:null,rows:[],failed:[],message:'Next opponent is not available yet.'};
     var espnId = String(d.espnId || (entry && entry.espnId) || '');
     var year = seasonYear(), oldest = Math.max(2017,year-9), rows = localH2H(entry,opponent.team), failed=[];
