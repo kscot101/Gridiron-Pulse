@@ -1,0 +1,79 @@
+name: Verify player head-to-head profiles
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/player-game-log.js'
+      - 'assets/player-game-log.css'
+      - 'index.html'
+      - 'projections-2026.html'
+      - 'projection-trial.html'
+      - 'pick-tracker.html'
+      - 'scripts/check-player-h2h.js'
+      - '.github/workflows/verify-player-h2h.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: player-h2h-verification
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate consolidated player profile JavaScript
+        run: |
+          node --check assets/player-game-log.js
+          node --check scripts/check-player-h2h.js
+          python - <<'PY'
+          from pathlib import Path
+          for name in ['index.html','projections-2026.html','projection-trial.html','pick-tracker.html']:
+              text=Path(name).read_text()
+              assert 'player-game-log.js?v=20260930h2h1' in text, name
+              assert 'player-game-logs.js?v=20260909-1' not in text, name
+          print('Consolidated player profile assets are linked on all live player pages.')
+          PY
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify search and direct-name H2H paths
+        run: node scripts/check-player-h2h.js
+      - name: Publish verification report
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/player-h2h-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verify player head-to-head in search and player profiles'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Request Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-h2h-verification
+          retention-days: 14
+          path: |
+            data/player-h2h-verification.json
+            player-h2h-mobile.png
