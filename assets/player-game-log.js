@@ -21,7 +21,8 @@
       espnId:String(p.athleteId || p.espnId || p.espn_id || ''),
       team:team(p.team || p.targetTeam || p.target_team || p.toTeam),
       position:pos(p.position || p.positionGroup || p.pos || p.target_position),
-      gameId:String(p.gameId || p.eventId || p.game_id || ''),
+      gameId:String(p.gameId || p.eventId || p.game_id || p.nextGameId || ''),
+      opponent:team(p.nextOpponent || p.opponent || p.opponentTeam || ''),
       headshot:p.headshot || p.headshot_url || ''};
   }
   function link(p, label) {
@@ -107,7 +108,19 @@
       return av-bv;
     });
     var game = pool[0];
-    if (!game) return null;
+    if (!game) {
+      if (d.opponent) return {team:d.opponent,name:d.opponent,gameId:d.gameId||'',date:null};
+      try {
+        var rows=arr(window.state && window.state.playerContext && window.state.playerContext.players);
+        var match=rows.find(function(row){
+          var rd=describe(row);
+          return norm(rd.name)===norm(d.name) && (!d.team || rd.team===d.team) && (!d.position || !rd.position || rd.position===d.position);
+        });
+        var next=team(match && (match.nextOpponent || match.opponent));
+        if(next) return {team:next,name:String(match.nextOpponentName || match.nextOpponent || next),gameId:String(match.nextGameId||''),date:match.nextGameKickoff||null};
+      } catch(e) {}
+      return null;
+    }
     var away = gameSide(game,'away'), home = gameSide(game,'home'), other = null;
     if (away.team === d.team) other = home;
     else if (home.team === d.team) other = away;
