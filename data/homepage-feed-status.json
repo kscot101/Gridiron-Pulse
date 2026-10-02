@@ -1,21 +1,23 @@
 {
-  "checkedAt": "2026-10-02T18:41:18.257067+00:00",
-  "workflowRun": "37049102644",
+  "checkedAt": "2026-10-02T23:15:21.070360+00:00",
+  "workflowRun": "37076679279",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-02T18:41:18.941Z",
+      "generatedAt": "2026-10-02T23:15:21.808Z",
       "teamsWithHistory": 30,
       "teamsMeetingSampleTarget": 30,
       "fallbackSignalCount": 3,
-      "warnings": []
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-02T13:10:18.775Z",
+  "previousGeneratedAt": "2026-10-02T18:41:18.941Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -73,7 +75,7 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-02T18:41:18.941Z",
+  "generatedAt": "2026-10-02T23:15:21.808Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -133,63 +135,6 @@
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
   "sampleSignals": [
-    {
-      "name": "De'Von Achane",
-      "team": "MIA",
-      "position": "RB",
-      "score": 69,
-      "baselineAvailable": true,
-      "recentGames": [
-        {
-          "gameId": "401872952",
-          "date": "2026-09-27T17:00Z",
-          "opponent": "KC",
-          "headline": "3 CAR \u00b7 17 YDS \u00b7 0 TD",
-          "productionScore": 8.5,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 3
-        },
-        {
-          "gameId": "401872942",
-          "date": "2026-09-20T20:25Z",
-          "opponent": "SF",
-          "headline": "20 CAR \u00b7 74 YDS \u00b7 0 TD",
-          "productionScore": 49.333333333333336,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 2
-        },
-        {
-          "gameId": "401872928",
-          "date": "2026-09-13T20:25Z",
-          "opponent": "LV",
-          "headline": "11 CAR \u00b7 36 YDS \u00b7 0 TD",
-          "productionScore": 36,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 1
-        }
-      ],
-      "signals": [
-        {
-          "label": "Opponent defense",
-          "detail": "MIN has allowed 85.7 rushing yards per game across 3 recent samples."
-        },
-        {
-          "label": "Current form",
-          "detail": "3-game form is cooling; latest vs KC: 3 CAR \u00b7 17 YDS \u00b7 0 TD."
-        },
-        {
-          "label": "Team scheme",
-          "detail": "MIA's recent yardage mix is 66% passing and 34% rushing. The strongest recent non-QB production has come from WR."
-        },
-        {
-          "label": "Position history",
-          "detail": "Comparable RB groups averaged 97 scrimmage yards, 3.7 catches and 0 TD across 3 recent games vs MIN."
-        }
-      ]
-    },
     {
       "name": "Patrick Mahomes",
       "team": "KC",
@@ -305,5 +250,7 @@
       ]
     }
   ],
-  "warnings": []
+  "warnings": [
+    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+  ]
 }
