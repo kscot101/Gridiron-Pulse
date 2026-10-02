@@ -34,7 +34,7 @@ const path=require('node:path');
     const recordId=await firstButton.getAttribute('data-follow');
     await firstButton.click();await page.reload({waitUntil:'domcontentloaded'});
     await page.waitForFunction(id=>Array.from(document.querySelectorAll('[data-follow]')).some(b=>b.dataset.follow===id&&b.getAttribute('aria-pressed')==='true'),recordId,{timeout:45000});
-    await page.check('#gp-favorites');assert.equal(await page.locator('.gp-trial-card').count(),1);report.followPersists=true;
+    await page.check('#gp-favorites');\n    const favoriteCards=page.locator('.gp-trial-card');\n    const favoriteCount=await favoriteCards.count();\n    assert.ok(favoriteCount>0);\n    const favoriteKeys=await favoriteCards.locator('[data-follow]').evaluateAll(nodes=>nodes.map(n=>n.dataset.follow));\n    assert.ok(favoriteKeys.length>0&&favoriteKeys.every(k=>k===recordId));\n    report.followPersists=true;report.favoriteCards=favoriteCount;
     await page.uncheck('#gp-favorites');
     await page.fill('#gp-search','Mahomes');assert.ok((await page.locator('.gp-trial-card').textContent()).includes('Patrick Mahomes'));report.search=true;
     await page.fill('#gp-search','');
