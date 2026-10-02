@@ -1,0 +1,54 @@
+name: Verify published Sites v8 layout
+on:
+  push:
+    branches: [main]
+    paths: ['sites-v8-release.json', '.github/workflows/verify-sites-v8-release.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Request Pages publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'A build may already be queued; checking the public files next.'
+      - name: Verify actual public HTML and assets
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          base='https://kscot101.github.io/Gridiron-Pulse/'
+          def read(name):
+              req=urllib.request.Request(base+name+'?verify-sites-v8='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'GridironPulse-ReleaseVerification/1'})
+              with urllib.request.urlopen(req,timeout=20) as r:return r.read()
+          for attempt in range(18):
+              try:
+                  home=read('index.html').decode(); tracker=read('pick-tracker.html').decode()
+                  assert 'home-section-rail' in home and '20261002-sites-v8' in home
+                  assert 'pt-dashboard' in tracker and 'pt-comparison-chart' in tracker and '20261002-sites-v8' in tracker
+                  assert 'player-game-log.js?v=20260930h2h5' in home and 'player-game-log.js?v=20260930h2h5' in tracker
+                  checks={}
+                  for name in ['assets/home-sections.css','assets/home-sections.js','assets/pick-tracker-dashboard.css','assets/pick-tracker.js']:
+                      checks[name]=hashlib.sha256(read(name)).hexdigest()==hashlib.sha256(Path(name).read_bytes()).hexdigest()
+                  assert all(checks.values()),'Asset cache has not updated yet'
+                  report={'passed':True,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'homepageSidebarPublished':True,'trackerDashboardPublished':True,'newerPlayerProfileReferencesPreserved':True,'publicAssetsMatchTestedFiles':checks,'note':'Publication check, not a forecast freshness or accuracy claim.'}
+                  Path('sites-v8-publication.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));break
+              except Exception as e:
+                  print('Waiting for publication:',type(e).__name__,str(e),flush=True)
+                  if attempt==17:raise
+                  time.sleep(10)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sites-v8-publication
+          retention-days: 7
+          path: sites-v8-publication.json

@@ -1,0 +1,40 @@
+/* Persistent homepage section navigation. Existing page sections and feeds are untouched. */
+.home-section-rail{
+  position:fixed;z-index:35;top:92px;bottom:16px;left:14px;width:174px;
+  display:flex;flex-direction:column;min-height:0;
+  color:#f1f6ee;background:transparent;border:0
+}
+.home-section-rail-title{display:flex;justify-content:space-between;align-items:center;padding:13px 12px;color:#e1eddf;background:rgba(6,22,12,.68);border:1px solid rgba(201,255,50,.13);border-radius:7px;backdrop-filter:blur(14px);font:750 11px/1.3 var(--mono);letter-spacing:.11em}
+.home-section-rail nav{display:flex;flex-direction:column;gap:5px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:10px 0}
+.home-section-link{display:flex;align-items:center;min-height:42px;width:100%;padding:8px 15px;color:#f0f7ec;background:rgba(6,22,12,.66);border:1px solid rgba(201,255,50,.1);border-radius:6px;backdrop-filter:blur(14px);text-align:left;font:700 13px/1.25 var(--sans);cursor:pointer;white-space:nowrap}
+.home-section-link:hover{background:rgba(30,60,36,.82)}
+.home-section-link[aria-current="location"]{color:#0d1d10;background:#c9ff32;border-color:#c9ff32}
+.home-back-top{display:flex;align-items:center;gap:9px;margin-top:auto;padding:12px;color:#c9ff32;background:rgba(6,22,12,.68);border:1px solid rgba(201,255,50,.13);border-radius:7px;backdrop-filter:blur(14px);text-align:left;font:750 12px/1.2 var(--sans);cursor:pointer}
+.home-back-top:hover{color:#fff}
+.home-section-rail~main,.home-section-rail~main+footer{margin-left:0}
+.home-section-rail~main{min-width:0}
+.home-section-rail~main .shell,.home-section-rail~main+footer .shell{width:min(1380px,calc(100% - 238px));margin-left:210px;margin-right:24px}
+main > section[id]{scroll-margin-top:78px}
+.home-section-link:focus-visible,.home-back-top:focus-visible,.home-sections-toggle:focus-visible,.home-drawer-head button:focus-visible{outline:3px solid #c9ff32;outline-offset:2px}
+.home-sections-toggle,.home-sections-drawer,.home-sections-scrim{display:none}
+@media(max-width:1180px){
+  .home-section-rail{display:none}
+  .home-section-rail~main,.home-section-rail~main+footer{margin-left:0}
+  .home-section-rail~main .shell,.home-section-rail~main+footer .shell{width:min(1380px,calc(100% - 48px));margin-left:auto;margin-right:auto}
+  .home-sections-toggle{position:fixed;z-index:58;right:18px;bottom:18px;display:flex;align-items:center;gap:9px;min-height:47px;padding:0 16px;color:#0c1d10;background:#c9ff32;border:1px solid #9acd20;border-radius:7px;box-shadow:0 8px 30px #0008;font:800 14px/1 var(--sans);cursor:pointer}
+  .home-sections-scrim:not([hidden]){position:fixed;inset:0;z-index:60;display:block;background:#030d08a8}
+  .home-sections-drawer{position:fixed;z-index:61;inset:0 auto 0 0;display:flex;flex-direction:column;width:min(320px,86vw);padding:23px 16px 17px;background:#0c1b12;border-right:1px solid #456a46;box-shadow:20px 0 50px #0008;color:#f1f6ef;transform:translateX(-105%);visibility:hidden;pointer-events:none;transition:transform .22s ease,visibility .22s}
+  .home-sections-drawer.is-open{transform:translateX(0);visibility:visible;pointer-events:auto}
+  .home-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:0 5px 15px;border-bottom:1px solid #36533a;font-size:23px;letter-spacing:-.04em}
+  .home-drawer-head button{width:40px;height:40px;color:#e4f0e1;background:#20382a;border:1px solid #456748;border-radius:5px;font-size:28px;line-height:1;cursor:pointer}
+  .home-sections-drawer nav{display:flex;flex-direction:column;gap:4px;min-height:0;overflow-y:auto;padding:14px 0}
+  .home-sections-drawer .home-section-link{min-height:46px;font-size:14px;padding:8px 11px;background:transparent;border-color:transparent}
+  .home-sections-drawer .home-section-link[aria-current="location"]{background:#c9ff32;border-color:#c9ff32}
+  .home-sections-drawer .home-back-top{font-size:14px}
+  body.sections-drawer-open{overflow:hidden}
+  body.modal-open .home-sections-toggle{display:none}
+}
+@media(prefers-reduced-motion:reduce){.home-sections-drawer{transition:none}}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+@media(max-width:760px){.home-section-rail~main .shell,.home-section-rail~main+footer .shell{width:calc(100% - 28px)}}
