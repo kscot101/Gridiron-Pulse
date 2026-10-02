@@ -1,0 +1,25 @@
+name: Check Sites v8 migration
+on:
+  push:
+    branches: [sites-v8-integration-20261002]
+    paths: ['.github/workflows/sites-v8-migration-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package tracked source and current data for migration tests
+        run: |
+          git archive --format=zip HEAD -o /tmp/sites-v8-baseline.zip
+          git rev-parse HEAD
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sites-v8-baseline
+          retention-days: 3
+          path: /tmp/sites-v8-baseline.zip
