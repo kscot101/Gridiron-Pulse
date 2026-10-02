@@ -2,24 +2,68 @@ name: Check Sites v8 migration
 on:
   push:
     branches: [sites-v8-integration-20261002]
-    paths: ['.github/workflows/sites-v8-migration-check.yml']
+    paths:
+      - '.github/workflows/sites-v8-migration-check.yml'
+      - 'scripts/apply_sites_v8.py'
+      - 'scripts/check_sites_v8.js'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: sites-v8-migration-check
+  cancel-in-progress: true
 jobs:
-  baseline:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
-      - name: Package tracked source and current data for migration tests
-        run: |
-          git archive --format=zip HEAD -o /tmp/sites-v8-baseline.zip
-          git rev-parse HEAD
-      - uses: actions/upload-artifact@v4
+          ref: sites-v8-integration-20261002
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
         with:
-          name: sites-v8-baseline
-          retention-days: 3
-          path: /tmp/sites-v8-baseline.zip
+          node-version: '22'
+      - name: Apply only reviewed UI changes and verify preservation
+        run: |
+          python scripts/apply_sites_v8.py
+          node --check scripts/check_sites_v8.js
+          node scripts/test_homepage_feed.js
+      - name: Install Chromium verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify navigation, saved values, profiles and responsive layout
+        run: node scripts/check_sites_v8.js
+      - name: Commit tested layout to integration branch only
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          files=['index.html','pick-tracker.html','assets/home-sections.css','assets/home-sections.js','assets/pick-tracker-dashboard.css','assets/pick-tracker.js','scripts/check_pick_tracker.js','scripts/test_pick_tracker.js','scripts/check_sites_v8.js']
+          report=json.loads(Path('sites-v8-preservation.json').read_text())
+          report['browser']=json.loads(Path('sites-v8-browser-verification.json').read_text())
+          assert report['browser']['passed']
+          report['files']={p:subprocess.check_output(['git','hash-object',p],text=True).strip() for p in files}
+          Path('sites-v8-release.json').write_text(json.dumps(report,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html pick-tracker.html assets/home-sections.css assets/home-sections.js assets/pick-tracker-dashboard.css assets/pick-tracker.js scripts/check_pick_tracker.js scripts/test_pick_tracker.js sites-v8-release.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verified Sites v8 homepage rail and Pick Tracker dashboard'
+          git push origin HEAD:sites-v8-integration-20261002
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sites-v8-verified-layout
+          retention-days: 7
+          path: |
+            sites-v8-*.json
+            sites-v8-*.png
+            index.html
+            pick-tracker.html
+            assets/home-sections.*
+            assets/pick-tracker-dashboard.css
+            assets/pick-tracker.js
