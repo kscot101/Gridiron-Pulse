@@ -1,23 +1,21 @@
 {
-  "checkedAt": "2026-10-02T00:13:17.578958+00:00",
-  "workflowRun": "36944869519",
+  "checkedAt": "2026-10-02T06:11:49.807128+00:00",
+  "workflowRun": "36972388149",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-02T00:13:18.267Z",
-      "teamsWithHistory": 32,
-      "teamsMeetingSampleTarget": 32,
+      "generatedAt": "2026-10-02T06:11:50.609Z",
+      "teamsWithHistory": 30,
+      "teamsMeetingSampleTarget": 30,
       "fallbackSignalCount": 3,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
+      "warnings": []
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-01T20:32:33.108Z",
+  "previousGeneratedAt": "2026-10-02T00:13:18.267Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -77,7 +75,7 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-02T00:13:18.267Z",
+  "generatedAt": "2026-10-02T06:11:50.609Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -87,16 +85,14 @@
     "label": "2026 Regular Season \u00b7 Week 4"
   },
   "gameCount": 16,
-  "resultCount": 0,
+  "resultCount": 4,
   "analysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 32,
-    "teamsWithHistory": 32,
-    "teamsMeetingSampleTarget": 32,
+    "pregameTeams": 30,
+    "teamsWithHistory": 30,
+    "teamsMeetingSampleTarget": 30,
     "teamSamples": {
-      "PIT": 3,
-      "CLE": 3,
       "IND": 3,
       "WSH": 3,
       "NE": 3,
@@ -128,10 +124,10 @@
       "ATL": 3,
       "NO": 3
     },
-    "playerPicks": 64,
-    "picksWithGameHistory": 64,
+    "playerPicks": 60,
+    "picksWithGameHistory": 60,
     "playersWithoutGameHistory": [],
-    "signalCount": 256,
+    "signalCount": 240,
     "fallbackSignalCount": 3,
     "sampleSeasons": [
       "2026"
@@ -311,7 +307,5 @@
       ]
     }
   ],
-  "warnings": [
-    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-  ]
+  "warnings": []
 }

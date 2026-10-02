@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-10-02T00:13:17.425571+00:00",
+  "fetchedAt": "2026-10-02T06:11:49.658934+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -319,7 +319,7 @@
             "id": "401872964",
             "uid": "s:20~l:28~e:401872964~c:401872964",
             "date": "2026-10-02T00:15Z",
-            "attendance": 0,
+            "attendance": 68156,
             "type": {
               "id": "1",
               "abbreviation": "STD"
@@ -327,7 +327,7 @@
             "timeValid": true,
             "neutralSite": false,
             "conferenceCompetition": false,
-            "playByPlayAvailable": false,
+            "playByPlayAvailable": true,
             "recent": true,
             "venue": {
               "id": "3679",
@@ -346,6 +346,7 @@
                 "type": "team",
                 "order": 0,
                 "homeAway": "home",
+                "winner": true,
                 "team": {
                   "id": "5",
                   "uid": "s:20~l:28~t:5",
@@ -444,144 +445,44 @@
                   ],
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cle.png"
                 },
-                "score": "0",
+                "score": "27",
+                "linescores": [
+                  {
+                    "value": 0.0,
+                    "displayValue": "0",
+                    "period": 1
+                  },
+                  {
+                    "value": 21.0,
+                    "displayValue": "21",
+                    "period": 2
+                  },
+                  {
+                    "value": 0.0,
+                    "displayValue": "0",
+                    "period": 3
+                  },
+                  {
+                    "value": 6.0,
+                    "displayValue": "6",
+                    "period": 4
+                  }
+                ],
+                "statistics": [],
                 "curatedRank": {
                   "current": 99
                 },
-                "statistics": [],
-                "leaders": [
-                  {
-                    "name": "passingLeader",
-                    "displayName": "Passing Leader",
-                    "shortDisplayName": "PASS",
-                    "abbreviation": "PYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "56/82, 587 YDS, 5 TD, 1 INT",
-                        "value": 587.0,
-                        "athlete": {
-                          "id": "3122840",
-                          "fullName": "Deshaun Watson",
-                          "displayName": "Deshaun Watson",
-                          "shortName": "D. Watson",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/3122840/deshaun-watson"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3122840.png",
-                          "jersey": "4",
-                          "position": {
-                            "abbreviation": "QB"
-                          },
-                          "team": {
-                            "id": "5"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "5"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "rushingLeader",
-                    "displayName": "Rushing Leader",
-                    "shortDisplayName": "RUSH",
-                    "abbreviation": "RYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "42 CAR, 124 YDS",
-                        "value": 124.0,
-                        "athlete": {
-                          "id": "4685702",
-                          "fullName": "Quinshon Judkins",
-                          "displayName": "Quinshon Judkins",
-                          "shortName": "Q. Judkins",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/4685702/quinshon-judkins"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685702.png",
-                          "jersey": "10",
-                          "position": {
-                            "abbreviation": "RB"
-                          },
-                          "team": {
-                            "id": "5"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "5"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "receivingLeader",
-                    "displayName": "Receiving Leader",
-                    "shortDisplayName": "REC",
-                    "abbreviation": "RECYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "9 REC, 195 YDS, 2 TD",
-                        "value": 195.0,
-                        "athlete": {
-                          "id": "4832800",
-                          "fullName": "Denzel Boston",
-                          "displayName": "Denzel Boston",
-                          "shortName": "D. Boston",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/4832800/denzel-boston"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4832800.png",
-                          "jersey": "12",
-                          "position": {
-                            "abbreviation": "WR"
-                          },
-                          "team": {
-                            "id": "5"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "5"
-                        }
-                      }
-                    ]
-                  }
-                ],
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "2-1"
+                    "summary": "3-1"
                   },
                   {
                     "name": "Home",
                     "type": "home",
-                    "summary": "1-0"
+                    "summary": "2-0"
                   },
                   {
                     "name": "Road",
@@ -596,6 +497,7 @@
                 "type": "team",
                 "order": 1,
                 "homeAway": "away",
+                "winner": false,
                 "team": {
                   "id": "23",
                   "uid": "s:20~l:28~t:23",
@@ -694,17 +596,39 @@
                   ],
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/pit.png"
                 },
-                "score": "0",
+                "score": "24",
+                "linescores": [
+                  {
+                    "value": 7.0,
+                    "displayValue": "7",
+                    "period": 1
+                  },
+                  {
+                    "value": 3.0,
+                    "displayValue": "3",
+                    "period": 2
+                  },
+                  {
+                    "value": 0.0,
+                    "displayValue": "0",
+                    "period": 3
+                  },
+                  {
+                    "value": 14.0,
+                    "displayValue": "14",
+                    "period": 4
+                  }
+                ],
+                "statistics": [],
                 "curatedRank": {
                   "current": 99
                 },
-                "statistics": [],
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "2-1"
+                    "summary": "2-2"
                   },
                   {
                     "name": "Home",
@@ -714,129 +638,7 @@
                   {
                     "name": "Road",
                     "type": "road",
-                    "summary": "0-1"
-                  }
-                ],
-                "leaders": [
-                  {
-                    "name": "passingLeader",
-                    "displayName": "Passing Leader",
-                    "shortDisplayName": "PASS",
-                    "abbreviation": "PYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "66/113, 700 YDS, 4 TD, 2 INT",
-                        "value": 700.0,
-                        "athlete": {
-                          "id": "8439",
-                          "fullName": "Aaron Rodgers",
-                          "displayName": "Aaron Rodgers",
-                          "shortName": "A. Rodgers",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/8439/aaron-rodgers"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/8439.png",
-                          "jersey": "8",
-                          "position": {
-                            "abbreviation": "QB"
-                          },
-                          "team": {
-                            "id": "23"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "23"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "rushingLeader",
-                    "displayName": "Rushing Leader",
-                    "shortDisplayName": "RUSH",
-                    "abbreviation": "RYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "38 CAR, 216 YDS",
-                        "value": 216.0,
-                        "athlete": {
-                          "id": "4569987",
-                          "fullName": "Jaylen Warren",
-                          "displayName": "Jaylen Warren",
-                          "shortName": "J. Warren",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/4569987/jaylen-warren"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4569987.png",
-                          "jersey": "30",
-                          "position": {
-                            "abbreviation": "RB"
-                          },
-                          "team": {
-                            "id": "23"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "23"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "receivingLeader",
-                    "displayName": "Receiving Leader",
-                    "shortDisplayName": "REC",
-                    "abbreviation": "RECYDS",
-                    "leaders": [
-                      {
-                        "displayValue": "11 REC, 114 YDS, 1 TD",
-                        "value": 114.0,
-                        "athlete": {
-                          "id": "4431492",
-                          "fullName": "Roman Wilson",
-                          "displayName": "Roman Wilson",
-                          "shortName": "R. Wilson",
-                          "links": [
-                            {
-                              "rel": [
-                                "playercard",
-                                "desktop",
-                                "athlete"
-                              ],
-                              "href": "https://www.espn.com/nfl/player/_/id/4431492/roman-wilson"
-                            }
-                          ],
-                          "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4431492.png",
-                          "jersey": "14",
-                          "position": {
-                            "abbreviation": "WR"
-                          },
-                          "team": {
-                            "id": "23"
-                          },
-                          "active": true
-                        },
-                        "team": {
-                          "id": "23"
-                        }
-                      }
-                    ]
+                    "summary": "0-2"
                   }
                 ]
               }
@@ -845,15 +647,15 @@
             "status": {
               "clock": 0.0,
               "displayClock": "0:00",
-              "period": 0,
+              "period": 4,
               "type": {
-                "id": "1",
-                "name": "STATUS_SCHEDULED",
-                "state": "pre",
-                "completed": false,
-                "description": "Scheduled",
-                "detail": "Thu, October 1st at 8:15 PM EDT",
-                "shortDetail": "10/1 - 8:15 PM EDT"
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
               },
               "isTBDFlex": false
             },
@@ -873,8 +675,8 @@
                 "abbreviation": "PYDS",
                 "leaders": [
                   {
-                    "displayValue": "700 YDS, 4 TD, 2 INT",
-                    "value": 700.0,
+                    "displayValue": "22/40, 299 YDS, 3 TD, 2 INT",
+                    "value": 299.0,
                     "athlete": {
                       "id": "8439",
                       "fullName": "Aaron Rodgers",
@@ -913,8 +715,8 @@
                 "abbreviation": "RYDS",
                 "leaders": [
                   {
-                    "displayValue": "38 CAR, 216 YDS",
-                    "value": 216.0,
+                    "displayValue": "17 CAR, 93 YDS",
+                    "value": 93.0,
                     "athlete": {
                       "id": "4569987",
                       "fullName": "Jaylen Warren",
@@ -953,13 +755,13 @@
                 "abbreviation": "RECYDS",
                 "leaders": [
                   {
-                    "displayValue": "9 REC, 195 YDS, 2 TD",
-                    "value": 195.0,
+                    "displayValue": "5 REC, 115 YDS",
+                    "value": 115.0,
                     "athlete": {
-                      "id": "4832800",
-                      "fullName": "Denzel Boston",
-                      "displayName": "Denzel Boston",
-                      "shortName": "D. Boston",
+                      "id": "4047650",
+                      "fullName": "DK Metcalf",
+                      "displayName": "DK Metcalf",
+                      "shortName": "D. Metcalf",
                       "links": [
                         {
                           "rel": [
@@ -967,21 +769,21 @@
                             "desktop",
                             "athlete"
                           ],
-                          "href": "https://www.espn.com/nfl/player/_/id/4832800/denzel-boston"
+                          "href": "https://www.espn.com/nfl/player/_/id/4047650/dk-metcalf"
                         }
                       ],
-                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4832800.png",
-                      "jersey": "12",
+                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4047650.png",
+                      "jersey": "4",
                       "position": {
                         "abbreviation": "WR"
                       },
                       "team": {
-                        "id": "5"
+                        "id": "23"
                       },
                       "active": true
                     },
                     "team": {
-                      "id": "5"
+                      "id": "23"
                     }
                   }
                 ]
@@ -995,20 +797,6 @@
                 "periods": 1
               }
             },
-            "tickets": [
-              {
-                "summary": "Tickets as low as $281",
-                "numberAvailable": 212,
-                "links": [
-                  {
-                    "href": "https://www.vividseats.com/cleveland-browns-tickets-cleveland-huntington-bank-field-3-3-2026/production/6489425?wsUser=717"
-                  },
-                  {
-                    "href": "https://www.vividseats.com/firstenergy-stadium-cleveland-tickets/venue/349?wsUser=717"
-                  }
-                ]
-              }
-            ],
             "startDate": "2026-10-02T00:15Z",
             "broadcast": "Prime Video",
             "geoBroadcasts": [
@@ -1028,307 +816,231 @@
                 "region": "us"
               }
             ],
-            "odds": [
+            "highlights": [
               {
-                "provider": {
-                  "id": "100",
-                  "name": "DraftKings",
-                  "priority": 1,
-                  "logos": [
-                    {
-                      "href": "https://a.espncdn.com/i/betting/Draftkings_Light.svg",
-                      "rel": [
-                        "light"
-                      ]
-                    },
-                    {
-                      "href": "https://a.espncdn.com/i/betting/Draftkings_Dark.svg",
-                      "rel": [
-                        "dark"
-                      ]
-                    }
+                "id": 50082179,
+                "cerebroId": "6abf2bd8e549cf3f2adaa973",
+                "source": "espn",
+                "headline": "Browns fend off Steelers' late surge to prevail on TNF",
+                "description": "Browns fend off Steelers' late surge to prevail on TNF",
+                "lastModified": "2026-10-02T04:00:17Z",
+                "originalPublishDate": "2026-10-02T03:58:17Z",
+                "duration": 70,
+                "timeRestrictions": {
+                  "embargoDate": "2026-10-02T03:58:15Z",
+                  "expirationDate": "2026-10-04T03:58:15Z"
+                },
+                "deviceRestrictions": {
+                  "devices": [
+                    "settop",
+                    "tablet",
+                    "handset",
+                    "ipad",
+                    "desktop"
                   ],
-                  "displayName": "DraftKings"
+                  "type": "whitelist"
                 },
-                "details": "PIT -2.5",
-                "overUnder": 38.5,
-                "spread": 2.5,
-                "awayTeamOdds": {
-                  "favorite": true,
-                  "underdog": false,
-                  "team": {
-                    "id": "23",
-                    "uid": "s:20~l:28~t:23",
-                    "abbreviation": "PIT",
-                    "name": "Steelers",
-                    "displayName": "Pittsburgh Steelers",
-                    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/pit.png"
-                  },
-                  "favoriteAtOpen": true
-                },
-                "homeTeamOdds": {
-                  "favorite": false,
-                  "underdog": true,
-                  "team": {
-                    "id": "5",
-                    "uid": "s:20~l:28~t:5",
-                    "abbreviation": "CLE",
-                    "name": "Browns",
-                    "displayName": "Cleveland Browns",
-                    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cle.png"
-                  },
-                  "favoriteAtOpen": false
-                },
-                "moneyline": {
-                  "displayName": "Moneyline",
-                  "shortDisplayName": "ML",
-                  "home": {
-                    "close": {
-                      "odds": "+124",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "home",
-                          "desktop",
-                          "bets",
-                          "draftkings"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0ML84695516_1",
-                        "text": "Home Bet",
-                        "shortText": "Home Bet",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "home",
-                            "betType": "straight"
-                          }
-                        }
-                      }
+                "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.jpg",
+                "links": {
+                  "api": {
+                    "artwork": {
+                      "href": "https://artwork.api.espn.com/artwork/collections/media/cbcccb48-ec16-4390-9fb9-5ab42056f27e"
                     },
-                    "open": {
-                      "odds": "+114"
+                    "self": {
+                      "href": "https://content.core.api.espn.com/v1/video/clips/50082179"
                     }
                   },
-                  "away": {
-                    "close": {
-                      "odds": "-148",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "away",
-                          "desktop",
-                          "bets",
-                          "draftkings"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0ML84695516_3",
-                        "text": "Away Bet",
-                        "shortText": "Away Bet",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "away",
-                            "betType": "straight"
-                          }
+                  "mobile": {
+                    "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                    "alert": {
+                      "href": "https://m.espn.com/general/video/videoAlert?vid=50082179"
+                    },
+                    "progressiveDownload": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf"
+                    },
+                    "source": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                    },
+                    "streaming": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf"
+                    }
+                  },
+                  "source": {
+                    "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4",
+                    "HD": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                    },
+                    "HLS": {
+                      "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8",
+                      "9x16": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                      },
+                      "HD": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                      },
+                      "cmaf": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8",
+                        "9x16": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                        },
+                        "cmb": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
                         }
+                      },
+                      "cmb": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                      },
+                      "shield": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/media/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset"
                       }
                     },
-                    "open": {
-                      "odds": "-135"
+                    "flash": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                    },
+                    "full": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                    },
+                    "mezzanine": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                    }
+                  },
+                  "sportscenter": {
+                    "href": "sportscenter://x-callback-url/showVideo?videoID=50082179&videoDSI=8893f49e15b8a"
+                  },
+                  "web": {
+                    "href": "https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                    "self": {
+                      "href": "https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                      "dsi": {
+                        "href": "https://www.espn.com/video/clip?id=8893f49e15b8a"
+                      }
                     }
                   }
                 },
-                "pointSpread": {
-                  "displayName": "Spread",
-                  "shortDisplayName": "Spread",
-                  "home": {
-                    "close": {
-                      "line": "+2.5",
-                      "odds": "+100",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "homeSpread",
-                          "desktop",
-                          "bets"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0HC84695516P250_1",
-                        "text": "Home Point Spread",
-                        "shortText": "Home Point Spread",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "none",
-                            "betType": "straight",
-                            "betDetails": "Spread:CLE+2.5"
-                          }
-                        }
-                      }
-                    },
-                    "open": {
-                      "line": "+2.5",
-                      "odds": "-110"
-                    }
-                  },
-                  "away": {
-                    "close": {
-                      "line": "-2.5",
-                      "odds": "-120",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "awaySpread",
-                          "desktop",
-                          "bets"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0HC84695516N250_3",
-                        "text": "Away Point Spread",
-                        "shortText": "Away Point Spread",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "none",
-                            "betType": "straight",
-                            "betDetails": "Spread:PIT-2.5"
-                          }
-                        }
-                      }
-                    },
-                    "open": {
-                      "line": "-2.5",
-                      "odds": "-110"
-                    }
-                  }
+                "ad": {
+                  "bundle": "nfl_one_plays",
+                  "sport": "nfl"
                 },
-                "total": {
-                  "displayName": "Total",
-                  "shortDisplayName": "Total",
-                  "over": {
-                    "close": {
-                      "line": "o38.5",
-                      "odds": "-105",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "over",
-                          "desktop",
-                          "bets"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0OU84695516O3850_1",
-                        "text": "Over Odds",
-                        "shortText": "Over Odds",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "over",
-                            "betType": "straight",
-                            "betDetails": "Over:38.5"
-                          }
-                        }
-                      }
-                    },
-                    "open": {
-                      "line": "o40.5",
-                      "odds": "-110"
-                    }
-                  },
-                  "under": {
-                    "close": {
-                      "line": "u38.5",
-                      "odds": "-115",
-                      "link": {
-                        "language": "en-US",
-                        "rel": [
-                          "under",
-                          "desktop",
-                          "bets"
-                        ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083%3Foutcomes%3D0OU84695516U3850_3",
-                        "text": "Under Odds",
-                        "shortText": "Under Odds",
-                        "isExternal": true,
-                        "isPremium": false,
-                        "tracking": {
-                          "campaign": "betting-integrations",
-                          "tags": {
-                            "league": "nfl",
-                            "sport": "football",
-                            "gameId": 401872964,
-                            "betSide": "under",
-                            "betType": "straight",
-                            "betDetails": "Under:38.5"
-                          }
-                        }
-                      }
-                    },
-                    "open": {
-                      "line": "u40.5",
-                      "odds": "-110"
-                    }
-                  }
-                },
-                "link": {
-                  "language": "en-US",
-                  "rel": [
-                    "game",
-                    "desktop",
-                    "bets"
-                  ],
-                  "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118083",
-                  "text": "See More Odds",
-                  "shortText": "Game",
-                  "isExternal": true,
-                  "isPremium": false,
-                  "tracking": {
-                    "campaign": "betting-integrations",
-                    "tags": {
-                      "league": "nfl",
-                      "sport": "football",
-                      "gameId": 401872964,
-                      "betSide": "none",
-                      "betType": "straight"
-                    }
-                  }
-                },
-                "header": {
-                  "logo": {
-                    "dark": "https://a.espncdn.com/i/espnbet/dark/espn-bet-square-off.svg",
-                    "light": "https://a.espncdn.com/i/espnbet/espn-bet-square-off.svg",
-                    "exclusivesLogoDark": "https://a.espncdn.com/i/espnbet/espn-bet-square-mint.svg",
-                    "exclusivesLogoLight": "https://a.espncdn.com/i/espnbet/espn-bet-square-mint.svg"
-                  },
-                  "text": "Game Odds"
-                },
-                "footer": {
-                  "disclaimer": "GAMBLING PROBLEM? CALL 1-800-GAMBLER or 1-800-MY-RESET, (800) 327-5050 or visit gamblinghelplinema.org (MA). Call 877-8-HOPENY/text HOPENY (467369) (NY). Call 888-789-7777/visit ccpg.org (CT), or visit www.mdgamblinghelp.org (MD), 1-800-981-0023 (PR). 21+ and present in most states. (18+ DC/KY/NH/PR/WY). Void in ONT. Eligibility restrictions apply. Terms: draftkings.com/sportsbook. On behalf of Boot Hill Casino (KS). Pass-thru of per wager tax may apply in IL."
+                "tracking": {
+                  "coverageType": "Final Game Highlight",
+                  "leagueName": "NFL",
+                  "program": "espnnfl",
+                  "sportName": "football",
+                  "trackingId": "dm_20261002_NFL_browns_fend_off_steelers_late_surge_to_prevail_on_tnf",
+                  "trackingName": "COM_NFL Highlight (Browns fend off Steelers' late surge to prevail on TNF) 2026/10/02 ESHEET SOTFULL"
                 }
               }
             ],
-            "highlights": []
+            "headlines": [
+              {
+                "type": "Recap",
+                "description": "\u2014 Deshaun Watson and the Cleveland Browns are developing a knack for coming up big in the fourth quarter.",
+                "shortLinkText": "Watson leads another game-winning drive, Szmyt hits 56-yard FG and Browns beat Steelers 27-24",
+                "video": [
+                  {
+                    "id": 50082179,
+                    "source": "espn",
+                    "headline": "Browns fend off Steelers' late surge to prevail on TNF",
+                    "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.jpg",
+                    "duration": 70,
+                    "tracking": {
+                      "coverageType": "Final Game Highlight",
+                      "leagueName": "NFL",
+                      "program": "espnnfl",
+                      "sportName": "football",
+                      "trackingId": "dm_20261002_NFL_browns_fend_off_steelers_late_surge_to_prevail_on_tnf",
+                      "trackingName": "COM_NFL Highlight (Browns fend off Steelers' late surge to prevail on TNF) 2026/10/02 ESHEET SOTFULL"
+                    },
+                    "deviceRestrictions": {
+                      "devices": [
+                        "settop",
+                        "tablet",
+                        "handset",
+                        "ipad",
+                        "desktop"
+                      ],
+                      "type": "whitelist"
+                    },
+                    "links": {
+                      "api": {
+                        "artwork": {
+                          "href": "https://artwork.api.espn.com/artwork/collections/media/cbcccb48-ec16-4390-9fb9-5ab42056f27e"
+                        },
+                        "self": {
+                          "href": "https://content.core.api.espn.com/v1/video/clips/50082179"
+                        }
+                      },
+                      "mobile": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                        "alert": {
+                          "href": "https://m.espn.com/general/video/videoAlert?vid=50082179"
+                        },
+                        "progressiveDownload": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf"
+                        },
+                        "source": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                        },
+                        "streaming": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf"
+                        }
+                      },
+                      "source": {
+                        "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4",
+                        "HD": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                        },
+                        "HLS": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8",
+                          "9x16": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                          },
+                          "HD": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                          },
+                          "cmaf": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8",
+                            "9x16": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                            },
+                            "cmb": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                            }
+                          },
+                          "cmb": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539/playlist.m3u8"
+                          },
+                          "shield": {
+                            "href": "https://watch.auth.api.espn.com/video/auth/media/cbcccb48-ec16-4390-9fb9-5ab42056f27e/asset"
+                          }
+                        },
+                        "flash": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                        },
+                        "full": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                        },
+                        "mezzanine": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1002/c55a602e-c339-46d9-a90f-45c33652d539/c55a602e-c339-46d9-a90f-45c33652d539.mp4"
+                        }
+                      },
+                      "sportscenter": {
+                        "href": "sportscenter://x-callback-url/showVideo?videoID=50082179&videoDSI=8893f49e15b8a"
+                      },
+                      "web": {
+                        "href": "https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                        "self": {
+                          "href": "https://www.espn.com/video/clip/_/id/50082179/browns-fend-steelers-late-surge-prevail-tnf",
+                          "dsi": {
+                            "href": "https://www.espn.com/video/clip?id=8893f49e15b8a"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
           }
         ],
         "links": [
@@ -1344,38 +1056,240 @@
             "shortText": "Gamecast",
             "isExternal": false,
             "isPremium": false
-          }
-        ],
-        "weather": {
-          "displayValue": "Intermittent clouds",
-          "temperature": 79,
-          "highTemperature": 79,
-          "conditionId": "36",
-          "link": {
+          },
+          {
             "language": "en-US",
             "rel": [
-              "44114"
+              "boxscore",
+              "desktop",
+              "event"
             ],
-            "href": "http://www.accuweather.com/en/us/huntington-bank-field-oh/44113/hourly-weather-forecast/41494_poi?day=1&hbhhour=20&lang=en-us",
-            "text": "Weather",
-            "shortText": "Weather",
-            "isExternal": true,
+            "href": "https://www.espn.com/nfl/boxscore/_/gameId/401872964",
+            "text": "Box Score",
+            "shortText": "Box Score",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "highlights",
+              "desktop"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401872964",
+            "text": "Highlights",
+            "shortText": "Highlights",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "pbp",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/playbyplay/_/gameId/401872964",
+            "text": "Play-by-Play",
+            "shortText": "Play-by-Play",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "recap",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/recap?gameId=401872964",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
             "isPremium": false
           }
-        },
+        ],
         "status": {
           "clock": 0.0,
           "displayClock": "0:00",
-          "period": 0,
+          "period": 4,
           "type": {
-            "id": "1",
-            "name": "STATUS_SCHEDULED",
-            "state": "pre",
-            "completed": false,
-            "description": "Scheduled",
-            "detail": "Thu, October 1st at 8:15 PM EDT",
-            "shortDetail": "10/1 - 8:15 PM EDT"
+            "id": "3",
+            "name": "STATUS_FINAL",
+            "state": "post",
+            "completed": true,
+            "description": "Final",
+            "detail": "Final",
+            "shortDetail": "Final"
           }
+        },
+        "tuneInPrompt": {
+          "id": "98aa560646c2e",
+          "isAutomated": false,
+          "title": "Team Dominance",
+          "description": "Tune-in Prompt 401872964",
+          "caption": "Can't be stopped: Three straight touchdown drives.",
+          "rating": "Unrated",
+          "shortText": "Can't be stopped: Three straight touchdown drives.",
+          "images": [
+            {
+              "href": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+              "width": 500,
+              "height": 500,
+              "rel": [
+                "full",
+                "default"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/pit.png",
+              "width": 500,
+              "height": 500,
+              "rel": [
+                "full",
+                "dark"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/pit.png",
+              "width": 500,
+              "height": 500,
+              "rel": [
+                "full",
+                "scoreboard"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/pit.png",
+              "width": 500,
+              "height": 500,
+              "rel": [
+                "full",
+                "scoreboard",
+                "dark"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/grayscale.png",
+              "width": 500,
+              "height": 500,
+              "rel": [
+                "full",
+                "grayscale"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_on_white_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_on_white_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_on_black_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_on_black_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_on_primary_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_on_primary_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_on_secondary_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_on_secondary_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_black.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_black"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/primary_logo_white.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "primary_logo_white"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_on_white_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_on_white_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_on_black_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_on_black_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_on_primary_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_on_primary_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_on_secondary_color.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_on_secondary_color"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_black.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_black"
+              ]
+            },
+            {
+              "href": "https://a.espncdn.com/guid/debcd592-8d53-71f1-fc15-5c8b8ef9df6e/logos/secondary_logo_white.png",
+              "width": 4096,
+              "height": 4096,
+              "rel": [
+                "full",
+                "secondary_logo_white"
+              ]
+            }
+          ],
+          "imageType": "teamLogo",
+          "color": "000000",
+          "alternateColor": "ffb612"
         }
       },
       {
@@ -2080,7 +1994,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $63",
-                "numberAvailable": 1230,
+                "numberAvailable": 1225,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/washington-commanders-tickets-tottenham-hotspur-stadium-10-4-2026--sports-nfl-football/production/7027951?wsUser=717"
@@ -2131,7 +2045,8 @@
                         "dark"
                       ]
                     }
-                  ]
+                  ],
+                  "displayName": "DraftKings"
                 },
                 "details": "IND -3.5",
                 "overUnder": 48.5,
@@ -2236,7 +2151,7 @@
                   "home": {
                     "close": {
                       "line": "+3.5",
-                      "odds": "-110",
+                      "odds": "-105",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2270,7 +2185,7 @@
                   "away": {
                     "close": {
                       "line": "-3.5",
-                      "odds": "-110",
+                      "odds": "-115",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -3142,7 +3057,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $243",
-                "numberAvailable": 2740,
+                "numberAvailable": 2773,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/buffalo-bills-tickets-orchard-park-highmark-stadium-3-5-2026/production/6488357?wsUser=717"
@@ -3227,7 +3142,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-305",
+                      "odds": "-298",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -3259,7 +3174,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+245",
+                      "odds": "+240",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -4208,7 +4123,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $277",
-                "numberAvailable": 2883,
+                "numberAvailable": 2928,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/chicago-bears-tickets-chicago-soldier-field-3-7-2026/production/6488798?wsUser=717"
@@ -4565,7 +4480,7 @@
             "rel": [
               "60605"
             ],
-            "href": "http://www.accuweather.com/en/us/soldier-field-il/60608/hourly-weather-forecast/18170_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/soldier-field-il/60608/hourly-weather-forecast/18170_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -5284,8 +5199,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $114",
-                "numberAvailable": 3395,
+                "summary": "Tickets as low as $112",
+                "numberAvailable": 3377,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/cincinnati-bengals-tickets-cincinnati-paycor-stadium-3-4-2026/production/6489032?wsUser=717"
@@ -5642,7 +5557,7 @@
             "rel": [
               "45202"
             ],
-            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -6361,8 +6276,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $42",
-                "numberAvailable": 5886,
+                "summary": "Tickets as low as $45",
+                "numberAvailable": 5802,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-giants-tickets-east-rutherford-metlife-stadium-3-4-2027/production/6494178?wsUser=717"
@@ -6719,7 +6634,7 @@
             "rel": [
               "07073"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7438,8 +7353,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $23",
-                "numberAvailable": 3582,
+                "summary": "Tickets as low as $163",
+                "numberAvailable": 3716,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/philadelphia-eagles-tickets-philadelphia-lincoln-financial-field-3-4-2027/production/6494974?wsUser=717"
@@ -7524,7 +7439,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "+145",
+                      "odds": "+154",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7556,7 +7471,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "-175",
+                      "odds": "-185",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7593,7 +7508,7 @@
                   "home": {
                     "close": {
                       "line": "+3.5",
-                      "odds": "-112",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7627,7 +7542,7 @@
                   "away": {
                     "close": {
                       "line": "-3.5",
-                      "odds": "-108",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7796,7 +7711,7 @@
             "rel": [
               "19103"
             ],
-            "href": "http://www.accuweather.com/en/us/lincoln-financial-field-pa/19107/hourly-weather-forecast/43025_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lincoln-financial-field-pa/19107/hourly-weather-forecast/43025_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -8217,24 +8132,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "1-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-1"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-1"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -8355,6 +8252,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "1-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-1"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-1"
                   }
                 ]
               }
@@ -8515,8 +8430,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $93",
-                "numberAvailable": 5102,
+                "summary": "Tickets as low as $97",
+                "numberAvailable": 5045,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tampa-bay-buccaneers-tickets-tampa-raymond-james-stadium-3-4-2027/production/6496265?wsUser=717"
@@ -8873,7 +8788,7 @@
             "rel": [
               "33607"
             ],
-            "href": "http://www.accuweather.com/en/us/raymond-james-stadium-fl/33602/hourly-weather-forecast/53558_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/raymond-james-stadium-fl/33602/hourly-weather-forecast/53558_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -9592,8 +9507,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $64",
-                "numberAvailable": 5272,
+                "summary": "Tickets as low as $56",
+                "numberAvailable": 5409,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/baltimore-ravens-tickets-baltimore-mt-bank-stadium-3-5-2026/production/6487397?wsUser=717"
@@ -9950,7 +9865,7 @@
             "rel": [
               "21230"
             ],
-            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10669,8 +10584,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $131",
-                "numberAvailable": 3561,
+                "summary": "Tickets as low as $122",
+                "numberAvailable": 3660,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/houston-texans-tickets-houston-nrg-stadium-3-7-2026/production/6490074?wsUser=717"
@@ -11027,7 +10942,7 @@
             "rel": [
               "77054"
             ],
-            "href": "http://www.accuweather.com/en/us/nrg-stadium-tx/77002/hourly-weather-forecast/43039_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/nrg-stadium-tx/77002/hourly-weather-forecast/43039_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -11746,8 +11661,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $104",
-                "numberAvailable": 4874,
+                "summary": "Tickets as low as $100",
+                "numberAvailable": 4777,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/minnesota-vikings-tickets-minneapolis-us-bank-stadium-3-4-2027/production/6492304?wsUser=717"
@@ -12104,7 +12019,7 @@
             "rel": [
               "55415"
             ],
-            "href": "http://www.accuweather.com/en/us/us-bank-stadium-mn/55415/hourly-weather-forecast/35911_poi?day=4&hbhhour=15&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/us-bank-stadium-mn/55415/hourly-weather-forecast/35911_poi?day=3&hbhhour=15&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -12823,8 +12738,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $295",
-                "numberAvailable": 4637,
+                "summary": "Tickets as low as $308",
+                "numberAvailable": 4582,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/las-vegas-raiders-tickets-las-vegas-allegiant-stadium-3-2-2026/production/6491232?wsUser=717"
@@ -13900,8 +13815,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $115",
-                "numberAvailable": 6279,
+                "summary": "Tickets as low as $128",
+                "numberAvailable": 3624,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/san-francisco-49ers-tickets-santa-clara-levis-stadium-3-4-2027/production/6495881?wsUser=717"
@@ -14977,8 +14892,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $181",
-                "numberAvailable": 3023,
+                "summary": "Tickets as low as $170",
+                "numberAvailable": 2995,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/seattle-seahawks-tickets-seattle-lumen-field-3-7-2027/production/6492979?wsUser=717"
@@ -16054,8 +15969,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $110",
-                "numberAvailable": 3030,
+                "summary": "Tickets as low as $118",
+                "numberAvailable": 3013,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/carolina-panthers-tickets-charlotte-bank-of-america-stadium-3-4-2026/production/6488715?wsUser=717"
@@ -16412,7 +16327,7 @@
             "rel": [
               "28202"
             ],
-            "href": "http://www.accuweather.com/en/us/bank-of-america-stadium-nc/28202/hourly-weather-forecast/53601_poi?day=4&hbhhour=20&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/bank-of-america-stadium-nc/28202/hourly-weather-forecast/53601_poi?day=3&hbhhour=20&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -17131,8 +17046,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $92",
-                "numberAvailable": 2642,
+                "summary": "Tickets as low as $96",
+                "numberAvailable": 2555,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-orleans-saints-tickets-new-orleans-caesars-superdome-3-1-2027/production/6493107?wsUser=717"
@@ -17219,7 +17134,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-148",
+                      "odds": "-142",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17251,7 +17166,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+124",
+                      "odds": "+120",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17288,7 +17203,7 @@
                   "home": {
                     "close": {
                       "line": "-2.5",
-                      "odds": "-118",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17322,7 +17237,7 @@
                   "away": {
                     "close": {
                       "line": "+2.5",
-                      "odds": "-102",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -17491,7 +17406,7 @@
             "rel": [
               "70112"
             ],
-            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=5&hbhhour=19&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=4&hbhhour=19&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
