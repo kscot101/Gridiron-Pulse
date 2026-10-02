@@ -43,6 +43,6 @@ assert.equal(groups.length,expected);
 assert.equal(before,JSON.stringify(real));
 const f={position:'WR',query:'',week:'all',team:'all',status:'all',favorites:false};
 assert.ok(T.filtered(groups,f,()=>false).every(g=>g.position==='WR'));
-assert.equal(T.filtered(groups,{...f,position:'all',query:'Mahomes'},()=>false).length,1);
+assert.equal(T.filtered(groups,{...f,position:'all',query:'Mahomes'},()=>false).length,groups.filter(g=>/Mahomes/i.test(g.playerName)).length);
 const n=T.counts(groups);assert.equal(n.total,n.graded+n.awaiting+n.review);
 console.log('PASS: individual identity, repeated weeks, model pairing, all result states, exact errors, zero vs missing, stale-score exclusion, filters, no ledger mutation. '+groups.length+' saved player-game picks.');

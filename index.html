@@ -2519,6 +2519,8 @@
 <link rel="stylesheet" href="./assets/homepage-responsive.css?v=20260924a">
 <link rel="stylesheet" href="./assets/sites-command-center.css?v=20260924-sites2">
 <link rel="stylesheet" href="./assets/projection-trial.css?v=20260924-trial1">
+<link rel="stylesheet" href="./assets/home-sections.css?v=20261002-sites-v8">
+<script src="./assets/home-sections.js?v=20261002-sites-v8" defer></script>
 </head>
 
 <body>
@@ -2557,6 +2559,29 @@
     </div>
   </section>
 
+  <aside class="home-section-rail" aria-label="Homepage sections">
+    <div class="home-section-rail-title">SECTIONS</div>
+    <nav id="home-section-links" aria-label="Jump to homepage section">
+      <button class="home-section-link" data-home-section="top" data-scroll="top" aria-current="location">Spotlight</button>
+      <button class="home-section-link" data-home-section="my-pulse" data-scroll="my-pulse">My Pulse</button>
+      <button class="home-section-link" data-home-section="season-outlook" data-scroll="season-outlook">Season Outlook</button>
+      <button class="home-section-link" data-home-section="availability" data-scroll="availability">Availability</button>
+      <button class="home-section-link" data-home-section="games" data-scroll="games">Game Board</button>
+      <button class="home-section-link" data-home-section="player-edge" data-scroll="player-edge">Player Edge</button>
+      <button class="home-section-link" data-home-section="live" data-scroll="live">Gridiron Live</button>
+      <button class="home-section-link" data-home-section="power-pulse" data-scroll="power-pulse">Power Pulse</button>
+      <button class="home-section-link" data-home-section="model-record" data-scroll="model-record">Model Record</button>
+      <button class="home-section-link" data-home-section="results" data-scroll="results">Results</button>
+    </nav>
+    <button class="home-back-top" data-scroll="top" type="button">↑ <span>Back to Top</span></button>
+  </aside>
+  <button class="home-sections-toggle" id="home-sections-toggle" type="button" aria-expanded="false" aria-controls="home-sections-drawer">☰ <span>Sections</span></button>
+  <div class="home-sections-scrim" id="home-sections-scrim" hidden></div>
+  <aside class="home-sections-drawer" id="home-sections-drawer" role="dialog" aria-label="Homepage sections" aria-modal="true" aria-hidden="true" inert>
+    <div class="home-drawer-head"><strong>Sections</strong><button id="home-sections-close" type="button" aria-label="Close sections">×</button></div>
+    <nav id="home-drawer-links" aria-label="Jump to homepage section"></nav>
+    <button class="home-back-top" data-scroll="top" type="button">↑ <span>Back to Top</span></button>
+  </aside>
   <main>
     <section class="hero" id="top">
       <div class="shell hero-inner">
