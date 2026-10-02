@@ -1,21 +1,23 @@
 {
-  "checkedAt": "2026-10-02T06:11:49.807128+00:00",
-  "workflowRun": "36972388149",
+  "checkedAt": "2026-10-02T13:10:17.627450+00:00",
+  "workflowRun": "37011207600",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-02T06:11:50.609Z",
+      "generatedAt": "2026-10-02T13:10:18.775Z",
       "teamsWithHistory": 30,
       "teamsMeetingSampleTarget": 30,
       "fallbackSignalCount": 3,
-      "warnings": []
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-02T00:13:18.267Z",
+  "previousGeneratedAt": "2026-10-02T06:11:50.609Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -24,16 +26,14 @@
     "week": 4,
     "label": "2026 Regular Season \u00b7 Week 4"
   },
-  "previousResultCount": 0,
+  "previousResultCount": 4,
   "previousAnalysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 32,
-    "teamsWithHistory": 32,
-    "teamsMeetingSampleTarget": 32,
+    "pregameTeams": 30,
+    "teamsWithHistory": 30,
+    "teamsMeetingSampleTarget": 30,
     "teamSamples": {
-      "PIT": 3,
-      "CLE": 3,
       "IND": 3,
       "WSH": 3,
       "NE": 3,
@@ -65,17 +65,17 @@
       "ATL": 3,
       "NO": 3
     },
-    "playerPicks": 64,
-    "picksWithGameHistory": 64,
+    "playerPicks": 60,
+    "picksWithGameHistory": 60,
     "playersWithoutGameHistory": [],
-    "signalCount": 256,
+    "signalCount": 240,
     "fallbackSignalCount": 3,
     "sampleSeasons": [
       "2026"
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-02T06:11:50.609Z",
+  "generatedAt": "2026-10-02T13:10:18.775Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -307,5 +307,7 @@
       ]
     }
   ],
-  "warnings": []
+  "warnings": [
+    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+  ]
 }
