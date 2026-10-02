@@ -33,7 +33,8 @@ for(const file of ['index.html','projections-2026.html']){
   const context={GPProjectionSafety:safety};vm.createContext(context);vm.runInContext(parser[0],context);
   const f=context.finiteProjection||context.N;
   check(()=>assert.equal(f(null),null));check(()=>assert.equal(f(' '),null));check(()=>assert.equal(f(0),0));
-  check(()=>assert.ok(html.includes('player-game-log.js'),'Current player profile integration missing'));\n  check(()=>assert.ok(!html.includes('player-game-logs.js'),'Archived duplicate player profile script must stay removed'));
+  check(()=>assert.ok(html.includes('player-game-log.js'),'Current player profile integration missing'));
+  check(()=>assert.ok(!html.includes('player-game-logs.js'),'Archived duplicate player profile script must stay removed'));
   if(file==='projections-2026.html')check(()=>assert.ok(html.includes('data-proj-follow'),'Favorites must remain intact'));
 }
 console.log('PASS:',checks,'JavaScript/parser/freshness/matchup checks');
