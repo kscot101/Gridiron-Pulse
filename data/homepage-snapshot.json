@@ -1,9 +1,9 @@
 {
   "ok": true,
   "snapshot": {
-    "id": "2026-2-4-2026-10-03T13:54:22.223Z",
+    "id": "2026-2-4-2026-10-03T18:16:00.918Z",
     "version": "1.4.0",
-    "generatedAt": "2026-10-03T13:54:22.223Z",
+    "generatedAt": "2026-10-03T18:16:00.918Z",
     "mode": "pregame",
     "season": {
       "year": 2026,
@@ -29,7 +29,7 @@
       "availabilityCount": 150,
       "availabilityConcernCount": 150,
       "availabilityImpactCount": 0,
-      "generationMs": 7537
+      "generationMs": 5432
     },
     "refresh": {
       "recommendedBrowserSeconds": 300,
@@ -3180,21 +3180,21 @@
         },
         "injuries": [
           {
+            "athleteId": "3121422",
+            "name": "Terry McLaurin",
+            "team": "WSH",
+            "teamId": "28",
+            "status": "Doubtful",
+            "type": "doubtful",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4697815",
             "name": "Rachaad White",
             "team": "WSH",
             "teamId": "28",
             "status": "Out",
             "type": "out",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "3121422",
-            "name": "Terry McLaurin",
-            "team": "WSH",
-            "teamId": "28",
-            "status": "Questionable",
-            "type": "questionable",
             "details": "Not Specified"
           },
           {
@@ -3229,8 +3229,8 @@
             "name": "Keenan Allen",
             "team": "IND",
             "teamId": "11",
-            "status": "Questionable",
-            "type": "questionable",
+            "status": "Out",
+            "type": "out",
             "details": "Not Specified"
           },
           {
@@ -4201,7 +4201,7 @@
         },
         "weather": {
           "display": "7",
-          "temperature": 64
+          "temperature": 62
         },
         "broadcasts": [
           "CBS"
@@ -4761,7 +4761,7 @@
         },
         "weather": {
           "display": "4",
-          "temperature": 87
+          "temperature": 88
         },
         "broadcasts": [
           "FOX"
@@ -5185,6 +5185,15 @@
             "details": "Surgery"
           },
           {
+            "athleteId": "4431252",
+            "name": "Garrett Dellinger",
+            "team": "TEN",
+            "teamId": "10",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Achilles"
+          },
+          {
             "athleteId": "4685617",
             "name": "Kevin Winston Jr.",
             "team": "TEN",
@@ -5219,15 +5228,6 @@
             "status": "Injured Reserve",
             "type": "Injured Reserve",
             "details": "Sprain"
-          },
-          {
-            "athleteId": "4371940",
-            "name": "Milo Eifler",
-            "team": "TEN",
-            "teamId": "10",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
           }
         ],
         "drives": [],
@@ -5601,7 +5601,7 @@
         },
         "weather": {
           "display": "2",
-          "temperature": 67
+          "temperature": 65
         },
         "broadcasts": [
           "FOX"
@@ -6440,7 +6440,7 @@
           "indoor": null
         },
         "weather": {
-          "display": "3",
+          "display": "11",
           "temperature": 67
         },
         "broadcasts": [
@@ -6720,8 +6720,8 @@
           "indoor": null
         },
         "weather": {
-          "display": "7",
-          "temperature": 65
+          "display": "18",
+          "temperature": 67
         },
         "broadcasts": [
           "NBC"
@@ -7100,6 +7100,24 @@
         },
         "injuries": [
           {
+            "athleteId": "3918310",
+            "name": "Carl Granderson",
+            "team": "NO",
+            "teamId": "18",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "3925350",
+            "name": "Anfernee Jennings",
+            "team": "NO",
+            "teamId": "18",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4241993",
             "name": "Pete Werner",
             "team": "NO",
@@ -7122,33 +7140,6 @@
             "name": "Noah Fant",
             "team": "NO",
             "teamId": "18",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "3918310",
-            "name": "Carl Granderson",
-            "team": "NO",
-            "teamId": "18",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4880281",
-            "name": "Jordyn Tyson",
-            "team": "NO",
-            "teamId": "18",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Strain"
-          },
-          {
-            "athleteId": "4595343",
-            "name": "Kendal Daniels",
-            "team": "ATL",
-            "teamId": "1",
             "status": "Questionable",
             "type": "questionable",
             "details": "Not Specified"
@@ -7188,6 +7179,15 @@
             "status": "Injured Reserve",
             "type": "Injured Reserve",
             "details": "Surgery"
+          },
+          {
+            "athleteId": "4685590",
+            "name": "Cameron Williams",
+            "team": "ATL",
+            "teamId": "1",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Not Specified"
           }
         ],
         "drives": [],
@@ -9492,106 +9492,6 @@
               }
             },
             {
-              "athleteId": "15818",
-              "name": "Keenan Allen",
-              "team": "IND",
-              "teamId": "11",
-              "position": "WR",
-              "number": "10",
-              "score": 76,
-              "tier": "WATCH EDGE",
-              "forecast": "4+ catch path \u00b7 45+ receiving-yard path. Limiter: Questionable \u00b7 questionable \u00b7 Not Specified",
-              "impactPath": "4+ catch path \u00b7 45+ receiving-yard path.",
-              "limitingFactor": "Questionable \u00b7 questionable \u00b7 Not Specified",
-              "outlook": "MIXED",
-              "accent": "#003b75",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "WSH has allowed 280.3 net passing yards per game across 3 recent samples."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "3-game form is rising; latest vs HOU: 6 REC \u00b7 63 YDS \u00b7 1 TD."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "IND's recent yardage mix is 65% passing and 35% rushing. The strongest recent non-QB production has come from RB."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "Comparable WR groups averaged 222.3 scrimmage yards, 17 catches and 3 TD across 3 recent games vs WSH."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "REC",
-                  "value": "4.3"
-                },
-                {
-                  "label": "YDS",
-                  "value": "33.3"
-                },
-                {
-                  "label": "TD",
-                  "value": "0.3"
-                },
-                {
-                  "label": "TGTS",
-                  "value": "6.7"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401872951",
-                  "date": "2026-09-27T17:00Z",
-                  "opponent": "HOU",
-                  "headline": "6 REC \u00b7 63 YDS \u00b7 1 TD",
-                  "productionScore": 63.5,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 3
-                },
-                {
-                  "gameId": "401872945",
-                  "date": "2026-09-21T00:20Z",
-                  "opponent": "KC",
-                  "headline": "1 REC \u00b7 5 YDS \u00b7 0 TD",
-                  "productionScore": 5.5,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 2
-                },
-                {
-                  "gameId": "401872659",
-                  "date": "2026-09-13T17:00Z",
-                  "opponent": "BAL",
-                  "headline": "6 REC \u00b7 32 YDS \u00b7 0 TD",
-                  "productionScore": 34,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 1
-                }
-              ],
-              "starter": false,
-              "experience": 13,
-              "baselineAvailable": true,
-              "notabilityScore": 15.364285714285714,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 91.36428571428571,
-              "qbScore": 87,
-              "components": {
-                "opponentDefense": 8.168333333333333,
-                "currentForm": 7.083928571428571,
-                "teamScheme": 5,
-                "positionHistory": 11,
-                "notability": 15.364285714285714
-              }
-            },
-            {
               "athleteId": "4431459",
               "name": "Tyler Warren",
               "team": "IND",
@@ -10197,6 +10097,56 @@
                 "positionHistory": 11,
                 "notability": 6
               }
+            },
+            {
+              "athleteId": "3929785",
+              "name": "Nick Westbrook-Ikhine",
+              "team": "IND",
+              "teamId": "11",
+              "position": "WR",
+              "number": "12",
+              "score": 77,
+              "tier": "WATCH EDGE",
+              "forecast": "5+ catch path \u00b7 55+ receiving-yard path. Limiter: Recent game production has not yet confirmed a full-volume impact role.",
+              "impactPath": "5+ catch path \u00b7 55+ receiving-yard path.",
+              "limitingFactor": "Recent game production has not yet confirmed a full-volume impact role.",
+              "outlook": "MIXED",
+              "accent": "#003b75",
+              "signals": [
+                {
+                  "label": "Opponent defense",
+                  "detail": "WSH has allowed 280.3 net passing yards per game across 3 recent samples."
+                },
+                {
+                  "label": "Current form",
+                  "detail": "Active current-roster player; game usage is still being established."
+                },
+                {
+                  "label": "Team scheme",
+                  "detail": "IND's recent yardage mix is 65% passing and 35% rushing. The strongest recent non-QB production has come from RB."
+                },
+                {
+                  "label": "Position history",
+                  "detail": "Comparable WR groups averaged 222.3 scrimmage yards, 17 catches and 3 TD across 3 recent games vs WSH."
+                }
+              ],
+              "source": "current-roster-model",
+              "recent": [],
+              "recentGames": [],
+              "starter": false,
+              "experience": 7,
+              "baselineAvailable": false,
+              "notabilityScore": 6,
+              "notableEvidence": [],
+              "starScore": 83,
+              "qbScore": 82,
+              "components": {
+                "opponentDefense": 8.168333333333333,
+                "currentForm": 2,
+                "teamScheme": 5,
+                "positionHistory": 11,
+                "notability": 6
+              }
             }
           ],
           "home": [
@@ -10490,106 +10440,6 @@
                 "teamScheme": 7,
                 "positionHistory": 10.666666666666666,
                 "notability": 11.362857142857143
-              }
-            },
-            {
-              "athleteId": "3121422",
-              "name": "Terry McLaurin",
-              "team": "WSH",
-              "teamId": "28",
-              "position": "WR",
-              "number": "17",
-              "score": 79,
-              "tier": "CLEAR EDGE",
-              "forecast": "4+ catch path \u00b7 45+ receiving-yard path. Limiter: Questionable \u00b7 questionable \u00b7 Not Specified",
-              "impactPath": "4+ catch path \u00b7 45+ receiving-yard path.",
-              "limitingFactor": "Questionable \u00b7 questionable \u00b7 Not Specified",
-              "outlook": "POSITIVE",
-              "accent": "#5a1414",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "IND has allowed 276 net passing yards per game across 3 recent samples."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "3-game form is rising; latest vs SEA: 6 REC \u00b7 77 YDS \u00b7 1 TD."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "WSH's recent yardage mix is 58% passing and 42% rushing. The strongest recent non-QB production has come from WR."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "Comparable WR groups averaged 224.7 scrimmage yards, 15.7 catches and 1.7 TD across 3 recent games vs IND."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "REC",
-                  "value": "3.3"
-                },
-                {
-                  "label": "YDS",
-                  "value": "47"
-                },
-                {
-                  "label": "TD",
-                  "value": "0.3"
-                },
-                {
-                  "label": "TGTS",
-                  "value": "7.3"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401872955",
-                  "date": "2026-09-27T17:00Z",
-                  "opponent": "SEA",
-                  "headline": "6 REC \u00b7 77 YDS \u00b7 1 TD",
-                  "productionScore": 70.5,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 3
-                },
-                {
-                  "gameId": "401872944",
-                  "date": "2026-09-20T20:25Z",
-                  "opponent": "DAL",
-                  "headline": "2 REC \u00b7 50 YDS \u00b7 0 TD",
-                  "productionScore": 31,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 2
-                },
-                {
-                  "gameId": "401872929",
-                  "date": "2026-09-13T20:25Z",
-                  "opponent": "PHI",
-                  "headline": "2 REC \u00b7 14 YDS \u00b7 0 TD",
-                  "productionScore": 13,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 1
-                }
-              ],
-              "starter": false,
-              "experience": 8,
-              "baselineAvailable": true,
-              "notabilityScore": 16.09285714285714,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 95.09285714285714,
-              "qbScore": 90,
-              "components": {
-                "opponentDefense": 7.93,
-                "currentForm": 7.751785714285715,
-                "teamScheme": 7,
-                "positionHistory": 10.666666666666666,
-                "notability": 16.09285714285714
               }
             },
             {
@@ -11358,11 +11208,70 @@
                 "positionHistory": 4,
                 "notability": 11.17142857142857
               }
+            },
+            {
+              "athleteId": "3930066",
+              "name": "Van Jefferson",
+              "team": "WSH",
+              "teamId": "28",
+              "position": "WR",
+              "number": "12",
+              "score": 79,
+              "tier": "CLEAR EDGE",
+              "forecast": "5+ catch path \u00b7 55+ receiving-yard path. Limiter: Recent game production has not yet confirmed a full-volume impact role.",
+              "impactPath": "5+ catch path \u00b7 55+ receiving-yard path.",
+              "limitingFactor": "Recent game production has not yet confirmed a full-volume impact role.",
+              "outlook": "MIXED",
+              "accent": "#5a1414",
+              "signals": [
+                {
+                  "label": "Opponent defense",
+                  "detail": "IND has allowed 276 net passing yards per game across 3 recent samples."
+                },
+                {
+                  "label": "Current form",
+                  "detail": "Active current-roster player; game usage is still being established."
+                },
+                {
+                  "label": "Team scheme",
+                  "detail": "WSH's recent yardage mix is 58% passing and 42% rushing. The strongest recent non-QB production has come from WR."
+                },
+                {
+                  "label": "Position history",
+                  "detail": "Comparable WR groups averaged 224.7 scrimmage yards, 15.7 catches and 1.7 TD across 3 recent games vs IND."
+                }
+              ],
+              "source": "current-roster-model",
+              "recent": [],
+              "recentGames": [],
+              "starter": false,
+              "experience": 7,
+              "baselineAvailable": false,
+              "notabilityScore": 6,
+              "notableEvidence": [],
+              "starScore": 85,
+              "qbScore": 84,
+              "components": {
+                "opponentDefense": 7.93,
+                "currentForm": 2,
+                "teamScheme": 7,
+                "positionHistory": 10.666666666666666,
+                "notability": 6
+              }
             }
           ]
         },
         "evidence": {
           "injuries": [
+            {
+              "athleteId": "3121422",
+              "name": "Terry McLaurin",
+              "team": "WSH",
+              "teamId": "28",
+              "status": "Doubtful",
+              "type": "doubtful",
+              "details": "Not Specified"
+            },
             {
               "athleteId": "4697815",
               "name": "Rachaad White",
@@ -11370,15 +11279,6 @@
               "teamId": "28",
               "status": "Out",
               "type": "out",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "3121422",
-              "name": "Terry McLaurin",
-              "team": "WSH",
-              "teamId": "28",
-              "status": "Questionable",
-              "type": "questionable",
               "details": "Not Specified"
             },
             {
@@ -11413,8 +11313,8 @@
               "name": "Keenan Allen",
               "team": "IND",
               "teamId": "11",
-              "status": "Questionable",
-              "type": "questionable",
+              "status": "Out",
+              "type": "out",
               "details": "Not Specified"
             },
             {
@@ -35177,6 +35077,15 @@
               "details": "Surgery"
             },
             {
+              "athleteId": "4431252",
+              "name": "Garrett Dellinger",
+              "team": "TEN",
+              "teamId": "10",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Achilles"
+            },
+            {
               "athleteId": "4685617",
               "name": "Kevin Winston Jr.",
               "team": "TEN",
@@ -35211,15 +35120,6 @@
               "status": "Injured Reserve",
               "type": "Injured Reserve",
               "details": "Sprain"
-            },
-            {
-              "athleteId": "4371940",
-              "name": "Milo Eifler",
-              "team": "TEN",
-              "teamId": "10",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Not Specified"
             }
           ],
           "news": [],
@@ -48848,7 +48748,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "SEA's recent scoring profile meets the clearest pressure point in LAC's latest defensive baseline.",
-        "context": "Lumen Field \u00b7 3 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Lumen Field \u00b7 11 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "4038941",
@@ -52251,7 +52151,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "DET and CAR enter with no single overwhelming team-level edge, so individual role and matchup signals matter more.",
-        "context": "Bank of America Stadium \u00b7 7 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Bank of America Stadium \u00b7 18 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "3046779",
@@ -58613,6 +58513,24 @@
         "evidence": {
           "injuries": [
             {
+              "athleteId": "3918310",
+              "name": "Carl Granderson",
+              "team": "NO",
+              "teamId": "18",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "3925350",
+              "name": "Anfernee Jennings",
+              "team": "NO",
+              "teamId": "18",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
               "athleteId": "4241993",
               "name": "Pete Werner",
               "team": "NO",
@@ -58635,33 +58553,6 @@
               "name": "Noah Fant",
               "team": "NO",
               "teamId": "18",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "3918310",
-              "name": "Carl Granderson",
-              "team": "NO",
-              "teamId": "18",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4880281",
-              "name": "Jordyn Tyson",
-              "team": "NO",
-              "teamId": "18",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Strain"
-            },
-            {
-              "athleteId": "4595343",
-              "name": "Kendal Daniels",
-              "team": "ATL",
-              "teamId": "1",
               "status": "Questionable",
               "type": "questionable",
               "details": "Not Specified"
@@ -58701,6 +58592,15 @@
               "status": "Injured Reserve",
               "type": "Injured Reserve",
               "details": "Surgery"
+            },
+            {
+              "athleteId": "4685590",
+              "name": "Cameron Williams",
+              "team": "ATL",
+              "teamId": "1",
+              "status": "Injured Reserve",
+              "type": "Injured Reserve",
+              "details": "Not Specified"
             }
           ],
           "news": [],
@@ -58722,7 +58622,7 @@
     "powerRankings": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-03T13:54:22.223Z",
+      "generatedAt": "2026-10-03T18:16:00.918Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonWeek": 4,
@@ -87544,7 +87444,7 @@
     "modelPerformance": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-03T13:54:22.223Z",
+      "generatedAt": "2026-10-03T18:16:00.918Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonTypeName": "Regular Season",
@@ -87736,7 +87636,7 @@
           "actual": "299 pass yds \u00b7 3 pass TD",
           "finalScore": "PIT 24 \u00b7 CLE 27",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872964|cle|deshaun watson|qb impact",
@@ -87754,7 +87654,7 @@
           "actual": "268 pass yds \u00b7 1 pass TD \u00b7 22 rush yds",
           "finalScore": "PIT 24 \u00b7 CLE 27",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872964|pit|jaylen warren|team star",
@@ -87772,7 +87672,7 @@
           "actual": "126 scrimmage yds \u00b7 0 TD",
           "finalScore": "PIT 24 \u00b7 CLE 27",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872964|cle|denzel boston|team star",
@@ -87790,7 +87690,7 @@
           "actual": "89 scrimmage yds \u00b7 0 TD",
           "finalScore": "PIT 24 \u00b7 CLE 27",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872948|gb|jordan love|qb impact",
@@ -88170,14 +88070,14 @@
     "availability": {
       "available": true,
       "status": "ACTIVE",
-      "updatedAt": "2026-10-03T13:54:22.223Z",
+      "updatedAt": "2026-10-03T18:16:00.918Z",
       "count": 150,
       "concernCount": 150,
       "impactCount": 0,
       "summary": {
-        "out": 100,
-        "doubtful": 2,
-        "questionable": 48,
+        "out": 102,
+        "doubtful": 3,
+        "questionable": 45,
         "monitor": 0,
         "available": 0
       },
@@ -88203,7 +88103,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4702120",
@@ -88226,7 +88126,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4426348",
@@ -88249,7 +88149,30 @@
           "details": "Dislocated",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
+        },
+        {
+          "id": "401872965:15818",
+          "gameId": "401872965",
+          "matchup": "IND @ WSH",
+          "kickoff": "2026-10-04T13:30Z",
+          "athleteId": "15818",
+          "name": "Keenan Allen",
+          "team": "IND",
+          "teamId": "11",
+          "teamColor": "003b75",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4240896",
@@ -88272,7 +88195,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4426403",
@@ -88295,7 +88218,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4697815",
@@ -88318,7 +88241,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:4262199",
@@ -88341,7 +88264,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4242390",
@@ -88364,7 +88287,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:16716",
@@ -88387,7 +88310,7 @@
           "details": "Soreness",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4597500",
@@ -88410,7 +88333,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4887255",
@@ -88433,7 +88356,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4361748",
@@ -88456,7 +88379,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:3919117",
@@ -88479,7 +88402,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4875266",
@@ -88502,7 +88425,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4816107",
@@ -88525,7 +88448,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4251007",
@@ -88548,7 +88471,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4427366",
@@ -88571,7 +88494,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4035631",
@@ -88594,7 +88517,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4373273",
@@ -88617,7 +88540,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4431611",
@@ -88640,7 +88563,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4372030",
@@ -88663,7 +88586,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4384549",
@@ -88686,7 +88609,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4428633",
@@ -88709,7 +88632,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:3121023",
@@ -88732,7 +88655,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4362088",
@@ -88755,7 +88678,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4243375",
@@ -88778,7 +88701,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4710000",
@@ -88801,7 +88724,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:3915106",
@@ -88824,7 +88747,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:4241372",
@@ -88847,7 +88770,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4876319",
@@ -88870,7 +88793,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4428037",
@@ -88893,7 +88816,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:3125356",
@@ -88916,7 +88839,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4043089",
@@ -88939,7 +88862,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4689114",
@@ -88962,7 +88885,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:4697639",
@@ -88985,7 +88908,7 @@
           "details": "Dislocated",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:2980097",
@@ -89008,7 +88931,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4596480",
@@ -89031,7 +88954,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4362845",
@@ -89054,7 +88977,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:5084514",
@@ -89077,7 +89000,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4700136",
@@ -89100,7 +89023,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4430821",
@@ -89123,7 +89046,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4034779",
@@ -89146,7 +89069,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4429281",
@@ -89169,7 +89092,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4401811",
@@ -89192,7 +89115,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:4361093",
@@ -89215,7 +89138,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:3116679",
@@ -89238,7 +89161,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:3139368",
@@ -89261,30 +89184,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
-        },
-        {
-          "id": "401872973:4371940",
-          "gameId": "401872973",
-          "matchup": "TEN @ BAL",
-          "kickoff": "2026-10-04T17:00Z",
-          "athleteId": "4371940",
-          "name": "Milo Eifler",
-          "team": "TEN",
-          "teamId": "10",
-          "teamColor": "4495d2",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Not Specified",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:3122132",
@@ -89307,7 +89207,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4242547",
@@ -89330,7 +89230,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:2574891",
@@ -89353,7 +89253,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4870617",
@@ -89376,7 +89276,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:3129307",
@@ -89399,7 +89299,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:4570037",
@@ -89422,7 +89322,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:3052743",
@@ -89445,7 +89345,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4568652",
@@ -89468,7 +89368,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4429136",
@@ -89491,7 +89391,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:4685408",
@@ -89514,7 +89414,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:3917657",
@@ -89537,7 +89437,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4799994",
@@ -89560,7 +89460,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4869645",
@@ -89583,7 +89483,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:5091793",
@@ -89606,7 +89506,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4429160",
@@ -89629,7 +89529,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:3921690",
@@ -89652,7 +89552,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4262921",
@@ -89675,7 +89575,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4894654",
@@ -89698,7 +89598,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4428421",
@@ -89721,7 +89621,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4259558",
@@ -89744,7 +89644,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872974:4427103",
@@ -89767,7 +89667,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4429211",
@@ -89790,7 +89690,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4685553",
@@ -89813,7 +89713,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:5155825",
@@ -89836,7 +89736,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4241263",
@@ -89859,7 +89759,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:3895856",
@@ -89882,7 +89782,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4567826",
@@ -89905,7 +89805,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:2979860",
@@ -89928,7 +89828,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:5216101",
@@ -89951,7 +89851,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4432775",
@@ -89974,7 +89874,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:4361691",
@@ -89997,7 +89897,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4603186",
@@ -90020,7 +89920,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4875295",
@@ -90043,7 +89943,7 @@
           "details": "Soreness",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4685512",
@@ -90066,7 +89966,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4885466",
@@ -90089,7 +89989,7 @@
           "details": "Soreness",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4431142",
@@ -90112,7 +90012,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:4702555",
@@ -90135,7 +90035,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:4040608",
@@ -90158,7 +90058,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4569659",
@@ -90181,7 +90081,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:4685623",
@@ -90204,7 +90104,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:4368033",
@@ -90227,7 +90127,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4591008",
@@ -90250,7 +90150,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4426385",
@@ -90273,7 +90173,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4611506",
@@ -90296,7 +90196,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4692025",
@@ -90319,7 +90219,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4361788",
@@ -90342,7 +90242,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4362647",
@@ -90365,7 +90265,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4569323",
@@ -90388,7 +90288,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4430034",
@@ -90411,7 +90311,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:4239995",
@@ -90434,7 +90334,76 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
+        },
+        {
+          "id": "401872979:3925350",
+          "gameId": "401872979",
+          "matchup": "ATL @ NO",
+          "kickoff": "2026-10-06T00:15Z",
+          "athleteId": "3925350",
+          "name": "Anfernee Jennings",
+          "team": "NO",
+          "teamId": "18",
+          "teamColor": "d3bc8d",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
+        },
+        {
+          "id": "401872979:4685590",
+          "gameId": "401872979",
+          "matchup": "ATL @ NO",
+          "kickoff": "2026-10-06T00:15Z",
+          "athleteId": "4685590",
+          "name": "Cameron Williams",
+          "team": "ATL",
+          "teamId": "1",
+          "teamColor": "a71930",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Injured Reserve",
+          "type": "Injured Reserve",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
+        },
+        {
+          "id": "401872979:3918310",
+          "gameId": "401872979",
+          "matchup": "ATL @ NO",
+          "kickoff": "2026-10-06T00:15Z",
+          "athleteId": "3918310",
+          "name": "Carl Granderson",
+          "team": "NO",
+          "teamId": "18",
+          "teamColor": "d3bc8d",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:3126352",
@@ -90457,30 +90426,30 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
-          "id": "401872979:4880281",
-          "gameId": "401872979",
-          "matchup": "ATL @ NO",
-          "kickoff": "2026-10-06T00:15Z",
-          "athleteId": "4880281",
-          "name": "Jordyn Tyson",
-          "team": "NO",
-          "teamId": "18",
-          "teamColor": "d3bc8d",
+          "id": "401872965:3121422",
+          "gameId": "401872965",
+          "matchup": "IND @ WSH",
+          "kickoff": "2026-10-04T13:30Z",
+          "athleteId": "3121422",
+          "name": "Terry McLaurin",
+          "team": "WSH",
+          "teamId": "28",
+          "teamColor": "5a1414",
           "position": "PLAYER",
           "number": "\u2014",
           "headshot": null,
           "spotlightRole": null,
           "edgeScore": null,
           "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Strain",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "status": "Doubtful",
+          "type": "doubtful",
+          "details": "Not Specified",
+          "level": "DOUBTFUL",
+          "priority": 3,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:3916577",
@@ -90503,7 +90472,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4684527",
@@ -90526,53 +90495,7 @@
           "details": "Surgery",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
-        },
-        {
-          "id": "401872965:15818",
-          "gameId": "401872965",
-          "matchup": "IND @ WSH",
-          "kickoff": "2026-10-04T13:30Z",
-          "athleteId": "15818",
-          "name": "Keenan Allen",
-          "team": "IND",
-          "teamId": "11",
-          "teamColor": "#003b75",
-          "position": "WR",
-          "number": "10",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": 76,
-          "trackedPlayer": true,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
-        },
-        {
-          "id": "401872965:3121422",
-          "gameId": "401872965",
-          "matchup": "IND @ WSH",
-          "kickoff": "2026-10-04T13:30Z",
-          "athleteId": "3121422",
-          "name": "Terry McLaurin",
-          "team": "WSH",
-          "teamId": "28",
-          "teamColor": "#5a1414",
-          "position": "WR",
-          "number": "17",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": 79,
-          "trackedPlayer": true,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4429615",
@@ -90595,7 +90518,7 @@
           "details": "Hamstring",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:16737",
@@ -90618,7 +90541,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4695883",
@@ -90641,7 +90564,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:4036131",
@@ -90664,7 +90587,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872965:2998565",
@@ -90687,7 +90610,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4612298",
@@ -90710,7 +90633,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4247726",
@@ -90733,7 +90656,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:2576581",
@@ -90756,7 +90679,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4379778",
@@ -90779,7 +90702,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4257580",
@@ -90802,7 +90725,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872970:4242557",
@@ -90825,7 +90748,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4428930",
@@ -90848,7 +90771,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:3125082",
@@ -90871,7 +90794,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:3915525",
@@ -90894,7 +90817,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4831959",
@@ -90917,7 +90840,30 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
+        },
+        {
+          "id": "401872973:4431252",
+          "gameId": "401872973",
+          "matchup": "TEN @ BAL",
+          "kickoff": "2026-10-04T17:00Z",
+          "athleteId": "4431252",
+          "name": "Garrett Dellinger",
+          "team": "TEN",
+          "teamId": "10",
+          "teamColor": "4495d2",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Questionable",
+          "type": "questionable",
+          "details": "Achilles",
+          "level": "QUESTIONABLE",
+          "priority": 2,
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:16734",
@@ -90940,7 +90886,7 @@
           "details": "Bruise",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4569661",
@@ -90963,7 +90909,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872966:3693166",
@@ -90986,7 +90932,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872972:5083315",
@@ -91009,7 +90955,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4685617",
@@ -91032,7 +90978,7 @@
           "details": "Shoulder",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872967:4360189",
@@ -91055,7 +91001,7 @@
           "details": "Knee",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4242149",
@@ -91078,7 +91024,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:2575453",
@@ -91101,7 +91047,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4429501",
@@ -91124,7 +91070,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4039505",
@@ -91147,7 +91093,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:2980153",
@@ -91170,7 +91116,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872971:4044133",
@@ -91193,7 +91139,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872968:4429511",
@@ -91216,7 +91162,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872969:4570546",
@@ -91239,7 +91185,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872973:4428557",
@@ -91262,7 +91208,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872976:4260394",
@@ -91285,7 +91231,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4037521",
@@ -91308,7 +91254,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:3843769",
@@ -91331,7 +91277,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:3916903",
@@ -91354,7 +91300,7 @@
           "details": "Bruise",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4243328",
@@ -91377,7 +91323,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872975:5086161",
@@ -91400,7 +91346,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872977:4247808",
@@ -91423,7 +91369,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4687513",
@@ -91446,7 +91392,7 @@
           "details": "Knee",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:3139387",
@@ -91469,7 +91415,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872978:4870694",
@@ -91492,30 +91438,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
-        },
-        {
-          "id": "401872979:3918310",
-          "gameId": "401872979",
-          "matchup": "ATL @ NO",
-          "kickoff": "2026-10-06T00:15Z",
-          "athleteId": "3918310",
-          "name": "Carl Granderson",
-          "team": "NO",
-          "teamId": "18",
-          "teamColor": "d3bc8d",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:4037626",
@@ -91538,7 +91461,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:3124890",
@@ -91561,30 +91484,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
-        },
-        {
-          "id": "401872979:4595343",
-          "gameId": "401872979",
-          "matchup": "ATL @ NO",
-          "kickoff": "2026-10-06T00:15Z",
-          "athleteId": "4595343",
-          "name": "Kendal Daniels",
-          "team": "ATL",
-          "teamId": "1",
-          "teamColor": "a71930",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:4241993",
@@ -91607,7 +91507,7 @@
           "details": "Stinger",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         },
         {
           "id": "401872979:3045527",
@@ -91630,7 +91530,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-03T13:54:22.223Z"
+          "updatedAt": "2026-10-03T18:16:00.918Z"
         }
       ],
       "message": "150 active availability concerns; 0 involve a current QB or team-star spotlight.",
@@ -91721,7 +91621,9 @@
       ],
       "note": "Every pregame board targets each team's quarterback and one non-QB team star. Player Edge is editorial analysis, not a betting recommendation."
     },
-    "warnings": [],
+    "warnings": [
+      "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+    ],
     "analysisInputStatus": {
       "historyReady": true,
       "targetRecentGamesPerTeam": 3,
