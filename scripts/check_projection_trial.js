@@ -32,11 +32,36 @@ const path=require('node:path');
     await page.selectOption('#gp-position','all');
     const firstButton=page.locator('[data-follow]').first();
     const recordId=await firstButton.getAttribute('data-follow');
+    const selected=await page.evaluate(id=>{
+      const records=GPExactTracker.data.forecasts;
+      const row=records.find(r=>r.id===id);
+      if(!row)throw new Error('Follow button does not match a saved forecast');
+      return {
+        athleteId:String(row.athleteId),
+        playerName:row.playerName,
+        matchups:new Set(records.filter(r=>String(r.athleteId)===String(row.athleteId)).map(r=>r.gameId)).size
+      };
+    },recordId);
     await firstButton.click();await page.reload({waitUntil:'domcontentloaded'});
     await page.waitForFunction(id=>Array.from(document.querySelectorAll('[data-follow]')).some(b=>b.dataset.follow===id&&b.getAttribute('aria-pressed')==='true'),recordId,{timeout:45000});
-    await page.check('#gp-favorites');\n    const favoriteCards=page.locator('.gp-trial-card');\n    const favoriteCount=await favoriteCards.count();\n    assert.ok(favoriteCount>0);\n    const favoriteKeys=await favoriteCards.locator('[data-follow]').evaluateAll(nodes=>nodes.map(n=>n.dataset.follow));\n    assert.ok(favoriteKeys.length>0&&favoriteKeys.every(k=>k===recordId));\n    report.followPersists=true;report.favoriteCards=favoriteCount;
+    // Favorites belong to a player, not to one game or one model record.
+    await page.check('#gp-favorites');
+    const favoriteCards=page.locator('.gp-trial-card');
+    const favoriteIds=await favoriteCards.evaluateAll(nodes=>nodes.map(n=>n.dataset.athlete));
+    assert.equal(favoriteIds.length,selected.matchups,'Favorites must show every saved matchup for this player');
+    assert.ok(favoriteIds.length>0&&favoriteIds.every(id=>id===selected.athleteId),'Favorites included another player');
+    const favoriteButtons=await favoriteCards.locator('[data-follow]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.follow,pressed:n.getAttribute('aria-pressed')})));
+    assert.equal(new Set(favoriteButtons.map(b=>b.id)).size,selected.matchups,'Duplicate favorite matchup cards');
+    assert.ok(favoriteButtons.every(b=>b.pressed==='true'),'Follow state did not persist on every matchup');
+    report.followPersists=true;report.favoriteCards=favoriteIds.length;
     await page.uncheck('#gp-favorites');
-    await page.fill('#gp-search','Mahomes');assert.ok((await page.locator('.gp-trial-card').textContent()).includes('Patrick Mahomes'));report.search=true;
+    // Search legitimately returns several games for the same player.
+    await page.fill('#gp-search',selected.playerName);
+    const searchCards=page.locator('.gp-trial-card');
+    const searchTexts=await searchCards.allTextContents();
+    assert.equal(searchTexts.length,selected.matchups,'Search omitted a saved matchup');
+    assert.ok(searchTexts.length>0&&searchTexts.every(t=>t.includes(selected.playerName)));
+    report.search=true;report.searchCards=searchTexts.length;
     await page.fill('#gp-search','');
     await page.screenshot({path:'projection-trial-desktop.png'});
     await page.setViewportSize({width:390,height:844});

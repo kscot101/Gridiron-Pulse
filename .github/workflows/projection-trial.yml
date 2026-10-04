@@ -40,6 +40,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate JavaScript syntax before model work
+        run: |
+          node --check scripts/check_projection_trial.js
+          node --check assets/projection-trial.js
       - name: Install model dependencies
         run: pip install pandas numpy requests
       - uses: actions/cache@v4
