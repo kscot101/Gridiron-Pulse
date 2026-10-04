@@ -1,23 +1,21 @@
 {
-  "checkedAt": "2026-10-04T14:58:32.176519+00:00",
-  "workflowRun": "37211239254",
+  "checkedAt": "2026-10-04T18:47:25.641143+00:00",
+  "workflowRun": "37225770418",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-04T14:58:32.776Z",
-      "teamsWithHistory": 28,
-      "teamsMeetingSampleTarget": 28,
-      "fallbackSignalCount": 3,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
+      "generatedAt": "2026-10-04T18:47:26.352Z",
+      "teamsWithHistory": 12,
+      "teamsMeetingSampleTarget": 12,
+      "fallbackSignalCount": 2,
+      "warnings": []
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-04T08:46:26.867Z",
+  "previousGeneratedAt": "2026-10-04T14:58:32.776Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -28,65 +26,6 @@
   },
   "previousResultCount": 4,
   "previousAnalysisInputs": {
-    "historyReady": true,
-    "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 30,
-    "teamsWithHistory": 30,
-    "teamsMeetingSampleTarget": 30,
-    "teamSamples": {
-      "IND": 3,
-      "WSH": 3,
-      "NE": 3,
-      "BUF": 3,
-      "NYJ": 3,
-      "CHI": 3,
-      "JAX": 3,
-      "CIN": 3,
-      "ARI": 3,
-      "NYG": 3,
-      "LAR": 3,
-      "PHI": 3,
-      "GB": 3,
-      "TB": 3,
-      "TEN": 3,
-      "BAL": 3,
-      "DAL": 3,
-      "HOU": 3,
-      "MIA": 3,
-      "MIN": 3,
-      "KC": 3,
-      "LV": 3,
-      "DEN": 3,
-      "SF": 3,
-      "LAC": 3,
-      "SEA": 3,
-      "DET": 3,
-      "CAR": 3,
-      "ATL": 3,
-      "NO": 3
-    },
-    "playerPicks": 60,
-    "picksWithGameHistory": 60,
-    "playersWithoutGameHistory": [],
-    "signalCount": 240,
-    "fallbackSignalCount": 3,
-    "sampleSeasons": [
-      "2026"
-    ],
-    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
-  },
-  "generatedAt": "2026-10-04T14:58:32.776Z",
-  "season": {
-    "year": 2026,
-    "type": 2,
-    "typeName": "Regular Season",
-    "slug": "regular-season",
-    "week": 4,
-    "label": "2026 Regular Season \u00b7 Week 4"
-  },
-  "gameCount": 16,
-  "resultCount": 4,
-  "analysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
     "pregameTeams": 28,
@@ -132,7 +71,105 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
+  "generatedAt": "2026-10-04T18:47:26.352Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 4,
+    "label": "2026 Regular Season \u00b7 Week 4"
+  },
+  "gameCount": 16,
+  "resultCount": 8,
+  "analysisInputs": {
+    "historyReady": true,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 12,
+    "teamsWithHistory": 12,
+    "teamsMeetingSampleTarget": 12,
+    "teamSamples": {
+      "MIA": 3,
+      "MIN": 3,
+      "KC": 3,
+      "LV": 3,
+      "DEN": 3,
+      "SF": 3,
+      "LAC": 3,
+      "SEA": 3,
+      "DET": 3,
+      "CAR": 3,
+      "ATL": 3,
+      "NO": 3
+    },
+    "playerPicks": 24,
+    "picksWithGameHistory": 24,
+    "playersWithoutGameHistory": [],
+    "signalCount": 96,
+    "fallbackSignalCount": 2,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
   "sampleSignals": [
+    {
+      "name": "De'Von Achane",
+      "team": "MIA",
+      "position": "RB",
+      "score": 69,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401872952",
+          "date": "2026-09-27T17:00Z",
+          "opponent": "KC",
+          "headline": "3 CAR \u00b7 17 YDS \u00b7 0 TD",
+          "productionScore": 8.5,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 3
+        },
+        {
+          "gameId": "401872942",
+          "date": "2026-09-20T20:25Z",
+          "opponent": "SF",
+          "headline": "20 CAR \u00b7 74 YDS \u00b7 0 TD",
+          "productionScore": 49.333333333333336,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 2
+        },
+        {
+          "gameId": "401872928",
+          "date": "2026-09-13T20:25Z",
+          "opponent": "LV",
+          "headline": "11 CAR \u00b7 36 YDS \u00b7 0 TD",
+          "productionScore": 36,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 1
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "MIN has allowed 85.7 rushing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "3-game form is cooling; latest vs KC: 3 CAR \u00b7 17 YDS \u00b7 0 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "MIA's recent yardage mix is 66% passing and 34% rushing. The strongest recent non-QB production has come from WR."
+        },
+        {
+          "label": "Position history",
+          "detail": "Comparable RB groups averaged 97 scrimmage yards, 3.7 catches and 0 TD across 3 recent games vs MIN."
+        }
+      ]
+    },
     {
       "name": "Patrick Mahomes",
       "team": "KC",
@@ -248,7 +285,5 @@
       ]
     }
   ],
-  "warnings": [
-    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-  ]
+  "warnings": []
 }
