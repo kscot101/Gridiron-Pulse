@@ -1,0 +1,76 @@
+name: Verify prominent homepage picks
+on:
+  push:
+    branches: [picks-prominence-20261005]
+    paths:
+      - scripts/promote_home_picks.py
+      - scripts/check_home_picks.js
+      - .github/workflows/check-home-picks.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: home-picks-layout-check
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: picks-prominence-20261005
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate and apply the presentation-only patch
+        run: |
+          node --check scripts/check_home_picks.js
+          python -m py_compile scripts/promote_home_picks.py
+          python scripts/promote_home_picks.py
+          node --check assets/home-sections.js
+          python - <<'PY'
+          import re, subprocess, tempfile
+          from pathlib import Path
+          for source in re.findall(r'<script\b[^>]*>(.*?)</script>',Path('index.html').read_text(),re.S|re.I):
+              if not source.strip(): continue
+              with tempfile.NamedTemporaryFile(mode='w',suffix='.js',encoding='utf-8') as f:
+                  f.write(source);f.flush();subprocess.run(['node','--check',f.name],check=True)
+          PY
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify picks placement, shortcuts and existing controls
+        run: node scripts/check_home_picks.js
+      - name: Save tested files to isolated branch only
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          manifest=json.loads(Path('home-picks-layout-report.json').read_text())
+          manifest['browser']=json.loads(Path('home-picks-browser-report.json').read_text())
+          assert manifest['browser']['passed'] is True
+          names=['index.html','assets/home-sections.js','scripts/check_home_picks.js']
+          manifest['files']={p:subprocess.check_output(['git','hash-object','-w',p],text=True).strip() for p in names}
+          Path('home-picks-layout-report.json').write_text(json.dumps(manifest,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html assets/home-sections.js home-picks-layout-report.json home-picks-browser-report.json
+          git diff --cached --quiet || git commit -m 'Verified prominent Picks of the Day layout'
+          git push origin HEAD:picks-prominence-20261005
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: picks-prominence-verified
+          retention-days: 7
+          path: |
+            home-picks-*.json
+            home-picks-*.png
+            index.html
+            assets/home-sections.js
+            scripts/promote_home_picks.py
+            scripts/check_home_picks.js
