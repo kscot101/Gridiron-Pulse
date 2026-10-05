@@ -2999,6 +2999,7 @@
       favorites: loadFavorites(),
       availability: "all",
       edge: "all",
+      edgeExpanded: false,
       seasonView: "teams",
       seasonFilter: "all",
       seasonFavoritesOnly: false,
@@ -5580,10 +5581,28 @@
         });
       }
 
+      var totalPicks = picks.length;
+      var visiblePicks = state.edgeExpanded
+        ? picks
+        : picks.slice(0, 6);
+
       document.getElementById(
         "edge-grid"
-      ).innerHTML = picks.length
-        ? picks.map(edgeMarkup).join("")
+      ).innerHTML = totalPicks
+        ? (
+            visiblePicks.map(edgeMarkup).join("") +
+            (
+              totalPicks > 6
+                ? '<div class="edge-more-control"><button type="button" class="secondary edge-more-button" data-edge-expand="' +
+                  (state.edgeExpanded ? "less" : "all") +
+                  '">' +
+                  (state.edgeExpanded
+                    ? "Show fewer ↑"
+                    : "Show all " + totalPicks + " picks ↓") +
+                  "</button></div>"
+                : ""
+            )
+          )
         : '<div class="empty" style="grid-column:1/-1">Player Edge is waiting for verified pregame quarterbacks and team stars, or no players match this filter.</div>';
     }
 
@@ -5635,19 +5654,26 @@
         ) +
         "</p>" +
         playerProjectionMarkup(pick) +
-        '<div class="signals">' +
-        signals
-          .map(function(signal) {
-            return (
-              '<div class="signal"><b>' +
-              escapeHtml(signal.label) +
-              "</b><span>" +
-              escapeHtml(signal.detail) +
-              "</span></div>"
-            );
-          })
-          .join("") +
-        '</div><div class="edge-foot"><span class="edge-role">' +
+        (
+          signals.length
+            ? '<details class="edge-details"><summary>More details · ' +
+              signals.length +
+              ' signals</summary><div class="signals">' +
+              signals
+                .map(function(signal) {
+                  return (
+                    '<div class="signal"><b>' +
+                    escapeHtml(signal.label) +
+                    "</b><span>" +
+                    escapeHtml(signal.detail) +
+                    "</span></div>"
+                  );
+                })
+                .join("") +
+              "</div></details>"
+            : ""
+        ) +
+        '<div class="edge-foot"><span class="edge-role">' +
         escapeHtml(
           pick.spotlightRole ||
           pick.tier ||
@@ -7066,6 +7092,7 @@
 
       if (edge) {
         state.edge = edge.dataset.edge;
+        state.edgeExpanded = false;
 
         document
           .querySelectorAll("[data-edge]")
@@ -7076,6 +7103,16 @@
             );
           });
 
+        renderEdges();
+      }
+
+      var edgeExpand = event.target.closest(
+        "[data-edge-expand]"
+      );
+
+      if (edgeExpand) {
+        state.edgeExpanded =
+          edgeExpand.dataset.edgeExpand === "all";
         renderEdges();
       }
 
