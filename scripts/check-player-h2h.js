@@ -52,7 +52,10 @@ const path = require('node:path');
   assert.match(searchText,/MATCHUP HISTORY \/ HEAD TO HEAD/i);
   assert.match(searchText,/vs\s+/i);
   assert.doesNotMatch(searchText,/temporarily unavailable/i);
-  assert.ok(await page.locator('#gp-h2h-test-host .gp-recent-root').count(),'Recent games disappeared from player profile');
+  assert.equal(await page.locator('#gp-h2h-test-host .gp-h2h-root').count(),1,'Duplicate H2H sections rendered');
+  assert.equal(await page.locator('#gp-h2h-test-host .gp-recent-root').count(),1,'Duplicate recent-game sections rendered');
+  const recentKeys=await page.locator('#gp-h2h-test-host .gp-recent-root tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(0,2).map(c=>c.innerText.replace(/\s+/g,' ').trim()).join('|')));
+  assert.equal(new Set(recentKeys).size,recentKeys.length,'Duplicate recent-game rows rendered');
 
   // Direct clickable-name path: use the real GPPlayerStats link and click handler.
   await page.evaluate((p)=>{
@@ -72,6 +75,13 @@ const path = require('node:path');
   assert.match(directText,/MATCHUP HISTORY \/ HEAD TO HEAD/i);
   assert.match(directText,/vs\s+/i);
   assert.doesNotMatch(directText,/temporarily unavailable/i);
+  const visibleProfileCounts=await page.evaluate(()=>({
+    detail:document.querySelectorAll('#detail-body .gp-h2h-root:not([hidden])').length,
+    dialogs:Array.from(document.querySelectorAll('dialog.gp-player-dialog')).filter(d=>d.open).length
+  }));
+  assert.ok(visibleProfileCounts.detail + visibleProfileCounts.dialogs <= 1,'More than one player profile presentation is visible');
+  const directRows=await directH2H.locator('tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(0,2).map(c=>c.innerText.replace(/\s+/g,' ').trim()).join('|')));
+  assert.equal(new Set(directRows).size,directRows.length,'Duplicate H2H game rows rendered');
 
   await page.setViewportSize({width:390,height:844});
   await directH2H.scrollIntoViewIfNeeded();
@@ -87,6 +97,9 @@ const path = require('node:path');
     searchH2H:searchText.slice(0,500),
     directNameH2H:directText.slice(0,500),
     recentGames:true,
+    duplicateSections:false,
+    duplicateRecentRows:false,
+    duplicateH2HRows:false,
     mobileOverflow:overflow,
     pageErrors:errors,
     consoleErrors:consoleErrors,
