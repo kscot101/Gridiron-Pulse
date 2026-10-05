@@ -1,21 +1,23 @@
 {
-  "checkedAt": "2026-10-05T01:16:41.788868+00:00",
-  "workflowRun": "37250796164",
+  "checkedAt": "2026-10-05T07:40:49.319306+00:00",
+  "workflowRun": "37279080602",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-05T01:16:42.501Z",
+      "generatedAt": "2026-10-05T07:40:49.942Z",
       "teamsWithHistory": 2,
       "teamsMeetingSampleTarget": 2,
       "fallbackSignalCount": 0,
-      "warnings": []
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-04T22:31:14.481Z",
+  "previousGeneratedAt": "2026-10-05T01:16:42.501Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -24,30 +26,28 @@
     "week": 4,
     "label": "2026 Regular Season \u00b7 Week 4"
   },
-  "previousResultCount": 39,
+  "previousResultCount": 55,
   "previousAnalysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 4,
-    "teamsWithHistory": 4,
-    "teamsMeetingSampleTarget": 4,
+    "pregameTeams": 2,
+    "teamsWithHistory": 2,
+    "teamsMeetingSampleTarget": 2,
     "teamSamples": {
-      "DET": 3,
-      "CAR": 3,
       "ATL": 3,
       "NO": 3
     },
-    "playerPicks": 8,
-    "picksWithGameHistory": 8,
+    "playerPicks": 4,
+    "picksWithGameHistory": 4,
     "playersWithoutGameHistory": [],
-    "signalCount": 32,
-    "fallbackSignalCount": 1,
+    "signalCount": 16,
+    "fallbackSignalCount": 0,
     "sampleSeasons": [
       "2026"
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-05T01:16:42.501Z",
+  "generatedAt": "2026-10-05T07:40:49.942Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -57,7 +57,7 @@
     "label": "2026 Regular Season \u00b7 Week 4"
   },
   "gameCount": 16,
-  "resultCount": 55,
+  "resultCount": 59,
   "analysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
@@ -137,5 +137,7 @@
       ]
     }
   ],
-  "warnings": []
+  "warnings": [
+    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+  ]
 }
