@@ -1259,3 +1259,22 @@ footer {
     gap: 7px;
   }
 }
+
+
+/* SEARCH RESULT LEGIBILITY */
+.search-result,
+.search-result span,
+.search-result strong {
+  color: #07100d !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #07100d !important;
+}
+.search-result small {
+  color: #68716b !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #68716b !important;
+}
+.search-result:hover,
+.search-result:focus-visible {
+  color: #07100d !important;
+}
