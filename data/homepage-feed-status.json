@@ -1,23 +1,21 @@
 {
-  "checkedAt": "2026-10-04T22:31:13.879268+00:00",
-  "workflowRun": "37240317720",
+  "checkedAt": "2026-10-05T01:16:41.788868+00:00",
+  "workflowRun": "37250796164",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-04T22:31:14.481Z",
-      "teamsWithHistory": 4,
-      "teamsMeetingSampleTarget": 4,
-      "fallbackSignalCount": 1,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
+      "generatedAt": "2026-10-05T01:16:42.501Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 2,
+      "fallbackSignalCount": 0,
+      "warnings": []
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 4,
-  "previousGeneratedAt": "2026-10-04T18:47:26.352Z",
+  "previousGeneratedAt": "2026-10-04T22:31:14.481Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -26,49 +24,8 @@
     "week": 4,
     "label": "2026 Regular Season \u00b7 Week 4"
   },
-  "previousResultCount": 8,
+  "previousResultCount": 39,
   "previousAnalysisInputs": {
-    "historyReady": true,
-    "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 12,
-    "teamsWithHistory": 12,
-    "teamsMeetingSampleTarget": 12,
-    "teamSamples": {
-      "MIA": 3,
-      "MIN": 3,
-      "KC": 3,
-      "LV": 3,
-      "DEN": 3,
-      "SF": 3,
-      "LAC": 3,
-      "SEA": 3,
-      "DET": 3,
-      "CAR": 3,
-      "ATL": 3,
-      "NO": 3
-    },
-    "playerPicks": 24,
-    "picksWithGameHistory": 24,
-    "playersWithoutGameHistory": [],
-    "signalCount": 96,
-    "fallbackSignalCount": 2,
-    "sampleSeasons": [
-      "2026"
-    ],
-    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
-  },
-  "generatedAt": "2026-10-04T22:31:14.481Z",
-  "season": {
-    "year": 2026,
-    "type": 2,
-    "typeName": "Regular Season",
-    "slug": "regular-season",
-    "week": 4,
-    "label": "2026 Regular Season \u00b7 Week 4"
-  },
-  "gameCount": 16,
-  "resultCount": 39,
-  "analysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
     "pregameTeams": 4,
@@ -85,6 +42,37 @@
     "playersWithoutGameHistory": [],
     "signalCount": 32,
     "fallbackSignalCount": 1,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
+  "generatedAt": "2026-10-05T01:16:42.501Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 4,
+    "label": "2026 Regular Season \u00b7 Week 4"
+  },
+  "gameCount": 16,
+  "resultCount": 55,
+  "analysisInputs": {
+    "historyReady": true,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 2,
+    "teamsWithHistory": 2,
+    "teamsMeetingSampleTarget": 2,
+    "teamSamples": {
+      "ATL": 3,
+      "NO": 3
+    },
+    "playerPicks": 4,
+    "picksWithGameHistory": 4,
+    "playersWithoutGameHistory": [],
+    "signalCount": 16,
+    "fallbackSignalCount": 0,
     "sampleSeasons": [
       "2026"
     ],
@@ -149,7 +137,5 @@
       ]
     }
   ],
-  "warnings": [
-    "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-  ]
+  "warnings": []
 }
