@@ -24,8 +24,6 @@ const path=require('node:path');
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.state&&state.snapshot&&window.GPExactTracker&&GPExactTracker.data&&window.GPPlayerStats,null,{timeout:30000});
   await page.evaluate(source=>{
-   // Raw Worker data does not contain the client adapter's feedStatus. Supply
-   // explicit fixture metadata, never mutate source files or the real adapter.
    state.snapshot=Object.assign({},source,{feedStatus:{available:true,analysisCurrent:true,mode:'current',gamesCheckedAt:source.generatedAt,analysisGeneratedAt:source.generatedAt}});
    renderAll();
   },snapshot);
@@ -52,7 +50,9 @@ const path=require('node:path');
   const name=page.locator('#edge-grid [data-profile-kind="player"]').first();const playerName=(await name.textContent()).trim();await name.click();await page.locator('#detail-overlay.open').waitFor();
   assert.equal(await page.locator('#detail-body .gp-recent-root').count(),1);assert.equal(await page.locator('#detail-body .gp-h2h-root').count(),1);report.playerProfilePreserved=true;await page.keyboard.press('Escape');
   await page.locator('#open-search').click();await page.locator('#search-input').fill(playerName);const result=page.locator('[data-search-open="player"]').first();await result.waitFor();
-  report.searchColor=await result.locator('strong').evaluate(n=>getComputedStyle(n).color);assert.equal(report.searchColor,'rgb(7, 16, 13)');await page.keyboard.press('Escape');
+  report.searchStyle=await result.locator('strong').evaluate(n=>{const s=getComputedStyle(n);return {color:s.color,opacity:s.opacity,fill:s.webkitTextFillColor};});
+  assert.ok(['rgb(0, 0, 0)','rgb(7, 16, 13)'].includes(report.searchStyle.color),'Search name is no longer dark');assert.equal(report.searchStyle.opacity,'1');
+  await page.keyboard.press('Escape');
   for(const id of ['my-pulse','games','player-edge','results','top']){await page.locator('#home-section-links [data-home-section="'+id+'"]').click();await page.waitForFunction(id=>document.querySelector('#home-section-links [data-home-section="'+id+'"]').getAttribute('aria-current')==='location',id);await page.waitForTimeout(100);}
   report.sidebarScrollHighlight=true;report.widths=[];
   for(const width of [1440,1280,1181,1180,1024,768,390,320]){
@@ -67,9 +67,7 @@ const path=require('node:path');
    }
   }
   await page.evaluate(()=>{state.snapshot=GPHomepageFeed.compose(null,[],null,null,Date.now());renderAll();});
-  assert.equal(await page.locator('#edge-grid .edge-card').count(),0);
-  assert.equal(await page.locator('#daily-picks-heading').count(),1);
-  report.unavailableFeedWithholdsCards=true;
+  assert.equal(await page.locator('#edge-grid .edge-card').count(),0);assert.equal(await page.locator('#daily-picks-heading').count(),1);report.unavailableFeedWithholdsCards=true;
   assert.deepEqual(errors,[]);report.pageErrors=errors;report.passed=true;
  }catch(e){report.passed=false;report.error=e.message;report.pageErrors=errors;report.diagnostics=await page.evaluate(()=>({url:location.href,wide:Array.from(document.querySelectorAll('body *')).filter(n=>n.getBoundingClientRect().right>innerWidth+2&&n.getBoundingClientRect().width>0).slice(0,12).map(n=>({tag:n.tagName,cls:n.className,right:n.getBoundingClientRect().right}))})).catch(()=>null);await page.screenshot({path:'home-picks-error.png'}).catch(()=>{});throw e;
  }finally{fs.writeFileSync('home-picks-browser-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));await browser.close();}
