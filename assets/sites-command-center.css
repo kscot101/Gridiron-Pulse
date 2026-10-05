@@ -1278,3 +1278,455 @@ footer {
 .search-result:focus-visible {
   color: #07100d !important;
 }
+
+
+/* COMPACT DASHBOARD 20261005 */
+/* Tighten the homepage without shrinking the useful data itself. */
+.topbar,
+.topbar-inner {
+  min-height: 66px;
+}
+
+.score-ribbon,
+.score-track::before,
+.score-card {
+  min-height: 76px;
+}
+
+.score-track::before {
+  flex-basis: 126px;
+  padding: 12px 18px;
+}
+
+.score-card {
+  flex-basis: 148px;
+  padding: 10px 14px;
+}
+
+.hero {
+  min-height: 0;
+}
+
+.hero-inner {
+  padding: 34px 0 24px;
+}
+
+#homepage-feed-status {
+  margin-bottom: 14px !important;
+  padding: 7px 10px !important;
+}
+
+.hero-stage {
+  gap: 26px 38px;
+  align-items: start;
+}
+
+.hero h1 {
+  margin-top: 14px;
+  font-size: clamp(54px, 6vw, 86px);
+  line-height: .82;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin-top: 18px;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.5;
+}
+
+.hero-actions {
+  margin-top: 20px !important;
+}
+
+.primary,
+.secondary {
+  min-height: 42px;
+  padding-inline: 15px;
+  font-size: 11px;
+}
+
+.spotlight-card {
+  min-height: 0;
+  padding: 16px;
+  box-shadow: 14px 14px 0 rgba(201,255,50,.04) !important;
+}
+
+.spotlight-matchup {
+  padding: 13px 0;
+}
+
+.spotlight-read {
+  padding: 11px !important;
+}
+
+.spotlight-summary {
+  margin: 9px 0 11px !important;
+  gap: 5px !important;
+}
+
+.spotlight-summary > div {
+  padding: 8px !important;
+}
+
+.spotlight-summary strong {
+  font-size: 24px !important;
+}
+
+.spotlight-signal {
+  min-height: 72px;
+  padding: 9px !important;
+}
+
+.spotlight-player-projection {
+  padding: 10px !important;
+}
+
+.spotlight-actions {
+  margin-top: 12px !important;
+  padding-top: 11px !important;
+}
+
+.hero-meta {
+  margin-top: 22px;
+}
+
+.hero-meta > div {
+  min-height: 62px;
+  padding: 11px 16px;
+}
+
+.hero-meta strong {
+  font-size: 28px;
+}
+
+.section,
+#live {
+  padding-top: 44px;
+  padding-bottom: 44px;
+}
+
+.section-head {
+  margin-bottom: 20px;
+  padding-left: 0;
+  grid-template-columns: minmax(0,1fr) minmax(240px,380px);
+  gap: 22px;
+}
+
+.section-head::before {
+  display: none !important;
+}
+
+.section-head h2 {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: .92;
+}
+
+.eyebrow {
+  margin-bottom: 7px;
+}
+
+.section-head > p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.toolbar {
+  margin-bottom: 16px;
+}
+
+.toolbar button,
+.toolbar select {
+  min-height: 36px;
+}
+
+.favorites-grid,
+.availability-grid,
+.game-grid,
+.edge-grid,
+.ranking-grid,
+.season-grid {
+  gap: 10px !important;
+}
+
+.panel-head {
+  padding: 13px 15px !important;
+}
+
+.favorite-item,
+.availability-card,
+.ranking-card {
+  padding: 12px !important;
+}
+
+.season-card {
+  padding: 14px !important;
+}
+
+.season-summary-item {
+  min-height: 76px !important;
+  padding: 12px !important;
+}
+
+.game-card {
+  min-height: 0 !important;
+  padding: 15px !important;
+}
+
+.game-card-top {
+  margin-bottom: 10px !important;
+  padding-bottom: 9px !important;
+}
+
+.matchup-team {
+  padding: 10px 0 !important;
+}
+
+.matchup-team + .matchup-team {
+  margin-top: 4px !important;
+}
+
+.game-card-foot {
+  margin-top: 10px !important;
+  padding-top: 10px !important;
+}
+
+.edge-head {
+  padding: 13px !important;
+  gap: 10px !important;
+}
+
+.edge-head h3 {
+  font-size: 17px !important;
+}
+
+.edge-score {
+  width: 58px;
+  height: 58px;
+}
+
+.edge-score strong {
+  font-size: 21px !important;
+}
+
+.edge-body {
+  padding: 13px !important;
+}
+
+.edge-forecast {
+  font-size: 12px !important;
+  line-height: 1.48 !important;
+}
+
+.pick-projection-strip {
+  margin-top: 10px !important;
+}
+
+.edge-details {
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.edge-details summary {
+  padding: 10px 0 5px;
+  color: #315b45;
+  cursor: pointer;
+  font: 850 10px/1.2 var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  list-style-position: inside;
+}
+
+.edge-details summary:hover {
+  color: var(--ink);
+}
+
+.edge-details .signals {
+  margin-top: 5px !important;
+}
+
+.signal {
+  padding: 8px 0 !important;
+}
+
+.signal span {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+
+.edge-foot {
+  margin-top: 11px !important;
+  padding-top: 9px !important;
+}
+
+.edge-more-control {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.edge-more-button {
+  min-width: 180px;
+  color: var(--ink) !important;
+  border-color: rgba(7,16,13,.25) !important;
+  background: var(--white) !important;
+}
+
+.live-card {
+  min-height: 0;
+  padding: 16px !important;
+}
+
+.live-leader {
+  padding: 7px 0;
+}
+
+.model-overview {
+  margin-bottom: 14px;
+}
+
+.model-stat {
+  padding: 15px !important;
+}
+
+.model-stat strong {
+  margin-bottom: 4px;
+  font-size: 34px !important;
+}
+
+.model-table th,
+.model-table td {
+  padding: 10px 9px;
+}
+
+.result-row {
+  min-height: 58px;
+  padding: 10px 14px !important;
+}
+
+footer {
+  padding: 22px 0 !important;
+}
+
+.footer-inner {
+  min-height: 56px;
+}
+
+@media (max-width: 1180px) {
+  .hero-stage {
+    gap: 22px;
+  }
+
+  .spotlight-wrap {
+    max-width: none;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .topbar-inner {
+    min-height: 60px;
+  }
+
+  .score-ribbon,
+  .score-card {
+    min-height: 66px;
+  }
+
+  .score-card {
+    flex-basis: 122px;
+    padding: 8px 10px;
+  }
+
+  .hero-inner {
+    padding: 24px 0 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 14vw, 66px);
+  }
+
+  .hero-copy {
+    margin-top: 13px;
+    font-size: 14px;
+  }
+
+  .hero-actions {
+    margin-top: 15px !important;
+  }
+
+  .spotlight-card {
+    padding: 13px;
+  }
+
+  .hero-meta {
+    margin-top: 16px;
+  }
+
+  .hero-meta > div {
+    min-height: 54px;
+    padding: 9px 11px;
+  }
+
+  .section,
+  #live {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .section-head {
+    margin-bottom: 14px;
+    padding-left: 0;
+  }
+
+  .section-head h2 {
+    font-size: clamp(32px, 11vw, 46px);
+  }
+
+  .section-head > p {
+    font-size: 11px;
+  }
+
+  .edge-head,
+  .edge-body,
+  .game-card,
+  .availability-card,
+  .ranking-card {
+    padding: 11px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section,
+  #live {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .hero-actions {
+    gap: 7px;
+  }
+
+  .hero-actions .primary,
+  .hero-actions .secondary {
+    min-height: 40px;
+  }
+
+  .spotlight-summary {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  }
+
+  .spotlight-summary strong {
+    font-size: 20px !important;
+  }
+
+  .edge-score {
+    width: 100%;
+    height: 36px;
+  }
+}
