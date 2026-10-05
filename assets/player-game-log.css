@@ -62,3 +62,37 @@
 .gp-h2h-table a{color:#b7ff3c;font-weight:850}
 .gp-h2h-root[aria-busy="true"]{min-height:92px}
 @media(max-width:600px){.gp-h2h-root{padding:14px 10px;margin:14px 0 18px}.gp-h2h-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-h2h-summary strong{font-size:24px}.gp-h2h-head h3{font-size:24px!important}}
+
+/* Search uses light cards inside a dark modal: keep text opaque and readable. */
+#search-overlay .search-result {
+  background: #fff;
+  color: #000;
+  opacity: 1;
+}
+#search-overlay .search-result > span:not(.avatar),
+#search-overlay .search-result strong,
+#search-overlay .search-result .gp-player-name {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  opacity: 1;
+  text-shadow: none;
+}
+#search-overlay .search-result small {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+  opacity: 1;
+}
+#search-overlay .search-result:hover,
+#search-overlay .search-result:focus-visible {
+  background: #f2f5ed;
+  color: #000;
+}
+#search-overlay .search-result:focus-visible {
+  outline: 2px solid #32845b;
+  outline-offset: 2px;
+}
+#search-overlay .toolbar [data-search-type] {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  opacity: 1;
+}
