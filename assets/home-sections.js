@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   function init() {
-    var ids=['top','my-pulse','season-outlook','availability','games','player-edge','live','power-pulse','model-record','results'];
+    var ids=['top','player-edge','my-pulse','season-outlook','availability','games','live','power-pulse','model-record','results'];
     var sections=ids.map(function(id){return document.getElementById(id);});
     var rail=document.getElementById('home-section-links');
     var drawer=document.getElementById('home-sections-drawer');

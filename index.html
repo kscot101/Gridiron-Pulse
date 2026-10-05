@@ -2520,7 +2520,24 @@
 <link rel="stylesheet" href="./assets/sites-command-center.css?v=20261005-compact1">
 <link rel="stylesheet" href="./assets/projection-trial.css?v=20260924-trial1">
 <link rel="stylesheet" href="./assets/home-sections.css?v=20261002-sites-v8">
-<script src="./assets/home-sections.js?v=20261002-sites-v8" defer></script>
+<script src="./assets/home-sections.js?v=20261005-picks-front1" defer></script>
+
+<style id="gp-picks-prominence-style" data-version="20261005-picks-front1">
+/* Existing picks, now easy to find. Scoped to the homepage navigation. */
+.gp-header-tools{display:flex;align-items:center;justify-content:flex-end;gap:10px;justify-self:end;min-width:0}
+.gp-header-tools .search-button{margin-left:0}
+.gp-picks-shortcut{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 15px;border:1px solid #c9ff32;background:#c9ff32;color:#07100d!important;-webkit-text-fill-color:#07100d!important;font:850 13px/1.1 var(--sans);text-decoration:none;white-space:nowrap}
+.gp-picks-shortcut:hover,.gp-hero-picks:hover{filter:brightness(1.06)}
+.gp-hero-picks{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+#player-edge.gp-featured-picks{border-top:3px solid #c9ff32;scroll-margin-top:84px}
+#player-edge .eyebrow{color:#315b45}
+#player-edge .gp-picks-tracker{color:#163c27;text-underline-offset:3px;font-weight:800}
+.home-section-link.gp-picks-rail-link:not([aria-current="location"]){border-color:rgba(201,255,50,.6);color:#e9ffb0}
+.gp-picks-shortcut:focus-visible,.gp-hero-picks:focus-visible,.gp-picks-tracker:focus-visible{outline:3px solid #238751;outline-offset:3px}
+@media(max-width:1180px){.topbar-inner{grid-template-columns:minmax(0,1fr) auto;gap:12px}.gp-header-tools{gap:8px}}
+@media(max-width:760px){.gp-header-tools .search-button{width:40px;min-height:42px;padding:0}.gp-picks-shortcut{padding:0 12px}.brand{min-width:0;width:auto}.brand>span:last-child{min-width:0}.brand-mark{flex-shrink:0}}
+@media(max-width:420px){.topbar-inner{gap:8px}.brand{gap:8px}.brand strong{font-size:12px;white-space:normal;line-height:1.15}.brand small{font-size:7px;letter-spacing:.09em}.gp-header-tools{gap:6px}.gp-picks-shortcut{padding:0 10px;font-size:12px}.gp-header-tools .search-button{width:36px}}
+</style>
 </head>
 
 <body>
@@ -2539,17 +2556,20 @@
         <button data-scroll="season-outlook">Season Outlook</button>
         <button type="button" onclick="window.location.href='projections-2026.html'">2026 Projections</button>
         <button data-scroll="games">Games</button>
-        <button data-scroll="player-edge">Player Edge</button>
+        <button data-scroll="player-edge">Daily Picks</button>
         <button data-scroll="power-pulse">Power Pulse</button>
         <button data-scroll="model-record">Model Record</button>
         <button data-scroll="my-pulse">My Pulse</button>
       </nav>
 
+      <div class="gp-header-tools">
+        <a id="gp-picks-shortcut" class="gp-picks-shortcut" href="#player-edge" aria-label="Go to Picks of the Day">Picks</a>
       <button class="search-button" id="open-search" type="button">
         <span>⌕</span>
         <b>Search</b>
         <kbd>/</kbd>
       </button>
+      </div>
     </div>
   </header>
 
@@ -2563,11 +2583,11 @@
     <div class="home-section-rail-title">SECTIONS</div>
     <nav id="home-section-links" aria-label="Jump to homepage section">
       <button class="home-section-link" data-home-section="top" data-scroll="top" aria-current="location">Spotlight</button>
+      <button class="home-section-link gp-picks-rail-link" data-home-section="player-edge" data-scroll="player-edge">Picks of the Day</button>
       <button class="home-section-link" data-home-section="my-pulse" data-scroll="my-pulse">My Pulse</button>
       <button class="home-section-link" data-home-section="season-outlook" data-scroll="season-outlook">Season Outlook</button>
       <button class="home-section-link" data-home-section="availability" data-scroll="availability">Availability</button>
       <button class="home-section-link" data-home-section="games" data-scroll="games">Game Board</button>
-      <button class="home-section-link" data-home-section="player-edge" data-scroll="player-edge">Player Edge</button>
       <button class="home-section-link" data-home-section="live" data-scroll="live">Gridiron Live</button>
       <button class="home-section-link" data-home-section="power-pulse" data-scroll="power-pulse">Power Pulse</button>
       <button class="home-section-link" data-home-section="model-record" data-scroll="model-record">Model Record</button>
@@ -2611,15 +2631,14 @@
             </p>
 
             <div class="hero-actions">
+              <a class="primary gp-hero-picks" href="#player-edge">See Today's Picks</a>
 <a id="gp-pick-tracker-link" class="secondary gp-exact-link" href="pick-tracker.html">Pick Tracker / By Position</a>
               <a id="gp-trial-home-link" class="secondary gp-exact-link" href="projection-trial.html">Projection Lab / Exact Results</a>
-              <button class="primary" data-scroll="games">
+              <button class="secondary" data-scroll="games">
                 View Full Game Board ↘
               </button>
 
-              <button class="secondary" data-scroll="player-edge">
-                Open Player Edge
-              </button>
+
 
               <button class="secondary" type="button" onclick="window.location.href='projections-2026.html'">
                 2026 Projections
@@ -2650,6 +2669,32 @@
             <small>Last update</small>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section gp-featured-picks" id="player-edge" aria-labelledby="daily-picks-heading">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">PLAYER EDGE / CURRENT SLATE</p>
+            <h2 id="daily-picks-heading">Picks of the Day</h2>
+          </div>
+
+          <p>
+            Current-slate picks, projected stats and matchup signals. Click a
+            player for recent games and head-to-head history, or visit the
+            <a class="gp-picks-tracker" href="pick-tracker.html">Pick Tracker for saved results</a>.
+          </p>
+        </div>
+
+        <div class="toolbar">
+          <button class="active" data-edge="all">All players</button>
+          <button data-edge="qb">Quarterbacks</button>
+          <button data-edge="stars">Team stars</button>
+          <button data-edge="favorites">Favorites</button>
+        </div>
+
+        <div class="edge-grid" id="edge-grid"></div>
       </div>
     </section>
 
@@ -2789,31 +2834,7 @@
       </div>
     </section>
 
-    <section class="section" id="player-edge">
-      <div class="shell">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Pregame intelligence</p>
-            <h2>Player Edge</h2>
-          </div>
 
-          <p>
-            Each game tracks both quarterbacks and one non-QB team star using
-            opponent defense, current form, team scheme and similar-position
-            history.
-          </p>
-        </div>
-
-        <div class="toolbar">
-          <button class="active" data-edge="all">All players</button>
-          <button data-edge="qb">Quarterbacks</button>
-          <button data-edge="stars">Team stars</button>
-          <button data-edge="favorites">Favorites</button>
-        </div>
-
-        <div class="edge-grid" id="edge-grid"></div>
-      </div>
-    </section>
 
     <section class="section dark" id="live">
       <div class="shell">
