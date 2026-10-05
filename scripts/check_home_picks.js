@@ -8,7 +8,7 @@ const path=require('node:path');
  const context=await browser.newContext({viewport:{width:1440,height:960},timezoneId:'America/New_York',reducedMotion:'reduce'});
  const base='https://kscot101.github.io/Gridiron-Pulse/';
  const snapshot=JSON.parse(fs.readFileSync('data/homepage-snapshot.json','utf8')).snapshot;
- const report={mode:'Isolated layout test of saved-source renderers, not a live freshness check; no source files or production guards changed.',testedAt:new Date().toISOString(),snapshotGeneratedAt:snapshot.generatedAt};
+ const report={mode:'Controlled browser fixture: saved pick values with test-only healthy-feed metadata, plus an unavailable-feed case. Not live service verification. No production guards or data files modified.',testedAt:new Date().toISOString(),snapshotGeneratedAt:snapshot.generatedAt};
  await context.route('**/*',async route=>{
   const u=new URL(route.request().url());
   if(route.request().url().startsWith(base)){
@@ -23,9 +23,12 @@ const path=require('node:path');
  try{
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.state&&state.snapshot&&window.GPExactTracker&&GPExactTracker.data&&window.GPPlayerStats,null,{timeout:30000});
-  // The saved raw Worker snapshot has no compose/feedStatus metadata. Exercise
-  // its existing renderer directly after the page's normal freshness display.
-  await page.evaluate(source=>{state.snapshot=source;renderAll();renderEdges();},snapshot);
+  await page.evaluate(source=>{
+   // Raw Worker data does not contain the client adapter's feedStatus. Supply
+   // explicit fixture metadata, never mutate source files or the real adapter.
+   state.snapshot=Object.assign({},source,{feedStatus:{available:true,analysisCurrent:true,mode:'current',gamesCheckedAt:source.generatedAt,analysisGeneratedAt:source.generatedAt}});
+   renderAll();
+  },snapshot);
   report.sectionOrder=await page.locator('main > section[id]').evaluateAll(ns=>ns.map(n=>n.id));
   assert.deepEqual(report.sectionOrder,['top','player-edge','my-pulse','season-outlook','availability','games','live','power-pulse','model-record','results']);
   assert.equal(await page.locator('#edge-grid').count(),1);assert.equal(await page.locator('#player-edge').count(),1);
@@ -63,6 +66,10 @@ const path=require('node:path');
     await page.locator('#home-drawer-links [data-home-section="player-edge"]').click();assert.equal(await page.locator('#home-sections-toggle').getAttribute('aria-expanded'),'false');report.mobilePicksShortcutAndDrawer=true;
    }
   }
+  await page.evaluate(()=>{state.snapshot=GPHomepageFeed.compose(null,[],null,null,Date.now());renderAll();});
+  assert.equal(await page.locator('#edge-grid .edge-card').count(),0);
+  assert.equal(await page.locator('#daily-picks-heading').count(),1);
+  report.unavailableFeedWithholdsCards=true;
   assert.deepEqual(errors,[]);report.pageErrors=errors;report.passed=true;
  }catch(e){report.passed=false;report.error=e.message;report.pageErrors=errors;report.diagnostics=await page.evaluate(()=>({url:location.href,wide:Array.from(document.querySelectorAll('body *')).filter(n=>n.getBoundingClientRect().right>innerWidth+2&&n.getBoundingClientRect().width>0).slice(0,12).map(n=>({tag:n.tagName,cls:n.className,right:n.getBoundingClientRect().right}))})).catch(()=>null);await page.screenshot({path:'home-picks-error.png'}).catch(()=>{});throw e;
  }finally{fs.writeFileSync('home-picks-browser-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));await browser.close();}
