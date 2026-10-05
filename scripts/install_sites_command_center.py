@@ -10,7 +10,7 @@ import tempfile
 
 path = Path("index.html")
 page = path.read_text(encoding="utf-8")
-link = '<link rel="stylesheet" href="./assets/sites-command-center.css?v=20260924-sites2">'
+link = '<link rel="stylesheet" href="./assets/sites-command-center.css?v=20261005-search1">'
 
 page = re.sub(
     r'<link rel="stylesheet" href="\./assets/sites-command-center\.css\?v=[^"]+">\n?',
