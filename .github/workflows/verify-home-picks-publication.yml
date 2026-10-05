@@ -1,0 +1,51 @@
+name: Verify public Picks of the Day layout
+on:
+  push:
+    branches: [main]
+    paths:
+      - home-picks-layout-report.json
+      - .github/workflows/verify-home-picks-publication.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Check actual public homepage and navigation asset
+        run: |
+          python - <<'PY'
+          import hashlib,json,re,time,urllib.request
+          from pathlib import Path
+          base='https://kscot101.github.io/Gridiron-Pulse/'
+          def read(name):
+              req=urllib.request.Request(base+name+'?verify-picks='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'GridironPulse-LayoutVerification/1'})
+              with urllib.request.urlopen(req,timeout=20) as r:return r.read()
+          for attempt in range(24):
+              try:
+                  html=read('index.html').decode()
+                  assert 'gp-picks-shortcut' in html and '20261005-picks-front1' in html
+                  assert html.count('id="edge-grid"')==1 and html.count('id="player-edge"')==1
+                  main=html.split('<main>',1)[1].split('</main>',1)[0]
+                  sections=re.findall(r'<section\b[^>]*\bid="([^"]+)"',main)
+                  assert sections[:2]==['top','player-edge']
+                  assert 'Picks of the Day' in html and 'See Today\'s Picks' in html
+                  assert hashlib.sha256(read('assets/home-sections.js')).hexdigest()==hashlib.sha256(Path('assets/home-sections.js').read_bytes()).hexdigest()
+                  report={'passed':True,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'picksDirectlyAfterSpotlight':True,'onePicksGrid':True,'headerShortcutPublished':True,'navigationAssetMatches':True,'note':'Public layout publication check, not a forecast freshness or accuracy claim.'}
+                  Path('home-picks-publication.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));break
+              except Exception as e:
+                  print('Waiting for publication:',type(e).__name__,str(e),flush=True)
+                  if attempt==23:raise
+                  time.sleep(10)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-picks-publication
+          retention-days: 7
+          path: home-picks-publication.json
