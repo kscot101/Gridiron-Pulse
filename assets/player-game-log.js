@@ -1,6 +1,8 @@
 /* Gridiron Pulse: recent recorded game stats, shared by the homepage and projections. */
 (function () {
   'use strict';
+  // One controller even when an embed includes this script more than once.
+  if (window.GPPlayerStats && window.GPPlayerStats.singletonVersion === 1) return;
   var script = document.currentScript;
   var dataURL = new URL('../data/player-recent-games.json', script.src).href;
   var feed = null, pending = null, fetchedAt = 0, previousFocus = null;
@@ -236,6 +238,68 @@
     h2hCache.set(key,promise);
     try { return await promise; } catch (e) { h2hCache.delete(key); throw e; }
   }
+
+  // Provider event IDs are not interchangeable. A local nflverse game ID and
+  // an ESPN numeric event ID can describe the same game. Match the matchup
+  // and its Eastern calendar date before counting it or computing averages.
+  function gameCalendarDate(row) {
+    var value = String(row && row.date || '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    var time = Date.parse(value);
+    if (!Number.isFinite(time)) return '';
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit'
+    }).formatToParts(new Date(time));
+    var values = {};
+    parts.forEach(function(part) { values[part.type] = part.value; });
+    return values.year + '-' + values.month + '-' + values.day;
+  }
+  function gameIdentity(row) {
+    var date = gameCalendarDate(row), a = team(row && row.team), b = team(row && row.opponent);
+    // No guess based only on an opponent, week, or missing metadata.
+    return date && a && b && a !== b ? date + '|' + [a,b].sort().join('|') : '';
+  }
+  function hasGameValue(value) {
+    return value != null && typeof value !== 'boolean' &&
+      !(typeof value === 'string' && !value.trim()) &&
+      !(typeof value === 'number' && !Number.isFinite(value));
+  }
+  function mergePlayerGames(rows) {
+    var output = [], identities = new Map(), ids = new Map();
+    arr(rows).forEach(function(row) {
+      if (!row || typeof row !== 'object') return;
+      var identity = gameIdentity(row), id = String(row.gameId || '');
+      var existing = identity ? identities.get(identity) : null;
+      if (!existing && id) {
+        var candidate = ids.get(id);
+        // A malformed ID must not collapse two known, different matchups.
+        if (candidate && (!identity || !gameIdentity(candidate) || gameIdentity(candidate) === identity)) existing = candidate;
+      }
+      if (!existing) {
+        existing = Object.assign({}, row, {stats:Object.assign({}, row.stats || {})});
+        output.push(existing);
+      } else {
+        Object.keys(row).forEach(function(key) {
+          if (key !== 'stats' && !hasGameValue(existing[key]) && hasGameValue(row[key])) existing[key] = row[key];
+        });
+        // The first verified local values take precedence; fill only gaps.
+        // In particular, a recorded 0 is never treated as missing.
+        Object.keys(row.stats || {}).forEach(function(key) {
+          if (!hasGameValue(existing.stats[key]) && hasGameValue(row.stats[key])) existing.stats[key] = row.stats[key];
+        });
+      }
+      var boxId = String(row.espnGameId || (/^\d+$/.test(id) ? id : ''));
+      if (boxId && /^\d+$/.test(boxId)) existing.espnGameId = existing.espnGameId || boxId;
+      if (identity) identities.set(identity,existing);
+      if (id) ids.set(id,existing);
+      var mergedIdentity = gameIdentity(existing);
+      if (mergedIdentity) identities.set(mergedIdentity,existing);
+    });
+    return output.sort(function(a,b) {
+      return gameCalendarDate(b).localeCompare(gameCalendarDate(a)) || String(b.date || '').localeCompare(String(a.date || ''));
+    });
+  }
+
   function localH2H(entry, opponent) {
     return arr(entry && entry.games).filter(function(g){return team(g.opponent)===opponent;}).map(function(g){
       return {
@@ -255,9 +319,7 @@
       var remote=await Promise.allSettled(years.map(function(y){return fetchH2HSeason(espnId,y).then(function(data){return parseEspnH2H(data,y,opponent.team);});}));
       remote.forEach(function(result,i){if(result.status==='fulfilled') rows=rows.concat(result.value); else failed.push(years[i]);});
     }
-    var unique=new Map();
-    rows.forEach(function(row){if(row && row.gameId) unique.set(String(row.gameId),row);});
-    rows=Array.from(unique.values()).sort(function(a,b){return String(b.date).localeCompare(String(a.date));});
+    rows=mergePlayerGames(rows);
     return {opponent:opponent,rows:rows,failed:failed,year:year,oldest:oldest,espnId:espnId};
   }
   function h2hYards(row, position) {
@@ -285,7 +347,7 @@
       section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY</small><h3>Head to head</h3></div></div><p class="gp-h2h-note">'+esc(result.message||'Next opponent is not available yet.')+'</p>';
       return;
     }
-    var rows=arr(result.rows), position=pos(d.position), yardLabel=position==='QB'?'Pass yds':position==='RB'?'Scrimmage yds':'Rec yds';
+    var rows=mergePlayerGames(result.rows), position=pos(d.position), yardLabel=position==='QB'?'Pass yds':position==='RB'?'Scrimmage yds':'Rec yds';
     var yards=rows.map(function(r){return h2hYards(r,position);}).filter(function(v){return v!=null;});
     var avg=yards.length?yards.reduce(function(a,b){return a+b;},0)/yards.length:null;
     var totalTd=rows.reduce(function(sum,row){return sum+h2hTd(row,position);},0);
@@ -300,8 +362,8 @@
     var summary='<div class="gp-h2h-summary"><div><strong>'+rows.length+'</strong><span>Meetings</span></div><div><strong>'+esc(avg==null?'\u2014':avg.toFixed(1))+'</strong><span>Avg '+esc(yardLabel)+'</span></div><div><strong>'+esc(totalTd)+'</strong><span>Total TD</span></div><div><strong>'+esc(recordLabel)+'</strong><span>Team record</span></div></div>';
     var fields=columns(position,rows).slice(0,6);
     var table='<div class="gp-log-scroll gp-h2h-scroll" role="region" aria-label="Head-to-head game statistics for '+esc(d.name)+'" tabindex="0"><table class="gp-log-table gp-h2h-table"><caption class="gp-sr-only">'+esc(d.name)+' head-to-head games versus '+esc(opponent.team)+'</caption><thead><tr><th scope="col">Game</th><th scope="col">Result</th>'+fields.map(function(f){return '<th scope="col">'+esc(f[0])+'</th>';}).join('')+'<th scope="col">Box</th></tr></thead><tbody>'+rows.map(function(row){
-      var stats=row.stats||{},box=row.gameId&&/^\d+$/.test(row.gameId)?'<a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(row.gameId)+'" target="_blank" rel="noopener noreferrer">View ↗</a>':'—';
-      return '<tr><th scope="row">'+esc(dateLabel(String(row.date||'').slice(0,10)))+'<small>'+esc(row.season)+' · '+(row.seasonType==='POST'?'Playoffs':'Week '+esc(row.week))+'</small></th><td><span class="gp-log-result '+(row.result==='W'?'win':row.result==='L'?'loss':'tie')+'">'+esc(row.result||'—')+'</span><small>'+esc(row.score||'')+'</small></td>'+fields.map(function(f){return '<td>'+esc(cell(stats,f[1]))+'</td>';}).join('')+'<td>'+box+'</td></tr>';
+      var stats=row.stats||{},boxId=row.espnGameId||row.gameId,box=boxId&&/^\d+$/.test(boxId)?'<a href="https://www.espn.com/nfl/boxscore/_/gameId/'+encodeURIComponent(boxId)+'" target="_blank" rel="noopener noreferrer">View ↗</a>':'—';
+      return '<tr><th scope="row">'+esc(dateLabel(gameCalendarDate(row)))+'<small>'+esc(row.season)+' · '+(row.seasonType==='POST'?'Playoffs':'Week '+esc(row.week))+'</small></th><td><span class="gp-log-result '+(row.result==='W'?'win':row.result==='L'?'loss':'tie')+'">'+esc(row.result||'—')+'</span><small>'+esc(row.score||'')+'</small></td>'+fields.map(function(f){return '<td>'+esc(cell(stats,f[1]))+'</td>';}).join('')+'<td>'+box+'</td></tr>';
     }).join('')+'</tbody></table></div>';
     var partial=result.loadingExtended?'<p class="gp-h2h-note">Showing verified recent meetings while older matchup history loads…</p>':result.failed.length?'<p class="gp-h2h-note">Some older seasons could not be loaded. Showing every verified meeting that was available.</p>':'<p class="gp-h2h-note">Completed regular-season and playoff meetings only. Preseason excluded.</p>';
     section.innerHTML=heading+summary+partial+table;
@@ -373,7 +435,7 @@
     return fmt(stats[key]);
   }
   function render(section, d, entry, data, count) {
-    var games = entry ? arr(entry.games).slice().sort(function(a,b) { return String(b.date).localeCompare(String(a.date)) || b.week-a.week; }).slice(0,count) : [];
+    var games = entry ? mergePlayerGames(entry.games).slice(0,count) : [];
     var updated = new Date(data.generatedAt);
     var stamp = Number.isNaN(updated.getTime()) ? '' : updated.toLocaleString(undefined, {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
     var source = '<p class="gp-log-source">Source: <a href="https://nflreadr.nflverse.com/reference/load_player_stats.html" target="_blank" rel="noopener noreferrer">nflverse game stats</a>' + (stamp ? ' &middot; Feed updated ' + esc(stamp) : '') + '. Not live play-by-play.</p>';
@@ -410,8 +472,8 @@
     if (typeof container === 'string') container = document.querySelector(container);
     if (!container) return;
     var d=describe(player);
-    var old = container.querySelector('.gp-recent-root'); if (old) old.remove();
-    var oldH2H = container.querySelector('.gp-h2h-root'); if (oldH2H) oldH2H.remove();
+    // Replace all prior owned sections, including leftovers from older embeds.
+    container.querySelectorAll('.gp-recent-root,.gp-h2h-root').forEach(function(node) { node.remove(); });
     var h2h = document.createElement('section'); h2h.className='gp-h2h-root';
     var section = document.createElement('section'); section.className = 'gp-recent-root';
     var first = container.querySelector('.modal-section');
@@ -437,8 +499,17 @@
   }
   function open(player) {
     var d=describe(player); previousFocus=document.activeElement;
+    // Reuse the current presentation instead of stacking a standalone dialog
+    // over the homepage's search or detail drawer.
+    if (typeof window.closeOverlay === 'function') {
+      ['search-overlay','detail-overlay'].forEach(function(id) {
+        var overlay=document.getElementById(id);
+        if (overlay && overlay.classList.contains('open')) window.closeOverlay(id);
+      });
+    }
     var entity=matchingMain(d);
     if (entity && typeof window.openProfile==='function' && typeof window.playerKey==='function') {
+      if (dialog && dialog.open) dialog.close();
       window.openProfile('player',window.playerKey(entity)); return;
     }
     if (!dialog) {
@@ -478,7 +549,7 @@
       document.querySelectorAll('main, #detail-body').forEach(function(root) {
         var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(node){
           var el=node.parentElement;
-          return !el || el.closest('a,button,script,style,textarea,input,select,h2.modal-title,.gp-recent-root,[data-gp-no-link]') || !node.nodeValue.trim() ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+          return !el || el.closest('a,button,script,style,textarea,input,select,h2.modal-title,.gp-recent-root,.gp-h2h-root,[data-gp-no-link]') || !node.nodeValue.trim() ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
         }}), nodes=[], node;
         while((node=walker.nextNode())) nodes.push(node);
         nodes.forEach(function(node){
@@ -499,7 +570,7 @@
   function init() {
     document.addEventListener('click',function(e) {
       var button=e.target.closest('[data-gp-player]');
-      if(button) { e.preventDefault(); e.stopPropagation(); try{open(JSON.parse(button.dataset.gpPlayer));}catch(err){console.error('Player stats:',err);} return; }
+      if(button) { e.preventDefault(); e.stopImmediatePropagation(); try{open(JSON.parse(button.dataset.gpPlayer));}catch(err){console.error('Player stats:',err);} return; }
       if(e.target.closest('[data-profile-kind="player"], [data-search-open="player"]')) previousFocus=document.activeElement;
       if(e.target.closest('[data-close]') && previousFocus) setTimeout(function(){if(previousFocus.isConnected)previousFocus.focus();},0);
     },true);
@@ -520,6 +591,6 @@
     observer.observe(document.body,{childList:true,subtree:true});
     linkKnownNames();
   }
-  window.GPPlayerStats={link:link,open:open,attach:attach,refresh:linkKnownNames};
+  window.GPPlayerStats={link:link,open:open,attach:attach,refresh:linkKnownNames,singletonVersion:1};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
