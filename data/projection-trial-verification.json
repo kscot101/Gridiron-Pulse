@@ -1,6 +1,7 @@
 {
-  "testedAt": "2026-10-07T01:49:35.278Z",
-  "mode": "staged repository files; external services not mocked",
+  "testedAt": "2026-10-07T12:14:43.659Z",
+  "version": "trial-verifier-20261007",
+  "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 128,
   "baselineForecasts": 122,
   "noBackfill": true,
@@ -10,9 +11,136 @@
   "search": true,
   "searchCards": 2,
   "trialMobileOverflow": false,
+  "homepage": {
+    "feedStatus": {
+      "available": false,
+      "analysisCurrent": false,
+      "mode": "unavailable",
+      "gamesCheckedAt": null,
+      "analysisGeneratedAt": "2026-10-07T09:17:36.281Z",
+      "modelRecordAsOf": "2026-10-07T09:17:36.281Z"
+    },
+    "gameCount": 0,
+    "forecastCount": 250,
+    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Oct 7, 5:17 AM"
+  },
+  "homepageModes": [
+    {
+      "model": "workload-trial-1",
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
+      "values": true
+    },
+    {
+      "model": "v2.1-tracked-1",
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
+      "values": true
+    }
+  ],
+  "componentChecks": [
+    {
+      "model": "workload-trial-1",
+      "position": "QB",
+      "id": "401872948|4036378|workload-trial-1",
+      "renderedId": "401872948|4036378|workload-trial-1",
+      "metricCount": 3,
+      "expectedCount": 3,
+      "values": true
+    },
+    {
+      "model": "workload-trial-1",
+      "position": "RB",
+      "id": "401872948|4430807|workload-trial-1",
+      "renderedId": "401872948|4430807|workload-trial-1",
+      "metricCount": 6,
+      "expectedCount": 6,
+      "values": true
+    },
+    {
+      "model": "workload-trial-1",
+      "position": "WR",
+      "id": "401872948|4248528|workload-trial-1",
+      "renderedId": "401872948|4248528|workload-trial-1",
+      "metricCount": 4,
+      "expectedCount": 4,
+      "values": true
+    },
+    {
+      "model": "workload-trial-1",
+      "position": "TE",
+      "id": "401872953|4385690|workload-trial-1",
+      "renderedId": "401872953|4385690|workload-trial-1",
+      "metricCount": 4,
+      "expectedCount": 4,
+      "values": true
+    },
+    {
+      "model": "v2.1-tracked-1",
+      "position": "QB",
+      "id": "401872948|4036378|v2.1-tracked-1",
+      "renderedId": "401872948|4036378|v2.1-tracked-1",
+      "metricCount": 2,
+      "expectedCount": 2,
+      "values": true
+    },
+    {
+      "model": "v2.1-tracked-1",
+      "position": "RB",
+      "id": "401872948|4430807|v2.1-tracked-1",
+      "renderedId": "401872948|4430807|v2.1-tracked-1",
+      "metricCount": 2,
+      "expectedCount": 2,
+      "values": true
+    },
+    {
+      "model": "v2.1-tracked-1",
+      "position": "WR",
+      "id": "401872948|4248528|v2.1-tracked-1",
+      "renderedId": "401872948|4248528|v2.1-tracked-1",
+      "metricCount": 2,
+      "expectedCount": 2,
+      "values": true
+    },
+    {
+      "model": "v2.1-tracked-1",
+      "position": "TE",
+      "id": "401872953|4385690|v2.1-tracked-1",
+      "renderedId": "401872953|4385690|v2.1-tracked-1",
+      "metricCount": 2,
+      "expectedCount": 2,
+      "values": true
+    }
+  ],
   "canonicalValues": true,
   "baselineView": true,
   "homeMobileOverflow": false,
+  "safeFeedCases": [
+    {
+      "scenario": "unavailable",
+      "model": "trial",
+      "passed": true
+    },
+    {
+      "scenario": "unavailable",
+      "model": "baseline",
+      "passed": true
+    },
+    {
+      "scenario": "stale",
+      "model": "trial",
+      "passed": true
+    },
+    {
+      "scenario": "stale",
+      "model": "baseline",
+      "passed": true
+    }
+  ],
   "pageErrors": [],
   "passed": true
 }
