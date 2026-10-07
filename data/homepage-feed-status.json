@@ -1,67 +1,24 @@
 {
-  "checkedAt": "2026-10-07T09:15:11.136241+00:00",
-  "workflowRun": "37599300136",
-  "ok": true,
+  "checkedAt": "2026-10-07T22:15:55.787875+00:00",
+  "workflowRun": "37695037949",
+  "ok": false,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-07T09:15:11.636Z",
-      "teamsWithHistory": 0,
+      "generatedAt": "2026-10-07T22:15:56.485Z",
+      "teamsWithHistory": 30,
       "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 184,
+      "fallbackSignalCount": 0,
       "warnings": [
         "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-07T09:16:23.632Z",
-      "teamsWithHistory": 30,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 0,
-      "warnings": [
-        "Multi-game form is warming up for 30 team(s); another scheduled refresh will add the next prior slate."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-07T09:17:36.281Z",
-      "teamsWithHistory": 30,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 0,
-      "warnings": [
-        "Multi-game form is warming up for 30 team(s); another scheduled refresh will add the next prior slate."
       ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 5,
-  "previousGeneratedAt": "2026-10-07T01:48:19.925Z",
+  "previousGeneratedAt": "2026-10-07T09:17:36.281Z",
   "previousSeason": {
-    "year": 2026,
-    "type": 2,
-    "typeName": "Regular Season",
-    "slug": "regular-season",
-    "week": 4,
-    "label": "2026 Regular Season \u00b7 Week 4"
-  },
-  "previousResultCount": 63,
-  "previousAnalysisInputs": {
-    "historyReady": true,
-    "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 0,
-    "teamsWithHistory": 0,
-    "teamsMeetingSampleTarget": 0,
-    "teamSamples": {},
-    "playerPicks": 0,
-    "picksWithGameHistory": 0,
-    "playersWithoutGameHistory": [],
-    "signalCount": 0,
-    "fallbackSignalCount": 0,
-    "sampleSeasons": [],
-    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
-  },
-  "generatedAt": "2026-10-07T09:17:36.281Z",
-  "season": {
     "year": 2026,
     "type": 2,
     "typeName": "Regular Season",
@@ -69,9 +26,8 @@
     "week": 5,
     "label": "2026 Regular Season \u00b7 Week 5"
   },
-  "gameCount": 15,
-  "resultCount": 0,
-  "analysisInputs": {
+  "previousResultCount": 0,
+  "previousAnalysisInputs": {
     "historyReady": false,
     "targetRecentGamesPerTeam": 3,
     "pregameTeams": 30,
@@ -119,47 +75,5 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "sampleSignals": [
-    {
-      "name": "De'Von Achane",
-      "team": "MIA",
-      "position": "RB",
-      "score": 78,
-      "baselineAvailable": true,
-      "recentGames": [
-        {
-          "gameId": "401872952",
-          "date": "2026-09-27T17:00Z",
-          "opponent": "KC",
-          "headline": "3 CAR \u00b7 17 YDS \u00b7 0 TD",
-          "productionScore": 8.5,
-          "seasonYear": 2026,
-          "seasonType": 2,
-          "seasonWeek": 3
-        }
-      ],
-      "signals": [
-        {
-          "label": "Opponent defense",
-          "detail": "CIN has allowed 124.5 rushing yards per game across 2 recent samples."
-        },
-        {
-          "label": "Current form",
-          "detail": "1-game form is establishing; latest vs KC: 3 CAR \u00b7 17 YDS \u00b7 0 TD."
-        },
-        {
-          "label": "Team scheme",
-          "detail": "MIA's recent yardage mix is 54% passing and 46% rushing. The strongest recent non-QB production has come from RB."
-        },
-        {
-          "label": "Position history",
-          "detail": "Comparable RB groups averaged 171.5 scrimmage yards, 4 catches and 0.5 TD across 2 recent games vs CIN."
-        }
-      ]
-    }
-  ],
-  "warnings": [
-    "Multi-game form is warming up for 30 team(s); another scheduled refresh will add the next prior slate."
-  ],
-  "analysisWarning": "History warm-up is incomplete; a fresh timestamp alone does not mean complete analysis."
+  "error": "Homepage source returned HTTP 503"
 }
