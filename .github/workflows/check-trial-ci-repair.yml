@@ -1,0 +1,45 @@
+name: Verify trial CI repair
+on:
+  workflow_dispatch:
+  push:
+    branches: [trial-ci-repair-20261007]
+    paths:
+      - scripts/check_projection_trial.js
+      - .github/workflows/check-trial-ci-repair.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate syntax and existing model safeguards
+        run: |
+          node --check scripts/check_projection_trial.js
+          node --check assets/projection-trial.js
+          node scripts/test_homepage_feed.js
+          pip install pandas numpy requests
+          python scripts/test_projection_trial.py
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Check saved values, live-feed state, and isolated stale/offline regressions
+        run: node scripts/check_projection_trial.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trial-ci-repair-verification
+          retention-days: 7
+          path: |
+            data/projection-trial-verification.json
+            projection-trial-browser-error.json
+            projection-trial-*.png
+            scripts/check_projection_trial.js
