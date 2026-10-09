@@ -1,19 +1,22 @@
 {
   "version": "workload-trial-1",
-  "generatedAt": "2026-10-09T21:10:55.561949+00:00",
-  "analysisSourceGeneratedAt": "2026-10-09T16:35:26.357Z",
+  "generatedAt": "2026-10-09T21:17:31.192036+00:00",
+  "analysisSourceGeneratedAt": "2026-10-09T21:16:15.686Z",
   "season": 2026,
   "week": 5,
   "trialOnly": true,
   "autoPromoted": false,
-  "newCaptures": 0,
+  "newCaptures": 4,
   "baselineFresh": false,
   "warnings": [
-    "Current analysis failed freshness/slate validation. No new forecasts captured; existing records still evaluated.",
-    "No eligible upcoming players; existing forecasts will still be graded.",
     "Existing v2.1 feed stale or missing; no new v2.1 comparisons captured this run."
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "name": "Case Keenum",
+      "reason": "Fewer than two usable same-team observations"
+    }
+  ],
   "calibration": {
     "version": "workload-trial-1",
     "parameters": {
@@ -9596,13 +9599,121 @@
       "conditionalOnPlaying": true,
       "recordedAt": "2026-10-08T22:28:13.333719+00:00",
       "forecastHash": "b8064ef42f8e09fe86735147f901ac1c9c28606b47335f311c3d127aa4fadfb9"
+    },
+    {
+      "athleteId": "4715355",
+      "player_id": "00-0040024",
+      "position": "WR",
+      "team": "PHI",
+      "opponent": "JAX",
+      "playerName": "Darius Cooper",
+      "gameId": "401872981",
+      "kickoff": "2026-10-11T13:30Z",
+      "season": 2026,
+      "week": 5,
+      "id": "401872981|4715355|workload-trial-1",
+      "model": "workload-trial-1",
+      "predictions": {
+        "targets": 2.4,
+        "receptions": 1.5,
+        "receiving_yards": 18.3,
+        "receiving_tds": 0.14
+      },
+      "sourceGeneratedAt": "2026-10-09T21:16:15.686Z",
+      "sourceHash": "e7462cedfd6b66e7f651d9883e5049b06457d83381bd7e5405f2103437c03b17",
+      "historyGames": 8,
+      "currentSeasonGames": 2,
+      "conditionalOnPlaying": true,
+      "recordedAt": "2026-10-09T21:17:24.333667+00:00",
+      "forecastHash": "9ca4eac2cbf8021393159c0bae6036cd30ca229c2b1c87b83c34990af9dc8085"
+    },
+    {
+      "athleteId": "4259545",
+      "player_id": "00-0036275",
+      "position": "RB",
+      "team": "CHI",
+      "opponent": "GB",
+      "playerName": "D'Andre Swift",
+      "gameId": "401872990",
+      "kickoff": "2026-10-11T17:00Z",
+      "season": 2026,
+      "week": 5,
+      "id": "401872990|4259545|workload-trial-1",
+      "model": "workload-trial-1",
+      "predictions": {
+        "carries": 14.9,
+        "rushing_yards": 69.2,
+        "receptions": 2.0,
+        "receiving_yards": 14.9,
+        "scrimmage_yards": 84.1,
+        "scrimmage_tds": 0.71
+      },
+      "sourceGeneratedAt": "2026-10-09T21:16:15.686Z",
+      "sourceHash": "e7462cedfd6b66e7f651d9883e5049b06457d83381bd7e5405f2103437c03b17",
+      "historyGames": 8,
+      "currentSeasonGames": 4,
+      "conditionalOnPlaying": true,
+      "recordedAt": "2026-10-09T21:17:24.457270+00:00",
+      "forecastHash": "1c24f5ff18a1fcee87984e0ced697f632b03ba12f8644017c921032c102236b0"
+    },
+    {
+      "athleteId": "4426348",
+      "player_id": "00-0039910",
+      "position": "QB",
+      "team": "WAS",
+      "opponent": "NYG",
+      "playerName": "Jayden Daniels",
+      "gameId": "401872988",
+      "kickoff": "2026-10-11T17:00Z",
+      "season": 2026,
+      "week": 5,
+      "id": "401872988|4426348|workload-trial-1",
+      "model": "workload-trial-1",
+      "predictions": {
+        "passing_yards": 154.4,
+        "passing_tds": 1.1,
+        "rushing_yards": 36.5
+      },
+      "sourceGeneratedAt": "2026-10-09T21:16:15.686Z",
+      "sourceHash": "e7462cedfd6b66e7f651d9883e5049b06457d83381bd7e5405f2103437c03b17",
+      "historyGames": 8,
+      "currentSeasonGames": 2,
+      "conditionalOnPlaying": true,
+      "recordedAt": "2026-10-09T21:17:25.439407+00:00",
+      "forecastHash": "ef37684dbd13d3d6b92f0f2cbcd0c7cdd7977636261e31786dbfebbe39670305"
+    },
+    {
+      "athleteId": "4035671",
+      "player_id": "00-0035993",
+      "position": "QB",
+      "team": "BAL",
+      "opponent": "ATL",
+      "playerName": "Tyler Huntley",
+      "gameId": "401872993",
+      "kickoff": "2026-10-12T00:20Z",
+      "season": 2026,
+      "week": 5,
+      "id": "401872993|4035671|workload-trial-1",
+      "model": "workload-trial-1",
+      "predictions": {
+        "passing_yards": 80.0,
+        "passing_tds": 0.49,
+        "rushing_yards": 21.7
+      },
+      "sourceGeneratedAt": "2026-10-09T21:16:15.686Z",
+      "sourceHash": "e7462cedfd6b66e7f651d9883e5049b06457d83381bd7e5405f2103437c03b17",
+      "historyGames": 8,
+      "currentSeasonGames": 1,
+      "conditionalOnPlaying": true,
+      "recordedAt": "2026-10-09T21:17:25.994549+00:00",
+      "forecastHash": "8cd84621417e86b3d2b2a9f762fe2beaeb482615eb85470e1ddf9819152b195f"
     }
   ],
   "outcomes": {
     "401872948|4036378|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "passing_yards": {
           "prediction": 195.4,
@@ -9629,8 +9740,8 @@
     },
     "401872948|4036378|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "passing_yards": {
           "prediction": 226.0,
@@ -9650,8 +9761,8 @@
     },
     "401872948|4430807|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "carries": {
           "prediction": 19.0,
@@ -9699,8 +9810,8 @@
     },
     "401872948|4430807|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 128.0,
@@ -9720,8 +9831,8 @@
     },
     "401872948|4248528|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "targets": {
           "prediction": 6.8,
@@ -9755,8 +9866,8 @@
     },
     "401872948|4248528|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "213f9e10358bafd9c02b3f516882bd4ecbd4e8f03ed62da7a91fd65c546218c5",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3f3fd0b6b4f80131cfe87be6a7e0265bc98e56068dd441a7f14fe2afc68ab202",
       "metrics": {
         "receiving_yards": {
           "prediction": 60.0,
@@ -9776,8 +9887,8 @@
     },
     "401872953|4038941|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "passing_yards": {
           "prediction": 203.8,
@@ -9804,8 +9915,8 @@
     },
     "401872953|4038941|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "passing_yards": {
           "prediction": 224.0,
@@ -9825,8 +9936,8 @@
     },
     "401872953|3918298|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "passing_yards": {
           "prediction": 214.2,
@@ -9853,8 +9964,8 @@
     },
     "401872953|3918298|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "passing_yards": {
           "prediction": 222.0,
@@ -9874,8 +9985,8 @@
     },
     "401872953|4685382|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "carries": {
           "prediction": 16.3,
@@ -9923,8 +10034,8 @@
     },
     "401872953|4685382|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 84.0,
@@ -9944,8 +10055,8 @@
     },
     "401872953|4385690|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "targets": {
           "prediction": 4.6,
@@ -9979,8 +10090,8 @@
     },
     "401872953|4385690|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a63cae80dff9ce1aadf0a4fb8f80a43786a0b0c3af84896ed09a84830dc6d13c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "b29ad42a01aa1920c0e73623aea7701bcc1e873ba64c1231aebf7a7748dd034f",
       "metrics": {
         "receiving_yards": {
           "prediction": 44.0,
@@ -10000,8 +10111,8 @@
     },
     "401872949|4685720|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "passing_yards": {
           "prediction": 211.3,
@@ -10028,8 +10139,8 @@
     },
     "401872949|4685720|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "passing_yards": {
           "prediction": 185.0,
@@ -10049,8 +10160,8 @@
     },
     "401872949|3122840|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "passing_yards": {
           "prediction": 161.2,
@@ -10077,8 +10188,8 @@
     },
     "401872949|4241416|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "carries": {
           "prediction": 8.1,
@@ -10126,8 +10237,8 @@
     },
     "401872949|4241416|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 56.0,
@@ -10147,8 +10258,8 @@
     },
     "401872949|4832800|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fc3b777410b65b77f651fc9dca5b04d9d3e5ab03def798406e6f55a6b731d441",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "9cfa402ddef366dd972d9189738644f5bbd6b0206793645b80aa96110d4ed7d0",
       "metrics": {
         "targets": {
           "prediction": 6.1,
@@ -10182,8 +10293,8 @@
     },
     "401872954|15864|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "passing_yards": {
           "prediction": 226.1,
@@ -10210,8 +10321,8 @@
     },
     "401872954|15864|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "passing_yards": {
           "prediction": 212.0,
@@ -10231,8 +10342,8 @@
     },
     "401872954|3046779|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "passing_yards": {
           "prediction": 286.9,
@@ -10259,8 +10370,8 @@
     },
     "401872954|3046779|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "passing_yards": {
           "prediction": 264.0,
@@ -10280,8 +10391,8 @@
     },
     "401872954|4569618|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "targets": {
           "prediction": 9.1,
@@ -10315,8 +10426,8 @@
     },
     "401872954|4569618|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "receiving_yards": {
           "prediction": 61.0,
@@ -10336,8 +10447,8 @@
     },
     "401872954|4374302|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "targets": {
           "prediction": 11.5,
@@ -10371,8 +10482,8 @@
     },
     "401872954|4374302|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "5d7fc286a565bd0625b9b4162e1f23aeaf840020b616cbd251895278aab7ef8c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "44663a2ad115a55737e758d61352b54c46f59b06ca21f4ad2829cb9cd9b9b162",
       "metrics": {
         "receiving_yards": {
           "prediction": 80.0,
@@ -10392,8 +10503,8 @@
     },
     "401872951|4432577|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_yards": {
           "prediction": 244.8,
@@ -10420,8 +10531,8 @@
     },
     "401872951|4432577|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_yards": {
           "prediction": 233.0,
@@ -10441,8 +10552,8 @@
     },
     "401872951|3917792|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_yards": {
           "prediction": 202.2,
@@ -10469,8 +10580,8 @@
     },
     "401872951|3917792|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_yards": {
           "prediction": 230.0,
@@ -10490,8 +10601,8 @@
     },
     "401872951|3117256|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "targets": {
           "prediction": 7.0,
@@ -10525,8 +10636,8 @@
     },
     "401872951|3117256|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "receiving_yards": {
           "prediction": 46.0,
@@ -10546,8 +10657,8 @@
     },
     "401872951|4242335|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "carries": {
           "prediction": 20.1,
@@ -10595,8 +10706,8 @@
     },
     "401872951|4242335|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 107.0,
@@ -10616,8 +10727,8 @@
     },
     "401872952|3139477|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "passing_yards": {
           "prediction": 215.7,
@@ -10644,8 +10755,8 @@
     },
     "401872952|3139477|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "passing_yards": {
           "prediction": 255.0,
@@ -10665,8 +10776,8 @@
     },
     "401872952|4242512|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "passing_yards": {
           "prediction": 189.6,
@@ -10693,8 +10804,8 @@
     },
     "401872952|4242512|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "passing_tds": {
           "prediction": 1.1,
@@ -10707,8 +10818,8 @@
     },
     "401872952|4567048|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "carries": {
           "prediction": 17.3,
@@ -10756,8 +10867,8 @@
     },
     "401872952|4567048|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 85.0,
@@ -10777,8 +10888,8 @@
     },
     "401872952|4429160|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "carries": {
           "prediction": 15.3,
@@ -10826,8 +10937,8 @@
     },
     "401872952|4429160|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e49502b683ae794dc24f9408ff7abc61dcf5d217dd33d04cad1edfcaae3fc37b",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0113039bedec9216f8dde4094bc0ce9e2aa1af667fdcf7573cea4257a935fb85",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 102.0,
@@ -10847,8 +10958,8 @@
     },
     "401872956|4688380|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "passing_yards": {
           "prediction": 167.0,
@@ -10875,8 +10986,8 @@
     },
     "401872956|4688380|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "passing_yards": {
           "prediction": 201.0,
@@ -10896,8 +11007,8 @@
     },
     "401872956|4689114|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "passing_yards": {
           "prediction": 170.4,
@@ -10924,8 +11035,8 @@
     },
     "401872956|4689114|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "passing_tds": {
           "prediction": 0.6,
@@ -10938,8 +11049,8 @@
     },
     "401872956|4883647|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "targets": {
           "prediction": 4.5,
@@ -10973,8 +11084,8 @@
     },
     "401872956|4883647|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "receiving_tds": {
           "prediction": 0.1,
@@ -10987,8 +11098,8 @@
     },
     "401872956|4696981|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "carries": {
           "prediction": 14.6,
@@ -11036,8 +11147,8 @@
     },
     "401872956|4696981|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "scrimmage_tds": {
           "prediction": 1.0,
@@ -11050,8 +11161,8 @@
     },
     "401872950|3915511|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "passing_yards": {
           "prediction": 259.0,
@@ -11078,8 +11189,8 @@
     },
     "401872950|3915511|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "passing_tds": {
           "prediction": 2.4,
@@ -11092,8 +11203,8 @@
     },
     "401872950|8439|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "passing_yards": {
           "prediction": 225.8,
@@ -11120,8 +11231,8 @@
     },
     "401872950|8439|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "passing_yards": {
           "prediction": 211.0,
@@ -11141,8 +11252,8 @@
     },
     "401872950|4239993|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "targets": {
           "prediction": 7.4,
@@ -11176,8 +11287,8 @@
     },
     "401872950|4239993|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "receiving_yards": {
           "prediction": 60.0,
@@ -11197,8 +11308,8 @@
     },
     "401872950|4047650|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "targets": {
           "prediction": 8.7,
@@ -11232,8 +11343,8 @@
     },
     "401872950|4047650|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "receiving_yards": {
           "prediction": 55.0,
@@ -11253,8 +11364,8 @@
     },
     "401872955|3924327|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_yards": {
           "prediction": 118.0,
@@ -11281,8 +11392,8 @@
     },
     "401872955|3924327|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_tds": {
           "prediction": 0.0,
@@ -11295,8 +11406,8 @@
     },
     "401872955|2576980|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_yards": {
           "prediction": 167.8,
@@ -11323,8 +11434,8 @@
     },
     "401872955|2576980|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_tds": {
           "prediction": 0.5,
@@ -11337,8 +11448,8 @@
     },
     "401872955|4430878|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "targets": {
           "prediction": 9.8,
@@ -11372,8 +11483,8 @@
     },
     "401872955|4430878|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "receiving_yards": {
           "prediction": 98.0,
@@ -11393,8 +11504,8 @@
     },
     "401872955|2976212|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "targets": {
           "prediction": 6.2,
@@ -11428,8 +11539,8 @@
     },
     "401872955|2976212|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "receiving_yards": {
           "prediction": 53.0,
@@ -11449,8 +11560,8 @@
     },
     "401872957|4431452|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "passing_yards": {
           "prediction": 233.9,
@@ -11477,8 +11588,8 @@
     },
     "401872957|4431452|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "passing_yards": {
           "prediction": 249.0,
@@ -11498,8 +11609,8 @@
     },
     "401872957|4360310|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "passing_yards": {
           "prediction": 246.3,
@@ -11526,8 +11637,8 @@
     },
     "401872957|4360310|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "passing_yards": {
           "prediction": 233.0,
@@ -11547,8 +11658,8 @@
     },
     "401872957|4361432|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "targets": {
           "prediction": 3.7,
@@ -11582,8 +11693,8 @@
     },
     "401872957|4361432|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "receiving_yards": {
           "prediction": 45.0,
@@ -11603,8 +11714,8 @@
     },
     "401872957|4432620|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "targets": {
           "prediction": 7.5,
@@ -11638,8 +11749,8 @@
     },
     "401872957|4432620|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "receiving_yards": {
           "prediction": 48.0,
@@ -11659,8 +11770,8 @@
     },
     "401872951|4683423|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_yards": {
           "prediction": 82.9,
@@ -11687,8 +11798,8 @@
     },
     "401872951|4683423|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "bba90b746c4612bcef9927a8cf9a947a0689f5ec4218284f190f60c1a0fead03",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d0bd00a1821bc28f4a1c089b291a03c4536c738798b9e09f4b8fb40ded8954a6",
       "metrics": {
         "passing_tds": {
           "prediction": 0.2,
@@ -11701,8 +11812,8 @@
     },
     "401872956|4361050|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "669976597301c18a8568efbd11ffa780da742f1c204a119ee7e9e89d1de8caef",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "77797c8b1bb1f621494a13ab5dd0661e8d8d08448b29311a79c38bf245830f41",
       "metrics": {
         "targets": {
           "prediction": 8.1,
@@ -11736,8 +11847,8 @@
     },
     "401872950|4362238|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "carries": {
           "prediction": 15.4,
@@ -11785,8 +11896,8 @@
     },
     "401872950|4362238|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fa5313e7a2edea30740ac3924477da1e21726f4fbf33d0ddeca8bf93ba382e55",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aba9da7ea471a843292a37e746d7a03ad452a32b97f1f66a8f1527118425005e",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 85.0,
@@ -11806,8 +11917,8 @@
     },
     "401872955|4426348|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_yards": {
           "prediction": 158.5,
@@ -11834,8 +11945,8 @@
     },
     "401872955|4426348|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "passing_tds": {
           "prediction": 1.5,
@@ -11848,8 +11959,8 @@
     },
     "401872955|4575131|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "carries": {
           "prediction": 11.1,
@@ -11897,8 +12008,8 @@
     },
     "401872955|4575131|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1b0525ff4f65d362801ebb280d3a5f4c6cda7ec8cabc14e621ee463754683d71",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "703504c1dd89914cf338bbbb91221d5e97aa94b0f3e7f210a47ffa59a61bed56",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 57.0,
@@ -11918,8 +12029,8 @@
     },
     "401872957|4569173|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "carries": {
           "prediction": 8.9,
@@ -11967,8 +12078,8 @@
     },
     "401872957|4569173|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "d625df618694ecbf5ff71abd548e8c600ce877b33c5834a815d9b8188b8b1674",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "028b179fd1ddc26530b92a82c0cf303eff5b03180c018e8139448034c25f4ebf",
       "metrics": {
         "scrimmage_tds": {
           "prediction": 0.3,
@@ -11981,8 +12092,8 @@
     },
     "401872958|2578570|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "passing_yards": {
           "prediction": 235.1,
@@ -12009,8 +12120,8 @@
     },
     "401872958|2578570|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "passing_yards": {
           "prediction": 234.0,
@@ -12030,8 +12141,8 @@
     },
     "401872958|4361741|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "passing_yards": {
           "prediction": 229.6,
@@ -12058,8 +12169,8 @@
     },
     "401872958|4361741|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "passing_tds": {
           "prediction": 2.3,
@@ -12072,8 +12183,8 @@
     },
     "401872958|4361307|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "targets": {
           "prediction": 10.4,
@@ -12107,8 +12218,8 @@
     },
     "401872958|4361307|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "receiving_yards": {
           "prediction": 69.0,
@@ -12128,8 +12239,8 @@
     },
     "401872958|3117251|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "carries": {
           "prediction": 17.2,
@@ -12177,8 +12288,8 @@
     },
     "401872958|3117251|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "10468bb8ef264052e6798e32e0e20f13b5dc20b5419a3f78344440ba35d27ff3",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "858fa52a80159c0755393d5dbc3b171cdc2801499cf6699eb9d7e640bd3b279a",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 127.0,
@@ -12198,8 +12309,8 @@
     },
     "401872959|2573079|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "passing_yards": {
           "prediction": 159.7,
@@ -12226,8 +12337,8 @@
     },
     "401872959|2573079|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "passing_tds": {
           "prediction": 0.6,
@@ -12240,8 +12351,8 @@
     },
     "401872959|3052587|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "passing_yards": {
           "prediction": 211.7,
@@ -12268,8 +12379,8 @@
     },
     "401872959|3052587|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "passing_yards": {
           "prediction": 214.0,
@@ -12289,8 +12400,8 @@
     },
     "401872959|4262921|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "targets": {
           "prediction": 7.1,
@@ -12324,8 +12435,8 @@
     },
     "401872959|4262921|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "receiving_yards": {
           "prediction": 66.0,
@@ -12345,8 +12456,8 @@
     },
     "401872959|4596448|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "carries": {
           "prediction": 15.9,
@@ -12394,8 +12505,8 @@
     },
     "401872959|4596448|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "4b94a80e121fc0c91094d43d2b1012d962e3ca3982071b31db0671f26f277c27",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6ef6af8156dd8a471583d4c03888bf3a23454db183f123880f57c3eeeeb40b69",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 87.0,
@@ -12415,8 +12526,8 @@
     },
     "401872960|3916387|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "passing_yards": {
           "prediction": 194.3,
@@ -12443,8 +12554,8 @@
     },
     "401872960|3916387|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "passing_yards": {
           "prediction": 214.0,
@@ -12464,8 +12575,8 @@
     },
     "401872960|2577417|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "passing_yards": {
           "prediction": 253.8,
@@ -12492,8 +12603,8 @@
     },
     "401872960|2577417|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "passing_yards": {
           "prediction": 277.0,
@@ -12513,8 +12624,8 @@
     },
     "401872960|3043078|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "carries": {
           "prediction": 20.0,
@@ -12562,8 +12673,8 @@
     },
     "401872960|3043078|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 104.0,
@@ -12583,8 +12694,8 @@
     },
     "401872960|4241389|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "targets": {
           "prediction": 7.8,
@@ -12618,8 +12729,8 @@
     },
     "401872960|4241389|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1a655ac200ea28f6ea70400bb08ef33335a69353999d5eed58cc2c3706bb1d10",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2994da6f367c3aba31e4895c7bb1b341bb6ea65387cc656e862b2a2e2e9d0ad0",
       "metrics": {
         "receiving_yards": {
           "prediction": 84.0,
@@ -12639,8 +12750,8 @@
     },
     "401872961|14880|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "passing_yards": {
           "prediction": 191.1,
@@ -12667,8 +12778,8 @@
     },
     "401872961|14880|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "passing_tds": {
           "prediction": 1.4,
@@ -12681,8 +12792,8 @@
     },
     "401872961|4360689|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "passing_yards": {
           "prediction": 273.4,
@@ -12709,8 +12820,8 @@
     },
     "401872961|4360689|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "passing_yards": {
           "prediction": 225.0,
@@ -12730,8 +12841,8 @@
     },
     "401872961|4890973|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "carries": {
           "prediction": 18.0,
@@ -12779,8 +12890,8 @@
     },
     "401872961|4890973|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 78.0,
@@ -12800,8 +12911,8 @@
     },
     "401872961|4361370|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "targets": {
           "prediction": 10.2,
@@ -12835,8 +12946,8 @@
     },
     "401872961|4361370|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "fb5dbd5e91814a4947f378e5e72f3bd0f480fc89e9e17c4cd6a1606c2432adff",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "21e8ccc033f82b261fa35d944e2daea89e0004853c4d720f47c50bda30f8dd30",
       "metrics": {
         "receiving_yards": {
           "prediction": 71.0,
@@ -12856,8 +12967,8 @@
     },
     "401872962|12483|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "passing_yards": {
           "prediction": 286.2,
@@ -12884,8 +12995,8 @@
     },
     "401872962|12483|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "passing_yards": {
           "prediction": 267.0,
@@ -12905,8 +13016,8 @@
     },
     "401872962|4426338|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "passing_yards": {
           "prediction": 242.6,
@@ -12933,8 +13044,8 @@
     },
     "401872962|4426338|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "passing_yards": {
           "prediction": 232.0,
@@ -12954,8 +13065,8 @@
     },
     "401872962|16800|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "targets": {
           "prediction": 8.3,
@@ -12989,8 +13100,8 @@
     },
     "401872962|16800|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "receiving_yards": {
           "prediction": 56.0,
@@ -13010,8 +13121,8 @@
     },
     "401872962|4372016|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "targets": {
           "prediction": 7.8,
@@ -13045,8 +13156,8 @@
     },
     "401872962|4372016|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9a38777152ce890530e3e847298b4045c2a2fa8268875f8ca129a28948599e1e",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "43e5c4397138118864d1b945e2f599b12668c05ec745b3f84d1d55c5cb85a92d",
       "metrics": {
         "receiving_yards": {
           "prediction": 60.0,
@@ -13066,8 +13177,8 @@
     },
     "401872963|4040715|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "passing_yards": {
           "prediction": 213.8,
@@ -13094,8 +13205,8 @@
     },
     "401872963|4040715|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "passing_yards": {
           "prediction": 214.0,
@@ -13115,8 +13226,8 @@
     },
     "401872963|4431611|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "passing_yards": {
           "prediction": 224.2,
@@ -13143,8 +13254,8 @@
     },
     "401872963|4431611|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "passing_yards": {
           "prediction": 223.0,
@@ -13164,8 +13275,8 @@
     },
     "401872963|4241478|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "targets": {
           "prediction": 6.8,
@@ -13199,8 +13310,8 @@
     },
     "401872963|4241478|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "receiving_yards": {
           "prediction": 64.0,
@@ -13220,8 +13331,8 @@
     },
     "401872963|4259545|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "carries": {
           "prediction": 14.4,
@@ -13269,8 +13380,8 @@
     },
     "401872963|4259545|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e7544b999278aebe43cf528a00012f2d8d8e786ebbf07acdc3b857c17ed80ee2",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "accae20f9a36d64278178acc3892e51dedb62a4447050e29b71cce53888503fe",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 87.0,
@@ -13290,8 +13401,8 @@
     },
     "401872965|3917792|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "passing_yards": {
           "prediction": 203.1,
@@ -13318,8 +13429,8 @@
     },
     "401872965|3917792|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "passing_yards": {
           "prediction": 244.0,
@@ -13339,8 +13450,8 @@
     },
     "401872965|2576980|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "passing_yards": {
           "prediction": 151.0,
@@ -13367,8 +13478,8 @@
     },
     "401872965|2576980|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "passing_tds": {
           "prediction": 0.5,
@@ -13381,8 +13492,8 @@
     },
     "401872965|4688813|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "targets": {
           "prediction": 6.5,
@@ -13416,8 +13527,8 @@
     },
     "401872965|4688813|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "receiving_yards": {
           "prediction": 40.0,
@@ -13437,8 +13548,8 @@
     },
     "401872965|2976212|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "targets": {
           "prediction": 5.8,
@@ -13472,8 +13583,8 @@
     },
     "401872965|2976212|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "574dce2ab7e94e1d524b34368d062a9327bcd804da267fedc44b3efe0c1b9680",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "aaf7f27d76ffcc0b751791eb86a74b6a86dc98a51072ce58782ba424cd4ec33b",
       "metrics": {
         "receiving_yards": {
           "prediction": 57.0,
@@ -13493,8 +13604,8 @@
     },
     "401872971|4431452|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "passing_yards": {
           "prediction": 222.3,
@@ -13521,8 +13632,8 @@
     },
     "401872971|4431452|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "passing_yards": {
           "prediction": 237.0,
@@ -13542,8 +13653,8 @@
     },
     "401872971|3918298|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "passing_yards": {
           "prediction": 218.4,
@@ -13570,8 +13681,8 @@
     },
     "401872971|3918298|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "passing_yards": {
           "prediction": 226.0,
@@ -13591,8 +13702,8 @@
     },
     "401872971|2991662|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "targets": {
           "prediction": 5.5,
@@ -13626,8 +13737,8 @@
     },
     "401872971|2991662|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "receiving_yards": {
           "prediction": 36.0,
@@ -13647,8 +13758,8 @@
     },
     "401872971|4379399|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "carries": {
           "prediction": 17.0,
@@ -13696,8 +13807,8 @@
     },
     "401872971|4379399|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "a4c5ac86e249da5eb0c240ec52a8771c26ebb678f2b8643a897bba33c4b8f6fb",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "f704116a383451fcb9813ab8790a58c291173181742adcadc994c84c3503f40e",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 102.0,
@@ -13717,8 +13828,8 @@
     },
     "401872972|15864|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "passing_yards": {
           "prediction": 241.6,
@@ -13745,8 +13856,8 @@
     },
     "401872972|15864|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "passing_yards": {
           "prediction": 213.0,
@@ -13766,8 +13877,8 @@
     },
     "401872972|4569618|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "targets": {
           "prediction": 9.4,
@@ -13801,8 +13912,8 @@
     },
     "401872972|4569618|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "receiving_yards": {
           "prediction": 62.0,
@@ -13822,8 +13933,8 @@
     },
     "401872972|4259545|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "carries": {
           "prediction": 14.6,
@@ -13871,8 +13982,8 @@
     },
     "401872972|4259545|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "449ec709560ad906137557bd1592ad0148868350085a5ff9c6b7f69d6beb1f37",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "051459cb10879afcd1e53a95b2703a982b5699d845380094a82cac9924f370a1",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 89.0,
@@ -13892,8 +14003,8 @@
     },
     "401872969|4360310|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "passing_yards": {
           "prediction": 242.0,
@@ -13920,8 +14031,8 @@
     },
     "401872969|4360310|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "passing_yards": {
           "prediction": 243.0,
@@ -13941,8 +14052,8 @@
     },
     "401872969|3915511|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "passing_yards": {
           "prediction": 259.8,
@@ -13969,8 +14080,8 @@
     },
     "401872969|3915511|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "passing_tds": {
           "prediction": 2.3,
@@ -13983,8 +14094,8 @@
     },
     "401872969|4882093|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "carries": {
           "prediction": 8.3,
@@ -14032,8 +14143,8 @@
     },
     "401872969|4882093|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "scrimmage_tds": {
           "prediction": 0.7,
@@ -14046,8 +14157,8 @@
     },
     "401872969|4239993|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "targets": {
           "prediction": 7.2,
@@ -14081,8 +14192,8 @@
     },
     "401872969|4239993|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cc732d61a13fc7a78312b440429d7dd149e56cb867419bacdc73bf6c6473937a",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "0c0342cf876f5c479fa847ec44b66d204de390ba8111c15eb377fe3f25fe3049",
       "metrics": {
         "receiving_yards": {
           "prediction": 58.0,
@@ -14102,8 +14213,8 @@
     },
     "401872966|2578570|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "passing_yards": {
           "prediction": 234.5,
@@ -14130,8 +14241,8 @@
     },
     "401872966|2578570|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "passing_yards": {
           "prediction": 231.0,
@@ -14151,8 +14262,8 @@
     },
     "401872966|2969939|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "passing_yards": {
           "prediction": 140.1,
@@ -14179,8 +14290,8 @@
     },
     "401872966|2969939|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "passing_tds": {
           "prediction": 0.9,
@@ -14193,8 +14304,8 @@
     },
     "401872966|4361307|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "targets": {
           "prediction": 11.0,
@@ -14228,8 +14339,8 @@
     },
     "401872966|4696981|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "carries": {
           "prediction": 15.1,
@@ -14277,8 +14388,8 @@
     },
     "401872966|4696981|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "9116d5b3b650fb494417ca20234015a1a585d608eedf0bcbbfc7a9248644fde6",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3fe8a674662ea83235343f33da95331b98a0d19de5e3c10100f88e1ab6109146",
       "metrics": {
         "scrimmage_tds": {
           "prediction": 1.0,
@@ -14291,8 +14402,8 @@
     },
     "401872970|12483|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "passing_yards": {
           "prediction": 306.1,
@@ -14319,8 +14430,8 @@
     },
     "401872970|12483|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "passing_yards": {
           "prediction": 264.0,
@@ -14340,8 +14451,8 @@
     },
     "401872970|4040715|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "passing_yards": {
           "prediction": 201.9,
@@ -14368,8 +14479,8 @@
     },
     "401872970|4040715|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "passing_yards": {
           "prediction": 212.0,
@@ -14389,8 +14500,8 @@
     },
     "401872970|16800|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "targets": {
           "prediction": 9.2,
@@ -14424,8 +14535,8 @@
     },
     "401872970|16800|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "receiving_yards": {
           "prediction": 57.0,
@@ -14445,8 +14556,8 @@
     },
     "401872970|4241478|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "targets": {
           "prediction": 6.8,
@@ -14480,8 +14591,8 @@
     },
     "401872970|4241478|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "receiving_yards": {
           "prediction": 63.0,
@@ -14501,8 +14612,8 @@
     },
     "401872968|4036378|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "passing_yards": {
           "prediction": 211.3,
@@ -14529,8 +14640,8 @@
     },
     "401872968|4036378|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "passing_yards": {
           "prediction": 234.0,
@@ -14550,8 +14661,8 @@
     },
     "401872968|3052587|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "passing_yards": {
           "prediction": 215.0,
@@ -14578,8 +14689,8 @@
     },
     "401872968|3052587|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "passing_yards": {
           "prediction": 219.0,
@@ -14599,8 +14710,8 @@
     },
     "401872968|4248528|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "targets": {
           "prediction": 7.0,
@@ -14634,8 +14745,8 @@
     },
     "401872968|4248528|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "receiving_yards": {
           "prediction": 60.0,
@@ -14655,8 +14766,8 @@
     },
     "401872968|4596448|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "carries": {
           "prediction": 15.6,
@@ -14704,8 +14815,8 @@
     },
     "401872968|4596448|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "ea65661c14be61f9d79d93d5f12b5b856517ed70c0b162d40f0d7afc59dcee3c",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "4e50df30d67026f5bba0b223e831131b5a4a9856694bcb616f510fe3ff67bb5e",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 88.0,
@@ -14725,8 +14836,8 @@
     },
     "401872973|4688380|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "passing_yards": {
           "prediction": 170.5,
@@ -14753,8 +14864,8 @@
     },
     "401872973|4688380|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "passing_yards": {
           "prediction": 208.0,
@@ -14774,8 +14885,8 @@
     },
     "401872973|3916387|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "passing_yards": {
           "prediction": 187.2,
@@ -14802,8 +14913,8 @@
     },
     "401872973|3916387|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "passing_yards": {
           "prediction": 211.0,
@@ -14823,8 +14934,8 @@
     },
     "401872973|4569587|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "targets": {
           "prediction": 6.3,
@@ -14858,8 +14969,8 @@
     },
     "401872973|4569587|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "receiving_yards": {
           "prediction": 61.0,
@@ -14879,8 +14990,8 @@
     },
     "401872973|3043078|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "carries": {
           "prediction": 22.0,
@@ -14928,8 +15039,8 @@
     },
     "401872973|3043078|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "cd53ea3cd8bd919d14f5465cc652555f1de468330913ba2ddb6e2243ffff5c77",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "92571e06439017f273fd133a187db98d02a71dae4b47236ddd0a421b598d5b05",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 100.0,
@@ -14949,8 +15060,8 @@
     },
     "401872967|2577417|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "passing_yards": {
           "prediction": 249.4,
@@ -14977,8 +15088,8 @@
     },
     "401872967|2577417|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "passing_yards": {
           "prediction": 261.0,
@@ -14998,8 +15109,8 @@
     },
     "401872967|4432577|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "passing_yards": {
           "prediction": 232.4,
@@ -15026,8 +15137,8 @@
     },
     "401872967|4432577|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "passing_yards": {
           "prediction": 233.0,
@@ -15047,8 +15158,8 @@
     },
     "401872967|4241389|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "targets": {
           "prediction": 7.6,
@@ -15082,8 +15193,8 @@
     },
     "401872967|4241389|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "receiving_yards": {
           "prediction": 79.0,
@@ -15103,8 +15214,8 @@
     },
     "401872967|4035538|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "carries": {
           "prediction": 14.8,
@@ -15152,8 +15263,8 @@
     },
     "401872967|4035538|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "e288b584a70f82d3b651578b54403962d558f65b354b5aa72e706b4b8ed6c9f1",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "03bfb379665b71011c575c06b5c9924a0bef636d09be43b896b39a7ee48315a4",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 56.0,
@@ -15173,8 +15284,8 @@
     },
     "401872970|3929630|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3191b6c37848a09a97d1474e0339ae199b9acfd5d0cad36a67568d4f2b8c1d00",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "6b435d17a5861acebd4f661524df22aaff12307481daa8cec7bb4934828da919",
       "metrics": {
         "carries": {
           "prediction": 16.3,
@@ -15222,8 +15333,8 @@
     },
     "401872974|4242512|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "passing_yards": {
           "prediction": 190.3,
@@ -15250,8 +15361,8 @@
     },
     "401872974|4242512|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "passing_tds": {
           "prediction": 1.1,
@@ -15264,8 +15375,8 @@
     },
     "401872974|3917315|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "passing_yards": {
           "prediction": 98.4,
@@ -15292,8 +15403,8 @@
     },
     "401872974|3917315|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "passing_tds": {
           "prediction": 1.5,
@@ -15306,8 +15417,8 @@
     },
     "401872974|4569603|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "targets": {
           "prediction": 4.5,
@@ -15341,8 +15452,8 @@
     },
     "401872974|4569603|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "receiving_yards": {
           "prediction": 19.0,
@@ -15362,8 +15473,8 @@
     },
     "401872974|3042519|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "carries": {
           "prediction": 16.4,
@@ -15411,8 +15522,8 @@
     },
     "401872974|3042519|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "498c54163d849450ef2556cb7ec9d6c5f97ba8d92ff1332ccc17ae2b5845ba43",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "2417f1cbb126c07a210ec630d55bb3891a4c8569e89b91583182c3faeea8ecaa",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 71.0,
@@ -15432,8 +15543,8 @@
     },
     "401872976|3139477|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "passing_yards": {
           "prediction": 212.7,
@@ -15460,8 +15571,8 @@
     },
     "401872976|3139477|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "passing_yards": {
           "prediction": 250.0,
@@ -15481,8 +15592,8 @@
     },
     "401872976|14880|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "passing_yards": {
           "prediction": 202.9,
@@ -15509,8 +15620,8 @@
     },
     "401872976|14880|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "passing_tds": {
           "prediction": 1.4,
@@ -15523,8 +15634,8 @@
     },
     "401872976|4567048|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "carries": {
           "prediction": 17.6,
@@ -15572,8 +15683,8 @@
     },
     "401872976|4567048|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 83.0,
@@ -15593,8 +15704,8 @@
     },
     "401872976|4432665|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "2547bd70a4bca05bc518c43236aab24d64d4b3021dfa96078ffe62fac1063d28",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "12ac60fa7f413488e3401fbbe126a4c65ad8adcbcfa41dfad2662fe7ad7e0fa9",
       "metrics": {
         "targets": {
           "prediction": 7.8,
@@ -15628,8 +15739,8 @@
     },
     "401872975|4426338|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "passing_yards": {
           "prediction": 227.0,
@@ -15656,8 +15767,8 @@
     },
     "401872975|4426338|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "passing_yards": {
           "prediction": 234.0,
@@ -15677,8 +15788,8 @@
     },
     "401872975|4361741|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "passing_yards": {
           "prediction": 239.0,
@@ -15705,8 +15816,8 @@
     },
     "401872975|4361741|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "passing_tds": {
           "prediction": 2.2,
@@ -15719,8 +15830,8 @@
     },
     "401872975|4372016|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "targets": {
           "prediction": 7.3,
@@ -15754,8 +15865,8 @@
     },
     "401872975|4372016|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "receiving_yards": {
           "prediction": 61.0,
@@ -15775,8 +15886,8 @@
     },
     "401872975|3117251|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "carries": {
           "prediction": 16.1,
@@ -15824,8 +15935,8 @@
     },
     "401872975|3117251|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "b4d52a41fdf0924b240600752df782c3b6eefba725cb95f5dab21bca1a2b5de0",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "d5912fba32e42e4eb139ace0bc62758265528efc6445577dbf0f4c1e21df28e0",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 117.0,
@@ -15845,8 +15956,8 @@
     },
     "401872977|4038941|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "passing_yards": {
           "prediction": 226.5,
@@ -15873,8 +15984,8 @@
     },
     "401872977|4038941|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "passing_yards": {
           "prediction": 230.0,
@@ -15894,8 +16005,8 @@
     },
     "401872977|3912547|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "passing_yards": {
           "prediction": 205.1,
@@ -15922,8 +16033,8 @@
     },
     "401872977|3912547|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "passing_yards": {
           "prediction": 226.0,
@@ -15943,8 +16054,8 @@
     },
     "401872977|4685382|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "carries": {
           "prediction": 14.6,
@@ -15992,8 +16103,8 @@
     },
     "401872977|4685382|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 81.0,
@@ -16013,8 +16124,8 @@
     },
     "401872977|4430878|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "targets": {
           "prediction": 11.0,
@@ -16048,8 +16159,8 @@
     },
     "401872977|4430878|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "728666d7bb1da205ff3939832f4427ca07407a203a8438936f81f0d8b2d838ee",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "bd8db01445b8b062f67229d9d7f8ddc82dea423c722daa4d852c0271a41be1e1",
       "metrics": {
         "receiving_yards": {
           "prediction": 92.0,
@@ -16069,8 +16180,8 @@
     },
     "401872978|3046779|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "passing_yards": {
           "prediction": 289.1,
@@ -16097,8 +16208,8 @@
     },
     "401872978|3046779|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "passing_yards": {
           "prediction": 261.0,
@@ -16118,8 +16229,8 @@
     },
     "401872978|4685720|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "passing_yards": {
           "prediction": 226.9,
@@ -16146,8 +16257,8 @@
     },
     "401872978|4685720|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "passing_yards": {
           "prediction": 194.0,
@@ -16167,8 +16278,8 @@
     },
     "401872978|4429795|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "carries": {
           "prediction": 16.6,
@@ -16216,8 +16327,8 @@
     },
     "401872978|4429795|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "3ac8e89f68e02cfc4d8d6dbe3dfe57285c8d1ecb29b722159c2afd77f86acc47",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "3d98c33b2c98fde71e04c1c4568a8ab215283ddbf7bd6e54d648ca7fc73e8e97",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 108.0,
@@ -16237,8 +16348,8 @@
     },
     "401872979|4360423|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "passing_yards": {
           "prediction": 206.0,
@@ -16265,8 +16376,8 @@
     },
     "401872979|4360423|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "passing_yards": {
           "prediction": 208.0,
@@ -16286,8 +16397,8 @@
     },
     "401872979|4360689|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "passing_yards": {
           "prediction": 275.7,
@@ -16314,8 +16425,8 @@
     },
     "401872979|4360689|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "passing_yards": {
           "prediction": 227.0,
@@ -16335,8 +16446,8 @@
     },
     "401872979|4430807|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "carries": {
           "prediction": 19.8,
@@ -16384,8 +16495,8 @@
     },
     "401872979|4430807|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 128.0,
@@ -16405,8 +16516,8 @@
     },
     "401872979|4361370|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "targets": {
           "prediction": 10.4,
@@ -16440,8 +16551,8 @@
     },
     "401872979|4361370|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "1061f62e6c4ea1fce61d3636ac47bc6c1df8eed98499ef594fe521d258165ca8",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "e4cf9897106c679247dcba7b834e57ab9936e2cf867c82b2b5661ed24eb7fbc7",
       "metrics": {
         "receiving_yards": {
           "prediction": 70.0,
@@ -16461,8 +16572,8 @@
     },
     "401872980|4596472|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "passing_yards": {
           "prediction": 93.4,
@@ -16489,8 +16600,8 @@
     },
     "401872980|2577417|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "passing_yards": {
           "prediction": 244.9,
@@ -16517,8 +16628,8 @@
     },
     "401872980|2577417|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "passing_yards": {
           "prediction": 276.0,
@@ -16538,8 +16649,8 @@
     },
     "401872980|4596448|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "carries": {
           "prediction": 15.8,
@@ -16587,8 +16698,8 @@
     },
     "401872980|4596448|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 90.0,
@@ -16608,8 +16719,8 @@
     },
     "401872980|4241389|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-09T21:10:46.593204+00:00",
-      "actualSourceHash": "45aab25c2a81c0d40a6a6cd2db951458822dad7aaea2842ecd50f5b4520f6f36",
+      "evaluatedAt": "2026-10-09T21:16:53.490373+00:00",
+      "actualSourceHash": "992724903b9cc685c934047657c760299e8c3e02c8de2cfb14eaa5940c1b314c",
       "metrics": {
         "targets": {
           "prediction": 9.2,
