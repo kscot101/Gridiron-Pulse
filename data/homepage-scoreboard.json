@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-10-09T02:33:39.072592+00:00",
+  "fetchedAt": "2026-10-09T09:37:28.320126+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -371,7 +371,7 @@
             "id": "401872980",
             "uid": "s:20~l:28~e:401872980~c:401872980",
             "date": "2026-10-09T00:15Z",
-            "attendance": 0,
+            "attendance": 92351,
             "type": {
               "id": "1",
               "abbreviation": "STD"
@@ -380,7 +380,7 @@
             "neutralSite": false,
             "conferenceCompetition": false,
             "playByPlayAvailable": true,
-            "recent": true,
+            "recent": false,
             "venue": {
               "id": "3687",
               "fullName": "AT&T Stadium",
@@ -398,6 +398,7 @@
                 "type": "team",
                 "order": 0,
                 "homeAway": "home",
+                "winner": false,
                 "team": {
                   "id": "6",
                   "uid": "s:20~l:28~t:6",
@@ -497,7 +498,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/dal.png"
                 },
-                "score": "10",
+                "score": "16",
                 "linescores": [
                   {
                     "value": 7.0,
@@ -513,6 +514,11 @@
                     "value": 0.0,
                     "displayValue": "0",
                     "period": 3
+                  },
+                  {
+                    "value": 6.0,
+                    "displayValue": "6",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -522,14 +528,14 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "2-2"
+                    "summary": "2-3"
                   },
                   {
                     "name": "Home",
                     "type": "home",
-                    "summary": "1-1"
+                    "summary": "1-2"
                   },
                   {
                     "name": "Road",
@@ -544,6 +550,7 @@
                 "type": "team",
                 "order": 1,
                 "homeAway": "away",
+                "winner": true,
                 "team": {
                   "id": "27",
                   "uid": "s:20~l:28~t:27",
@@ -659,6 +666,11 @@
                     "value": 17.0,
                     "displayValue": "17",
                     "period": 3
+                  },
+                  {
+                    "value": 0.0,
+                    "displayValue": "0",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -668,9 +680,9 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "0-4"
+                    "summary": "1-4"
                   },
                   {
                     "name": "Home",
@@ -680,83 +692,24 @@
                   {
                     "name": "Road",
                     "type": "road",
-                    "summary": "0-1"
+                    "summary": "1-1"
                   }
                 ]
               }
             ],
             "notes": [],
-            "situation": {
-              "lastPlay": {
-                "id": "4018729803074",
-                "type": {
-                  "id": "74",
-                  "text": "Official Timeout",
-                  "abbreviation": "Off TO"
-                },
-                "text": "Official Timeout at 01:46.",
-                "scoreValue": 0,
-                "team": {
-                  "id": "27"
-                },
-                "probability": {
-                  "tiePercentage": 0.0,
-                  "homeWinPercentage": 0.0978,
-                  "awayWinPercentage": 0.9022,
-                  "secondsLeft": 0
-                },
-                "statYardage": 0,
-                "drive": {
-                  "description": "5 plays, 18 yards, 1:12",
-                  "start": {
-                    "yardLine": 25,
-                    "text": "DAL 25"
-                  },
-                  "end": {
-                    "yardLine": 43,
-                    "text": "DAL 43"
-                  },
-                  "timeElapsed": {
-                    "displayValue": "1:12"
-                  },
-                  "result": "DOWNS"
-                },
-                "start": {
-                  "yardLine": 43,
-                  "team": {
-                    "id": "27"
-                  }
-                },
-                "end": {
-                  "yardLine": 43,
-                  "team": {
-                    "id": "27"
-                  }
-                }
-              },
-              "down": 1,
-              "yardLine": 43,
-              "distance": 10,
-              "downDistanceText": "1st & 10 at DAL 43",
-              "shortDownDistanceText": "1st & 10",
-              "possessionText": "DAL 43",
-              "isRedZone": false,
-              "homeTimeouts": 3,
-              "awayTimeouts": 3,
-              "possession": "27"
-            },
             "status": {
-              "clock": 106.0,
-              "displayClock": "1:46",
-              "period": 3,
+              "clock": 0.0,
+              "displayClock": "0:00",
+              "period": 4,
               "type": {
-                "id": "2",
-                "name": "STATUS_IN_PROGRESS",
-                "state": "in",
-                "completed": false,
-                "description": "In Progress",
-                "detail": "1:46 - 3rd Quarter",
-                "shortDetail": "1:46 - 3rd"
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
               },
               "isTBDFlex": false
             },
@@ -776,13 +729,13 @@
                 "abbreviation": "PYDS",
                 "leaders": [
                   {
-                    "displayValue": "17/22, 182 YDS, 1 TD",
-                    "value": 182.0,
+                    "displayValue": "24/42, 316 YDS, 1 TD, 2 INT",
+                    "value": 316.0,
                     "athlete": {
-                      "id": "4596472",
-                      "fullName": "Jalon Daniels",
-                      "displayName": "Jalon Daniels",
-                      "shortName": "J. Daniels",
+                      "id": "2577417",
+                      "fullName": "Dak Prescott",
+                      "displayName": "Dak Prescott",
+                      "shortName": "D. Prescott",
                       "links": [
                         {
                           "rel": [
@@ -790,21 +743,21 @@
                             "desktop",
                             "athlete"
                           ],
-                          "href": "https://www.espn.com/nfl/player/_/id/4596472/jalon-daniels"
+                          "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
                         }
                       ],
-                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4596472.png",
-                      "jersey": "10",
+                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2577417.png",
+                      "jersey": "4",
                       "position": {
                         "abbreviation": "QB"
                       },
                       "team": {
-                        "id": "27"
+                        "id": "6"
                       },
                       "active": true
                     },
                     "team": {
-                      "id": "27"
+                      "id": "6"
                     }
                   }
                 ]
@@ -816,8 +769,8 @@
                 "abbreviation": "RYDS",
                 "leaders": [
                   {
-                    "displayValue": "13 CAR, 122 YDS, 1 TD",
-                    "value": 122.0,
+                    "displayValue": "21 CAR, 165 YDS, 1 TD",
+                    "value": 165.0,
                     "athlete": {
                       "id": "4596448",
                       "fullName": "Bucky Irving",
@@ -856,13 +809,13 @@
                 "abbreviation": "RECYDS",
                 "leaders": [
                   {
-                    "displayValue": "1 REC, 64 YDS",
-                    "value": 64.0,
+                    "displayValue": "9 REC, 130 YDS, 1 TD",
+                    "value": 130.0,
                     "athlete": {
-                      "id": "4608810",
-                      "fullName": "Tez Johnson",
-                      "displayName": "Tez Johnson",
-                      "shortName": "T. Johnson",
+                      "id": "4426354",
+                      "fullName": "George Pickens",
+                      "displayName": "George Pickens",
+                      "shortName": "G. Pickens",
                       "links": [
                         {
                           "rel": [
@@ -870,21 +823,21 @@
                             "desktop",
                             "athlete"
                           ],
-                          "href": "https://www.espn.com/nfl/player/_/id/4608810/tez-johnson"
+                          "href": "https://www.espn.com/nfl/player/_/id/4426354/george-pickens"
                         }
                       ],
-                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4608810.png",
-                      "jersey": "15",
+                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426354.png",
+                      "jersey": "3",
                       "position": {
                         "abbreviation": "WR"
                       },
                       "team": {
-                        "id": "27"
+                        "id": "6"
                       },
                       "active": true
                     },
                     "team": {
-                      "id": "27"
+                      "id": "6"
                     }
                   }
                 ]
@@ -917,18 +870,242 @@
                 "region": "us"
               }
             ],
-            "highlights": []
+            "highlights": [
+              {
+                "id": 50137470,
+                "cerebroId": "6ac85e7559b1b36a3e097d1e",
+                "source": "espn",
+                "headline": "Buccaneers stun Cowboys 24-16 to pick up first win of season",
+                "description": "Buccaneers stun Cowboys 24-16 to pick up first win of season",
+                "lastModified": "2026-10-09T04:08:56Z",
+                "originalPublishDate": "2026-10-09T03:24:37Z",
+                "duration": 65,
+                "timeRestrictions": {
+                  "embargoDate": "2026-10-09T03:24:34Z",
+                  "expirationDate": "2026-10-11T03:24:34Z"
+                },
+                "deviceRestrictions": {
+                  "devices": [
+                    "settop",
+                    "tablet",
+                    "handset",
+                    "ipad",
+                    "desktop"
+                  ],
+                  "type": "whitelist"
+                },
+                "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/2026/1009/03761ba3e59c4375ae9f35e4e21ec0658/03761ba3e59c4375ae9f35e4e21ec0658.jpg",
+                "links": {
+                  "api": {
+                    "artwork": {
+                      "href": "https://artwork.api.espn.com/artwork/collections/media/16d00988-6f22-4516-b663-01f3600e9c86"
+                    },
+                    "self": {
+                      "href": "https://content.core.api.espn.com/v1/video/clips/50137470"
+                    }
+                  },
+                  "mobile": {
+                    "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                    "alert": {
+                      "href": "https://m.espn.com/general/video/videoAlert?vid=50137470"
+                    },
+                    "progressiveDownload": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season"
+                    },
+                    "source": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                    },
+                    "streaming": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season"
+                    }
+                  },
+                  "source": {
+                    "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4",
+                    "HD": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                    },
+                    "HLS": {
+                      "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8",
+                      "9x16": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                      },
+                      "HD": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                      },
+                      "cmaf": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8",
+                        "9x16": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                        },
+                        "cmb": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                        }
+                      },
+                      "cmb": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                      },
+                      "shield": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/media/16d00988-6f22-4516-b663-01f3600e9c86/asset"
+                      }
+                    },
+                    "flash": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                    },
+                    "full": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                    },
+                    "mezzanine": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                    }
+                  },
+                  "sportscenter": {
+                    "href": "sportscenter://x-callback-url/showVideo?videoID=50137470&videoDSI=5fb92fef8ed36"
+                  },
+                  "web": {
+                    "href": "https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                    "self": {
+                      "href": "https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                      "dsi": {
+                        "href": "https://www.espn.com/video/clip?id=5fb92fef8ed36"
+                      }
+                    }
+                  }
+                },
+                "ad": {
+                  "bundle": "nfl_one_plays",
+                  "sport": "nfl"
+                },
+                "tracking": {
+                  "coverageType": "Final Game Highlight",
+                  "leagueName": "NFL",
+                  "program": "espnnfl",
+                  "sportName": "football",
+                  "trackingId": "dm_20261009_NFL_buccaneers_stun_cowboys_2416_to_pick_up_first_win_of_season",
+                  "trackingName": "NFL_One-Play (Buccaneers stun Cowboys 24-16 to pick up first win of season) 2026/10/09 ESHEET"
+                }
+              }
+            ],
+            "headlines": [
+              {
+                "type": "Recap",
+                "description": "\u2014 Bucky Irving already had his first 100-yard game since his rookie year in 2024 when the Tampa Bay running back finished off the Dallas Cowboys with a run that gave him a career high.",
+                "shortLinkText": "Bucky Irving and rookie QB Jalon Daniels help Bucs beat sloppy Cowboys 24-16 for 1st win of season",
+                "video": [
+                  {
+                    "id": 50137470,
+                    "source": "espn",
+                    "headline": "Buccaneers stun Cowboys 24-16 to pick up first win of season",
+                    "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/2026/1009/03761ba3e59c4375ae9f35e4e21ec0658/03761ba3e59c4375ae9f35e4e21ec0658.jpg",
+                    "duration": 65,
+                    "tracking": {
+                      "coverageType": "Final Game Highlight",
+                      "leagueName": "NFL",
+                      "program": "espnnfl",
+                      "sportName": "football",
+                      "trackingId": "dm_20261009_NFL_buccaneers_stun_cowboys_2416_to_pick_up_first_win_of_season",
+                      "trackingName": "NFL_One-Play (Buccaneers stun Cowboys 24-16 to pick up first win of season) 2026/10/09 ESHEET"
+                    },
+                    "deviceRestrictions": {
+                      "devices": [
+                        "settop",
+                        "tablet",
+                        "handset",
+                        "ipad",
+                        "desktop"
+                      ],
+                      "type": "whitelist"
+                    },
+                    "links": {
+                      "api": {
+                        "artwork": {
+                          "href": "https://artwork.api.espn.com/artwork/collections/media/16d00988-6f22-4516-b663-01f3600e9c86"
+                        },
+                        "self": {
+                          "href": "https://content.core.api.espn.com/v1/video/clips/50137470"
+                        }
+                      },
+                      "mobile": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                        "alert": {
+                          "href": "https://m.espn.com/general/video/videoAlert?vid=50137470"
+                        },
+                        "progressiveDownload": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season"
+                        },
+                        "source": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                        },
+                        "streaming": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/16d00988-6f22-4516-b663-01f3600e9c86/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season"
+                        }
+                      },
+                      "source": {
+                        "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4",
+                        "HD": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                        },
+                        "HLS": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8",
+                          "9x16": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                          },
+                          "HD": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                          },
+                          "cmaf": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8",
+                            "9x16": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                            },
+                            "cmb": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                            }
+                          },
+                          "cmb": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065/playlist.m3u8"
+                          },
+                          "shield": {
+                            "href": "https://watch.auth.api.espn.com/video/auth/media/16d00988-6f22-4516-b663-01f3600e9c86/asset"
+                          }
+                        },
+                        "flash": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                        },
+                        "full": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                        },
+                        "mezzanine": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1009/03761ba3-e59c-4375-ae9f-35e4e21ec065/03761ba3-e59c-4375-ae9f-35e4e21ec065.mp4"
+                        }
+                      },
+                      "sportscenter": {
+                        "href": "sportscenter://x-callback-url/showVideo?videoID=50137470&videoDSI=5fb92fef8ed36"
+                      },
+                      "web": {
+                        "href": "https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                        "self": {
+                          "href": "https://www.espn.com/video/clip/_/id/50137470/buccaneers-stun-cowboys-24-16-pick-first-win-season",
+                          "dsi": {
+                            "href": "https://www.espn.com/video/clip?id=5fb92fef8ed36"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
           }
         ],
         "links": [
           {
             "language": "en-US",
             "rel": [
-              "live",
+              "summary",
               "desktop",
               "event"
             ],
-            "href": "https://www.espn.com/nfl/game?gameId=401872980",
+            "href": "https://www.espn.com/nfl/game/_/gameId/401872980/buccaneers-cowboys",
             "text": "Gamecast",
             "shortText": "Gamecast",
             "isExternal": false,
@@ -950,6 +1127,18 @@
           {
             "language": "en-US",
             "rel": [
+              "highlights",
+              "desktop"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401872980",
+            "text": "Highlights",
+            "shortText": "Highlights",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
               "pbp",
               "desktop",
               "event"
@@ -959,37 +1148,33 @@
             "shortText": "Play-by-Play",
             "isExternal": false,
             "isPremium": false
-          }
-        ],
-        "weather": {
-          "displayValue": "33",
-          "temperature": 78,
-          "highTemperature": 78,
-          "conditionId": "Clear",
-          "link": {
+          },
+          {
             "language": "en-US",
             "rel": [
-              "76011"
+              "recap",
+              "desktop",
+              "event"
             ],
-            "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/current-weather/53644_poi?lang=en-us",
-            "text": "Weather",
-            "shortText": "Weather",
-            "isExternal": true,
+            "href": "https://www.espn.com/nfl/recap?gameId=401872980",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
             "isPremium": false
           }
-        },
+        ],
         "status": {
-          "clock": 106.0,
-          "displayClock": "1:46",
-          "period": 3,
+          "clock": 0.0,
+          "displayClock": "0:00",
+          "period": 4,
           "type": {
-            "id": "2",
-            "name": "STATUS_IN_PROGRESS",
-            "state": "in",
-            "completed": false,
-            "description": "In Progress",
-            "detail": "1:46 - 3rd Quarter",
-            "shortDetail": "1:46 - 3rd"
+            "id": "3",
+            "name": "STATUS_FINAL",
+            "state": "post",
+            "completed": true,
+            "description": "Final",
+            "detail": "Final",
+            "shortDetail": "Final"
           }
         }
       },
@@ -1696,8 +1881,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $332",
-                "numberAvailable": 1180,
+                "summary": "Tickets as low as $337",
+                "numberAvailable": 1163,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/jacksonville-jaguars-tickets-tottenham-hotspur-stadium-10-11-2026--sports-nfl-football/production/7027971?wsUser=717"
@@ -2761,7 +2946,7 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $256",
+                "summary": "Tickets as low as $288",
                 "numberAvailable": 1258,
                 "links": [
                   {
@@ -3119,7 +3304,7 @@
             "rel": [
               "54304"
             ],
-            "href": "http://www.accuweather.com/en/us/lambeau-field-wi/54303/hourly-weather-forecast/29742_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lambeau-field-wi/54303/hourly-weather-forecast/29742_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -3840,8 +4025,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $32",
-                "numberAvailable": 3223,
+                "summary": "Tickets as low as $34",
+                "numberAvailable": 2889,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tennessee-titans-tickets-nashville-nissan-stadium-3-1-2027/production/6493536?wsUser=717"
@@ -4190,15 +4375,15 @@
         ],
         "weather": {
           "displayValue": "Rain",
-          "temperature": 68,
-          "highTemperature": 68,
+          "temperature": 67,
+          "highTemperature": 67,
           "conditionId": "18",
           "link": {
             "language": "en-US",
             "rel": [
               "37213"
             ],
-            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -4919,8 +5104,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $54",
-                "numberAvailable": 3516,
+                "summary": "Tickets as low as $56",
+                "numberAvailable": 3416,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/miami-dolphins-tickets-miami-gardens-hard-rock-stadium-3-8-2027/production/6492191?wsUser=717"
@@ -5146,7 +5331,7 @@
                   "over": {
                     "close": {
                       "line": "o42.5",
-                      "odds": "-110",
+                      "odds": "-115",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -5180,7 +5365,7 @@
                   "under": {
                     "close": {
                       "line": "u42.5",
-                      "odds": "-110",
+                      "odds": "-105",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -5268,16 +5453,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Intermittent clouds",
-          "temperature": 91,
-          "highTemperature": 91,
-          "conditionId": "4",
+          "displayValue": "Mostly cloudy w/ t-storms",
+          "temperature": 90,
+          "highTemperature": 90,
+          "conditionId": "16",
           "link": {
             "language": "en-US",
             "rel": [
               "33056"
             ],
-            "href": "http://www.accuweather.com/en/us/hard-rock-stadium-fl/33056/hourly-weather-forecast/53559_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/hard-rock-stadium-fl/33056/hourly-weather-forecast/53559_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -5449,6 +5634,24 @@
                   "current": 99
                 },
                 "statistics": [],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "2-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "1-0"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-2"
+                  }
+                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -5569,24 +5772,6 @@
                         }
                       }
                     ]
-                  }
-                ],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "2-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "1-0"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-2"
                   }
                 ]
               },
@@ -5998,8 +6183,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $176",
-                "numberAvailable": 2636,
+                "summary": "Tickets as low as $186",
+                "numberAvailable": 2670,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-england-patriots-tickets-foxborough-gillette-stadium-3-4-2027/production/6492616?wsUser=717"
@@ -6348,15 +6533,15 @@
         ],
         "weather": {
           "displayValue": "Hazy sunshine",
-          "temperature": 63,
-          "highTemperature": 63,
+          "temperature": 62,
+          "highTemperature": 62,
           "conditionId": "5",
           "link": {
             "language": "en-US",
             "rel": [
               "02035"
             ],
-            "href": "http://www.accuweather.com/en/us/gillette-stadium-ma/02035/hourly-weather-forecast/53587_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/gillette-stadium-ma/02035/hourly-weather-forecast/53587_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7078,7 +7263,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $51",
-                "numberAvailable": 3451,
+                "numberAvailable": 3492,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-orleans-saints-tickets-new-orleans-caesars-superdome-3-7-2027/production/6493143?wsUser=717"
@@ -7435,7 +7620,7 @@
             "rel": [
               "70112"
             ],
-            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7607,24 +7792,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "1-3"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-1"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-2"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -7746,6 +7913,24 @@
                       }
                     ]
                   }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "1-3"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-1"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-2"
+                  }
                 ]
               },
               {
@@ -7858,24 +8043,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "3-1"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "2-0"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-1"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -7996,6 +8163,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "3-1"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "2-0"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-1"
                   }
                 ]
               }
@@ -8157,7 +8342,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $47",
-                "numberAvailable": 5027,
+                "numberAvailable": 5019,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-jets-tickets-east-rutherford-metlife-stadium-3-5-2027/production/6494610?wsUser=717"
@@ -8514,7 +8699,7 @@
             "rel": [
               "07073"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -9235,8 +9420,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $79",
-                "numberAvailable": 4115,
+                "summary": "Tickets as low as $77",
+                "numberAvailable": 4170,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/pittsburgh-steelers-tickets-pittsburgh-acrisure-stadium-3-8-2027/production/6495169?wsUser=717"
@@ -9584,16 +9769,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Rain",
-          "temperature": 63,
-          "highTemperature": 63,
-          "conditionId": "18",
+          "displayValue": "Cloudy",
+          "temperature": 64,
+          "highTemperature": 64,
+          "conditionId": "7",
           "link": {
             "language": "en-US",
             "rel": [
               "15212"
             ],
-            "href": "http://www.accuweather.com/en/us/acrisure-stadium-pa/15219/hourly-weather-forecast/53633_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/acrisure-stadium-pa/15219/hourly-weather-forecast/53633_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10314,8 +10499,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $102",
-                "numberAvailable": 3941,
+                "summary": "Tickets as low as $98",
+                "numberAvailable": 3790,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/washington-commanders-tickets-landover-northwest-stadium-3-2-2026/production/6493301?wsUser=717"
@@ -10672,7 +10857,7 @@
             "rel": [
               "20785"
             ],
-            "href": "http://www.accuweather.com/en/us/northwest-stadium-md/20781/hourly-weather-forecast/53589_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/northwest-stadium-md/20781/hourly-weather-forecast/53589_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -11393,8 +11578,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $54",
-                "numberAvailable": 2601,
+                "summary": "Tickets as low as $55",
+                "numberAvailable": 2470,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/los-angeles-chargers-tickets-inglewood-sofi-stadium-3-1-2026/production/6491346?wsUser=717"
@@ -11479,7 +11664,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "+154",
+                      "odds": "+145",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -11511,7 +11696,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "-185",
+                      "odds": "-175",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -11548,7 +11733,7 @@
                   "home": {
                     "close": {
                       "line": "+3.5",
-                      "odds": "-112",
+                      "odds": "-118",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -11582,7 +11767,7 @@
                   "away": {
                     "close": {
                       "line": "-3.5",
-                      "odds": "-108",
+                      "odds": "-102",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -11742,16 +11927,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Mostly cloudy",
-          "temperature": 75,
-          "highTemperature": 75,
-          "conditionId": "6",
+          "displayValue": "Rain",
+          "temperature": 74,
+          "highTemperature": 74,
+          "conditionId": "18",
           "link": {
             "language": "en-US",
             "rel": [
               "90301"
             ],
-            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -12472,8 +12657,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $57",
-                "numberAvailable": 4974,
+                "summary": "Tickets as low as $63",
+                "numberAvailable": 4466,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/arizona-cardinals-tickets-glendale-state-farm-stadium-3-5-2026/production/6487006?wsUser=717"
@@ -12558,7 +12743,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "+210",
+                      "odds": "+215",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -12590,7 +12775,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "-258",
+                      "odds": "-265",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -12822,15 +13007,15 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 84,
-          "highTemperature": 84,
+          "temperature": 83,
+          "highTemperature": 83,
           "conditionId": "4",
           "link": {
             "language": "en-US",
             "rel": [
               "85305"
             ],
-            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -13552,7 +13737,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $303",
-                "numberAvailable": 2744,
+                "numberAvailable": 2759,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/seattle-seahawks-tickets-seattle-lumen-field-3-3-2027/production/6492967?wsUser=717"
@@ -13909,7 +14094,7 @@
             "rel": [
               "98134"
             ],
-            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -14081,24 +14266,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "2-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "0-1"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "2-1"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -14219,6 +14386,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "2-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "0-1"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "2-1"
                   }
                 ]
               },
@@ -14630,8 +14815,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $176",
-                "numberAvailable": 2694,
+                "summary": "Tickets as low as $178",
+                "numberAvailable": 2707,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/atlanta-falcons-tickets-atlanta-mercedes-benz-stadium-3-6-2026/production/6487171?wsUser=717"
@@ -14979,16 +15164,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Intermittent clouds",
+          "displayValue": "Partly cloudy",
           "temperature": 64,
           "highTemperature": 64,
-          "conditionId": "36",
+          "conditionId": "35",
           "link": {
             "language": "en-US",
             "rel": [
               "30313"
             ],
-            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=4&hbhhour=20&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=3&hbhhour=20&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -15710,8 +15895,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $130",
-                "numberAvailable": 4660,
+                "summary": "Tickets as low as $145",
+                "numberAvailable": 4570,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/los-angeles-rams-tickets-inglewood-sofi-stadium-3-9-2026/production/6491666?wsUser=717"
@@ -16079,15 +16264,15 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 69,
-          "highTemperature": 69,
+          "temperature": 67,
+          "highTemperature": 67,
           "conditionId": "4",
           "link": {
             "language": "en-US",
             "rel": [
               "90301"
             ],
-            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=5&hbhhour=17&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=4&hbhhour=17&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -21741,14 +21926,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 The Baltimore Ravens could have used a quiet, boring victory as a heavy favorite at home.",
                 "shortLinkText": "Ravens beat Titans 24-18 but lose Lamar Jackson to ankle injury. Henry scores against his old team"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
@@ -22935,14 +23120,14 @@
                 "region": "us"
               }
             ],
-            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Kyler Murray and the Minnesota Vikings ' offense would've appreciated a touchdown for their progress down the stretch, but there was only one way to truly secure this victory.",
                 "shortLinkText": "Unbeaten Vikings keep Dolphins winless with dominant defense, Reichard's kicks, Hockenson's catches"
               }
-            ]
+            ],
+            "highlights": []
           }
         ],
         "links": [
@@ -23532,14 +23717,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Patrick Mahomes said he loves playing in Allegiant Stadium, and it's no wonder, given his perfect record in one of the NFL's newer venues.",
                 "shortLinkText": "Chiefs beat the Raiders 30-27 to move to 4-0 behind Patrick Mahomes and Kenneth Walker III"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
@@ -24726,14 +24911,14 @@
                 "region": "us"
               }
             ],
-            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 The Seattle Seahawks got their rebound win, but it was far from perfect.",
                 "shortLinkText": "Emanuel Wilson sparks Seahawks past Chargers 30-23, handing Los Angeles a fourth straight loss"
               }
-            ]
+            ],
+            "highlights": []
           }
         ],
         "links": [
@@ -25323,14 +25508,14 @@
                 "region": "us"
               }
             ],
-            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Carolina Panthers coach Dave Canales was a little worried after Bryce Young and Tetairoa McMillan had some issues connecting on passes in practice.",
                 "shortLinkText": "Young, McMillan connect for 2 TDs to lead Panthers past Lions 32-26"
               }
-            ]
+            ],
+            "highlights": []
           }
         ],
         "links": [
@@ -25922,14 +26107,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Bijan Robinson ensured there would be no punt to block this time \u2014 and the Atlanta Falcons were off and running.",
                 "shortLinkText": "Bijan Robinson powers Falcons past Saints 45-24 on the 20th anniversary of the Superdome's reopening"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
