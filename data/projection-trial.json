@@ -1,7 +1,7 @@
 {
   "version": "workload-trial-1",
-  "generatedAt": "2026-10-10T07:42:04.786031+00:00",
-  "analysisSourceGeneratedAt": "2026-10-10T01:14:54.076Z",
+  "generatedAt": "2026-10-10T07:45:35.044529+00:00",
+  "analysisSourceGeneratedAt": "2026-10-10T07:44:28.139Z",
   "season": 2026,
   "week": 5,
   "trialOnly": true,
@@ -9,11 +9,14 @@
   "newCaptures": 0,
   "baselineFresh": false,
   "warnings": [
-    "Current analysis failed freshness/slate validation. No new forecasts captured; existing records still evaluated.",
-    "No eligible upcoming players; existing forecasts will still be graded.",
     "Existing v2.1 feed stale or missing; no new v2.1 comparisons captured this run."
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "name": "Case Keenum",
+      "reason": "Fewer than two usable same-team observations"
+    }
+  ],
   "calibration": {
     "version": "workload-trial-1",
     "parameters": {
