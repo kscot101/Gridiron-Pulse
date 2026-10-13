@@ -1,21 +1,25 @@
 {
-  "checkedAt": "2026-10-13T03:52:26.428232+00:00",
-  "workflowRun": "38343735242",
+  "checkedAt": "2026-10-13T12:10:06.502595+00:00",
+  "workflowRun": "38395294673",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-13T03:52:27.808Z",
+      "generatedAt": "2026-10-13T12:10:07.208Z",
       "teamsWithHistory": 0,
       "teamsMeetingSampleTarget": 0,
       "fallbackSignalCount": 0,
-      "warnings": []
+      "warnings": [
+        "Full box score unavailable for CIN @ MIA.",
+        "Full box score unavailable for DET @ ARI.",
+        "Full box score unavailable for BUF @ LAR."
+      ]
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 5,
-  "previousGeneratedAt": "2026-10-12T23:13:19.134Z",
+  "previousGeneratedAt": "2026-10-13T03:52:27.808Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -24,28 +28,23 @@
     "week": 5,
     "label": "2026 Regular Season \u00b7 Week 5"
   },
-  "previousResultCount": 56,
+  "previousResultCount": 60,
   "previousAnalysisInputs": {
     "historyReady": true,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 2,
-    "teamsWithHistory": 2,
-    "teamsMeetingSampleTarget": 2,
-    "teamSamples": {
-      "BUF": 3,
-      "LAR": 3
-    },
-    "playerPicks": 4,
-    "picksWithGameHistory": 4,
+    "pregameTeams": 0,
+    "teamsWithHistory": 0,
+    "teamsMeetingSampleTarget": 0,
+    "teamSamples": {},
+    "playerPicks": 0,
+    "picksWithGameHistory": 0,
     "playersWithoutGameHistory": [],
-    "signalCount": 16,
+    "signalCount": 0,
     "fallbackSignalCount": 0,
-    "sampleSeasons": [
-      "2026"
-    ],
+    "sampleSeasons": [],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-13T03:52:27.808Z",
+  "generatedAt": "2026-10-13T12:10:07.208Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -72,5 +71,9 @@
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
   "sampleSignals": [],
-  "warnings": []
+  "warnings": [
+    "Full box score unavailable for CIN @ MIA.",
+    "Full box score unavailable for DET @ ARI.",
+    "Full box score unavailable for BUF @ LAR."
+  ]
 }
