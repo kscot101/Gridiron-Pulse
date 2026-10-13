@@ -1,21 +1,13 @@
 {
-  "checkedAt": "2026-10-13T19:31:41.392149+00:00",
-  "workflowRun": "38455523520",
-  "ok": true,
-  "refreshed": true,
-  "refreshPasses": [
-    {
-      "generatedAt": "2026-10-13T19:31:44.446Z",
-      "teamsWithHistory": 0,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 0,
-      "warnings": []
-    }
-  ],
+  "checkedAt": "2026-10-13T23:25:53.505853+00:00",
+  "workflowRun": "38484176933",
+  "ok": false,
+  "refreshed": false,
+  "refreshPasses": [],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 5,
-  "previousGeneratedAt": "2026-10-13T12:10:07.208Z",
+  "previousGeneratedAt": "2026-10-13T19:31:44.446Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -40,32 +32,5 @@
     "sampleSeasons": [],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-13T19:31:44.446Z",
-  "season": {
-    "year": 2026,
-    "type": 2,
-    "typeName": "Regular Season",
-    "slug": "regular-season",
-    "week": 5,
-    "label": "2026 Regular Season \u00b7 Week 5"
-  },
-  "gameCount": 15,
-  "resultCount": 60,
-  "analysisInputs": {
-    "historyReady": true,
-    "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 0,
-    "teamsWithHistory": 0,
-    "teamsMeetingSampleTarget": 0,
-    "teamSamples": {},
-    "playerPicks": 0,
-    "picksWithGameHistory": 0,
-    "playersWithoutGameHistory": [],
-    "signalCount": 0,
-    "fallbackSignalCount": 0,
-    "sampleSeasons": [],
-    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
-  },
-  "sampleSignals": [],
-  "warnings": []
+  "error": "Homepage source returned HTTP 500"
 }
