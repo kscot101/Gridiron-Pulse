@@ -1,9 +1,9 @@
 {
   "ok": true,
   "snapshot": {
-    "id": "2026-2-6-2026-10-17T11:12:52.999Z",
+    "id": "2026-2-6-2026-10-17T14:27:23.522Z",
     "version": "1.4.0",
-    "generatedAt": "2026-10-17T11:12:52.999Z",
+    "generatedAt": "2026-10-17T14:27:23.522Z",
     "mode": "pregame",
     "season": {
       "year": 2026,
@@ -18,8 +18,8 @@
       "pregameCount": 13,
       "liveCount": 0,
       "finalCount": 1,
-      "edgePickCount": 56,
-      "qbAnalysisCount": 28,
+      "edgePickCount": 55,
+      "qbAnalysisCount": 27,
       "starAnalysisCount": 28,
       "rankedTeamCount": 32,
       "rankedPlayerCount": 320,
@@ -29,7 +29,7 @@
       "availabilityCount": 130,
       "availabilityConcernCount": 130,
       "availabilityImpactCount": 2,
-      "generationMs": 5846
+      "generationMs": 5461
     },
     "refresh": {
       "recommendedBrowserSeconds": 300,
@@ -3454,9 +3454,9 @@
             "name": "Anthony Johnson Jr.",
             "team": "CHI",
             "teamId": "3",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Undisclosed"
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
           },
           {
             "athleteId": "4911952",
@@ -4245,6 +4245,15 @@
         },
         "injuries": [
           {
+            "athleteId": "4047646",
+            "name": "A.J. Brown",
+            "team": "NE",
+            "teamId": "17",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Sprain"
+          },
+          {
             "athleteId": "4685298",
             "name": "Will Campbell",
             "team": "NE",
@@ -4278,15 +4287,6 @@
             "teamId": "17",
             "status": "Questionable",
             "type": "questionable",
-            "details": "Sprain"
-          },
-          {
-            "athleteId": "4047646",
-            "name": "A.J. Brown",
-            "team": "NE",
-            "teamId": "17",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
             "details": "Sprain"
           },
           {
@@ -4426,7 +4426,7 @@
         },
         "weather": {
           "display": "1",
-          "temperature": 56
+          "temperature": 57
         },
         "broadcasts": [
           "Fox"
@@ -4706,7 +4706,7 @@
         },
         "weather": {
           "display": "1",
-          "temperature": 57
+          "temperature": 55
         },
         "broadcasts": [
           "CBS"
@@ -4805,6 +4805,15 @@
         },
         "injuries": [
           {
+            "athleteId": "4040715",
+            "name": "Jalen Hurts",
+            "team": "PHI",
+            "teamId": "21",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4567802",
             "name": "Drew Kendall",
             "team": "PHI",
@@ -4834,15 +4843,6 @@
           {
             "athleteId": "4571162",
             "name": "Jalyx Hunt",
-            "team": "PHI",
-            "teamId": "21",
-            "status": "Out",
-            "type": "out",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4240456",
-            "name": "Michael Carter II",
             "team": "PHI",
             "teamId": "21",
             "status": "Out",
@@ -5266,7 +5266,7 @@
         },
         "weather": {
           "display": "2",
-          "temperature": 86
+          "temperature": 85
         },
         "broadcasts": [
           "Fox"
@@ -14342,9 +14342,9 @@
               "name": "Anthony Johnson Jr.",
               "team": "CHI",
               "teamId": "3",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Undisclosed"
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
             },
             {
               "athleteId": "4911952",
@@ -24513,6 +24513,15 @@
         "evidence": {
           "injuries": [
             {
+              "athleteId": "4047646",
+              "name": "A.J. Brown",
+              "team": "NE",
+              "teamId": "17",
+              "status": "Injured Reserve",
+              "type": "Injured Reserve",
+              "details": "Sprain"
+            },
+            {
               "athleteId": "4685298",
               "name": "Will Campbell",
               "team": "NE",
@@ -24546,15 +24555,6 @@
               "teamId": "17",
               "status": "Questionable",
               "type": "questionable",
-              "details": "Sprain"
-            },
-            {
-              "athleteId": "4047646",
-              "name": "A.J. Brown",
-              "team": "NE",
-              "teamId": "17",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
               "details": "Sprain"
             },
             {
@@ -28154,114 +28154,6 @@
             "opponent": "PHI"
           },
           {
-            "athleteId": "4040715",
-            "name": "Jalen Hurts",
-            "team": "PHI",
-            "teamId": "21",
-            "position": "QB",
-            "number": "1",
-            "score": 86,
-            "tier": "QB IMPACT \u00b7 STRONG EDGE",
-            "forecast": "200+ passing-yard path \u00b7 multi-score path. Limiter: CAR's matchup can cap the ceiling if it wins early downs.",
-            "impactPath": "200+ passing-yard path \u00b7 multi-score path.",
-            "limitingFactor": "CAR's matchup can cap the ceiling if it wins early downs.",
-            "outlook": "MIXED",
-            "accent": "#06424d",
-            "signals": [
-              {
-                "label": "Opponent defense",
-                "detail": "CAR has allowed 266.5 net passing yards per game across 2 recent samples."
-              },
-              {
-                "label": "Current form",
-                "detail": "3-game form is rising; latest vs JAX: 21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD."
-              },
-              {
-                "label": "Team scheme",
-                "detail": "PHI's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
-              },
-              {
-                "label": "Position history",
-                "detail": "Opposing QBs averaged 278 passing yards, 1.5 passing TD and 0 INT across 2 recent games vs CAR."
-              }
-            ],
-            "source": "roster+recent-model",
-            "recent": [
-              {
-                "label": "C/ATT",
-                "value": "21/40"
-              },
-              {
-                "label": "YDS",
-                "value": "155.3"
-              },
-              {
-                "label": "TD",
-                "value": "1"
-              },
-              {
-                "label": "INT",
-                "value": "0.3"
-              },
-              {
-                "label": "YDS",
-                "value": "15"
-              }
-            ],
-            "recentGames": [
-              {
-                "gameId": "401872981",
-                "date": "2026-10-11T13:30Z",
-                "opponent": "JAX",
-                "headline": "21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD",
-                "productionScore": 67.66666666666667,
-                "seasonYear": 2026,
-                "seasonType": 2,
-                "seasonWeek": 5
-              },
-              {
-                "gameId": "401872970",
-                "date": "2026-10-04T17:00Z",
-                "opponent": "LAR",
-                "headline": "12/27 C/ATT \u00b7 93 YDS \u00b7 2 TD",
-                "productionScore": 53.25,
-                "seasonYear": 2026,
-                "seasonType": 2,
-                "seasonWeek": 4
-              },
-              {
-                "gameId": "401872963",
-                "date": "2026-09-29T00:15Z",
-                "opponent": "CHI",
-                "headline": "16/25 C/ATT \u00b7 153 YDS \u00b7 0 TD",
-                "productionScore": 50.583333333333336,
-                "seasonYear": 2026,
-                "seasonType": 2,
-                "seasonWeek": 3
-              }
-            ],
-            "starter": false,
-            "experience": 7,
-            "baselineAvailable": true,
-            "notabilityScore": 15.144047619047619,
-            "notableEvidence": [
-              "multi-game production"
-            ],
-            "starScore": 101.14404761904763,
-            "qbScore": 97,
-            "components": {
-              "opponentDefense": 7.407500000000001,
-              "currentForm": 8.715376984126983,
-              "teamScheme": 5,
-              "positionHistory": 8.088888888888889,
-              "notability": 15.144047619047619
-            },
-            "spotlightRole": "QB IMPACT",
-            "edgeBand": "STRONG EDGE",
-            "teamName": "Philadelphia Eagles",
-            "opponent": "CAR"
-          },
-          {
             "athleteId": "4685472",
             "name": "Tetairoa McMillan",
             "team": "CAR",
@@ -28661,114 +28553,7 @@
           },
           "home": {
             "team": "PHI",
-            "quarterback": {
-              "athleteId": "4040715",
-              "name": "Jalen Hurts",
-              "team": "PHI",
-              "teamId": "21",
-              "position": "QB",
-              "number": "1",
-              "score": 86,
-              "tier": "QB IMPACT \u00b7 STRONG EDGE",
-              "forecast": "200+ passing-yard path \u00b7 multi-score path. Limiter: CAR's matchup can cap the ceiling if it wins early downs.",
-              "impactPath": "200+ passing-yard path \u00b7 multi-score path.",
-              "limitingFactor": "CAR's matchup can cap the ceiling if it wins early downs.",
-              "outlook": "MIXED",
-              "accent": "#06424d",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "CAR has allowed 266.5 net passing yards per game across 2 recent samples."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "3-game form is rising; latest vs JAX: 21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "PHI's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "Opposing QBs averaged 278 passing yards, 1.5 passing TD and 0 INT across 2 recent games vs CAR."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "C/ATT",
-                  "value": "21/40"
-                },
-                {
-                  "label": "YDS",
-                  "value": "155.3"
-                },
-                {
-                  "label": "TD",
-                  "value": "1"
-                },
-                {
-                  "label": "INT",
-                  "value": "0.3"
-                },
-                {
-                  "label": "YDS",
-                  "value": "15"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401872981",
-                  "date": "2026-10-11T13:30Z",
-                  "opponent": "JAX",
-                  "headline": "21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD",
-                  "productionScore": 67.66666666666667,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 5
-                },
-                {
-                  "gameId": "401872970",
-                  "date": "2026-10-04T17:00Z",
-                  "opponent": "LAR",
-                  "headline": "12/27 C/ATT \u00b7 93 YDS \u00b7 2 TD",
-                  "productionScore": 53.25,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 4
-                },
-                {
-                  "gameId": "401872963",
-                  "date": "2026-09-29T00:15Z",
-                  "opponent": "CHI",
-                  "headline": "16/25 C/ATT \u00b7 153 YDS \u00b7 0 TD",
-                  "productionScore": 50.583333333333336,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 3
-                }
-              ],
-              "starter": false,
-              "experience": 7,
-              "baselineAvailable": true,
-              "notabilityScore": 15.144047619047619,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 101.14404761904763,
-              "qbScore": 97,
-              "components": {
-                "opponentDefense": 7.407500000000001,
-                "currentForm": 8.715376984126983,
-                "teamScheme": 5,
-                "positionHistory": 8.088888888888889,
-                "notability": 15.144047619047619
-              },
-              "spotlightRole": "QB IMPACT",
-              "edgeBand": "STRONG EDGE",
-              "teamName": "Philadelphia Eagles",
-              "opponent": "CAR"
-            },
+            "quarterback": null,
             "star": {
               "athleteId": "4715355",
               "name": "Darius Cooper",
@@ -29923,114 +29708,6 @@
           ],
           "home": [
             {
-              "athleteId": "4040715",
-              "name": "Jalen Hurts",
-              "team": "PHI",
-              "teamId": "21",
-              "position": "QB",
-              "number": "1",
-              "score": 86,
-              "tier": "QB IMPACT \u00b7 STRONG EDGE",
-              "forecast": "200+ passing-yard path \u00b7 multi-score path. Limiter: CAR's matchup can cap the ceiling if it wins early downs.",
-              "impactPath": "200+ passing-yard path \u00b7 multi-score path.",
-              "limitingFactor": "CAR's matchup can cap the ceiling if it wins early downs.",
-              "outlook": "MIXED",
-              "accent": "#06424d",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "CAR has allowed 266.5 net passing yards per game across 2 recent samples."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "3-game form is rising; latest vs JAX: 21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "PHI's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "Opposing QBs averaged 278 passing yards, 1.5 passing TD and 0 INT across 2 recent games vs CAR."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "C/ATT",
-                  "value": "21/40"
-                },
-                {
-                  "label": "YDS",
-                  "value": "155.3"
-                },
-                {
-                  "label": "TD",
-                  "value": "1"
-                },
-                {
-                  "label": "INT",
-                  "value": "0.3"
-                },
-                {
-                  "label": "YDS",
-                  "value": "15"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401872981",
-                  "date": "2026-10-11T13:30Z",
-                  "opponent": "JAX",
-                  "headline": "21/40 C/ATT \u00b7 220 YDS \u00b7 1 TD",
-                  "productionScore": 67.66666666666667,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 5
-                },
-                {
-                  "gameId": "401872970",
-                  "date": "2026-10-04T17:00Z",
-                  "opponent": "LAR",
-                  "headline": "12/27 C/ATT \u00b7 93 YDS \u00b7 2 TD",
-                  "productionScore": 53.25,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 4
-                },
-                {
-                  "gameId": "401872963",
-                  "date": "2026-09-29T00:15Z",
-                  "opponent": "CHI",
-                  "headline": "16/25 C/ATT \u00b7 153 YDS \u00b7 0 TD",
-                  "productionScore": 50.583333333333336,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 3
-                }
-              ],
-              "starter": false,
-              "experience": 7,
-              "baselineAvailable": true,
-              "notabilityScore": 15.144047619047619,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 101.14404761904763,
-              "qbScore": 97,
-              "components": {
-                "opponentDefense": 7.407500000000001,
-                "currentForm": 8.715376984126983,
-                "teamScheme": 5,
-                "positionHistory": 8.088888888888889,
-                "notability": 15.144047619047619
-              },
-              "spotlightRole": "QB IMPACT",
-              "edgeBand": "STRONG EDGE",
-              "teamName": "Philadelphia Eagles",
-              "opponent": "CAR"
-            },
-            {
               "athleteId": "4715355",
               "name": "Darius Cooper",
               "team": "PHI",
@@ -31060,11 +30737,114 @@
                 "positionHistory": 4,
                 "notability": 11.17142857142857
               }
+            },
+            {
+              "athleteId": "4429013",
+              "name": "Tank Bigsby",
+              "team": "PHI",
+              "teamId": "21",
+              "position": "RB",
+              "number": "8",
+              "score": 73,
+              "tier": "WATCH EDGE",
+              "forecast": "55+ rush-yard path \u00b7 receiving/TD upside. Limiter: CAR's recent defense and comparable-position results point to a tighter path.",
+              "impactPath": "55+ rush-yard path \u00b7 receiving/TD upside.",
+              "limitingFactor": "CAR's recent defense and comparable-position results point to a tighter path.",
+              "outlook": "MIXED",
+              "accent": "#06424d",
+              "signals": [
+                {
+                  "label": "Opponent defense",
+                  "detail": "CAR has allowed 89 rushing yards per game across 2 recent samples."
+                },
+                {
+                  "label": "Current form",
+                  "detail": "2-game form is rising; latest vs LAR: 14 CAR \u00b7 55 YDS \u00b7 0 TD."
+                },
+                {
+                  "label": "Team scheme",
+                  "detail": "PHI's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
+                },
+                {
+                  "label": "Position history",
+                  "detail": "Comparable RB groups averaged 103.5 scrimmage yards, 5 catches and 0.5 TD across 2 recent games vs CAR."
+                }
+              ],
+              "source": "roster+recent-model",
+              "recent": [
+                {
+                  "label": "CAR",
+                  "value": "14"
+                },
+                {
+                  "label": "YDS",
+                  "value": "55"
+                },
+                {
+                  "label": "TD",
+                  "value": "0"
+                },
+                {
+                  "label": "REC",
+                  "value": "0.5"
+                },
+                {
+                  "label": "YDS",
+                  "value": "2.5"
+                }
+              ],
+              "recentGames": [
+                {
+                  "gameId": "401872970",
+                  "date": "2026-10-04T17:00Z",
+                  "opponent": "LAR",
+                  "headline": "14 CAR \u00b7 55 YDS \u00b7 0 TD",
+                  "productionScore": 27.5,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 4
+                },
+                {
+                  "gameId": "401872963",
+                  "date": "2026-09-29T00:15Z",
+                  "opponent": "CHI",
+                  "headline": "1 REC \u00b7 5 YDS \u00b7 0 TD",
+                  "productionScore": 5.5,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 3
+                }
+              ],
+              "starter": false,
+              "experience": 4,
+              "baselineAvailable": true,
+              "notabilityScore": 11.728571428571428,
+              "notableEvidence": [
+                "multi-game production"
+              ],
+              "starScore": 84.72857142857143,
+              "qbScore": 83,
+              "components": {
+                "opponentDefense": 3.77037037037037,
+                "currentForm": 5.58452380952381,
+                "teamScheme": 5,
+                "positionHistory": 5.533333333333333,
+                "notability": 11.728571428571428
+              }
             }
           ]
         },
         "evidence": {
           "injuries": [
+            {
+              "athleteId": "4040715",
+              "name": "Jalen Hurts",
+              "team": "PHI",
+              "teamId": "21",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
             {
               "athleteId": "4567802",
               "name": "Drew Kendall",
@@ -31095,15 +30875,6 @@
             {
               "athleteId": "4571162",
               "name": "Jalyx Hunt",
-              "team": "PHI",
-              "teamId": "21",
-              "status": "Out",
-              "type": "out",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4240456",
-              "name": "Michael Carter II",
               "team": "PHI",
               "teamId": "21",
               "status": "Out",
@@ -51205,7 +50976,7 @@
     "powerRankings": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-17T11:12:52.999Z",
+      "generatedAt": "2026-10-17T14:27:23.522Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonWeek": 6,
@@ -79754,7 +79525,7 @@
     "modelPerformance": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-17T11:12:52.999Z",
+      "generatedAt": "2026-10-17T14:27:23.522Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonTypeName": "Regular Season",
@@ -79968,7 +79739,7 @@
           "actual": "278 pass yds \u00b7 0 pass TD \u00b7 19 rush yds",
           "finalScore": "SEA 14 \u00b7 DEN 17",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872995|den|bo nix|qb impact",
@@ -79986,7 +79757,7 @@
           "actual": "107 pass yds \u00b7 0 pass TD \u00b7 2 rush yds",
           "finalScore": "SEA 14 \u00b7 DEN 17",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872995|sea|jaxon smith-njigba|team star",
@@ -80004,7 +79775,7 @@
           "actual": "134 scrimmage yds \u00b7 0 TD",
           "finalScore": "SEA 14 \u00b7 DEN 17",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872995|den|j.k. dobbins|team star",
@@ -80022,7 +79793,7 @@
           "actual": "46 scrimmage yds \u00b7 1 TD",
           "finalScore": "SEA 14 \u00b7 DEN 17",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872980|tb|jalon daniels|qb impact",
@@ -80402,7 +80173,7 @@
     "availability": {
       "available": true,
       "status": "ACTIVE",
-      "updatedAt": "2026-10-17T11:12:52.999Z",
+      "updatedAt": "2026-10-17T14:27:23.522Z",
       "count": 130,
       "concernCount": 130,
       "impactCount": 2,
@@ -80435,7 +80206,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4875266",
@@ -80458,7 +80229,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4683347",
@@ -80481,7 +80252,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4035538",
@@ -80504,7 +80275,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4426350",
@@ -80527,7 +80298,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4240059",
@@ -80550,7 +80321,7 @@
           "details": "Dislocated",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4241223",
@@ -80573,7 +80344,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4242149",
@@ -80596,7 +80367,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:3928931",
@@ -80619,7 +80390,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872996:4366031",
@@ -80642,7 +80413,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4047646",
@@ -80665,7 +80436,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4239995",
@@ -80688,7 +80459,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4597500",
@@ -80711,7 +80482,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4360078",
@@ -80734,7 +80505,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:3925350",
@@ -80757,7 +80528,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4361748",
@@ -80775,12 +80546,12 @@
           "spotlightRole": null,
           "edgeScore": null,
           "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Undisclosed",
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4034790",
@@ -80803,7 +80574,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4061956",
@@ -80826,7 +80597,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:3915837",
@@ -80849,7 +80620,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4240596",
@@ -80872,7 +80643,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4361178",
@@ -80895,7 +80666,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:3916923",
@@ -80918,7 +80689,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4921249",
@@ -80941,7 +80712,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:3126352",
@@ -80964,7 +80735,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:3871102",
@@ -80987,7 +80758,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4242659",
@@ -81010,7 +80781,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:3929846",
@@ -81033,7 +80804,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4243375",
@@ -81056,7 +80827,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4870847",
@@ -81079,7 +80850,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4876319",
@@ -81102,7 +80873,30 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
+        },
+        {
+          "id": "401872998:4040715",
+          "gameId": "401872998",
+          "matchup": "CAR @ PHI",
+          "kickoff": "2026-10-18T17:00Z",
+          "athleteId": "4040715",
+          "name": "Jalen Hurts",
+          "team": "PHI",
+          "teamId": "21",
+          "teamColor": "06424d",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4571162",
@@ -81125,7 +80919,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4601021",
@@ -81148,7 +80942,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4039052",
@@ -81171,7 +80965,7 @@
           "details": "Personal",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4362094",
@@ -81194,7 +80988,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4917635",
@@ -81217,7 +81011,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:3124890",
@@ -81240,7 +81034,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4243541",
@@ -81263,7 +81057,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4606666",
@@ -81286,7 +81080,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4685617",
@@ -81309,7 +81103,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4911952",
@@ -81332,7 +81126,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4361093",
@@ -81355,7 +81149,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:3916387",
@@ -81378,7 +81172,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4035624",
@@ -81401,7 +81195,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4432260",
@@ -81424,30 +81218,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
-        },
-        {
-          "id": "401872998:4240456",
-          "gameId": "401872998",
-          "matchup": "CAR @ PHI",
-          "kickoff": "2026-10-18T17:00Z",
-          "athleteId": "4240456",
-          "name": "Michael Carter II",
-          "team": "PHI",
-          "teamId": "21",
-          "teamColor": "06424d",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Out",
-          "type": "out",
-          "details": "Not Specified",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4600415",
@@ -81470,7 +81241,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4723820",
@@ -81493,7 +81264,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:2973051",
@@ -81516,7 +81287,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4038457",
@@ -81539,7 +81310,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4685350",
@@ -81562,7 +81333,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4430261",
@@ -81585,7 +81356,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4362523",
@@ -81608,7 +81379,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4360807",
@@ -81631,7 +81402,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:3918331",
@@ -81654,7 +81425,7 @@
           "details": "Bruise",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4870808",
@@ -81677,7 +81448,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4575003",
@@ -81700,7 +81471,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:3122132",
@@ -81723,7 +81494,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:5155825",
@@ -81746,7 +81517,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4567826",
@@ -81769,7 +81540,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:3691739",
@@ -81792,7 +81563,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4432775",
@@ -81815,7 +81586,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:3843769",
@@ -81838,7 +81609,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4603186",
@@ -81861,7 +81632,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4569659",
@@ -81884,7 +81655,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4430870",
@@ -81907,7 +81678,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4428331",
@@ -81930,7 +81701,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4429109",
@@ -81953,7 +81724,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4362921",
@@ -81976,7 +81747,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4258206",
@@ -81999,7 +81770,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4384549",
@@ -82022,7 +81793,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4685554",
@@ -82045,7 +81816,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4259762",
@@ -82068,7 +81839,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:3895856",
@@ -82091,7 +81862,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:3127586",
@@ -82114,7 +81885,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4240585",
@@ -82137,7 +81908,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4816107",
@@ -82160,7 +81931,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4870694",
@@ -82183,7 +81954,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4838693",
@@ -82206,7 +81977,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:4693337",
@@ -82229,7 +82000,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4361370",
@@ -82252,7 +82023,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:16737",
@@ -82275,7 +82046,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4725996",
@@ -82298,7 +82069,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:3054850",
@@ -82321,7 +82092,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4259566",
@@ -82344,7 +82115,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4876017",
@@ -82367,7 +82138,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4362647",
@@ -82390,7 +82161,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4047650",
@@ -82413,7 +82184,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4567802",
@@ -82436,7 +82207,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872998:4242975",
@@ -82459,7 +82230,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:3045373",
@@ -82482,7 +82253,7 @@
           "details": "Fracture",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:3873935",
@@ -82505,7 +82276,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:3115303",
@@ -82528,7 +82299,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4870998",
@@ -82551,7 +82322,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:5083315",
@@ -82574,7 +82345,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873000:4432768",
@@ -82597,7 +82368,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872997:4873232",
@@ -82620,7 +82391,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4038815",
@@ -82643,7 +82414,7 @@
           "details": "Toe",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873002:4430871",
@@ -82666,7 +82437,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4432710",
@@ -82689,7 +82460,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4428557",
@@ -82712,7 +82483,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873003:4431459",
@@ -82735,7 +82506,7 @@
           "details": "Groin",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:4426374",
@@ -82758,7 +82529,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873001:4685298",
@@ -82781,7 +82552,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401872999:3043168",
@@ -82804,7 +82575,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4045180",
@@ -82827,7 +82598,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:3127287",
@@ -82850,7 +82621,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4242154",
@@ -82873,7 +82644,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4426405",
@@ -82896,7 +82667,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4244606",
@@ -82919,7 +82690,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4685553",
@@ -82942,7 +82713,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4401823",
@@ -82965,7 +82736,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:3915416",
@@ -82988,7 +82759,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4039303",
@@ -83011,7 +82782,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4242433",
@@ -83034,7 +82805,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873006:4040432",
@@ -83057,7 +82828,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4684527",
@@ -83080,7 +82851,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873005:4431623",
@@ -83103,7 +82874,7 @@
           "details": "Abrasion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4242390",
@@ -83126,7 +82897,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:5076652",
@@ -83149,7 +82920,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4362088",
@@ -83172,7 +82943,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4428037",
@@ -83195,7 +82966,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4426506",
@@ -83218,7 +82989,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873007:4870960",
@@ -83241,7 +83012,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:3068267",
@@ -83264,7 +83035,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:4040605",
@@ -83287,7 +83058,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:4697815",
@@ -83310,7 +83081,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:4432244",
@@ -83333,7 +83104,7 @@
           "details": "Illness",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:2976212",
@@ -83356,7 +83127,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873008:4567156",
@@ -83379,7 +83150,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         },
         {
           "id": "401873004:4036135",
@@ -83402,7 +83173,7 @@
           "details": "Not Specified",
           "level": "MONITOR",
           "priority": 1,
-          "updatedAt": "2026-10-17T11:12:52.999Z"
+          "updatedAt": "2026-10-17T14:27:23.522Z"
         }
       ],
       "message": "130 active availability concerns; 2 involve a current QB or team-star spotlight.",
@@ -83528,10 +83299,10 @@
         "WSH": 3,
         "SF": 3
       },
-      "playerPicks": 52,
-      "picksWithGameHistory": 52,
+      "playerPicks": 51,
+      "picksWithGameHistory": 51,
       "playersWithoutGameHistory": [],
-      "signalCount": 208,
+      "signalCount": 204,
       "fallbackSignalCount": 1,
       "sampleSeasons": [
         "2026"
