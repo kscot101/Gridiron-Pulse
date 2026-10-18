@@ -1,27 +1,29 @@
 {
-  "checkedAt": "2026-10-18T09:53:27.251626+00:00",
-  "workflowRun": "39117100942",
+  "checkedAt": "2026-10-18T14:09:22.819513+00:00",
+  "workflowRun": "39134697618",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-18T09:53:27.729Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 24,
+      "generatedAt": "2026-10-18T14:09:23.672Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 22,
+      "fallbackSignalCount": 1,
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
+    },
+    {
+      "generatedAt": "2026-10-18T14:10:34.579Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 22,
       "fallbackSignalCount": 1,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-18T09:54:38.511Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 24,
-      "fallbackSignalCount": 1,
-      "warnings": []
-    },
-    {
-      "generatedAt": "2026-10-18T09:55:49.587Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 24,
+      "generatedAt": "2026-10-18T14:11:45.227Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 22,
       "fallbackSignalCount": 1,
       "warnings": []
     }
@@ -29,7 +31,7 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 6,
-  "previousGeneratedAt": "2026-10-18T05:10:24.581Z",
+  "previousGeneratedAt": "2026-10-18T09:55:49.587Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -83,7 +85,7 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-18T09:55:49.587Z",
+  "generatedAt": "2026-10-18T14:11:45.227Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -97,12 +99,10 @@
   "analysisInputs": {
     "historyReady": false,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 26,
-    "teamsWithHistory": 26,
-    "teamsMeetingSampleTarget": 24,
+    "pregameTeams": 24,
+    "teamsWithHistory": 24,
+    "teamsMeetingSampleTarget": 22,
     "teamSamples": {
-      "HOU": 3,
-      "JAX": 3,
       "CHI": 3,
       "ATL": 3,
       "BAL": 3,
@@ -128,10 +128,10 @@
       "WSH": 3,
       "SF": 3
     },
-    "playerPicks": 51,
-    "picksWithGameHistory": 51,
+    "playerPicks": 47,
+    "picksWithGameHistory": 47,
     "playersWithoutGameHistory": [],
-    "signalCount": 204,
+    "signalCount": 188,
     "fallbackSignalCount": 1,
     "sampleSeasons": [
       "2026"
