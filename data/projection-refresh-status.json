@@ -1,16 +1,12 @@
 {
-  "generatedAt": "2026-10-18T20:51:03.700586+00:00",
-  "sourceGeneratedAt": "2026-10-18T20:00:32.631Z",
-  "workflowRun": "39165137197",
-  "implementationCommit": "6fc515e336fb56a222bd7cdb5309679c5ff3d230",
+  "generatedAt": "2026-10-18T23:18:38.463938+00:00",
+  "sourceGeneratedAt": "2026-10-18T23:00:32.706Z",
+  "workflowRun": "39175928514",
+  "implementationCommit": "c69ad364b7da81c97af856e64986ba9694ea2bd3",
   "players": 534,
-  "contextEligiblePlayers": 128,
-  "unresolvedQuarterbackTeams": [
-    "JAX"
-  ],
-  "quarterbackDepthErrors": {
-    "JAX": "500 Server Error: Internal Server Error for url: https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/jax/depthcharts?reliabilityRefresh=1792356655"
-  },
+  "contextEligiblePlayers": 124,
+  "unresolvedQuarterbackTeams": [],
+  "quarterbackDepthErrors": {},
   "quarterbacks": {
     "CAR": {
       "playerId": "gsis:00-0039150",
@@ -19,25 +15,11 @@
       "rate": 188.1875,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Bryce Young",
         "Kenny Pickett",
         "Haynes King"
-      ]
-    },
-    "NE": {
-      "playerId": "gsis:00-0039851",
-      "espnId": "4431452",
-      "playerName": "Drake Maye",
-      "rate": 258.47058823529414,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
-      "candidates": [
-        "Drake Maye",
-        "Tommy DeVito",
-        "Behren Morton"
       ]
     },
     "PIT": {
@@ -47,11 +29,25 @@
       "rate": 207.625,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Aaron Rodgers",
         "Mason Rudolph",
         "Will Howard"
+      ]
+    },
+    "NE": {
+      "playerId": "gsis:00-0039851",
+      "espnId": "4431452",
+      "playerName": "Drake Maye",
+      "rate": 258.47058823529414,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Drake Maye",
+        "Tommy DeVito",
+        "Behren Morton"
       ]
     },
     "SEA": {
@@ -61,64 +57,11 @@
       "rate": 238.11764705882356,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Sam Darnold",
         "Drew Lock",
         "Jalen Milroe"
-      ]
-    },
-    "LAR": {
-      "playerId": "gsis:00-0026498",
-      "espnId": "12483",
-      "playerName": "Matthew Stafford",
-      "rate": 276.88235294117646,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
-      "candidates": [
-        "Matthew Stafford",
-        "Matthew Caldwell",
-        "Stetson Bennett IV"
-      ]
-    },
-    "HOU": {
-      "playerId": "gsis:00-0039163",
-      "espnId": "4432577",
-      "playerName": "C.J. Stroud",
-      "rate": 217.2142857142857,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "C.J. Stroud",
-        "Mark Gronowski",
-        "Davis Mills"
-      ]
-    },
-    "DAL": {
-      "playerId": "gsis:00-0033077",
-      "espnId": "2577417",
-      "playerName": "Dak Prescott",
-      "rate": 267.7647058823529,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Dak Prescott",
-        "Sam Howell"
-      ]
-    },
-    "JAX": {
-      "playerId": "",
-      "playerName": "",
-      "rate": null,
-      "resolved": false,
-      "source": "unresolved-conflict",
-      "candidates": [
-        "Trevor Lawrence",
-        "Joey Aguilar",
-        "Nick Mullens"
       ]
     },
     "LV": {
@@ -128,25 +71,66 @@
       "rate": 172.1,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Kirk Cousins",
         "Fernando Mendoza",
         "Aidan O'Connell"
       ]
     },
-    "NO": {
-      "playerId": "gsis:00-0040743",
-      "espnId": "4360689",
-      "playerName": "Tyler Shough",
-      "rate": 216.72727272727272,
+    "ATL": {
+      "playerId": "gsis:00-0039917",
+      "espnId": "4360423",
+      "playerName": "Michael Penix Jr.",
+      "rate": 220.22222222222223,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
-        "Tyler Shough",
-        "Spencer Rattler",
-        "Zach Wilson"
+        "Michael Penix Jr.",
+        "Cooper Rush",
+        "Tua Tagovailoa"
+      ]
+    },
+    "HOU": {
+      "playerId": "gsis:00-0039163",
+      "espnId": "4432577",
+      "playerName": "C.J. Stroud",
+      "rate": 217.2142857142857,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "C.J. Stroud",
+        "Mark Gronowski",
+        "Davis Mills"
+      ]
+    },
+    "LAR": {
+      "playerId": "gsis:00-0026498",
+      "espnId": "12483",
+      "playerName": "Matthew Stafford",
+      "rate": 276.88235294117646,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Matthew Stafford",
+        "Matthew Caldwell",
+        "Stetson Bennett IV"
+      ]
+    },
+    "DAL": {
+      "playerId": "gsis:00-0033077",
+      "espnId": "2577417",
+      "playerName": "Dak Prescott",
+      "rate": 267.7647058823529,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Dak Prescott",
+        "Sam Howell"
       ]
     },
     "ARI": {
@@ -156,11 +140,67 @@
       "rate": 240.42857142857144,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jacoby Brissett",
         "Gardner Minshew II",
         "Carson Beck"
+      ]
+    },
+    "NO": {
+      "playerId": "gsis:00-0040743",
+      "espnId": "4360689",
+      "playerName": "Tyler Shough",
+      "rate": 216.72727272727272,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Tyler Shough",
+        "Spencer Rattler",
+        "Zach Wilson"
+      ]
+    },
+    "JAX": {
+      "playerId": "gsis:00-0036971",
+      "espnId": "4360310",
+      "playerName": "Trevor Lawrence",
+      "rate": 235.7058823529412,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Trevor Lawrence",
+        "Joey Aguilar",
+        "Nick Mullens"
+      ]
+    },
+    "IND": {
+      "playerId": "gsis:00-0035710",
+      "espnId": "3917792",
+      "playerName": "Daniel Jones",
+      "rate": 238.53846153846155,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Daniel Jones",
+        "Anthony Richardson Sr.",
+        "Riley Leonard"
+      ]
+    },
+    "KC": {
+      "playerId": "gsis:00-0033873",
+      "espnId": "3139477",
+      "playerName": "Patrick Mahomes",
+      "rate": 256.2142857142857,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Patrick Mahomes",
+        "Justin Fields",
+        "Garrett Nussmeier"
       ]
     },
     "SF": {
@@ -170,7 +210,7 @@
       "rate": 240.77777777777777,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Brock Purdy",
         "Mac Jones",
@@ -184,7 +224,7 @@
       "rate": 225.4,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jordan Love",
         "Kedon Slovis",
@@ -198,7 +238,7 @@
       "rate": 268.47058823529414,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jared Goff",
         "Luke Altmyer",
@@ -212,25 +252,11 @@
       "rate": 192.4,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Kyler Murray",
         "Carson Wentz",
         "Max Brosmer"
-      ]
-    },
-    "IND": {
-      "playerId": "gsis:00-0035710",
-      "espnId": "3917792",
-      "playerName": "Daniel Jones",
-      "rate": 238.53846153846155,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Daniel Jones",
-        "Anthony Richardson Sr.",
-        "Riley Leonard"
       ]
     },
     "CIN": {
@@ -240,67 +266,11 @@
       "rate": 226.125,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Joe Burrow",
         "Sean Clifford",
         "Joe Flacco"
-      ]
-    },
-    "ATL": {
-      "playerId": "gsis:00-0039917",
-      "espnId": "4360423",
-      "playerName": "Michael Penix Jr.",
-      "rate": 220.22222222222223,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Michael Penix Jr.",
-        "Cooper Rush",
-        "Tua Tagovailoa"
-      ]
-    },
-    "KC": {
-      "playerId": "gsis:00-0033873",
-      "espnId": "3139477",
-      "playerName": "Patrick Mahomes",
-      "rate": 256.2142857142857,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Patrick Mahomes",
-        "Justin Fields",
-        "Garrett Nussmeier"
-      ]
-    },
-    "BAL": {
-      "playerId": "gsis:00-0034796",
-      "espnId": "3916387",
-      "playerName": "Lamar Jackson",
-      "rate": 196.07692307692307,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Lamar Jackson",
-        "Skylar Thompson",
-        "Tyler Huntley"
-      ]
-    },
-    "DEN": {
-      "playerId": "gsis:00-0039732",
-      "espnId": "4426338",
-      "playerName": "Bo Nix",
-      "rate": 231.23529411764707,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Bo Nix",
-        "Jarrett Stidham",
-        "Sam Ehlinger"
       ]
     },
     "BUF": {
@@ -310,38 +280,11 @@
       "rate": 229.25,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Josh Allen",
         "Shane Buechele",
         "Kyle Allen"
-      ]
-    },
-    "CLE": {
-      "playerId": "espn:3122840",
-      "espnId": "3122840",
-      "playerName": "Deshaun Watson",
-      "rate": null,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Deshaun Watson",
-        "Dillon Gabriel",
-        "Shedeur Sanders"
-      ]
-    },
-    "MIA": {
-      "playerId": "gsis:00-0038128",
-      "espnId": "4242512",
-      "playerName": "Malik Willis",
-      "rate": 105.5,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
-      "candidates": [
-        "Malik Willis",
-        "Kyle McCord"
       ]
     },
     "NYJ": {
@@ -351,11 +294,66 @@
       "rate": 201.66666666666663,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Geno Smith",
         "Will Levis",
         "Cade Klubnik"
+      ]
+    },
+    "CLE": {
+      "playerId": "espn:3122840",
+      "espnId": "3122840",
+      "playerName": "Deshaun Watson",
+      "rate": null,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Deshaun Watson",
+        "Dillon Gabriel",
+        "Shedeur Sanders"
+      ]
+    },
+    "DEN": {
+      "playerId": "gsis:00-0039732",
+      "espnId": "4426338",
+      "playerName": "Bo Nix",
+      "rate": 231.23529411764707,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Bo Nix",
+        "Jarrett Stidham",
+        "Sam Ehlinger"
+      ]
+    },
+    "BAL": {
+      "playerId": "gsis:00-0034796",
+      "espnId": "3916387",
+      "playerName": "Lamar Jackson",
+      "rate": 196.07692307692307,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Lamar Jackson",
+        "Tyler Huntley",
+        "Skylar Thompson"
+      ]
+    },
+    "MIA": {
+      "playerId": "gsis:00-0038128",
+      "espnId": "4242512",
+      "playerName": "Malik Willis",
+      "rate": 105.5,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Malik Willis",
+        "Kyle McCord"
       ]
     },
     "NYG": {
@@ -365,11 +363,25 @@
       "rate": 189.0,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jameis Winston",
         "Jake Haener",
         "Jaxson Dart"
+      ]
+    },
+    "CHI": {
+      "playerId": "gsis:00-0039918",
+      "espnId": "4431611",
+      "playerName": "Caleb Williams",
+      "rate": 231.8823529411765,
+      "resolved": true,
+      "source": "current-espn-depth-rank-1",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
+      "candidates": [
+        "Caleb Williams",
+        "Miller Moss",
+        "Tyson Bagent"
       ]
     },
     "LAC": {
@@ -379,7 +391,7 @@
       "rate": 232.9375,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Justin Herbert",
         "Jake Browning",
@@ -393,7 +405,7 @@
       "rate": 186.41176470588235,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Cam Ward",
         "Hendon Hooker",
@@ -407,25 +419,11 @@
       "rate": 68.5,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jalen Hurts",
         "Tanner McKee",
         "Cole Payton"
-      ]
-    },
-    "CHI": {
-      "playerId": "gsis:00-0039918",
-      "espnId": "4431611",
-      "playerName": "Caleb Williams",
-      "rate": 231.8823529411765,
-      "resolved": true,
-      "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:55Z",
-      "candidates": [
-        "Caleb Williams",
-        "Miller Moss",
-        "Tyson Bagent"
       ]
     },
     "TB": {
@@ -435,7 +433,7 @@
       "rate": 217.23529411764707,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Baker Mayfield",
         "Brett Rypien",
@@ -449,7 +447,7 @@
       "rate": 180.28571428571428,
       "resolved": true,
       "source": "current-espn-depth-rank-1",
-      "sourceGeneratedAt": "2026-10-18T20:50:56Z",
+      "sourceGeneratedAt": "2026-10-18T23:18:33Z",
       "candidates": [
         "Jayden Daniels",
         "Sam Hartman",
@@ -496,7 +494,7 @@
     }
   ],
   "missingYardageProjections": 0,
-  "missingTouchdownProjections": 184,
+  "missingTouchdownProjections": 185,
   "historicalBacktestRerun": false,
   "formulaCoefficientsChanged": false
 }
