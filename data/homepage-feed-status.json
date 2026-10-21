@@ -1,68 +1,36 @@
 {
-  "checkedAt": "2026-10-21T05:18:40.110231+00:00",
-  "workflowRun": "39548807003",
+  "checkedAt": "2026-10-21T10:34:55.742692+00:00",
+  "workflowRun": "39585617141",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-21T05:18:40.824Z",
-      "teamsWithHistory": 0,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 172,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-21T05:19:50.038Z",
-      "teamsWithHistory": 24,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 33,
-      "warnings": [
-        "Recent-game baselines were unavailable for 4 team(s).",
-        "Multi-game form is warming up for 24 team(s); another scheduled refresh will add the next prior slate."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-21T05:21:00.377Z",
+      "generatedAt": "2026-10-21T10:34:56.225Z",
       "teamsWithHistory": 28,
-      "teamsMeetingSampleTarget": 0,
+      "teamsMeetingSampleTarget": 22,
       "fallbackSignalCount": 1,
-      "warnings": [
-        "Multi-game form is warming up for 28 team(s); another scheduled refresh will add the next prior slate."
-      ]
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-21T10:36:08.897Z",
+      "teamsWithHistory": 28,
+      "teamsMeetingSampleTarget": 22,
+      "fallbackSignalCount": 1,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-21T10:37:20.090Z",
+      "teamsWithHistory": 28,
+      "teamsMeetingSampleTarget": 22,
+      "fallbackSignalCount": 1,
+      "warnings": []
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 7,
-  "previousGeneratedAt": "2026-10-21T00:07:55.498Z",
+  "previousGeneratedAt": "2026-10-21T05:21:00.377Z",
   "previousSeason": {
-    "year": 2026,
-    "type": 2,
-    "typeName": "Regular Season",
-    "slug": "regular-season",
-    "week": 6,
-    "label": "2026 Regular Season \u00b7 Week 6"
-  },
-  "previousResultCount": 55,
-  "previousAnalysisInputs": {
-    "historyReady": true,
-    "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 0,
-    "teamsWithHistory": 0,
-    "teamsMeetingSampleTarget": 0,
-    "teamSamples": {},
-    "playerPicks": 0,
-    "picksWithGameHistory": 0,
-    "playersWithoutGameHistory": [],
-    "signalCount": 0,
-    "fallbackSignalCount": 0,
-    "sampleSeasons": [],
-    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
-  },
-  "generatedAt": "2026-10-21T05:21:00.377Z",
-  "season": {
     "year": 2026,
     "type": 2,
     "typeName": "Regular Season",
@@ -70,9 +38,8 @@
     "week": 7,
     "label": "2026 Regular Season \u00b7 Week 7"
   },
-  "gameCount": 14,
-  "resultCount": 0,
-  "analysisInputs": {
+  "previousResultCount": 0,
+  "previousAnalysisInputs": {
     "historyReady": false,
     "targetRecentGamesPerTeam": 3,
     "pregameTeams": 28,
@@ -118,18 +85,75 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
+  "generatedAt": "2026-10-21T10:37:20.090Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 7,
+    "label": "2026 Regular Season \u00b7 Week 7"
+  },
+  "gameCount": 14,
+  "resultCount": 0,
+  "analysisInputs": {
+    "historyReady": false,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 28,
+    "teamsWithHistory": 28,
+    "teamsMeetingSampleTarget": 22,
+    "teamSamples": {
+      "NE": 3,
+      "CHI": 3,
+      "PIT": 3,
+      "NO": 3,
+      "SF": 3,
+      "ATL": 3,
+      "CLE": 3,
+      "TEN": 3,
+      "IND": 3,
+      "MIN": 2,
+      "MIA": 2,
+      "NYJ": 3,
+      "TB": 3,
+      "CAR": 2,
+      "CIN": 2,
+      "BAL": 3,
+      "NYG": 3,
+      "HOU": 3,
+      "DEN": 3,
+      "ARI": 3,
+      "GB": 3,
+      "DET": 2,
+      "LAR": 3,
+      "LV": 3,
+      "KC": 2,
+      "SEA": 3,
+      "DAL": 3,
+      "PHI": 3
+    },
+    "playerPicks": 55,
+    "picksWithGameHistory": 55,
+    "playersWithoutGameHistory": [],
+    "signalCount": 220,
+    "fallbackSignalCount": 1,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
   "sampleSignals": [
     {
       "name": "De'Von Achane",
       "team": "MIA",
       "position": "RB",
-      "score": 73,
+      "score": 80,
       "baselineAvailable": false,
       "recentGames": [],
       "signals": [
         {
           "label": "Opponent defense",
-          "detail": "NYJ has allowed 122 rushing yards per game across 2 recent samples."
+          "detail": "NYJ has allowed 158.7 rushing yards per game across 3 recent samples."
         },
         {
           "label": "Current form",
@@ -137,11 +161,11 @@
         },
         {
           "label": "Team scheme",
-          "detail": "MIA's recent yardage mix is 34% passing and 66% rushing. The strongest recent non-QB production has come from RB."
+          "detail": "MIA's recent yardage mix is 36% passing and 64% rushing. The strongest recent non-QB production has come from RB."
         },
         {
           "label": "Position history",
-          "detail": "Comparable RB groups averaged 98 scrimmage yards, 2.5 catches and 0 TD across 2 recent games vs NYJ."
+          "detail": "Comparable RB groups averaged 172.3 scrimmage yards, 4.3 catches and 0.7 TD across 3 recent games vs NYJ."
         }
       ]
     },
@@ -161,30 +185,38 @@
           "seasonYear": 2026,
           "seasonType": 2,
           "seasonWeek": 6
+        },
+        {
+          "gameId": "401872976",
+          "date": "2026-10-04T20:25Z",
+          "opponent": "LV",
+          "headline": "15/30 C/ATT \u00b7 225 YDS \u00b7 2 TD",
+          "productionScore": 80.25,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 4
         }
       ],
       "signals": [
         {
           "label": "Opponent defense",
-          "detail": "SEA has allowed 134.5 net passing yards per game across 2 recent samples."
+          "detail": "SEA has allowed 141 net passing yards per game across 3 recent samples."
         },
         {
           "label": "Current form",
-          "detail": "1-game form is establishing; latest vs LAC: 23/30 C/ATT \u00b7 272 YDS \u00b7 0 TD."
+          "detail": "2-game form is cooling; latest vs LAC: 23/30 C/ATT \u00b7 272 YDS \u00b7 0 TD."
         },
         {
           "label": "Team scheme",
-          "detail": "KC's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from RB."
+          "detail": "KC's recent yardage mix is 59% passing and 41% rushing. The strongest recent non-QB production has come from RB."
         },
         {
           "label": "Position history",
-          "detail": "Opposing QBs averaged 148 passing yards, 1 passing TD and 0.5 INT across 2 recent games vs SEA."
+          "detail": "Opposing QBs averaged 161.7 passing yards, 1 passing TD and 1 INT across 3 recent games vs SEA."
         }
       ]
     }
   ],
-  "warnings": [
-    "Multi-game form is warming up for 28 team(s); another scheduled refresh will add the next prior slate."
-  ],
+  "warnings": [],
   "analysisWarning": "History warm-up is incomplete; a fresh timestamp alone does not mean complete analysis."
 }
