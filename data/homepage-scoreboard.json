@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-10-23T01:57:32.580711+00:00",
+  "fetchedAt": "2026-10-23T07:55:53.491804+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -421,7 +421,7 @@
             "id": "401873010",
             "uid": "s:20~l:28~e:401873010~c:401873010",
             "date": "2026-10-23T00:15Z",
-            "attendance": 0,
+            "attendance": 60520,
             "type": {
               "id": "1",
               "abbreviation": "STD"
@@ -448,6 +448,7 @@
                 "type": "team",
                 "order": 0,
                 "homeAway": "home",
+                "winner": true,
                 "team": {
                   "id": "3",
                   "uid": "s:20~l:28~t:3",
@@ -547,7 +548,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/chi.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/chi.png"
                 },
-                "score": "20",
+                "score": "30",
                 "linescores": [
                   {
                     "value": 10.0,
@@ -558,6 +559,16 @@
                     "value": 10.0,
                     "displayValue": "10",
                     "period": 2
+                  },
+                  {
+                    "value": 7.0,
+                    "displayValue": "7",
+                    "period": 3
+                  },
+                  {
+                    "value": 3.0,
+                    "displayValue": "3",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -567,14 +578,14 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "4-2"
+                    "summary": "5-2"
                   },
                   {
                     "name": "Home",
                     "type": "home",
-                    "summary": "2-1"
+                    "summary": "3-1"
                   },
                   {
                     "name": "Road",
@@ -589,6 +600,7 @@
                 "type": "team",
                 "order": 1,
                 "homeAway": "away",
+                "winner": false,
                 "team": {
                   "id": "17",
                   "uid": "s:20~l:28~t:17",
@@ -688,7 +700,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ne.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/ne.png"
                 },
-                "score": "14",
+                "score": "24",
                 "linescores": [
                   {
                     "value": 0.0,
@@ -699,6 +711,16 @@
                     "value": 14.0,
                     "displayValue": "14",
                     "period": 2
+                  },
+                  {
+                    "value": 7.0,
+                    "displayValue": "7",
+                    "period": 3
+                  },
+                  {
+                    "value": 3.0,
+                    "displayValue": "3",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -708,9 +730,9 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "4-2"
+                    "summary": "4-3"
                   },
                   {
                     "name": "Home",
@@ -720,79 +742,24 @@
                   {
                     "name": "Road",
                     "type": "road",
-                    "summary": "1-2"
+                    "summary": "1-3"
                   }
                 ]
               }
             ],
             "notes": [],
-            "situation": {
-              "lastPlay": {
-                "id": "4018730102127",
-                "type": {
-                  "id": "65",
-                  "text": "End of Half",
-                  "abbreviation": "EH"
-                },
-                "text": "END QUARTER 2",
-                "scoreValue": 0,
-                "team": {
-                  "id": "17"
-                },
-                "probability": {
-                  "tiePercentage": 0.0,
-                  "homeWinPercentage": 0.746,
-                  "awayWinPercentage": 0.254,
-                  "secondsLeft": 0
-                },
-                "statYardage": 0,
-                "drive": {
-                  "description": "2 plays, 66 yards, 0:14",
-                  "start": {
-                    "yardLine": 66,
-                    "text": "NE 34"
-                  },
-                  "end": {
-                    "yardLine": 0,
-                    "text": "CHI 0"
-                  },
-                  "timeElapsed": {
-                    "displayValue": "0:14"
-                  },
-                  "result": "TD"
-                },
-                "start": {
-                  "yardLine": 15,
-                  "team": {
-                    "id": "17"
-                  }
-                },
-                "end": {
-                  "yardLine": 15,
-                  "team": {
-                    "id": "17"
-                  }
-                }
-              },
-              "down": 1,
-              "yardLine": 15,
-              "distance": 10,
-              "isRedZone": true,
-              "homeTimeouts": 3,
-              "awayTimeouts": 3
-            },
             "status": {
               "clock": 0.0,
               "displayClock": "0:00",
-              "period": 2,
+              "period": 4,
               "type": {
-                "id": "23",
-                "name": "STATUS_HALFTIME",
-                "state": "in",
-                "completed": false,
-                "description": "Halftime",
-                "detail": "Halftime",
-                "shortDetail": "Halftime"
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
               },
               "isTBDFlex": false
             },
@@ -812,8 +779,8 @@
                 "abbreviation": "PYDS",
                 "leaders": [
                   {
-                    "displayValue": "12/15, 169 YDS, 1 TD, 1 INT",
-                    "value": 169.0,
+                    "displayValue": "24/31, 321 YDS, 2 TD, 1 INT",
+                    "value": 321.0,
                     "athlete": {
                       "id": "4431452",
                       "fullName": "Drake Maye",
@@ -852,8 +819,8 @@
                 "abbreviation": "RYDS",
                 "leaders": [
                   {
-                    "displayValue": "9 CAR, 37 YDS, 1 TD",
-                    "value": 37.0,
+                    "displayValue": "22 CAR, 78 YDS, 1 TD",
+                    "value": 78.0,
                     "athlete": {
                       "id": "4259545",
                       "fullName": "D'Andre Swift",
@@ -953,18 +920,242 @@
                 "region": "us"
               }
             ],
-            "highlights": []
+            "headlines": [
+              {
+                "type": "Recap",
+                "description": "\u2014 Round 2 went to Caleb Williams and the Chicago Bears.",
+                "shortLinkText": "Caleb Williams throws 2 TD passes as the Bears beat Drake Maye and the Patriots 30-24",
+                "video": [
+                  {
+                    "id": 50254893,
+                    "source": "espn",
+                    "headline": "Bears take down Patriots in TNF thriller",
+                    "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.jpg",
+                    "duration": 71,
+                    "tracking": {
+                      "coverageType": "Final Game Highlight",
+                      "leagueName": "NFL",
+                      "program": "espnnfl",
+                      "sportName": "football",
+                      "trackingId": "dm_20261023_NFL_bears_take_down_patriots_in_tnf_thriller_",
+                      "trackingName": "NFL_One-Play (Bears take down Patriots in TNF thriller ) 2026/10/23 ESHEET"
+                    },
+                    "deviceRestrictions": {
+                      "devices": [
+                        "settop",
+                        "tablet",
+                        "handset",
+                        "ipad",
+                        "desktop"
+                      ],
+                      "type": "whitelist"
+                    },
+                    "links": {
+                      "api": {
+                        "artwork": {
+                          "href": "https://artwork.api.espn.com/artwork/collections/media/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28"
+                        },
+                        "self": {
+                          "href": "https://content.core.api.espn.com/v1/video/clips/50254893"
+                        }
+                      },
+                      "mobile": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                        "alert": {
+                          "href": "https://m.espn.com/general/video/videoAlert?vid=50254893"
+                        },
+                        "progressiveDownload": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller"
+                        },
+                        "source": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                        },
+                        "streaming": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller"
+                        }
+                      },
+                      "source": {
+                        "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4",
+                        "HD": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                        },
+                        "HLS": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8",
+                          "9x16": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                          },
+                          "HD": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                          },
+                          "cmaf": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8",
+                            "9x16": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                            },
+                            "cmb": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                            }
+                          },
+                          "cmb": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                          },
+                          "shield": {
+                            "href": "https://watch.auth.api.espn.com/video/auth/media/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset"
+                          }
+                        },
+                        "flash": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                        },
+                        "full": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                        },
+                        "mezzanine": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                        }
+                      },
+                      "sportscenter": {
+                        "href": "sportscenter://x-callback-url/showVideo?videoID=50254893&videoDSI=0d19920a46098"
+                      },
+                      "web": {
+                        "href": "https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                        "self": {
+                          "href": "https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                          "dsi": {
+                            "href": "https://www.espn.com/video/clip?id=0d19920a46098"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "highlights": [
+              {
+                "id": 50254893,
+                "cerebroId": "6adad38f6170402baba36f69",
+                "source": "espn",
+                "headline": "Bears take down Patriots in TNF thriller",
+                "description": "Bears take down Patriots in TNF thriller ",
+                "lastModified": "2026-10-23T03:26:15Z",
+                "originalPublishDate": "2026-10-23T03:25:04Z",
+                "duration": 71,
+                "timeRestrictions": {
+                  "embargoDate": "2026-10-23T03:25:02Z",
+                  "expirationDate": "2026-10-25T03:25:02Z"
+                },
+                "deviceRestrictions": {
+                  "devices": [
+                    "settop",
+                    "tablet",
+                    "handset",
+                    "ipad",
+                    "desktop"
+                  ],
+                  "type": "whitelist"
+                },
+                "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.jpg",
+                "links": {
+                  "api": {
+                    "artwork": {
+                      "href": "https://artwork.api.espn.com/artwork/collections/media/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28"
+                    },
+                    "self": {
+                      "href": "https://content.core.api.espn.com/v1/video/clips/50254893"
+                    }
+                  },
+                  "mobile": {
+                    "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                    "alert": {
+                      "href": "https://m.espn.com/general/video/videoAlert?vid=50254893"
+                    },
+                    "progressiveDownload": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller"
+                    },
+                    "source": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                    },
+                    "streaming": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller"
+                    }
+                  },
+                  "source": {
+                    "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4",
+                    "HD": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                    },
+                    "HLS": {
+                      "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8",
+                      "9x16": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                      },
+                      "HD": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                      },
+                      "cmaf": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8",
+                        "9x16": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                        },
+                        "cmb": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                        }
+                      },
+                      "cmb": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/playlist.m3u8"
+                      },
+                      "shield": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/media/79a3dc8d-f6b5-48ce-b4a5-d65e00e8fd28/asset"
+                      }
+                    },
+                    "flash": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                    },
+                    "full": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                    },
+                    "mezzanine": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1023/8409c0e3-bc9f-484e-b972-8f0dabfb15c6/8409c0e3-bc9f-484e-b972-8f0dabfb15c6.mp4"
+                    }
+                  },
+                  "sportscenter": {
+                    "href": "sportscenter://x-callback-url/showVideo?videoID=50254893&videoDSI=0d19920a46098"
+                  },
+                  "web": {
+                    "href": "https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                    "self": {
+                      "href": "https://www.espn.com/video/clip/_/id/50254893/bears-take-patriots-tnf-thriller",
+                      "dsi": {
+                        "href": "https://www.espn.com/video/clip?id=0d19920a46098"
+                      }
+                    }
+                  }
+                },
+                "ad": {
+                  "bundle": "nfl_one_plays",
+                  "sport": "nfl"
+                },
+                "tracking": {
+                  "coverageType": "Final Game Highlight",
+                  "leagueName": "NFL",
+                  "program": "espnnfl",
+                  "sportName": "football",
+                  "trackingId": "dm_20261023_NFL_bears_take_down_patriots_in_tnf_thriller_",
+                  "trackingName": "NFL_One-Play (Bears take down Patriots in TNF thriller ) 2026/10/23 ESHEET"
+                }
+              }
+            ]
           }
         ],
         "links": [
           {
             "language": "en-US",
             "rel": [
-              "live",
+              "summary",
               "desktop",
               "event"
             ],
-            "href": "https://www.espn.com/nfl/game?gameId=401873010",
+            "href": "https://www.espn.com/nfl/game/_/gameId/401873010/patriots-bears",
             "text": "Gamecast",
             "shortText": "Gamecast",
             "isExternal": false,
@@ -986,6 +1177,18 @@
           {
             "language": "en-US",
             "rel": [
+              "highlights",
+              "desktop"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401873010",
+            "text": "Highlights",
+            "shortText": "Highlights",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
               "pbp",
               "desktop",
               "event"
@@ -995,37 +1198,33 @@
             "shortText": "Play-by-Play",
             "isExternal": false,
             "isPremium": false
-          }
-        ],
-        "weather": {
-          "displayValue": "33",
-          "temperature": 61,
-          "highTemperature": 61,
-          "conditionId": "Clear",
-          "link": {
+          },
+          {
             "language": "en-US",
             "rel": [
-              "60605"
+              "recap",
+              "desktop",
+              "event"
             ],
-            "href": "http://www.accuweather.com/en/us/soldier-field-il/60608/current-weather/18170_poi?lang=en-us",
-            "text": "Weather",
-            "shortText": "Weather",
-            "isExternal": true,
+            "href": "https://www.espn.com/nfl/recap?gameId=401873010",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
             "isPremium": false
           }
-        },
+        ],
         "status": {
           "clock": 0.0,
           "displayClock": "0:00",
-          "period": 2,
+          "period": 4,
           "type": {
-            "id": "23",
-            "name": "STATUS_HALFTIME",
-            "state": "in",
-            "completed": false,
-            "description": "Halftime",
-            "detail": "Halftime",
-            "shortDetail": "Halftime"
+            "id": "3",
+            "name": "STATUS_FINAL",
+            "state": "post",
+            "completed": true,
+            "description": "Final",
+            "detail": "Final",
+            "shortDetail": "Final"
           }
         }
       },
@@ -1732,8 +1931,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $75",
-                "numberAvailable": 1301,
+                "summary": "Tickets as low as $74",
+                "numberAvailable": 1270,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-orleans-saints-tickets-stade-de-france-10-25-2026--sports-nfl-football/production/7028012?wsUser=717"
@@ -1769,7 +1968,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -1785,11 +1984,11 @@
                       ]
                     }
                   ],
-                  "displayName": "DraftKings"
+                  "displayName": "Draft Kings"
                 },
-                "details": "PIT -3.5",
+                "details": "PIT -3",
                 "overUnder": 44.5,
-                "spread": 3.5,
+                "spread": 3.0,
                 "awayTeamOdds": {
                   "favorite": true,
                   "underdog": false,
@@ -1828,7 +2027,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0ML84695442_1",
                         "text": "Home Bet",
@@ -1860,7 +2059,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0ML84695442_3",
                         "text": "Away Bet",
@@ -1889,8 +2088,8 @@
                   "shortDisplayName": "Spread",
                   "home": {
                     "close": {
-                      "line": "+3.5",
-                      "odds": "-118",
+                      "line": "+3",
+                      "odds": "-102",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1898,7 +2097,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0HC84695442P350_1",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0HC84695442P300_1",
                         "text": "Home Point Spread",
                         "shortText": "Home Point Spread",
                         "isExternal": true,
@@ -1911,7 +2110,7 @@
                             "gameId": 401873011,
                             "betSide": "none",
                             "betType": "straight",
-                            "betDetails": "Spread:NO+3.5"
+                            "betDetails": "Spread:NO+3"
                           }
                         }
                       }
@@ -1923,8 +2122,8 @@
                   },
                   "away": {
                     "close": {
-                      "line": "-3.5",
-                      "odds": "-102",
+                      "line": "-3",
+                      "odds": "-118",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -1932,7 +2131,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0HC84695442N350_3",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118009%3Foutcomes%3D0HC84695442N300_3",
                         "text": "Away Point Spread",
                         "shortText": "Away Point Spread",
                         "isExternal": true,
@@ -1945,7 +2144,7 @@
                             "gameId": 401873011,
                             "betSide": "none",
                             "betType": "straight",
-                            "betDetails": "Spread:PIT-3.5"
+                            "betDetails": "Spread:PIT-3"
                           }
                         }
                       }
@@ -2797,8 +2996,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $133",
-                "numberAvailable": 2707,
+                "summary": "Tickets as low as $135",
+                "numberAvailable": 2672,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/atlanta-falcons-tickets-atlanta-mercedes-benz-stadium-3-8-2026/production/6487181?wsUser=717"
@@ -2832,7 +3031,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -2890,7 +3089,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118095%3Foutcomes%3D0ML84695528_1",
                         "text": "Home Bet",
@@ -2922,7 +3121,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118095%3Foutcomes%3D0ML84695528_3",
                         "text": "Away Bet",
@@ -3155,7 +3354,7 @@
             "rel": [
               "30313"
             ],
-            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -3877,7 +4076,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $41",
-                "numberAvailable": 1770,
+                "numberAvailable": 1766,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tennessee-titans-tickets-nashville-nissan-stadium-3-4-2027/production/6493543?wsUser=717"
@@ -3911,7 +4110,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -3969,7 +4168,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118233%3Foutcomes%3D0ML84695676_1",
                         "text": "Home Bet",
@@ -4001,7 +4200,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118233%3Foutcomes%3D0ML84695676_3",
                         "text": "Away Bet",
@@ -4234,7 +4433,7 @@
             "rel": [
               "37213"
             ],
-            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -4955,8 +5154,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $115",
-                "numberAvailable": 3747,
+                "summary": "Tickets as low as $114",
+                "numberAvailable": 3672,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/minnesota-vikings-tickets-minneapolis-us-bank-stadium-3-5-2027/production/6492306?wsUser=717"
@@ -4990,7 +5189,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -5048,7 +5247,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118173%3Foutcomes%3D0ML84695606_1",
                         "text": "Home Bet",
@@ -5080,7 +5279,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118173%3Foutcomes%3D0ML84695606_3",
                         "text": "Away Bet",
@@ -5313,7 +5512,7 @@
             "rel": [
               "55415"
             ],
-            "href": "http://www.accuweather.com/en/us/us-bank-stadium-mn/55415/hourly-weather-forecast/35911_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/us-bank-stadium-mn/55415/hourly-weather-forecast/35911_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -6034,8 +6233,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $53",
-                "numberAvailable": 3645,
+                "summary": "Tickets as low as $56",
+                "numberAvailable": 3562,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-jets-tickets-east-rutherford-metlife-stadium-3-7-2027/production/6494615?wsUser=717"
@@ -6069,7 +6268,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -6127,7 +6326,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118187%3Foutcomes%3D0ML84695620_1",
                         "text": "Home Bet",
@@ -6159,7 +6358,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118187%3Foutcomes%3D0ML84695620_3",
                         "text": "Away Bet",
@@ -6392,7 +6591,7 @@
             "rel": [
               "07073"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7114,7 +7313,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $81",
-                "numberAvailable": 3402,
+                "numberAvailable": 3429,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/carolina-panthers-tickets-charlotte-bank-of-america-stadium-3-1-2026/production/6488703?wsUser=717"
@@ -7148,7 +7347,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -7206,7 +7405,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118024%3Foutcomes%3D0ML84695457_1",
                         "text": "Home Bet",
@@ -7238,7 +7437,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118024%3Foutcomes%3D0ML84695457_3",
                         "text": "Away Bet",
@@ -7471,7 +7670,7 @@
             "rel": [
               "28202"
             ],
-            "href": "http://www.accuweather.com/en/us/bank-of-america-stadium-nc/28202/hourly-weather-forecast/53601_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/bank-of-america-stadium-nc/28202/hourly-weather-forecast/53601_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -8192,8 +8391,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $104",
-                "numberAvailable": 3693,
+                "summary": "Tickets as low as $107",
+                "numberAvailable": 2693,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/baltimore-ravens-tickets-baltimore-mt-bank-stadium-3-1-2026/production/6487365?wsUser=717"
@@ -8227,7 +8426,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -8285,7 +8484,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118156%3Foutcomes%3D0ML84695589_1",
                         "text": "Home Bet",
@@ -8317,7 +8516,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118156%3Foutcomes%3D0ML84695589_3",
                         "text": "Away Bet",
@@ -8550,7 +8749,7 @@
             "rel": [
               "21230"
             ],
-            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -9271,8 +9470,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $90",
-                "numberAvailable": 3569,
+                "summary": "Tickets as low as $89",
+                "numberAvailable": 3483,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/houston-texans-tickets-houston-nrg-stadium-3-8-2026/production/6490076?wsUser=717"
@@ -9306,7 +9505,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -9364,7 +9563,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118038%3Foutcomes%3D0ML84695471_1",
                         "text": "Home Bet",
@@ -9396,7 +9595,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118038%3Foutcomes%3D0ML84695471_3",
                         "text": "Away Bet",
@@ -9629,7 +9828,7 @@
             "rel": [
               "77054"
             ],
-            "href": "http://www.accuweather.com/en/us/nrg-stadium-tx/77002/hourly-weather-forecast/43039_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/nrg-stadium-tx/77002/hourly-weather-forecast/43039_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10351,7 +10550,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $133",
-                "numberAvailable": 2556,
+                "numberAvailable": 2106,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/arizona-cardinals-tickets-glendale-state-farm-stadium-3-3-2026/production/6486973?wsUser=717"
@@ -10385,7 +10584,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -10436,14 +10635,14 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "+195",
+                      "odds": "+190",
                       "link": {
                         "language": "en-US",
                         "rel": [
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118123%3Foutcomes%3D0ML84695556_1",
                         "text": "Home Bet",
@@ -10468,14 +10667,14 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "-238",
+                      "odds": "-230",
                       "link": {
                         "language": "en-US",
                         "rel": [
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118123%3Foutcomes%3D0ML84695556_3",
                         "text": "Away Bet",
@@ -10708,7 +10907,7 @@
             "rel": [
               "85305"
             ],
-            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10880,24 +11079,6 @@
                   "current": 99
                 },
                 "statistics": [],
-                "records": [
-                  {
-                    "name": "overall",
-                    "abbreviation": "Any",
-                    "type": "total",
-                    "summary": "3-2"
-                  },
-                  {
-                    "name": "Home",
-                    "type": "home",
-                    "summary": "2-0"
-                  },
-                  {
-                    "name": "Road",
-                    "type": "road",
-                    "summary": "1-2"
-                  }
-                ],
                 "leaders": [
                   {
                     "name": "passingLeader",
@@ -11018,6 +11199,24 @@
                         }
                       }
                     ]
+                  }
+                ],
+                "records": [
+                  {
+                    "name": "overall",
+                    "abbreviation": "Any",
+                    "type": "total",
+                    "summary": "3-2"
+                  },
+                  {
+                    "name": "Home",
+                    "type": "home",
+                    "summary": "2-0"
+                  },
+                  {
+                    "name": "Road",
+                    "type": "road",
+                    "summary": "1-2"
                   }
                 ]
               },
@@ -11430,7 +11629,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $169",
-                "numberAvailable": 3348,
+                "numberAvailable": 3298,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/detroit-lions-tickets-detroit-ford-field-3-2-2026/production/6489844?wsUser=717"
@@ -11464,7 +11663,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -11522,7 +11721,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118203%3Foutcomes%3D0ML84695636_1",
                         "text": "Home Bet",
@@ -11554,7 +11753,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118203%3Foutcomes%3D0ML84695636_3",
                         "text": "Away Bet",
@@ -11787,7 +11986,7 @@
             "rel": [
               "48226"
             ],
-            "href": "http://www.accuweather.com/en/us/ford-field-mi/48226/hourly-weather-forecast/43021_poi?day=4&hbhhour=16&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/ford-field-mi/48226/hourly-weather-forecast/43021_poi?day=3&hbhhour=16&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -12508,8 +12707,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $254",
-                "numberAvailable": 5466,
+                "summary": "Tickets as low as $249",
+                "numberAvailable": 5336,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/las-vegas-raiders-tickets-las-vegas-allegiant-stadium-3-6-2026/production/6491240?wsUser=717"
@@ -12543,7 +12742,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -12601,7 +12800,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118247%3Foutcomes%3D0ML84695690_1",
                         "text": "Home Bet",
@@ -12633,7 +12832,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118247%3Foutcomes%3D0ML84695690_3",
                         "text": "Away Bet",
@@ -12866,7 +13065,7 @@
             "rel": [
               "89118"
             ],
-            "href": "http://www.accuweather.com/en/us/allegiant-stadium-nv/89101/hourly-weather-forecast/209206_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/allegiant-stadium-nv/89101/hourly-weather-forecast/209206_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -13587,8 +13786,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $320",
-                "numberAvailable": 3227,
+                "summary": "Tickets as low as $306",
+                "numberAvailable": 3207,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/seattle-seahawks-tickets-seattle-lumen-field-3-6-2027/production/6492975?wsUser=717"
@@ -13622,7 +13821,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -13680,7 +13879,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118035%3Foutcomes%3D0ML84695468_1",
                         "text": "Home Bet",
@@ -13712,7 +13911,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118035%3Foutcomes%3D0ML84695468_3",
                         "text": "Away Bet",
@@ -13945,7 +14144,7 @@
             "rel": [
               "98134"
             ],
-            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=4&hbhhour=17&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=3&hbhhour=17&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -14668,8 +14867,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $71",
-                "numberAvailable": 4707,
+                "summary": "Tickets as low as $85",
+                "numberAvailable": 4594,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/philadelphia-eagles-tickets-philadelphia-lincoln-financial-field-3-1-2027/production/6494930?wsUser=717"
@@ -14739,7 +14938,7 @@
               {
                 "provider": {
                   "id": "100",
-                  "name": "DraftKings",
+                  "name": "Draft Kings",
                   "priority": 1,
                   "logos": [
                     {
@@ -14797,7 +14996,7 @@
                           "home",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118071%3Foutcomes%3D0ML84695504_1",
                         "text": "Home Bet",
@@ -14829,7 +15028,7 @@
                           "away",
                           "desktop",
                           "bets",
-                          "draftkings"
+                          "draft-kings"
                         ],
                         "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118071%3Foutcomes%3D0ML84695504_3",
                         "text": "Away Bet",
@@ -15062,7 +15261,7 @@
             "rel": [
               "19103"
             ],
-            "href": "http://www.accuweather.com/en/us/lincoln-financial-field-pa/19107/hourly-weather-forecast/43025_poi?day=5&hbhhour=20&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lincoln-financial-field-pa/19107/hourly-weather-forecast/43025_poi?day=4&hbhhour=20&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -15087,7 +15286,7 @@
     ],
     "provider": {
       "id": "100",
-      "name": "DraftKings",
+      "name": "Draft Kings",
       "priority": 1,
       "logos": [
         {
@@ -15103,7 +15302,7 @@
           ]
         }
       ],
-      "displayName": "DraftKings"
+      "displayName": "Draft Kings"
     }
   },
   "previousScoreboard": {
@@ -19027,14 +19226,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 The mantra in New England's locker room under Mike Vrabel has been to never apologize for a win. So no one was feeling bad about the Patriots improving to 2-0 in the AFC East after their victory over the New York Jets on Sunday.",
                 "shortLinkText": "Drake Maye's 3 TD passes help Patriots stave off late push by Jets in 26-19 win"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
@@ -22655,18 +22854,6 @@
             "href": "https://www.espn.com/nfl/boxscore/_/gameId/401873005",
             "text": "Box Score",
             "shortText": "Box Score",
-            "isExternal": false,
-            "isPremium": false
-          },
-          {
-            "language": "en-US",
-            "rel": [
-              "highlights",
-              "desktop"
-            ],
-            "href": "https://www.espn.com/nfl/video?gameId=401873005",
-            "text": "Highlights",
-            "shortText": "Highlights",
             "isExternal": false,
             "isPremium": false
           },
