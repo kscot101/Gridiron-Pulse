@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-10-23T18:26:26.921Z",
+  "testedAt": "2026-10-23T18:50:51.683Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 254,
@@ -13,32 +13,33 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": false,
-      "analysisCurrent": false,
-      "mode": "unavailable",
-      "gamesCheckedAt": null,
-      "analysisGeneratedAt": "2026-10-23T13:51:08.479Z",
-      "modelRecordAsOf": "2026-10-23T13:51:08.479Z"
+      "available": true,
+      "analysisCurrent": true,
+      "mode": "agent",
+      "gamesCheckedAt": "2026-10-23T18:45:10.739Z",
+      "analysisGeneratedAt": "2026-10-23T18:45:10.739Z",
+      "modelRecordAsOf": "2026-10-23T18:45:10.739Z",
+      "scoreSource": "analysis-agent"
     },
-    "gameCount": 0,
+    "gameCount": 14,
     "forecastCount": 490,
-    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Oct 23, 9:51 AM"
+    "statusText": "2026 Regular Season · Week 7 | Game data checked Oct 23, 2:45 PM | Analysis generated Oct 23, 2:45 PM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
       "expected": [],
       "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
       "expected": [],
       "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     }
   ],
