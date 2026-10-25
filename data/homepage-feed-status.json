@@ -1,20 +1,29 @@
 {
-  "checkedAt": "2026-10-25T10:08:15.861289+00:00",
-  "workflowRun": "40183512725",
-  "ok": false,
+  "checkedAt": "2026-10-25T14:34:02.669075+00:00",
+  "workflowRun": "40202827776",
+  "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-25T10:08:16.487Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 20,
+      "generatedAt": "2026-10-25T14:34:03.212Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 18,
+      "fallbackSignalCount": 1,
+      "warnings": [
+        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
+      ]
+    },
+    {
+      "generatedAt": "2026-10-25T14:35:15.130Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 18,
       "fallbackSignalCount": 1,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-25T10:09:28.099Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 20,
+      "generatedAt": "2026-10-25T14:36:26.322Z",
+      "teamsWithHistory": 24,
+      "teamsMeetingSampleTarget": 18,
       "fallbackSignalCount": 1,
       "warnings": []
     }
@@ -22,7 +31,7 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 7,
-  "previousGeneratedAt": "2026-10-25T05:20:09.803Z",
+  "previousGeneratedAt": "2026-10-25T10:09:28.099Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -76,5 +85,108 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "error": "Homepage source returned HTTP 503"
+  "generatedAt": "2026-10-25T14:36:26.322Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 7,
+    "label": "2026 Regular Season \u00b7 Week 7"
+  },
+  "gameCount": 14,
+  "resultCount": 4,
+  "analysisInputs": {
+    "historyReady": false,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 24,
+    "teamsWithHistory": 24,
+    "teamsMeetingSampleTarget": 18,
+    "teamSamples": {
+      "SF": 3,
+      "ATL": 3,
+      "CLE": 3,
+      "TEN": 3,
+      "IND": 3,
+      "MIN": 2,
+      "MIA": 2,
+      "NYJ": 3,
+      "TB": 3,
+      "CAR": 2,
+      "CIN": 2,
+      "BAL": 3,
+      "NYG": 3,
+      "HOU": 3,
+      "DEN": 3,
+      "ARI": 3,
+      "GB": 3,
+      "DET": 2,
+      "LAR": 3,
+      "LV": 3,
+      "KC": 2,
+      "SEA": 3,
+      "DAL": 3,
+      "PHI": 3
+    },
+    "playerPicks": 47,
+    "picksWithGameHistory": 47,
+    "playersWithoutGameHistory": [],
+    "signalCount": 188,
+    "fallbackSignalCount": 1,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
+  "sampleSignals": [
+    {
+      "name": "Patrick Mahomes",
+      "team": "KC",
+      "position": "QB",
+      "score": 73,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401873006",
+          "date": "2026-10-18T20:25Z",
+          "opponent": "LAC",
+          "headline": "23/30 C/ATT \u00b7 272 YDS \u00b7 0 TD",
+          "productionScore": 67.33333333333333,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 6
+        },
+        {
+          "gameId": "401872976",
+          "date": "2026-10-04T20:25Z",
+          "opponent": "LV",
+          "headline": "15/30 C/ATT \u00b7 225 YDS \u00b7 2 TD",
+          "productionScore": 80.25,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 4
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "SEA has allowed 141 net passing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "2-game form is cooling; latest vs LAC: 23/30 C/ATT \u00b7 272 YDS \u00b7 0 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "KC's recent yardage mix is 59% passing and 41% rushing. The strongest recent non-QB production has come from RB."
+        },
+        {
+          "label": "Position history",
+          "detail": "Opposing QBs averaged 161.7 passing yards, 1 passing TD and 1 INT across 3 recent games vs SEA."
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "analysisWarning": "History warm-up is incomplete; a fresh timestamp alone does not mean complete analysis."
 }
