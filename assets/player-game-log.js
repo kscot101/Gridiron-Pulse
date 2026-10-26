@@ -161,6 +161,9 @@
     } catch(e) { return null; }
   }
   async function resolvedH2HOpponent(d) {
+    if (window.GPMatchupComparisons) {
+      try { var verified = await GPMatchupComparisons.resolveOpponent(d); if (verified) return verified; } catch (e) {}
+    }
     return h2hOpponent(d) || await scoreboardOpponent(d);
   }
   function h2hNumeric(v) {
@@ -342,6 +345,11 @@
     section.setAttribute('aria-busy','false');
     if (!result || !offensivePositions.has(pos(d.position))) { section.hidden=true; return; }
     section.hidden=false;
+    if (window.GPMatchupComparisons) {
+      Promise.resolve().then(function() {
+        if (section.isConnected) GPMatchupComparisons.mountPlayer(section,d,result);
+      });
+    }
     var opponent=result.opponent;
     if(!opponent){
       section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY</small><h3>Head to head</h3></div></div><p class="gp-h2h-note">'+esc(result.message||'Next opponent is not available yet.')+'</p>';

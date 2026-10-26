@@ -2538,6 +2538,8 @@
 @media(max-width:760px){.gp-header-tools .search-button{width:40px;min-height:42px;padding:0}.gp-picks-shortcut{padding:0 12px}.brand{min-width:0;width:auto}.brand>span:last-child{min-width:0}.brand-mark{flex-shrink:0}}
 @media(max-width:420px){.topbar-inner{gap:8px}.brand{gap:8px}.brand strong{font-size:12px;white-space:normal;line-height:1.15}.brand small{font-size:7px;letter-spacing:.09em}.gp-header-tools{gap:6px}.gp-picks-shortcut{padding:0 10px;font-size:12px}.gp-header-tools .search-button{width:36px}}
 </style>
+<link rel="stylesheet" href="./assets/matchup-comparisons.css?v=20261026-defense1">
+<script src="./assets/matchup-comparisons.js?v=20261026-defense1" defer></script>
 </head>
 
 <body>
@@ -2631,6 +2633,7 @@
             </p>
 
             <div class="hero-actions">
+<a id="gp-team-defense-link" class="secondary gp-exact-link" href="team.html">Team Defense</a>
               <a class="primary gp-hero-picks" href="#player-edge">See Today's Picks</a>
 <a id="gp-pick-tracker-link" class="secondary gp-exact-link" href="pick-tracker.html">Pick Tracker / By Position</a>
               <a id="gp-trial-home-link" class="secondary gp-exact-link" href="projection-trial.html">Projection Lab / Exact Results</a>
@@ -2992,7 +2995,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="./assets/player-game-log.js?v=20261005dup1"></script>
+    <script src="./assets/player-game-log.js?v=20261026-bars1"></script>
 <script>
     "use strict";
 
@@ -6879,6 +6882,7 @@
         "</div></section>";
 
       if (!teamMode) GPPlayerStats.attach(entity, document.getElementById("detail-body"));
+      else if (window.GPMatchupComparisons) GPMatchupComparisons.mountTeam(entity, document.getElementById("detail-body"));
 
       openOverlay("detail-overlay");
     }
