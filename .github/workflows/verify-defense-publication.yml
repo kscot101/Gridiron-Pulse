@@ -1,0 +1,59 @@
+name: Verify public defense comparisons
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-defense-publication.yml'
+      - 'assets/matchup-comparisons.js'
+      - 'assets/matchup-comparisons.css'
+      - 'team.html'
+permissions:
+  contents: read
+concurrency:
+  group: verify-defense-publication
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check public team page, player hooks and comparison data
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          from datetime import datetime,timezone
+          base='https://kscot101.github.io/Gridiron-Pulse/'
+          def get(path):
+              req=urllib.request.Request(base+path+'?releasecheck='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'GridironReleaseVerifier'})
+              with urllib.request.urlopen(req,timeout=25) as r:return r.read()
+          error='Not checked'
+          for attempt in range(12):
+              try:
+                  hashes={}
+                  for path in ['team.html','assets/matchup-comparisons.js','assets/matchup-comparisons.css','assets/player-game-log.js']:
+                      published=get(path);expected=Path(path).read_bytes()
+                      assert published==expected, path+' has not reached the public site'
+                      hashes[path]=hashlib.sha256(published).hexdigest()
+                  for path in ['index.html','projections-2026.html','projection-trial.html','pick-tracker.html']:
+                      html=get(path).decode()
+                      assert 'matchup-comparisons.js?v=20261026-defense1' in html,path
+                      assert 'player-game-log.js?v=20261026-bars1' in html,path
+                  d=json.loads(get('data/team-defense.json'));p=json.loads(get('data/defense-players.json'))
+                  assert d['ok'] and len(d['teams'])==32 and d['through']
+                  assert p['ok'] and len(p['players'])>0
+                  report={'passed':True,'verifiedAt':datetime.now(timezone.utc).isoformat(),'publicFiles':hashes,'teams':len(d['teams']),'players':len(p['players']),'statsThrough':d['through'],'scope':'Actual public assets and feeds; browser interactions checked separately.'}
+                  Path('defense-publication.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));break
+              except Exception as e:
+                  error=str(e);print('Publication check',attempt+1,error,flush=True)
+                  if attempt<11:time.sleep(12)
+          else:raise SystemExit(error)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: defense-publication
+          path: defense-publication.json
+          retention-days: 7
