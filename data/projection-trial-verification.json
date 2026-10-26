@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-10-26T08:08:39.864Z",
+  "testedAt": "2026-10-26T14:22:26.624Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 305,
@@ -13,53 +13,32 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": true,
-      "analysisCurrent": true,
-      "mode": "agent",
-      "gamesCheckedAt": "2026-10-26T08:06:52.677Z",
+      "available": false,
+      "analysisCurrent": false,
+      "mode": "unavailable",
+      "gamesCheckedAt": null,
       "analysisGeneratedAt": "2026-10-26T08:06:52.677Z",
-      "modelRecordAsOf": "2026-10-26T08:06:52.677Z",
-      "scoreSource": "analysis-agent"
+      "modelRecordAsOf": "2026-10-26T08:06:52.677Z"
     },
-    "gameCount": 14,
+    "gameCount": 0,
     "forecastCount": 560,
-    "statusText": "2026 Regular Season - Week 7 | Game data checked Oct 26, 4:06 AM | Analysis generated Oct 26, 4:06 AM"
+    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Oct 26, 4:06 AM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
-      "expected": [
-        "401873009|2577417|workload-trial-1",
-        "401873009|4040715|workload-trial-1",
-        "401873009|4241389|workload-trial-1",
-        "401873009|4241478|workload-trial-1"
-      ],
-      "actual": [
-        "401873009|2577417|workload-trial-1",
-        "401873009|4040715|workload-trial-1",
-        "401873009|4241389|workload-trial-1",
-        "401873009|4241478|workload-trial-1"
-      ],
-      "edgeCards": 6,
-      "analysisCurrent": true,
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
-      "expected": [
-        "401873009|2577417|v2.1-tracked-1",
-        "401873009|4040715|v2.1-tracked-1",
-        "401873009|4241389|v2.1-tracked-1",
-        "401873009|4241478|v2.1-tracked-1"
-      ],
-      "actual": [
-        "401873009|2577417|v2.1-tracked-1",
-        "401873009|4040715|v2.1-tracked-1",
-        "401873009|4241389|v2.1-tracked-1",
-        "401873009|4241478|v2.1-tracked-1"
-      ],
-      "edgeCards": 6,
-      "analysisCurrent": true,
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
       "values": true
     }
   ],
