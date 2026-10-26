@@ -1,9 +1,9 @@
 {
   "ok": true,
   "snapshot": {
-    "id": "2026-2-7-2026-10-26T08:06:52.677Z",
+    "id": "2026-2-7-2026-10-26T15:28:07.329Z",
     "version": "1.4.0",
-    "generatedAt": "2026-10-26T08:06:52.677Z",
+    "generatedAt": "2026-10-26T15:28:07.329Z",
     "mode": "pregame",
     "season": {
       "year": 2026,
@@ -29,7 +29,7 @@
       "availabilityCount": 10,
       "availabilityConcernCount": 10,
       "availabilityImpactCount": 0,
-      "generationMs": 4275
+      "generationMs": 4846
     },
     "refresh": {
       "recommendedBrowserSeconds": 300,
@@ -256,8 +256,8 @@
           "indoor": null
         },
         "weather": {
-          "display": "34",
-          "temperature": 59
+          "display": "33",
+          "temperature": 60
         },
         "broadcasts": [
           "ESPN",
@@ -358,6 +358,15 @@
         },
         "injuries": [
           {
+            "athleteId": "3929630",
+            "name": "Saquon Barkley",
+            "team": "PHI",
+            "teamId": "21",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4035624",
             "name": "Landon Dickerson",
             "team": "PHI",
@@ -387,15 +396,6 @@
           {
             "athleteId": "4431574",
             "name": "Eli Stowers",
-            "team": "PHI",
-            "teamId": "21",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4241374",
-            "name": "Grant Calcaterra",
             "team": "PHI",
             "teamId": "21",
             "status": "Injured Reserve",
@@ -25534,8 +25534,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4696981",
-            "name": "Cam Skattebo",
+            "athleteId": "4360516",
+            "name": "Tyrone Tracy Jr.",
             "team": "NYG",
             "teamId": "19",
             "status": "Questionable",
@@ -25543,8 +25543,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4360516",
-            "name": "Tyrone Tracy Jr.",
+            "athleteId": "4696981",
+            "name": "Cam Skattebo",
             "team": "NYG",
             "teamId": "19",
             "status": "Questionable",
@@ -31132,21 +31132,30 @@
             "details": "Not Specified"
           },
           {
+            "athleteId": "3124005",
+            "name": "Zaire Franklin",
+            "team": "GB",
+            "teamId": "9",
+            "status": "Out",
+            "type": "out",
+            "details": "Fracture"
+          },
+          {
             "athleteId": "4426411",
             "name": "Sean Rhyan",
             "team": "GB",
             "teamId": "9",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
+            "status": "Doubtful",
+            "type": "doubtful",
+            "details": "Sprain"
           },
           {
             "athleteId": "4428037",
             "name": "Jacob Monk",
             "team": "GB",
             "teamId": "9",
-            "status": "Questionable",
-            "type": "questionable",
+            "status": "Doubtful",
+            "type": "doubtful",
             "details": "Not Specified"
           },
           {
@@ -31161,15 +31170,6 @@
           {
             "athleteId": "4258206",
             "name": "Benjamin St-Juste",
-            "team": "GB",
-            "teamId": "9",
-            "status": "Out",
-            "type": "out",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "14931",
-            "name": "Kevin Zeitler",
             "team": "GB",
             "teamId": "9",
             "status": "Out",
@@ -36965,7 +36965,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "DAL and PHI enter with no single overwhelming team-level edge, so individual role and matchup signals matter more.",
-        "context": "Lincoln Financial Field \u00b7 34 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Lincoln Financial Field \u00b7 33 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "2577417",
@@ -40086,6 +40086,15 @@
         "evidence": {
           "injuries": [
             {
+              "athleteId": "3929630",
+              "name": "Saquon Barkley",
+              "team": "PHI",
+              "teamId": "21",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Not Specified"
+            },
+            {
               "athleteId": "4035624",
               "name": "Landon Dickerson",
               "team": "PHI",
@@ -40115,15 +40124,6 @@
             {
               "athleteId": "4431574",
               "name": "Eli Stowers",
-              "team": "PHI",
-              "teamId": "21",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4241374",
-              "name": "Grant Calcaterra",
               "team": "PHI",
               "teamId": "21",
               "status": "Injured Reserve",
@@ -52529,7 +52529,7 @@
     "powerRankings": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-26T08:06:52.677Z",
+      "generatedAt": "2026-10-26T15:28:07.329Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonWeek": 7,
@@ -59443,7 +59443,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "9:4887255",
@@ -61366,7 +61366,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "5:5083076",
@@ -63606,7 +63606,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "14:4429096",
@@ -67094,7 +67094,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "28:4361422",
@@ -69255,7 +69255,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "21:4241478",
@@ -71738,7 +71738,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "9:4248528",
@@ -79628,7 +79628,7 @@
           "carriedForward": false,
           "onBye": false,
           "movement": 0,
-          "direction": "NEW"
+          "direction": "EVEN"
         },
         {
           "key": "7:4568490",
@@ -81243,7 +81243,7 @@
     "modelPerformance": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-10-26T08:06:52.677Z",
+      "generatedAt": "2026-10-26T15:28:07.329Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonTypeName": "Regular Season",
@@ -81468,7 +81468,7 @@
           "actual": "321 pass yds \u00b7 2 pass TD \u00b7 26 rush yds",
           "finalScore": "NE 24 \u00b7 CHI 30",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873010|chi|caleb williams|qb impact",
@@ -81486,7 +81486,7 @@
           "actual": "308 pass yds \u00b7 2 pass TD \u00b7 18 rush yds",
           "finalScore": "NE 24 \u00b7 CHI 30",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873010|ne|demario douglas|team star",
@@ -81504,7 +81504,7 @@
           "actual": "23 scrimmage yds \u00b7 0 TD",
           "finalScore": "NE 24 \u00b7 CHI 30",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873010|chi|luther burden iii|team star",
@@ -81522,7 +81522,7 @@
           "actual": "137 scrimmage yds \u00b7 1 TD",
           "finalScore": "NE 24 \u00b7 CHI 30",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873011|pit|aaron rodgers|qb impact",
@@ -81540,7 +81540,7 @@
           "actual": "212 pass yds \u00b7 1 pass TD \u00b7 6 rush yds",
           "finalScore": "PIT 16 \u00b7 NO 10",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873011|no|tyler shough|qb impact",
@@ -81558,7 +81558,7 @@
           "actual": "278 pass yds \u00b7 1 pass TD \u00b7 7 rush yds",
           "finalScore": "PIT 16 \u00b7 NO 10",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873011|pit|jaylen warren|team star",
@@ -81576,7 +81576,7 @@
           "actual": "137 scrimmage yds \u00b7 0 TD",
           "finalScore": "PIT 16 \u00b7 NO 10",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873011|no|chris olave|team star",
@@ -81594,7 +81594,7 @@
           "actual": "56 scrimmage yds \u00b7 0 TD",
           "finalScore": "PIT 16 \u00b7 NO 10",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873017|sf|brock purdy|qb impact",
@@ -81612,7 +81612,7 @@
           "actual": "288 pass yds \u00b7 1 pass TD \u00b7 5 rush yds",
           "finalScore": "SF 20 \u00b7 ATL 29",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873017|atl|michael penix jr.|qb impact",
@@ -81630,7 +81630,7 @@
           "actual": "213 pass yds \u00b7 3 pass TD \u00b7 -1 rush yds",
           "finalScore": "SF 20 \u00b7 ATL 29",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873017|sf|christian mccaffrey|team star",
@@ -81648,7 +81648,7 @@
           "actual": "100 scrimmage yds \u00b7 1 TD",
           "finalScore": "SF 20 \u00b7 ATL 29",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873017|atl|drake london|team star",
@@ -81666,7 +81666,7 @@
           "actual": "66 scrimmage yds \u00b7 1 TD",
           "finalScore": "SF 20 \u00b7 ATL 29",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873013|cle|deshaun watson|qb impact",
@@ -81684,7 +81684,7 @@
           "actual": "308 pass yds \u00b7 0 pass TD \u00b7 19 rush yds",
           "finalScore": "CLE 27 \u00b7 TEN 24",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873013|cle|denzel boston|team star",
@@ -81702,7 +81702,7 @@
           "actual": "27 scrimmage yds \u00b7 0 TD",
           "finalScore": "CLE 27 \u00b7 TEN 24",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873013|ten|tony pollard|team star",
@@ -81720,7 +81720,7 @@
           "actual": "155 scrimmage yds \u00b7 3 TD",
           "finalScore": "CLE 27 \u00b7 TEN 24",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873014|ind|daniel jones|qb impact",
@@ -81738,7 +81738,7 @@
           "actual": "108 pass yds \u00b7 0 pass TD \u00b7 13 rush yds",
           "finalScore": "IND 10 \u00b7 MIN 16",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873014|min|kyler murray|qb impact",
@@ -81756,7 +81756,7 @@
           "actual": "150 pass yds \u00b7 1 pass TD \u00b7 39 rush yds",
           "finalScore": "IND 10 \u00b7 MIN 16",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873014|ind|jonathan taylor|team star",
@@ -81774,7 +81774,7 @@
           "actual": "110 scrimmage yds \u00b7 1 TD",
           "finalScore": "IND 10 \u00b7 MIN 16",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873014|min|aaron jones sr.|team star",
@@ -81792,7 +81792,7 @@
           "actual": "26 scrimmage yds \u00b7 0 TD",
           "finalScore": "IND 10 \u00b7 MIN 16",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873015|mia|malik willis|qb impact",
@@ -81810,7 +81810,7 @@
           "actual": "208 pass yds \u00b7 2 pass TD \u00b7 37 rush yds",
           "finalScore": "MIA 28 \u00b7 NYJ 25",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873015|nyj|geno smith|qb impact",
@@ -81828,7 +81828,7 @@
           "actual": "287 pass yds \u00b7 3 pass TD \u00b7 0 rush yds",
           "finalScore": "MIA 28 \u00b7 NYJ 25",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873015|mia|ollie gordon ii|team star",
@@ -81846,7 +81846,7 @@
           "actual": "103 scrimmage yds \u00b7 1 TD",
           "finalScore": "MIA 28 \u00b7 NYJ 25",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873015|nyj|garrett wilson|team star",
@@ -81864,7 +81864,7 @@
           "actual": "26 scrimmage yds \u00b7 0 TD",
           "finalScore": "MIA 28 \u00b7 NYJ 25",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873018|tb|jalon daniels|qb impact",
@@ -81882,7 +81882,7 @@
           "actual": "Player line unavailable",
           "finalScore": "TB 43 \u00b7 CAR 13",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         }
       ],
       "message": "173-117 across 290 graded pregame Player Edge calls.",
@@ -81902,14 +81902,14 @@
     "availability": {
       "available": true,
       "status": "ACTIVE",
-      "updatedAt": "2026-10-26T08:06:52.677Z",
+      "updatedAt": "2026-10-26T15:28:07.329Z",
       "count": 10,
       "concernCount": 10,
       "impactCount": 0,
       "summary": {
-        "out": 10,
+        "out": 9,
         "doubtful": 0,
-        "questionable": 0,
+        "questionable": 1,
         "monitor": 0,
         "available": 0
       },
@@ -81935,7 +81935,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4685554",
@@ -81958,7 +81958,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4431574",
@@ -81981,30 +81981,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
-        },
-        {
-          "id": "401873009:4241374",
-          "gameId": "401873009",
-          "matchup": "DAL @ PHI",
-          "kickoff": "2026-10-27T00:15Z",
-          "athleteId": "4241374",
-          "name": "Grant Calcaterra",
-          "team": "PHI",
-          "teamId": "21",
-          "teamColor": "06424d",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Not Specified",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:3676833",
@@ -82027,7 +82004,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4035624",
@@ -82050,7 +82027,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4427816",
@@ -82073,7 +82050,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4240456",
@@ -82096,7 +82073,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:4426331",
@@ -82119,7 +82096,7 @@
           "details": "Concussion",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         },
         {
           "id": "401873009:3929850",
@@ -82142,7 +82119,30 @@
           "details": "Plantar Fasciitis",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-10-26T08:06:52.677Z"
+          "updatedAt": "2026-10-26T15:28:07.329Z"
+        },
+        {
+          "id": "401873009:3929630",
+          "gameId": "401873009",
+          "matchup": "DAL @ PHI",
+          "kickoff": "2026-10-27T00:15Z",
+          "athleteId": "3929630",
+          "name": "Saquon Barkley",
+          "team": "PHI",
+          "teamId": "21",
+          "teamColor": "06424d",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Questionable",
+          "type": "questionable",
+          "details": "Not Specified",
+          "level": "QUESTIONABLE",
+          "priority": 2,
+          "updatedAt": "2026-10-26T15:28:07.329Z"
         }
       ],
       "message": "10 active availability concerns; 0 involve a current QB or team-star spotlight.",
