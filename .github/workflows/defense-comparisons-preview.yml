@@ -1,0 +1,72 @@
+name: Verify defense comparisons preview
+on:
+  workflow_dispatch:
+  push:
+    branches: [defense-comparison-bars-20261026]
+permissions:
+  contents: read
+concurrency:
+  group: defense-comparisons-preview
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download published statistical source files
+        run: |
+          mkdir -p .defense-inputs
+          curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2026.csv -o .defense-inputs/teams.csv
+          curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv -o .defense-inputs/players.csv
+          curl -fLsS --retry 2 --max-time 90 https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv -o .defense-inputs/games.csv
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          for p in Path('.defense-inputs').glob('*.csv'):
+              with p.open() as f:
+                  r=csv.DictReader(f)
+                  rows=list(r)
+              print(p.name, len(rows), r.fieldnames)
+          PY
+      - name: Build and test comparisons when implementation is present
+        run: |
+          if [ -f scripts/build_defense_profiles.py ]; then
+            python scripts/test_defense_profiles.py
+            python scripts/build_defense_profiles.py --input-dir .defense-inputs --season 2026
+            python scripts/install_defense_comparisons.py
+            node --check assets/matchup-comparisons.js
+            npm install --no-save playwright
+            npx playwright install --with-deps chromium
+            node scripts/check_defense_comparisons.js
+          fi
+      - name: Bundle inspected source and outputs
+        if: always()
+        run: |
+          python - <<'PY'
+          import zipfile
+          from pathlib import Path
+          root=Path('.')
+          include=['index.html','projections-2026.html','projection-trial.html','pick-tracker.html','team.html','team-defense.html','assets','scripts','.github/workflows','.defense-inputs']
+          include+=['data/player-recent-games.json','data/homepage-snapshot.json','data/homepage-scoreboard.json','data/projection-trial.json','data/player-context-v21.json','data/team-defense.json','data/defense-players.json','defense-verification.json']
+          paths=[]
+          for v in include:
+              p=Path(v)
+              paths.extend(p.rglob('*') if p.is_dir() else [p])
+          paths.extend(root.glob('defense-*.png'))
+          with zipfile.ZipFile('defense-work.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in dict.fromkeys(paths):
+                  if p.is_file(): z.write(p,str(p))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: defense-comparison-work
+          path: defense-work.zip
+          retention-days: 7
