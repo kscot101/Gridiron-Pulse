@@ -7,7 +7,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 CSS = '  <link rel="stylesheet" href="./assets/player-game-log.css?v=20261005dup1">\n'
-JS = '  <script src="./assets/player-game-log.js?v=20261005dup1"></script>\n'
+JS = '  <script src="./assets/player-game-log.js?v=20261026-bars1"></script>\n'
 
 
 def connect(page):
