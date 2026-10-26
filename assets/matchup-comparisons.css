@@ -53,3 +53,5 @@ body.td-page{margin:0;background:#07110d;color:#f5f8f4;font-family:Inter,system-
 .td-page .td-footer{color:#aebfb3;font-size:12px;border-top:1px solid #34523c;padding-top:20px;margin-top:24px}
 @media(max-width:640px){.td-page main{padding:20px 14px 35px}.td-page .td-nav{padding:14px;align-items:flex-start;flex-direction:column;gap:10px}.td-page #team-overview{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.td-page #team-overview strong{font-size:18px}.td-page .gc-defense{padding:13px}.td-page .gc-metric-grid{grid-template-columns:1fr}.td-page .gc-position-read{grid-template-columns:repeat(2,minmax(0,1fr))}.gc-defense{padding:13px}.gp-compare .gc-metric{padding:12px}.gp-compare .gc-bar-label{font-size:12px}.gp-compare .gc-bar-label strong{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.gp-compare *{scroll-behavior:auto!important}}
+/* The old translucent H2H gradient can wash out text over a light dialog. */
+.gp-h2h-root{background:#0e2019!important}
