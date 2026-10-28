@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,25 +24,45 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Inspect and test repair when installed
+      - uses: actions/cache@v4
+        with:
+          path: .cache/projection-trial
+          key: workload-trial-source-2022-2025-v1
+      - name: Install and validate repair
         run: |
-          if test -f scripts/install_durable_picks.py; then
-            python scripts/install_durable_picks.py
-            python scripts/test_durable_picks.py
-            node --check assets/durable-picks.js
-            npm install --no-save playwright
-            npx playwright install --with-deps chromium
-            node scripts/check_durable_picks.js
-          fi
-      - name: Save tested generated frontend files on preview branch
+          if ! test -f scripts/install_durable_picks.py; then exit 0; fi
+          pip install pandas numpy requests
+          python scripts/install_durable_picks.py
+          python scripts/install_durable_picks.py
+          python scripts/test_durable_picks.py
+          python scripts/test_projection_trial.py
+          node --check assets/saved-picks.js
+          node --check scripts/check_durable_picks.js
+      - name: Refresh verified current slate and capture unchanged models
+        env:
+          GRIDIRON_AGENT_RUN_KEY: ${{ secrets.GRIDIRON_AGENT_RUN_KEY }}
+        run: |
+          if ! test -f scripts/install_durable_picks.py; then exit 0; fi
+          python scripts/refresh_homepage_scores.py
+          python -u scripts/refresh_homepage_feed.py
+          python -u scripts/projection_trial.py --cache .cache/projection-trial --out data
+          python scripts/test_durable_picks.py
+      - name: Verify actual values and unavailable-feed regressions
+        run: |
+          if ! test -f scripts/install_durable_picks.py; then exit 0; fi
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          node scripts/check_durable_picks.js
+          node scripts/check_projection_trial.js
+      - name: Save tested generated files on preview branch only
         run: |
           if ! test -f durable-picks-verification.json; then exit 0; fi
           python -c "import json; assert json.load(open('durable-picks-verification.json'))['passed']"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html assets/homepage-feed.js assets/projection-trial.js scripts/install_projection_trial.py durable-picks-verification.json
+          git add index.html scripts/projection_trial.py scripts/refresh_homepage_feed.py durable-picks-verification.json data/projection-trial.json data/projection-trial-ledger.json data/projection-trial-verification.json data/homepage-snapshot.json data/homepage-scoreboard.json data/homepage-feed-status.json data/homepage-result-archive.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Verify durable picks display and safe unavailable states'
+          git commit -m 'Verify upcoming saved picks, source refresh and immutable forecast records'
           git push origin HEAD:picks-availability-20261028
       - name: Bundle source for local verification
         if: always()
