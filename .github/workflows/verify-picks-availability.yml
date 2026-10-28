@@ -1,0 +1,63 @@
+name: Verify durable picks preview
+on:
+  push:
+    branches: [picks-availability-20261028]
+    paths: ['scripts/**', 'assets/**', '.github/workflows/verify-picks-availability.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: durable-picks-preview
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: picks-availability-20261028
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect and test repair when installed
+        run: |
+          if test -f scripts/install_durable_picks.py; then
+            python scripts/install_durable_picks.py
+            python scripts/test_durable_picks.py
+            node --check assets/durable-picks.js
+            npm install --no-save playwright
+            npx playwright install --with-deps chromium
+            node scripts/check_durable_picks.js
+          fi
+      - name: Save tested generated frontend files on preview branch
+        run: |
+          if ! test -f durable-picks-verification.json; then exit 0; fi
+          python -c "import json; assert json.load(open('durable-picks-verification.json'))['passed']"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html assets/homepage-feed.js assets/projection-trial.js scripts/install_projection_trial.py durable-picks-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verify durable picks display and safe unavailable states'
+          git push origin HEAD:picks-availability-20261028
+      - name: Bundle source for local verification
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('picks-work.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in Path('.').rglob('*'):
+                  if not p.is_file() or any(v in p.parts for v in ['.git','node_modules','.cache','__pycache__']): continue
+                  if p.suffix in ['.html','.css','.js','.py','.json','.yml','.md','.png']: z.write(p)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-picks-work
+          path: picks-work.zip
+          retention-days: 7
