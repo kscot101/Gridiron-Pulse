@@ -36,6 +36,19 @@
     });
     return Array.from(unique.values()).sort(function(a,b){return at(a.kickoff)-at(b.kickoff)||a.modelFallback-b.modelFallback||String(a.playerName).localeCompare(String(b.playerName));});
   }
+  function filtered(rows){
+    var selected=root.state&&root.state.edge;
+    if(selected==='qb')return rows.filter(function(r){return r.position==='QB';});
+    if(selected==='stars')return rows.filter(function(r){return r.position!=='QB';});
+    if(selected!=='favorites')return rows;
+    var favorites=root.state&&root.state.favorites||{};
+    return rows.filter(function(r){
+      var comp=list(r.scheduleGame.competitions)[0]||{};
+      var side=list(comp.competitors).find(function(c){return tm((c.team||{}).abbreviation)===tm(r.team);});
+      var tid=String(side&&side.team&&side.team.id||'');
+      return list(favorites.players).some(function(p){return String(p.athleteId||p.key)===String(r.athleteId);})||list(favorites.teams).some(function(t){return tm(t.abbreviation||t.team||t.key)===tm(r.team)||(tid&&String(t.key||t.id||t.teamId)===tid);});
+    });
+  }
   function card(r){
     var p={name:r.playerName,athleteId:r.athleteId,player_id:r.player_id,position:r.position,team:r.team,gameId:r.gameId,opponent:r.opponent};
     var name=root.GPPlayerStats?root.GPPlayerStats.link(p,r.playerName):esc(r.playerName);
@@ -54,10 +67,11 @@
       var first=rows[0],game=first.scheduleGame,gameRows=rows.filter(function(r){return r.gameId===first.gameId;}).slice(0,4);
       spot.innerHTML='<div class="ds-heading"><span>SPOTLIGHT / SAVED PICKS</span><strong>'+esc(game.shortName||game.name||first.team+' vs '+first.opponent)+'</strong><small>'+esc(when(first.kickoff))+'</small></div><p class="ds-note">Verified pregame captures for this exact matchup. These remain available between live-analysis refreshes.</p><div class="ds-grid">'+gameRows.map(card).join('')+'</div><p class="ds-foot">Schedule checked '+esc(when(schedule.fetchedAt))+'. Conditional on playing; injury and lineup changes may not yet be reflected. TD estimates are expected counts, not scoring probabilities.</p><a class="ds-link" href="#player-edge">See all upcoming picks</a>';
     }else spot.replaceChildren();
+    var shown=filtered(rows);
     var show=rows.length>0&&edge&&!edge.querySelector('[data-record-id]');
     if(picks){
       picks.hidden=!show;if(edge)edge.hidden=show;
-      if(show)picks.innerHTML='<div class="ds-heading"><span>SAVED UPCOMING PICKS</span><strong>'+rows.length+' player matchups</strong></div><p class="ds-note">'+esc(model()==='workload-trial-1'?'Workload trial selected.':'Tracked v2.1 selected.')+' Each card identifies its model and original save time. An available alternative is labeled, never relabeled as the selected model.</p><div class="ds-grid">'+(expanded?rows:rows.slice(0,6)).map(card).join('')+'</div>'+(rows.length>6?'<button type="button" class="ds-expand" aria-expanded="'+expanded+'">'+(expanded?'Show fewer':'Show all '+rows.length+' picks')+'</button>':'');
+      if(show)picks.innerHTML='<div class="ds-heading"><span>SAVED UPCOMING PICKS</span><strong>'+shown.length+' player matchups</strong></div><p class="ds-note">'+esc(model()==='workload-trial-1'?'Workload trial selected.':'Tracked v2.1 selected.')+' Each card identifies its model and original save time. An available alternative is labeled, never relabeled as the selected model.</p><div class="ds-grid">'+(shown.length?(expanded?shown:shown.slice(0,6)).map(card).join(''):'<p class="ds-note">No saved picks match this filter.</p>')+'</div>'+(shown.length>6?'<button type="button" class="ds-expand" aria-expanded="'+expanded+'">'+(expanded?'Show fewer':'Show all '+shown.length+' picks')+'</button>':'');
       else picks.replaceChildren();
     }
     if(!rows.length&&!native.querySelector('[data-record-id]')){
@@ -69,8 +83,8 @@
   async function read(path){var ctl=new AbortController(),end=setTimeout(function(){ctl.abort();},8000);try{var r=await fetch(path+'?saved='+Math.floor(Date.now()/60000),{cache:'no-cache',signal:ctl.signal});if(!r.ok)throw Error('Saved-pick source unavailable');return await r.json();}finally{clearTimeout(end);}}
   async function load(){
     var result=await Promise.allSettled([read('./data/projection-trial.json'),read('./data/homepage-scoreboard.json')]);
-    if(result[0].status==='fulfilled'&&Array.isArray(result[0].value.forecasts))saved=result[0].value;
-    if(result[1].status==='fulfilled'&&result[1].value.ok===true)schedule=result[1].value;
+    if(result[0].status==='fulfilled'&&Array.isArray(result[0].value.forecasts)&&(!saved||at(result[0].value.generatedAt)>=at(saved.generatedAt)))saved=result[0].value;
+    if(result[1].status==='fulfilled'&&result[1].value.ok===true&&(!schedule||at(result[1].value.fetchedAt)>=at(schedule.fetchedAt)))schedule=result[1].value;
     paint();clearTimeout(timer);timer=setTimeout(load,60000);
   }
   function init(){
@@ -80,7 +94,7 @@
       var ob=new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;paint();});});
       ['spotlight-game','edge-grid'].forEach(function(id){var el=document.getElementById(id);if(el)ob.observe(el,{childList:true,subtree:true});});
       document.addEventListener('change',function(e){if(e.target.id==='gp-trial-switch')paint();});
-      document.addEventListener('click',function(e){if(e.target.closest('.ds-expand')){expanded=!expanded;paint();}});
+      document.addEventListener('click',function(e){if(e.target.closest('[data-edge]')){expanded=false;requestAnimationFrame(paint);}if(e.target.closest('.ds-expand')){expanded=!expanded;paint();}});
       document.addEventListener('visibilitychange',function(){if(!document.hidden){paint();load();}});
       setInterval(paint,30000);
     }

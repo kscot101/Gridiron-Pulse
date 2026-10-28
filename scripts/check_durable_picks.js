@@ -52,6 +52,17 @@ console.log('Saved-pick guard tests passed:',tests);
       assert.equal(new Set(values.map(x=>x.id)).size,values.length);
       assert.equal(await page.locator('#spotlight-game').isVisible(),false);
       assert.ok(await page.locator('#gp-saved-picks [data-saved-record]').count()>0);
+
+      if(!useFixture){
+        await page.locator('[data-edge="qb"]').click();
+        await page.waitForFunction(()=>{const cards=[...document.querySelectorAll('#gp-saved-picks [data-saved-record]')];return cards.length>0&&cards.every(c=>c.querySelector('small').textContent.includes('/ QB'));});
+        await page.locator('[data-edge="favorites"]').click();
+        await page.waitForFunction(()=>document.getElementById('gp-saved-picks').textContent.includes('No saved picks match this filter'));
+        await page.locator('[data-edge="all"]').click();
+        await page.waitForFunction(()=>document.querySelectorAll('#gp-saved-picks [data-saved-record]').length>0);
+        report.positionFilter=true;report.favoriteEmptyState=true;
+      }
+
       if(!useFixture){report.upcomingPlayerMatchups=expected.length;report.spotlightPlayers=values.map(n=>data.forecasts.find(r=>r.id===n.id).playerName);report.firstVisitorLoadMs=Date.now()-start;await page.screenshot({path:'durable-picks-mobile.png'});}
       for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,'Horizontal overflow at '+width);}
       if(!useFixture)await page.screenshot({path:'durable-picks-desktop.png'});
