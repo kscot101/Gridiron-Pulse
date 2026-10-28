@@ -1,27 +1,39 @@
 {
-  "checkedAt": "2026-10-28T16:16:30.926989+00:00",
-  "workflowRun": "40724293555",
+  "checkedAt": "2026-10-28T19:58:47.595005+00:00",
+  "workflowRun": "40759070502",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-28T16:16:31.903Z",
-      "teamsWithHistory": 28,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 4,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-28T16:17:43.402Z",
+      "generatedAt": "2026-10-28T19:58:48.543Z",
       "teamsWithHistory": 28,
       "teamsMeetingSampleTarget": 18,
       "fallbackSignalCount": 3,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-28T16:18:55.643Z",
+      "generatedAt": "2026-10-28T20:00:00.939Z",
+      "teamsWithHistory": 28,
+      "teamsMeetingSampleTarget": 18,
+      "fallbackSignalCount": 3,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-28T20:01:12.708Z",
+      "teamsWithHistory": 28,
+      "teamsMeetingSampleTarget": 18,
+      "fallbackSignalCount": 3,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-28T20:02:25.242Z",
+      "teamsWithHistory": 28,
+      "teamsMeetingSampleTarget": 18,
+      "fallbackSignalCount": 3,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-28T20:03:36.983Z",
       "teamsWithHistory": 28,
       "teamsMeetingSampleTarget": 18,
       "fallbackSignalCount": 3,
@@ -31,7 +43,7 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 8,
-  "previousGeneratedAt": "2026-10-28T09:01:16.883Z",
+  "previousGeneratedAt": "2026-10-28T16:18:55.643Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -46,48 +58,48 @@
     "targetRecentGamesPerTeam": 3,
     "pregameTeams": 28,
     "teamsWithHistory": 28,
-    "teamsMeetingSampleTarget": 0,
+    "teamsMeetingSampleTarget": 18,
     "teamSamples": {
       "CAR": 2,
-      "GB": 2,
-      "BAL": 2,
-      "BUF": 1,
-      "TEN": 2,
-      "CIN": 1,
-      "ARI": 2,
-      "DAL": 2,
-      "MIN": 1,
-      "DET": 1,
-      "LV": 2,
-      "NYJ": 2,
-      "CLE": 2,
-      "PIT": 2,
-      "ATL": 2,
-      "TB": 2,
-      "IND": 2,
-      "JAX": 1,
-      "LAC": 1,
-      "LAR": 2,
+      "GB": 3,
+      "BAL": 3,
+      "BUF": 2,
+      "TEN": 3,
+      "CIN": 2,
+      "ARI": 3,
+      "DAL": 3,
+      "MIN": 2,
+      "DET": 2,
+      "LV": 3,
+      "NYJ": 3,
+      "CLE": 3,
+      "PIT": 3,
+      "ATL": 3,
+      "TB": 3,
+      "IND": 3,
+      "JAX": 2,
+      "LAC": 2,
+      "LAR": 3,
       "KC": 2,
-      "DEN": 2,
-      "NE": 2,
-      "MIA": 1,
-      "PHI": 2,
-      "WSH": 1,
-      "CHI": 2,
-      "SEA": 2
+      "DEN": 3,
+      "NE": 3,
+      "MIA": 2,
+      "PHI": 3,
+      "WSH": 2,
+      "CHI": 3,
+      "SEA": 3
     },
-    "playerPicks": 56,
-    "picksWithGameHistory": 56,
+    "playerPicks": 55,
+    "picksWithGameHistory": 55,
     "playersWithoutGameHistory": [],
-    "signalCount": 224,
-    "fallbackSignalCount": 4,
+    "signalCount": 220,
+    "fallbackSignalCount": 3,
     "sampleSeasons": [
       "2026"
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-28T16:18:55.643Z",
+  "generatedAt": "2026-10-28T20:03:36.983Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -236,6 +248,32 @@
         {
           "label": "Position history",
           "detail": "DEN's recent results against comparable TE roles are still being established."
+        }
+      ]
+    },
+    {
+      "name": "De'Von Achane",
+      "team": "MIA",
+      "position": "RB",
+      "score": 74,
+      "baselineAvailable": false,
+      "recentGames": [],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "NE has allowed 83.7 rushing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "Active current-roster player; game usage is still being established."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "MIA's recent yardage mix is 46% passing and 54% rushing. The strongest recent non-QB production has come from WR."
+        },
+        {
+          "label": "Position history",
+          "detail": "Comparable RB groups averaged 173.7 scrimmage yards, 7.3 catches and 1 TD across 3 recent games vs NE."
         }
       ]
     }
