@@ -2,7 +2,7 @@ name: Refresh current homepage feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: '41 * * * *'
+    - cron: '11,41 * * * *'
   push:
     branches: [main]
     paths:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:

@@ -1,0 +1,64 @@
+name: Verify public saved picks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/saved-picks.js'
+      - 'assets/saved-picks.css'
+      - '.github/workflows/verify-saved-picks-public.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify public first-visit picks without live analysis
+        run: |
+          node <<'JS'
+          const {chromium}=require('playwright');
+          const fs=require('node:fs');const assert=require('node:assert/strict');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:390,height:844},timezoneId:'America/New_York'});
+            const base='https://kscot101.github.io/Gridiron-Pulse/';
+            await context.route('**/*',route=>{
+              const u=new URL(route.request().url());
+              if(!u.href.startsWith(base)||u.pathname.endsWith('/data/homepage-snapshot.json'))return route.abort();
+              return route.continue();
+            });
+            const page=await context.newPage();let failure;
+            try{
+              for(let attempt=0;attempt<24;attempt++){
+                try{
+                  await page.goto(base+'?saved-picks-release='+Date.now(),{waitUntil:'domcontentloaded',timeout:30000});
+                  await page.locator('#gp-saved-spotlight:not([hidden]) [data-saved-record]').first().waitFor({timeout:10000});
+                  const result=await page.evaluate(()=>{
+                    const records=GPSavedPicks.visible;
+                    const cards=[...document.querySelectorAll('#gp-saved-spotlight [data-saved-record]')];
+                    return {testedAt:new Date().toISOString(),source:'Actual public GitHub Pages assets and JSON; external services and live analysis blocked',upcomingPlayerMatchups:records.length,spotlightPlayers:cards.map(c=>records.find(r=>r.id===c.dataset.savedRecord)?.playerName),recordIds:cards.map(c=>c.dataset.savedRecord),valuesMatch:cards.length>0&&cards.every(c=>{const r=records.find(r=>r.id===c.dataset.savedRecord);return r&&[...c.querySelectorAll('[data-saved-metric]')].every(x=>x.textContent===r.predictions[x.dataset.savedMetric].toLocaleString(undefined,{maximumFractionDigits:2}));}),futureOnly:records.every(r=>Date.parse(r.kickoff)>Date.now()),mobileOverflow:document.documentElement.scrollWidth>innerWidth+2};
+                  });
+                  assert.ok(result.upcomingPlayerMatchups>0);assert.equal(result.valuesMatch,true);assert.equal(result.futureOnly,true);assert.equal(result.mobileOverflow,false);
+                  result.passed=true;fs.writeFileSync('saved-picks-public.json',JSON.stringify(result,null,2));await page.screenshot({path:'saved-picks-public.png'});console.log(JSON.stringify(result,null,2));return;
+                }catch(e){failure=e;console.log('Publication not ready on attempt '+(attempt+1)+': '+e.message.slice(0,180));await new Promise(r=>setTimeout(r,10000));}
+              }
+              throw failure;
+            }finally{await browser.close();}
+          })().catch(e=>{console.error(e);process.exit(1);});
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: saved-picks-public-verification
+          path: |
+            saved-picks-public.json
+            saved-picks-public.png
+          retention-days: 7

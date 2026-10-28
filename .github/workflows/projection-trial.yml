@@ -2,7 +2,7 @@ name: Refresh exact-stat projection trial
 on:
   workflow_dispatch:
   schedule:
-    - cron: '37 * * * *'
+    - cron: '27,57 * * * *'
   workflow_run:
     workflows: ['Refresh v2.1 production projections', 'Refresh current homepage feed']
     types: [completed]
@@ -15,6 +15,10 @@ on:
       - 'scripts/test_projection_trial.py'
       - 'scripts/install_projection_trial.py'
       - 'scripts/check_projection_trial.js'
+      - 'scripts/test_durable_picks.py'
+      - 'scripts/check_durable_picks.js'
+      - 'assets/saved-picks.js'
+      - 'assets/saved-picks.css'
       - 'assets/projection-trial.js'
       - 'assets/projection-trial.css'
       - 'projection-trial.html'
@@ -44,6 +48,8 @@ jobs:
         run: |
           node --check scripts/check_projection_trial.js
           node --check assets/projection-trial.js
+          node --check assets/saved-picks.js
+          node --check scripts/check_durable_picks.js
       - name: Install model dependencies
         run: pip install pandas numpy requests
       - uses: actions/cache@v4
@@ -61,6 +67,7 @@ jobs:
           python scripts/install_projection_trial.py
           python scripts/install_projection_trial.py
           python scripts/test_projection_trial.py
+          python scripts/test_durable_picks.py
           node --check assets/projection-trial.js
       - name: Generate and freeze the first eligible pregame forecasts
         run: python -u scripts/projection_trial.py --cache .cache/projection-trial --out data
@@ -82,15 +89,17 @@ jobs:
           npm install --no-save playwright
           npx playwright install --with-deps chromium
       - name: Verify card values, model switch, filters, follows and mobile
-        run: node scripts/check_projection_trial.js
+        run: |
+          node scripts/check_projection_trial.js
+          node scripts/check_durable_picks.js
       - name: Publish only tested trial files
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/projection_trial.py index.html data/projection-trial.json data/projection-trial-calibration.json data/projection-trial-ledger.json data/projection-trial-verification.json
+          git add scripts/projection_trial.py index.html data/projection-trial.json data/projection-trial-calibration.json data/projection-trial-ledger.json data/projection-trial-verification.json durable-picks-verification.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Publish frozen exact-stat forecasts and separate workload trial'
+          git commit -m 'Publish frozen exact-stat forecasts and verified saved picks'
           for attempt in 1 2 3; do
             git pull --rebase origin main
             if git push origin HEAD:main; then exit 0; fi
@@ -109,10 +118,15 @@ jobs:
             data/projection-trial*.json
             projection-trial*.png
             projection-trial-browser-error.json
+            durable-picks-verification.json
+            durable-picks-*.png
             assets/projection-trial.*
+            assets/saved-picks.*
             scripts/projection_trial.py
             scripts/test_projection_trial.py
             scripts/install_projection_trial.py
             scripts/check_projection_trial.js
+            scripts/test_durable_picks.py
+            scripts/check_durable_picks.js
             projection-trial.html
             index.html

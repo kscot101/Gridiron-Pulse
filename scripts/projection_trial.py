@@ -306,6 +306,29 @@ def verify_ledger(ledger):
             raise ValueError('Frozen forecast integrity failed: '+str(key))
 
 
+def load_capture_source(out, now):
+    """Use the freshest accessible source, keeping its original timestamp."""
+    local_path=out/'homepage-snapshot.json'
+    candidates=[]
+    if local_path.exists():
+        payload=json.loads(local_path.read_text())
+        if payload.get('ok') and isinstance(payload.get('snapshot'),dict):
+            candidates.append(payload['snapshot'])
+    # A newly mirrored source was already validated against the current slate.
+    # The normal main() slate checks below still run before any capture.
+    if candidates and fresh(candidates[0].get('generatedAt'),now,0.5):
+        return candidates[0]
+    try:
+        payload=get(AGENT).json()
+        if payload.get('ok') and isinstance(payload.get('snapshot'),dict):
+            candidates.append(payload['snapshot'])
+    except (requests.RequestException, ValueError):
+        pass
+    if not candidates:
+        raise ValueError('No analysis source available; saved ledger retained')
+    return max(candidates,key=lambda s:dt(s.get('generatedAt')) or datetime.min.replace(tzinfo=timezone.utc))
+
+
 # EXACT_TRACKER_CAPTURE_GUARDS_V1
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--cache',type=Path,default=Path('.cache/projection-trial'));ap.add_argument('--out',type=Path,default=Path('data'));ap.add_argument('--offline',action='store_true');args=ap.parse_args()
@@ -320,7 +343,7 @@ def main():
         calibration=train(historical)
         calibration['inputHashes']={str(y):hashlib.sha256((cache/f'stats_{y}.csv').read_bytes()).hexdigest() for y in range(2022,2026)}
         save(calibration_path,calibration)
-    s=json.loads((cache/'agent.json').read_text())['snapshot'] if args.offline else get(AGENT).json()['snapshot']
+    s=json.loads((cache/'agent.json').read_text())['snapshot'] if args.offline else load_capture_source(args.out, now)
     capture_allowed=fresh(s.get('generatedAt'),now,2)
     if not args.offline:
         current_board=get(ESPN+'/scoreboard').json()
