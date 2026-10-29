@@ -1,7 +1,7 @@
 {
   "version": "workload-trial-1",
-  "generatedAt": "2026-10-29T13:30:52.167262+00:00",
-  "analysisSourceGeneratedAt": "2026-10-29T06:27:34.726Z",
+  "generatedAt": "2026-10-29T13:45:50.307958+00:00",
+  "analysisSourceGeneratedAt": "2026-10-29T13:44:22.957Z",
   "season": 2026,
   "week": 8,
   "trialOnly": true,
@@ -9,11 +9,14 @@
   "newCaptures": 0,
   "baselineFresh": false,
   "warnings": [
-    "Current analysis failed freshness/slate validation. No new forecasts captured; existing records still evaluated.",
-    "No eligible upcoming players; existing forecasts will still be graded.",
     "Existing v2.1 feed stale or missing; no new v2.1 comparisons captured this run."
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "name": "Blake Cashman",
+      "reason": "Unresolved athlete ID/position"
+    }
+  ],
   "calibration": {
     "version": "workload-trial-1",
     "parameters": {
@@ -24525,57 +24528,57 @@
     },
     "401872990|4036378|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "passing_yards": {
           "prediction": 216.1,
-          "actual": 367.0,
-          "error": 150.9,
-          "absoluteError": 150.9,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "passing_tds": {
           "prediction": 1.67,
-          "actual": 2.0,
-          "error": 0.33,
-          "absoluteError": 0.33,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "rushing_yards": {
           "prediction": 7.8,
-          "actual": 6.0,
-          "error": -1.8,
-          "absoluteError": 1.8,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
     "401872990|4036378|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "passing_yards": {
           "prediction": 230.0,
-          "actual": 367.0,
-          "error": 137.0,
-          "absoluteError": 137.0,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "passing_tds": {
           "prediction": 1.6,
-          "actual": 2.0,
-          "error": 0.4,
-          "absoluteError": 0.4,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
     "401872990|4608686|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "carries": {
           "prediction": 11.8,
@@ -24623,8 +24626,8 @@
     },
     "401872990|4608686|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 54.0,
@@ -24644,57 +24647,57 @@
     },
     "401872990|4248528|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "targets": {
           "prediction": 6.3,
-          "actual": 8.0,
-          "error": 1.7,
-          "absoluteError": 1.7,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receptions": {
           "prediction": 4.0,
-          "actual": 6.0,
-          "error": 2.0,
-          "absoluteError": 2.0,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receiving_yards": {
           "prediction": 58.7,
-          "actual": 143.0,
-          "error": 84.3,
-          "absoluteError": 84.3,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receiving_tds": {
           "prediction": 0.45,
-          "actual": 2.0,
-          "error": 1.55,
-          "absoluteError": 1.55,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
     "401872990|4248528|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "receiving_yards": {
           "prediction": 61.0,
-          "actual": 143.0,
-          "error": 82.0,
-          "absoluteError": 82.0,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receiving_tds": {
           "prediction": 0.6,
-          "actual": 2.0,
-          "error": 1.4,
-          "absoluteError": 1.4,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
@@ -26009,71 +26012,71 @@
     },
     "401872990|4259545|workload-trial-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "carries": {
           "prediction": 14.9,
-          "actual": 9.0,
-          "error": -5.9,
-          "absoluteError": 5.9,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "rushing_yards": {
           "prediction": 69.2,
-          "actual": 43.0,
-          "error": -26.2,
-          "absoluteError": 26.2,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receptions": {
           "prediction": 2.0,
-          "actual": 4.0,
-          "error": 2.0,
-          "absoluteError": 2.0,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "receiving_yards": {
           "prediction": 14.9,
-          "actual": 30.0,
-          "error": 15.1,
-          "absoluteError": 15.1,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "scrimmage_yards": {
           "prediction": 84.1,
-          "actual": 73.0,
-          "error": -11.1,
-          "absoluteError": 11.1,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "scrimmage_tds": {
           "prediction": 0.71,
-          "actual": 1.0,
-          "error": 0.29,
-          "absoluteError": 0.29,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
     "401872990|4259545|v2.1-tracked-1": {
       "status": "FINAL",
-      "evaluatedAt": "2026-10-29T13:30:26.135051+00:00",
-      "actualSourceHash": "c07dfcfad1151fa36dabdeb32e9ed2956bc5fc2a0a7db51850e2d550bd43d8c0",
+      "evaluatedAt": "2026-10-29T13:45:13.091299+00:00",
+      "actualSourceHash": "d5cbc955c8e0496c149c89b9511d98b31971a82478840dbf8873a8c2198475e7",
       "metrics": {
         "scrimmage_yards": {
           "prediction": 86.0,
-          "actual": 73.0,
-          "error": -13.0,
-          "absoluteError": 13.0,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         },
         "scrimmage_tds": {
           "prediction": 0.6,
-          "actual": 1.0,
-          "error": 0.4,
-          "absoluteError": 0.4,
-          "status": "GRADED"
+          "actual": null,
+          "error": null,
+          "absoluteError": null,
+          "status": "NO_DATA"
         }
       }
     },
@@ -32901,55 +32904,55 @@
       "model": "v2.1-tracked-1",
       "position": "QB",
       "metric": "passing_yards",
-      "graded": 87,
-      "mae": 52.91954022988506,
-      "biasActualMinusPredicted": 7.839080459770115,
-      "noData": 7
+      "graded": 86,
+      "mae": 51.94186046511628,
+      "biasActualMinusPredicted": 6.337209302325581,
+      "noData": 8
     },
     {
       "model": "v2.1-tracked-1",
       "position": "QB",
       "metric": "passing_tds",
-      "graded": 113,
-      "mae": 0.879646017699115,
-      "biasActualMinusPredicted": 0.04247787610619472,
-      "noData": 14
+      "graded": 112,
+      "mae": 0.8839285714285714,
+      "biasActualMinusPredicted": 0.03928571428571429,
+      "noData": 15
     },
     {
       "model": "v2.1-tracked-1",
       "position": "RB",
       "metric": "scrimmage_yards",
-      "graded": 46,
-      "mae": 34.28260869565217,
-      "biasActualMinusPredicted": -0.2826086956521739,
-      "noData": 5
+      "graded": 45,
+      "mae": 34.75555555555555,
+      "biasActualMinusPredicted": 0.0,
+      "noData": 6
     },
     {
       "model": "v2.1-tracked-1",
       "position": "RB",
       "metric": "scrimmage_tds",
-      "graded": 51,
-      "mae": 0.6568627450980392,
-      "biasActualMinusPredicted": -0.03333333333333334,
-      "noData": 7
+      "graded": 50,
+      "mae": 0.662,
+      "biasActualMinusPredicted": -0.04200000000000001,
+      "noData": 8
     },
     {
       "model": "v2.1-tracked-1",
       "position": "WR",
       "metric": "receiving_yards",
-      "graded": 59,
-      "mae": 30.847457627118644,
-      "biasActualMinusPredicted": 5.559322033898305,
-      "noData": 3
+      "graded": 58,
+      "mae": 29.96551724137931,
+      "biasActualMinusPredicted": 4.241379310344827,
+      "noData": 4
     },
     {
       "model": "v2.1-tracked-1",
       "position": "WR",
       "metric": "receiving_tds",
-      "graded": 65,
-      "mae": 0.48923076923076925,
-      "biasActualMinusPredicted": -0.04,
-      "noData": 3
+      "graded": 64,
+      "mae": 0.475,
+      "biasActualMinusPredicted": -0.062499999999999986,
+      "noData": 4
     },
     {
       "model": "v2.1-tracked-1",
@@ -32973,118 +32976,118 @@
       "model": "workload-trial-1",
       "position": "QB",
       "metric": "passing_yards",
-      "graded": 131,
-      "mae": 59.879389312977096,
-      "biasActualMinusPredicted": 17.33587786259542,
-      "noData": 17
+      "graded": 130,
+      "mae": 59.17923076923077,
+      "biasActualMinusPredicted": 16.30846153846154,
+      "noData": 18
     },
     {
       "model": "workload-trial-1",
       "position": "QB",
       "metric": "passing_tds",
-      "graded": 131,
-      "mae": 0.847175572519084,
-      "biasActualMinusPredicted": 0.15603053435114503,
-      "noData": 17
+      "graded": 130,
+      "mae": 0.8511538461538461,
+      "biasActualMinusPredicted": 0.15469230769230768,
+      "noData": 18
     },
     {
       "model": "workload-trial-1",
       "position": "QB",
       "metric": "rushing_yards",
-      "graded": 121,
-      "mae": 12.05702479338843,
-      "biasActualMinusPredicted": 0.3760330578512394,
-      "noData": 27
+      "graded": 120,
+      "mae": 12.1425,
+      "biasActualMinusPredicted": 0.39416666666666667,
+      "noData": 28
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "carries",
-      "graded": 65,
-      "mae": 5.021538461538461,
-      "biasActualMinusPredicted": 1.0953846153846152,
-      "noData": 3
+      "graded": 64,
+      "mae": 5.0078125,
+      "biasActualMinusPredicted": 1.2046875,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "rushing_yards",
-      "graded": 65,
-      "mae": 31.684615384615384,
-      "biasActualMinusPredicted": 1.0661538461538467,
-      "noData": 3
+      "graded": 64,
+      "mae": 31.7703125,
+      "biasActualMinusPredicted": 1.4921875000000007,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "receptions",
-      "graded": 61,
-      "mae": 1.1409836065573769,
-      "biasActualMinusPredicted": -0.4426229508196721,
-      "noData": 7
+      "graded": 60,
+      "mae": 1.1266666666666665,
+      "biasActualMinusPredicted": -0.4833333333333333,
+      "noData": 8
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "receiving_yards",
-      "graded": 61,
-      "mae": 12.983606557377051,
-      "biasActualMinusPredicted": -3.0852459016393436,
-      "noData": 7
+      "graded": 60,
+      "mae": 12.948333333333332,
+      "biasActualMinusPredicted": -3.388333333333333,
+      "noData": 8
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "scrimmage_yards",
-      "graded": 61,
-      "mae": 35.775409836065585,
-      "biasActualMinusPredicted": -2.2442622950819677,
-      "noData": 7
+      "graded": 60,
+      "mae": 36.186666666666675,
+      "biasActualMinusPredicted": -2.0966666666666667,
+      "noData": 8
     },
     {
       "model": "workload-trial-1",
       "position": "RB",
       "metric": "scrimmage_tds",
-      "graded": 61,
-      "mae": 0.6686885245901639,
-      "biasActualMinusPredicted": -0.003114754098360657,
-      "noData": 7
+      "graded": 60,
+      "mae": 0.675,
+      "biasActualMinusPredicted": -0.008,
+      "noData": 8
     },
     {
       "model": "workload-trial-1",
       "position": "WR",
       "metric": "targets",
-      "graded": 79,
-      "mae": 2.792405063291139,
-      "biasActualMinusPredicted": 0.020253164556961946,
-      "noData": 3
+      "graded": 78,
+      "mae": 2.8064102564102558,
+      "biasActualMinusPredicted": -0.001282051282051216,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
       "position": "WR",
       "metric": "receptions",
-      "graded": 79,
-      "mae": 2.054430379746835,
-      "biasActualMinusPredicted": 0.0012658227848101361,
-      "noData": 3
+      "graded": 78,
+      "mae": 2.0551282051282045,
+      "biasActualMinusPredicted": -0.02435897435897439,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
       "position": "WR",
       "metric": "receiving_yards",
-      "graded": 79,
-      "mae": 32.01645569620253,
-      "biasActualMinusPredicted": -1.9531645569620255,
-      "noData": 3
+      "graded": 78,
+      "mae": 31.34615384615384,
+      "biasActualMinusPredicted": -3.0589743589743588,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
       "position": "WR",
       "metric": "receiving_tds",
-      "graded": 79,
-      "mae": 0.4768354430379747,
-      "biasActualMinusPredicted": -0.042658227848101284,
-      "noData": 3
+      "graded": 78,
+      "mae": 0.4630769230769231,
+      "biasActualMinusPredicted": -0.0630769230769231,
+      "noData": 4
     },
     {
       "model": "workload-trial-1",
@@ -33127,16 +33130,16 @@
     {
       "position": "QB",
       "metric": "passing_yards",
-      "n": 79,
-      "trialMAE": 55.47215189873419,
-      "baselineMAE": 53.45569620253165
+      "n": 78,
+      "trialMAE": 54.24871794871795,
+      "baselineMAE": 52.38461538461539
     },
     {
       "position": "QB",
       "metric": "passing_tds",
-      "n": 102,
-      "trialMAE": 0.8575490196078431,
-      "baselineMAE": 0.8852941176470588
+      "n": 101,
+      "trialMAE": 0.8627722772277228,
+      "baselineMAE": 0.89009900990099
     },
     {
       "position": "RB",
@@ -33155,16 +33158,16 @@
     {
       "position": "WR",
       "metric": "receiving_yards",
-      "n": 55,
-      "trialMAE": 33.04545454545454,
-      "baselineMAE": 30.654545454545456
+      "n": 54,
+      "trialMAE": 32.096296296296295,
+      "baselineMAE": 29.703703703703702
     },
     {
       "position": "WR",
       "metric": "receiving_tds",
-      "n": 60,
-      "trialMAE": 0.45983333333333337,
-      "baselineMAE": 0.4533333333333333
+      "n": 59,
+      "trialMAE": 0.44135593220338987,
+      "baselineMAE": 0.43728813559322033
     },
     {
       "position": "TE",
