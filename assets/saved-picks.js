@@ -52,8 +52,9 @@
   function card(r){
     var p={name:r.playerName,athleteId:r.athleteId,player_id:r.player_id,position:r.position,team:r.team,gameId:r.gameId,opponent:r.opponent};
     var name=root.GPPlayerStats?root.GPPlayerStats.link(p,r.playerName):esc(r.playerName);
-    var label=r.model==='workload-trial-1'?'WORKLOAD TRIAL':'TRACKED v2.1';
-    return '<article class="ds-pick" data-saved-record="'+esc(r.id)+'"><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+'</small><h3>'+name+'</h3><div class="ds-values">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-saved-metric="'+esc(k)+'">'+esc(r.predictions[k].toLocaleString(undefined,{maximumFractionDigits:2}))+'</strong><span>'+esc(metrics[k])+'</span></div>';}).join('')+'</div><p>'+esc(label+(r.modelFallback?' - selected model unavailable for this matchup':''))+'<br>Saved '+esc(when(r.recordedAt))+'</p></article>';
+    var reason=root.GPPickReasons?root.GPPickReasons.markup(r):'';
+    var details=root.GPPickReasons?root.GPPickReasons.details(r):'<p>Pregame estimate. Saved '+esc(when(r.recordedAt))+'</p>';
+    return '<article class="ds-pick" data-saved-record="'+esc(r.id)+'"><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+'</small><h3>'+name+'</h3>'+reason+'<div class="ds-values">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-saved-metric="'+esc(k)+'">'+esc(r.predictions[k].toLocaleString(undefined,{maximumFractionDigits:2}))+'</strong><span>'+esc(metrics[k])+'</span></div>';}).join('')+'</div>'+details+'</article>';
   }
   function host(id,before){var e=document.getElementById(id);if(!e&&before){e=document.createElement('section');e.id=id;e.className='ds-panel';e.hidden=true;before.before(e);}return e;}
   function paint(){
@@ -65,13 +66,13 @@
     native.hidden=use;spot.hidden=!use;
     if(use){
       var first=rows[0],game=first.scheduleGame,gameRows=rows.filter(function(r){return r.gameId===first.gameId;}).slice(0,4);
-      spot.innerHTML='<div class="ds-heading"><span>SPOTLIGHT / SAVED PICKS</span><strong>'+esc(game.shortName||game.name||first.team+' vs '+first.opponent)+'</strong><small>'+esc(when(first.kickoff))+'</small></div><p class="ds-note">Verified pregame captures for this exact matchup. These remain available between live-analysis refreshes.</p><div class="ds-grid">'+gameRows.map(card).join('')+'</div><p class="ds-foot">Schedule checked '+esc(when(schedule.fetchedAt))+'. Conditional on playing; injury and lineup changes may not yet be reflected. TD estimates are expected counts, not scoring probabilities.</p><a class="ds-link" href="#player-edge">See all upcoming picks</a>';
+      spot.innerHTML='<div class="ds-heading"><span>SPOTLIGHT PICKS</span><strong>'+esc(game.shortName||game.name||first.team+' vs '+first.opponent)+'</strong><small>'+esc(when(first.kickoff))+'</small></div><p class="ds-note">Players to watch in this matchup. See their recent production, opponent context and projected stats below.</p><div class="ds-grid">'+gameRows.map(card).join('')+'</div><p class="ds-foot">Pregame estimates, not guarantees. Check player availability before kickoff.</p><a class="ds-link" href="#player-edge">See all upcoming picks</a>';
     }else spot.replaceChildren();
     var shown=filtered(rows);
     var show=rows.length>0&&edge&&!edge.querySelector('[data-record-id]');
     if(picks){
       picks.hidden=!show;if(edge)edge.hidden=show;
-      if(show)picks.innerHTML='<div class="ds-heading"><span>SAVED UPCOMING PICKS</span><strong>'+shown.length+' player matchups</strong></div><p class="ds-note">'+esc(model()==='workload-trial-1'?'Workload trial selected.':'Tracked v2.1 selected.')+' Each card identifies its model and original save time. An available alternative is labeled, never relabeled as the selected model.</p><div class="ds-grid">'+(shown.length?(expanded?shown:shown.slice(0,6)).map(card).join(''):'<p class="ds-note">No saved picks match this filter.</p>')+'</div>'+(shown.length>6?'<button type="button" class="ds-expand" aria-expanded="'+expanded+'">'+(expanded?'Show fewer':'Show all '+shown.length+' picks')+'</button>':'');
+      if(show)picks.innerHTML='<div class="ds-heading"><span>PLAYERS TO WATCH</span><strong>'+shown.length+' player matchups</strong></div><p class="ds-note">See the recent usage, production and opponent context behind each featured name. Tap a player for recent games and head-to-head history.</p><div class="ds-grid">'+(shown.length?(expanded?shown:shown.slice(0,6)).map(card).join(''):'<p class="ds-note">No saved picks match this filter.</p>')+'</div>'+(shown.length>6?'<button type="button" class="ds-expand" aria-expanded="'+expanded+'">'+(expanded?'Show fewer':'Show all '+shown.length+' picks')+'</button>':'');
       else picks.replaceChildren();
     }
     if(!rows.length&&!native.querySelector('[data-record-id]')){
@@ -104,3 +105,5 @@
   if(typeof module!=='undefined'&&module.exports)module.exports=root.GPSavedPicks;
   if(root.document){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();}
 })(typeof window!=='undefined'?window:globalThis);
+
+// PLAIN_PICK_COPY_20261030

@@ -65,7 +65,7 @@ page=page_path.read_text(encoding='utf-8')
 # Inline app logic must remain byte-identical; the new adapter is separate.
 scripts_before=re.findall(r'<script\b[^>]*>(.*?)</script>',page,flags=re.S|re.I)
 css='<link rel="stylesheet" href="./assets/projection-trial.css?v=20260924-trial1">'
-js='<script src="./assets/projection-trial.js?v=20260924-trial1" defer></script>'
+js='<script src="./assets/projection-trial.js?v=20261030-copy1" defer></script>'
 if css not in page:page=page.replace('</head>',css+'\n</head>',1)
 if js not in page:page=page.replace('</body>',js+'\n</body>',1)
 if 'id="gp-trial-home-link"' not in page:

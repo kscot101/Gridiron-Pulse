@@ -1,0 +1,72 @@
+name: Verify public pick explanations
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-pick-copy-public.yml'
+      - 'assets/pick-reasons.js'
+      - 'assets/pick-reasons.css'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser verifier
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Check actual published pick cards
+        run: |
+          node <<'JS'
+          const {chromium}=require('playwright');
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          (async()=>{
+            const base='https://kscot101.github.io/Gridiron-Pulse/';
+            const browser=await chromium.launch();
+            let result=null,last=null;
+            for(let attempt=0;attempt<10;attempt++){
+              const context=await browser.newContext({viewport:{width:390,height:844}});
+              await context.route('**/*',route=>{
+                const u=route.request().url();
+                if(!u.startsWith(base)||u.includes('data/homepage-snapshot.json'))return route.abort();
+                return route.continue();
+              });
+              try{
+                const page=await context.newPage();
+                await page.goto(base+'?copycheck='+Date.now(),{waitUntil:'domcontentloaded'});
+                await page.locator('#gp-saved-picks .gp-pick-reason').first().waitFor({timeout:15000});
+                await page.waitForFunction(()=>[...document.querySelectorAll('#gp-saved-picks .gp-pick-reason')].some(n=>n.textContent.includes('Averaged')),null,{timeout:12000});
+                const text=await page.locator('#gp-saved-picks').innerText();
+                assert.doesNotMatch(text,/v2\.?1|WORKLOAD TRIAL|Tracked v2/i);
+                assert.match(text,/Why this player/);
+                const values=await page.locator('#gp-saved-picks [data-saved-record]').evaluateAll(ns=>ns.map(n=>({id:n.dataset.savedRecord,stats:[...n.querySelectorAll('[data-saved-metric]')].map(x=>({key:x.dataset.savedMetric,text:x.textContent}))})));
+                const feed=await (await context.request.get(base+'data/projection-trial.json?check='+Date.now())).json();
+                for(const value of values){const r=feed.forecasts.find(r=>r.id===value.id);assert.ok(r);for(const stat of value.stats)assert.equal(Number(stat.text.replace(/,/g,'')),r.predictions[stat.key]);}
+                assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
+                await page.locator('#gp-saved-picks').scrollIntoViewIfNeeded();
+                await page.screenshot({path:'public-pick-copy.png'});
+                result={passed:true,testedAt:new Date().toISOString(),publicUrl:base,visibleCards:values.length,versionLabelsRemoved:true,exactSavedValues:true,reason:await page.locator('#gp-saved-picks .gp-pick-reason').first().innerText()};
+                break;
+              }catch(e){last=e;console.log('Publication not ready on attempt',attempt+1,e.message.slice(0,180));}
+              finally{await context.close();}
+              await new Promise(resolve=>setTimeout(resolve,10000));
+            }
+            await browser.close();
+            if(!result)throw last||Error('Published copy not verified');
+            fs.writeFileSync('public-pick-copy.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-pick-copy
+          retention-days: 7
+          path: |
+            public-pick-copy.json
+            public-pick-copy.png
