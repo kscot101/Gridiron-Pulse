@@ -9,7 +9,7 @@ def edit(name, old, new):
     p.write_text(text.replace(old,new,1))
 
 p=Path('index.html');text=p.read_text()
-for tag,anchor in [('<link rel="stylesheet" href="./assets/saved-picks.css?v=20261028a">','</head>'),('<script src="./assets/saved-picks.js?v=20261028a" defer></script>','</body>')]:
+for tag,anchor in [('<link rel="stylesheet" href="./assets/saved-picks.css?v=20261028a">','</head>'),('<script src="./assets/saved-picks.js?v=20261030-copy1" defer></script>','</body>')]:
     if tag not in text:text=text.replace(anchor,tag+'\n'+anchor,1)
 p.write_text(text)
 # Input coverage is a diagnostic, not a blanket rejection of every team's

@@ -25,15 +25,15 @@
   }
   function strip(r){
     if(!r)return '<p class="gp-exact-note">No eligible saved forecast for this player/game in this view.</p>';
-    return '<div class="gp-exact" data-record-id="'+esc(r.id)+'"><small>'+esc(r.model==='workload-trial-1'?'WORKLOAD TRIAL':'TRACKED v2.1')+' \u00b7 Saved '+esc(date(r.recordedAt))+'</small><div class="gp-exact-strip">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-metric="'+esc(k)+'">'+fmt(r.predictions[k])+'</strong><span>'+esc(labels[k]||k)+'</span></div>';}).join('')+'</div><small>Frozen pregame estimate; TD values are expected counts, not scoring probabilities.</small></div>';
+    return '<div class="gp-exact" data-record-id="'+esc(r.id)+'"><small>Projected stats</small><div class="gp-exact-strip">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-metric="'+esc(k)+'">'+fmt(r.predictions[k])+'</strong><span>'+esc(labels[k]||k)+'</span></div>';}).join('')+'</div>'+(root.GPPickReasons?root.GPPickReasons.details(r):'<small>'+esc(r.model==='workload-trial-1'?'Recent-usage estimate':'Standard estimate')+' - Saved '+esc(date(r.recordedAt))+'</small>')+'</div>';
   }
   function bindHomepage(){
     if(typeof root.playerProjectionMarkup!=='function')return;
-    root.playerProjectionMarkup=function(p){return strip(find(p));};
-    root.spotlightPickedProjections=function(picks){var cards=arr(picks).slice(0,4).map(function(p){var r=find(p);return r?'<article class="gp-exact-spot"><b>'+nameLink(r)+'</b>'+strip(r)+'</article>':'';}).join('');return cards?'<div class="spotlight-player-block"><strong>Saved player projections</strong><div class="gp-exact-spot-grid">'+cards+'</div></div>':'';};
+    root.playerProjectionMarkup=function(p){var r=find(p);return (root.GPPickReasons?root.GPPickReasons.markup(r,p):'')+strip(r);};
+    root.spotlightPickedProjections=function(picks){var cards=arr(picks).slice(0,4).map(function(p){var r=find(p);return r?'<article class="gp-exact-spot"><b>'+nameLink(r)+'</b>'+(root.GPPickReasons?root.GPPickReasons.markup(r,p):'')+strip(r)+'</article>':'';}).join('');return cards?'<div class="spotlight-player-block"><strong>Players to watch</strong><div class="gp-exact-spot-grid">'+cards+'</div></div>':'';};
     var actions=document.querySelector('.hero-actions');
     if(actions&&!document.getElementById('gp-trial-switch')){
-      var wrap=document.createElement('label');wrap.className='gp-exact-switch';wrap.innerHTML='<input type="checkbox" id="gp-trial-switch"> Show workload trial on cards';actions.after(wrap);
+      var wrap=document.createElement('label');wrap.className='gp-exact-switch';wrap.innerHTML='<input type="checkbox" id="gp-trial-switch"> Use recent-usage estimates';actions.after(wrap);
       var input=wrap.querySelector('input');input.checked=mode==='workload-trial-1';input.addEventListener('change',function(){mode=input.checked?'workload-trial-1':'v2.1-tracked-1';try{localStorage.setItem('gpProjectionView',mode);}catch(e){}repaint();});
     }
     repaint();
@@ -45,7 +45,7 @@
       if(!o)return '';
       if(o.status==='INVALID_CAPTURE')return '<p>Not graded: pregame capture could not be verified.</p>';
       if(!o.metrics)return '';
-      var heading='<p><b>'+esc(x.model==='workload-trial-1'?'Workload trial':'v2.1')+'</b></p>';
+      var heading='<p><b>'+esc(x.model==='workload-trial-1'?'Recent-usage estimate':'Standard estimate')+'</b></p>';
       var body=Object.keys(o.metrics).map(function(k){
         var e=o.metrics[k];
         return '<p>'+esc(labels[k]||k)+': '+(e.status==='GRADED'?'absolute error '+fmt(e.absoluteError)+'; actual minus forecast '+fmt(e.error):'Not graded: statistic unavailable')+'</p>';
@@ -63,8 +63,8 @@
       return '<tr><th scope="row">'+esc(labels[k]||k)+'</th><td>'+fmt(b)+'</td><td class="gp-trial-value">'+fmt(t)+'</td><td>'+fmt(actual)+'</td></tr>';
     }).join('');
     var errors=resultDetails(group,outcomes);
-    var detail=group.map(function(x){return '<p>'+esc(x.model)+': captured '+esc(date(x.recordedAt))+'. '+(x.historyGames?esc(x.historyGames+' earlier same-team appearances; '+x.currentSeasonGames+' this season. '):'')+'Forecast fingerprint '+esc(x.forecastHash.slice(0,12))+'.</p>';}).join('');
-    return '<article class="gp-trial-card" data-athlete="'+esc(r.athleteId)+'"><header><div><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+' \u00b7 '+esc(date(r.kickoff))+'</small><h2>'+nameLink(r)+'</h2></div><button type="button" class="gp-trial-follow" data-follow="'+esc(r.id)+'" aria-pressed="'+followed(r)+'">'+(followed(r)?'Following':'Follow')+'</button></header><div class="gp-trial-table-wrap"><table><thead><tr><th>Stat</th><th>v2.1</th><th>Trial</th><th>Actual</th></tr></thead><tbody>'+rows+'</tbody></table></div><footer><span>'+esc(errors?'Final / see grading details':'Awaiting final stats')+'</span><details><summary>Saved forecast details</summary>'+detail+errors+'<p>Forecasts are conditional on playing and do not update after capture. A missing line is not a zero.</p></details></footer></article>';
+    var detail=group.map(function(x){return '<p>'+esc(x.model==='workload-trial-1'?'Recent-usage estimate':'Standard estimate')+': saved '+esc(date(x.recordedAt))+'. '+(x.historyGames?esc(x.historyGames+' earlier same-team appearances; '+x.currentSeasonGames+' this season. '):'')+'Forecast fingerprint '+esc(x.forecastHash.slice(0,12))+'.</p>';}).join('');
+    return '<article class="gp-trial-card" data-athlete="'+esc(r.athleteId)+'"><header><div><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+' \u00b7 '+esc(date(r.kickoff))+'</small><h2>'+nameLink(r)+'</h2></div><button type="button" class="gp-trial-follow" data-follow="'+esc(r.id)+'" aria-pressed="'+followed(r)+'">'+(followed(r)?'Following':'Follow')+'</button></header><div class="gp-trial-table-wrap"><table><thead><tr><th>Stat</th><th>Standard</th><th>Recent usage</th><th>Actual</th></tr></thead><tbody>'+rows+'</tbody></table></div><footer><span>'+esc(errors?'Final / see grading details':'Awaiting final stats')+'</span><details><summary>Saved forecast details</summary>'+detail+errors+'<p>Forecasts are conditional on playing and do not update after capture. A missing line is not a zero.</p></details></footer></article>';
   }
   function renderPage(){
     if(!data||!document.getElementById('gp-trial-cards'))return;
@@ -77,9 +77,9 @@
     document.getElementById('gp-trial-status').textContent='Week '+data.week+' / '+data.season+' \u00b7 Updated '+date(data.generatedAt)+' \u00b7 '+graded+' completed forecast-stat grades';
     document.getElementById('gp-trial-warnings').textContent=arr(data.warnings).join(' ');
     var paired=arr(data.pairedComparisons);
-    document.getElementById('gp-trial-live-results').innerHTML=paired.length?'<div class="gp-trial-table-wrap"><table><thead><tr><th>Position / stat</th><th>Paired forecasts</th><th>v2.1 error</th><th>Trial error</th></tr></thead><tbody>'+paired.map(function(r){return '<tr><th>'+esc(r.position+' / '+labels[r.metric])+'</th><td>'+r.n+'</td><td>'+fmt(r.baselineMAE)+'</td><td>'+fmt(r.trialMAE)+'</td></tr>';}).join('')+'</tbody></table></div>':'<p>No completed paired forecasts yet. This tracker starts with forecasts saved before kickoff; it does not invent predictions for past games.</p>';
+    document.getElementById('gp-trial-live-results').innerHTML=paired.length?'<div class="gp-trial-table-wrap"><table><thead><tr><th>Position / stat</th><th>Paired forecasts</th><th>Standard error</th><th>Recent-usage error</th></tr></thead><tbody>'+paired.map(function(r){return '<tr><th>'+esc(r.position+' / '+labels[r.metric])+'</th><td>'+r.n+'</td><td>'+fmt(r.baselineMAE)+'</td><td>'+fmt(r.trialMAE)+'</td></tr>';}).join('')+'</tbody></table></div>':'<p>No completed paired forecasts yet. This tracker starts with forecasts saved before kickoff; it does not invent predictions for past games.</p>';
     var c=data.calibration||{};
-    document.getElementById('gp-trial-holdout').innerHTML='<div class="gp-trial-table-wrap"><table><thead><tr><th>Position / yardage</th><th>Paired games</th><th>Last 5 error</th><th>Trial error</th></tr></thead><tbody>'+arr(c.holdout).map(function(r){return '<tr><th>'+esc(r.position+' / '+labels[r.metric])+'</th><td>'+r.pairedRows+'</td><td>'+fmt(r.last5.mae)+'</td><td>'+fmt(r.trial.mae)+'</td></tr>';}).join('')+'</tbody></table></div><p>League efficiencies: 2022\u201323. Settings selected on 2024. Test year: 2025. Lower average absolute error is better. These are retrospective individual-game tests against simple baselines, not live wins or a direct comparison with v2.1.</p>';
+    document.getElementById('gp-trial-holdout').innerHTML='<div class="gp-trial-table-wrap"><table><thead><tr><th>Position / yardage</th><th>Paired games</th><th>Last 5 error</th><th>Trial error</th></tr></thead><tbody>'+arr(c.holdout).map(function(r){return '<tr><th>'+esc(r.position+' / '+labels[r.metric])+'</th><td>'+r.pairedRows+'</td><td>'+fmt(r.last5.mae)+'</td><td>'+fmt(r.trial.mae)+'</td></tr>';}).join('')+'</tbody></table></div><p>League efficiencies: 2022\u201323. Settings selected on 2024. Test year: 2025. Lower average absolute error is better. These are retrospective individual-game tests against simple baselines, not live wins or a direct comparison with the standard estimate.</p>';
   }
   async function load(){
     try{
@@ -98,3 +98,5 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
+
+// PLAIN_PICK_COPY_20261030
