@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-10-30T02:53:08.936409+00:00",
+  "fetchedAt": "2026-10-30T09:53:40.269093+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -421,7 +421,7 @@
             "id": "401873023",
             "uid": "s:20~l:28~e:401873023~c:401873023",
             "date": "2026-10-30T00:15Z",
-            "attendance": 0,
+            "attendance": 76957,
             "type": {
               "id": "1",
               "abbreviation": "STD"
@@ -430,7 +430,7 @@
             "neutralSite": false,
             "conferenceCompetition": false,
             "playByPlayAvailable": true,
-            "recent": true,
+            "recent": false,
             "venue": {
               "id": "3798",
               "fullName": "Lambeau Field",
@@ -448,6 +448,7 @@
                 "type": "team",
                 "order": 0,
                 "homeAway": "home",
+                "winner": true,
                 "team": {
                   "id": "9",
                   "uid": "s:20~l:28~t:9",
@@ -577,14 +578,14 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "4-3"
+                    "summary": "5-3"
                   },
                   {
                     "name": "Home",
                     "type": "home",
-                    "summary": "2-1"
+                    "summary": "3-1"
                   },
                   {
                     "name": "Road",
@@ -599,6 +600,7 @@
                 "type": "team",
                 "order": 1,
                 "homeAway": "away",
+                "winner": false,
                 "team": {
                   "id": "29",
                   "uid": "s:20~l:28~t:29",
@@ -698,7 +700,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/car.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/car.png"
                 },
-                "score": "13",
+                "score": "19",
                 "linescores": [
                   {
                     "value": 3.0,
@@ -716,8 +718,8 @@
                     "period": 3
                   },
                   {
-                    "value": 0.0,
-                    "displayValue": "0",
+                    "value": 6.0,
+                    "displayValue": "6",
                     "period": 4
                   }
                 ],
@@ -728,9 +730,9 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "3-3"
+                    "summary": "3-4"
                   },
                   {
                     "name": "Home",
@@ -740,102 +742,24 @@
                   {
                     "name": "Road",
                     "type": "road",
-                    "summary": "2-1"
+                    "summary": "2-2"
                   }
                 ]
               }
             ],
             "notes": [],
-            "situation": {
-              "lastPlay": {
-                "id": "4018730233687",
-                "type": {
-                  "id": "8",
-                  "text": "Penalty",
-                  "abbreviation": "PEN"
-                },
-                "text": "(Shotgun) PENALTY on CAR-R.Walker, False Start, 5 yards, enforced at 50 - No Play.",
-                "scoreValue": 0,
-                "team": {
-                  "id": "29"
-                },
-                "probability": {
-                  "tiePercentage": 0.0,
-                  "homeWinPercentage": 0.9763,
-                  "awayWinPercentage": 0.023700000000000054,
-                  "secondsLeft": 0
-                },
-                "statYardage": -5,
-                "drive": {
-                  "description": "4 plays, 15 yards, 2:20",
-                  "start": {
-                    "yardLine": 70,
-                    "text": "CAR 30"
-                  },
-                  "timeElapsed": {
-                    "displayValue": "2:20"
-                  }
-                },
-                "start": {
-                  "yardLine": 50,
-                  "team": {
-                    "id": "29"
-                  }
-                },
-                "end": {
-                  "yardLine": 55,
-                  "team": {
-                    "id": "29"
-                  }
-                },
-                "athletesInvolved": [
-                  {
-                    "id": "4361429",
-                    "fullName": "Rasheed Walker",
-                    "displayName": "Rasheed Walker",
-                    "shortName": "R. Walker",
-                    "links": [
-                      {
-                        "rel": [
-                          "playercard",
-                          "desktop",
-                          "athlete"
-                        ],
-                        "href": "https://www.espn.com/nfl/player/_/id/4361429/rasheed-walker"
-                      }
-                    ],
-                    "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4361429.png",
-                    "jersey": "63",
-                    "position": "OT",
-                    "team": {
-                      "id": "29"
-                    }
-                  }
-                ]
-              },
-              "down": 3,
-              "yardLine": 55,
-              "distance": 8,
-              "downDistanceText": "3rd & 8 at CAR 45",
-              "shortDownDistanceText": "3rd & 8",
-              "possessionText": "CAR 45",
-              "isRedZone": false,
-              "homeTimeouts": 3,
-              "awayTimeouts": 3,
-              "possession": "29"
-            },
             "status": {
-              "clock": 501.0,
-              "displayClock": "8:21",
+              "clock": 0.0,
+              "displayClock": "0:00",
               "period": 4,
               "type": {
-                "id": "2",
-                "name": "STATUS_IN_PROGRESS",
-                "state": "in",
-                "completed": false,
-                "description": "In Progress",
-                "detail": "8:21 - 4th Quarter",
-                "shortDetail": "8:21 - 4th"
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
               },
               "isTBDFlex": false
             },
@@ -855,8 +779,8 @@
                 "abbreviation": "PYDS",
                 "leaders": [
                   {
-                    "displayValue": "28/37, 276 YDS, 3 TD, 1 INT",
-                    "value": 276.0,
+                    "displayValue": "30/41, 288 YDS, 3 TD, 1 INT",
+                    "value": 288.0,
                     "athlete": {
                       "id": "4036378",
                       "fullName": "Jordan Love",
@@ -895,8 +819,8 @@
                 "abbreviation": "RYDS",
                 "leaders": [
                   {
-                    "displayValue": "20 CAR, 80 YDS, 1 TD",
-                    "value": 80.0,
+                    "displayValue": "22 CAR, 81 YDS, 1 TD",
+                    "value": 81.0,
                     "athlete": {
                       "id": "4241416",
                       "fullName": "Chuba Hubbard",
@@ -935,8 +859,8 @@
                 "abbreviation": "RECYDS",
                 "leaders": [
                   {
-                    "displayValue": "7 REC, 106 YDS",
-                    "value": 106.0,
+                    "displayValue": "8 REC, 113 YDS",
+                    "value": 113.0,
                     "athlete": {
                       "id": "4248528",
                       "fullName": "Christian Watson",
@@ -996,18 +920,242 @@
                 "region": "us"
               }
             ],
-            "highlights": []
+            "highlights": [
+              {
+                "id": 50324935,
+                "cerebroId": "6ae40f833da0f53a9062a8e2",
+                "source": "espn",
+                "headline": "Jordan Love, Packers take down Panthers on TNF",
+                "description": "Jordan Love, Packers take down Panthers on TNF",
+                "lastModified": "2026-10-30T03:32:40Z",
+                "originalPublishDate": "2026-10-30T03:31:16Z",
+                "duration": 58,
+                "timeRestrictions": {
+                  "embargoDate": "2026-10-30T03:31:15Z",
+                  "expirationDate": "2026-11-01T03:31:15Z"
+                },
+                "deviceRestrictions": {
+                  "devices": [
+                    "settop",
+                    "tablet",
+                    "handset",
+                    "ipad",
+                    "desktop"
+                  ],
+                  "type": "whitelist"
+                },
+                "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.jpg",
+                "links": {
+                  "api": {
+                    "artwork": {
+                      "href": "https://artwork.api.espn.com/artwork/collections/media/61489026-254c-4fdd-a3ce-3cf95d4f0d71"
+                    },
+                    "self": {
+                      "href": "https://content.core.api.espn.com/v1/video/clips/50324935"
+                    }
+                  },
+                  "mobile": {
+                    "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                    "alert": {
+                      "href": "https://m.espn.com/general/video/videoAlert?vid=50324935"
+                    },
+                    "progressiveDownload": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf"
+                    },
+                    "source": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                    },
+                    "streaming": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf"
+                    }
+                  },
+                  "source": {
+                    "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4",
+                    "HD": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                    },
+                    "HLS": {
+                      "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8",
+                      "9x16": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                      },
+                      "HD": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                      },
+                      "cmaf": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8",
+                        "9x16": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                        },
+                        "cmb": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                        }
+                      },
+                      "cmb": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                      },
+                      "shield": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/media/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset"
+                      }
+                    },
+                    "flash": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                    },
+                    "full": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                    },
+                    "mezzanine": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                    }
+                  },
+                  "sportscenter": {
+                    "href": "sportscenter://x-callback-url/showVideo?videoID=50324935&videoDSI=e491704a08d76"
+                  },
+                  "web": {
+                    "href": "https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                    "self": {
+                      "href": "https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                      "dsi": {
+                        "href": "https://www.espn.com/video/clip?id=e491704a08d76"
+                      }
+                    }
+                  }
+                },
+                "ad": {
+                  "bundle": "nfl_one_plays",
+                  "sport": "nfl"
+                },
+                "tracking": {
+                  "coverageType": "Final Game Highlight",
+                  "leagueName": "NFL",
+                  "program": "espnnfl",
+                  "sportName": "football",
+                  "trackingId": "dm_20261030_NFL_jordan_love_packers_take_down_panthers_on_tnf",
+                  "trackingName": "NFL_One-Play (Jordan Love, Packers take down Panthers on TNF) 2026/10/30 ESHEET"
+                }
+              }
+            ],
+            "headlines": [
+              {
+                "type": "Recap",
+                "description": "\u2014 Jordan Love realizes the Green Bay Packers need to finish better.",
+                "shortLinkText": "Love throws 3 TD passes as the Packers beat the Panthers 27-19",
+                "video": [
+                  {
+                    "id": 50324935,
+                    "source": "espn",
+                    "headline": "Jordan Love, Packers take down Panthers on TNF",
+                    "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.jpg",
+                    "duration": 58,
+                    "tracking": {
+                      "coverageType": "Final Game Highlight",
+                      "leagueName": "NFL",
+                      "program": "espnnfl",
+                      "sportName": "football",
+                      "trackingId": "dm_20261030_NFL_jordan_love_packers_take_down_panthers_on_tnf",
+                      "trackingName": "NFL_One-Play (Jordan Love, Packers take down Panthers on TNF) 2026/10/30 ESHEET"
+                    },
+                    "deviceRestrictions": {
+                      "devices": [
+                        "settop",
+                        "tablet",
+                        "handset",
+                        "ipad",
+                        "desktop"
+                      ],
+                      "type": "whitelist"
+                    },
+                    "links": {
+                      "api": {
+                        "artwork": {
+                          "href": "https://artwork.api.espn.com/artwork/collections/media/61489026-254c-4fdd-a3ce-3cf95d4f0d71"
+                        },
+                        "self": {
+                          "href": "https://content.core.api.espn.com/v1/video/clips/50324935"
+                        }
+                      },
+                      "mobile": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                        "alert": {
+                          "href": "https://m.espn.com/general/video/videoAlert?vid=50324935"
+                        },
+                        "progressiveDownload": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf"
+                        },
+                        "source": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                        },
+                        "streaming": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf"
+                        }
+                      },
+                      "source": {
+                        "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4",
+                        "HD": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                        },
+                        "HLS": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8",
+                          "9x16": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                          },
+                          "HD": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                          },
+                          "cmaf": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8",
+                            "9x16": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                            },
+                            "cmb": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                            }
+                          },
+                          "cmb": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2/playlist.m3u8"
+                          },
+                          "shield": {
+                            "href": "https://watch.auth.api.espn.com/video/auth/media/61489026-254c-4fdd-a3ce-3cf95d4f0d71/asset"
+                          }
+                        },
+                        "flash": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                        },
+                        "full": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                        },
+                        "mezzanine": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1030/2f584665-5093-483c-a072-37ace4c37cc2/2f584665-5093-483c-a072-37ace4c37cc2.mp4"
+                        }
+                      },
+                      "sportscenter": {
+                        "href": "sportscenter://x-callback-url/showVideo?videoID=50324935&videoDSI=e491704a08d76"
+                      },
+                      "web": {
+                        "href": "https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                        "self": {
+                          "href": "https://www.espn.com/video/clip/_/id/50324935/jordan-love-packers-take-panthers-tnf",
+                          "dsi": {
+                            "href": "https://www.espn.com/video/clip?id=e491704a08d76"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
           }
         ],
         "links": [
           {
             "language": "en-US",
             "rel": [
-              "live",
+              "summary",
               "desktop",
               "event"
             ],
-            "href": "https://www.espn.com/nfl/game?gameId=401873023",
+            "href": "https://www.espn.com/nfl/game/_/gameId/401873023/panthers-packers",
             "text": "Gamecast",
             "shortText": "Gamecast",
             "isExternal": false,
@@ -1029,6 +1177,18 @@
           {
             "language": "en-US",
             "rel": [
+              "highlights",
+              "desktop"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401873023",
+            "text": "Highlights",
+            "shortText": "Highlights",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
               "pbp",
               "desktop",
               "event"
@@ -1038,37 +1198,33 @@
             "shortText": "Play-by-Play",
             "isExternal": false,
             "isPremium": false
-          }
-        ],
-        "weather": {
-          "displayValue": "33",
-          "temperature": 49,
-          "highTemperature": 49,
-          "conditionId": "Clear",
-          "link": {
+          },
+          {
             "language": "en-US",
             "rel": [
-              "54304"
+              "recap",
+              "desktop",
+              "event"
             ],
-            "href": "http://www.accuweather.com/en/us/lambeau-field-wi/54303/current-weather/29742_poi?lang=en-us",
-            "text": "Weather",
-            "shortText": "Weather",
-            "isExternal": true,
+            "href": "https://www.espn.com/nfl/recap?gameId=401873023",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
             "isPremium": false
           }
-        },
+        ],
         "status": {
-          "clock": 501.0,
-          "displayClock": "8:21",
+          "clock": 0.0,
+          "displayClock": "0:00",
           "period": 4,
           "type": {
-            "id": "2",
-            "name": "STATUS_IN_PROGRESS",
-            "state": "in",
-            "completed": false,
-            "description": "In Progress",
-            "detail": "8:21 - 4th Quarter",
-            "shortDetail": "8:21 - 4th"
+            "id": "3",
+            "name": "STATUS_FINAL",
+            "state": "post",
+            "completed": true,
+            "description": "Final",
+            "detail": "Final",
+            "shortDetail": "Final"
           }
         }
       },
@@ -1771,8 +1927,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $258",
-                "numberAvailable": 3821,
+                "summary": "Tickets as low as $253",
+                "numberAvailable": 3781,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/buffalo-bills-tickets-orchard-park-highmark-stadium-3-8-2026/production/6488380?wsUser=717"
@@ -2840,8 +2996,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $82",
-                "numberAvailable": 3924,
+                "summary": "Tickets as low as $80",
+                "numberAvailable": 3927,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/cincinnati-bengals-tickets-cincinnati-paycor-stadium-3-5-2026/production/6489036?wsUser=717"
@@ -2892,9 +3048,9 @@
                     }
                   ]
                 },
-                "details": "CIN -11.5",
+                "details": "CIN -12.5",
                 "overUnder": 46.5,
-                "spread": -11.5,
+                "spread": -12.5,
                 "awayTeamOdds": {
                   "favorite": false,
                   "underdog": true,
@@ -2926,7 +3082,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-600",
+                      "odds": "-675",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2958,7 +3114,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+440",
+                      "odds": "+490",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -2994,8 +3150,8 @@
                   "shortDisplayName": "Spread",
                   "home": {
                     "close": {
-                      "line": "-11.5",
-                      "odds": "-108",
+                      "line": "-12.5",
+                      "odds": "-105",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -3003,7 +3159,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118130%3Foutcomes%3D0HC84695563N1150_1",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118130%3Foutcomes%3D0HC84695563N1250_1",
                         "text": "Home Point Spread",
                         "shortText": "Home Point Spread",
                         "isExternal": true,
@@ -3016,7 +3172,7 @@
                             "gameId": 401873031,
                             "betSide": "none",
                             "betType": "straight",
-                            "betDetails": "Spread:CIN-11.5"
+                            "betDetails": "Spread:CIN-12.5"
                           }
                         }
                       }
@@ -3028,8 +3184,8 @@
                   },
                   "away": {
                     "close": {
-                      "line": "+11.5",
-                      "odds": "-112",
+                      "line": "+12.5",
+                      "odds": "-115",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -3037,7 +3193,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118130%3Foutcomes%3D0HC84695563P1150_3",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118130%3Foutcomes%3D0HC84695563P1250_3",
                         "text": "Away Point Spread",
                         "shortText": "Away Point Spread",
                         "isExternal": true,
@@ -3050,7 +3206,7 @@
                             "gameId": 401873031,
                             "betSide": "none",
                             "betType": "straight",
-                            "betDetails": "Spread:TEN+11.5"
+                            "betDetails": "Spread:TEN+12.5"
                           }
                         }
                       }
@@ -3189,16 +3345,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Mostly cloudy",
-          "temperature": 66,
-          "highTemperature": 66,
-          "conditionId": "6",
+          "displayValue": "Cloudy",
+          "temperature": 68,
+          "highTemperature": 68,
+          "conditionId": "7",
           "link": {
             "language": "en-US",
             "rel": [
               "45202"
             ],
-            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -3920,7 +4076,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $24",
-                "numberAvailable": 9298,
+                "numberAvailable": 9164,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/dallas-cowboys-tickets-arlington-att-stadium-3-7-2026/production/6489543?wsUser=717"
@@ -4074,7 +4230,7 @@
                   "home": {
                     "close": {
                       "line": "-7",
-                      "odds": "-105",
+                      "odds": "-108",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -4108,7 +4264,7 @@
                   "away": {
                     "close": {
                       "line": "+7",
-                      "odds": "-115",
+                      "odds": "-112",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -4268,16 +4424,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Mostly cloudy",
+          "displayValue": "Cloudy",
           "temperature": 73,
           "highTemperature": 73,
-          "conditionId": "6",
+          "conditionId": "7",
           "link": {
             "language": "en-US",
             "rel": [
               "76011"
             ],
-            "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/hourly-weather-forecast/53644_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/hourly-weather-forecast/53644_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -4998,8 +5154,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $142",
-                "numberAvailable": 3796,
+                "summary": "Tickets as low as $147",
+                "numberAvailable": 3755,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/detroit-lions-tickets-detroit-ford-field-3-3-2026/production/6489856?wsUser=717"
@@ -5348,15 +5504,15 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 64,
-          "highTemperature": 64,
+          "temperature": 65,
+          "highTemperature": 65,
           "conditionId": "4",
           "link": {
             "language": "en-US",
             "rel": [
               "48226"
             ],
-            "href": "http://www.accuweather.com/en/us/ford-field-mi/48226/hourly-weather-forecast/43021_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/ford-field-mi/48226/hourly-weather-forecast/43021_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -6077,8 +6233,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $56",
-                "numberAvailable": 5747,
+                "summary": "Tickets as low as $57",
+                "numberAvailable": 5694,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-jets-tickets-east-rutherford-metlife-stadium-3-4-2027/production/6494608?wsUser=717"
@@ -6427,15 +6583,15 @@
         ],
         "weather": {
           "displayValue": "Mostly sunny",
-          "temperature": 62,
-          "highTemperature": 62,
+          "temperature": 61,
+          "highTemperature": 61,
           "conditionId": "2",
           "link": {
             "language": "en-US",
             "rel": [
               "07073"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7156,8 +7312,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $197",
-                "numberAvailable": 2517,
+                "summary": "Tickets as low as $199",
+                "numberAvailable": 2458,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/pittsburgh-steelers-tickets-pittsburgh-acrisure-stadium-3-3-2027/production/6495081?wsUser=717"
@@ -7506,15 +7662,15 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 67,
-          "highTemperature": 67,
+          "temperature": 68,
+          "highTemperature": 68,
           "conditionId": "4",
           "link": {
             "language": "en-US",
             "rel": [
               "15212"
             ],
-            "href": "http://www.accuweather.com/en/us/acrisure-stadium-pa/15219/hourly-weather-forecast/53633_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/acrisure-stadium-pa/15219/hourly-weather-forecast/53633_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -8235,8 +8391,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $44",
-                "numberAvailable": 7347,
+                "summary": "Tickets as low as $43",
+                "numberAvailable": 7341,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tampa-bay-buccaneers-tickets-tampa-raymond-james-stadium-3-1-2027/production/6496254?wsUser=717"
@@ -8288,7 +8444,7 @@
                   ]
                 },
                 "details": "TB -2.5",
-                "overUnder": 43.5,
+                "overUnder": 44.5,
                 "spread": -2.5,
                 "awayTeamOdds": {
                   "favorite": false,
@@ -8437,8 +8593,8 @@
                   "shortDisplayName": "Total",
                   "over": {
                     "close": {
-                      "line": "o43.5",
-                      "odds": "-118",
+                      "line": "o44.5",
+                      "odds": "-102",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -8446,7 +8602,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118133%3Foutcomes%3D0OU84695566O4350_1",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118133%3Foutcomes%3D0OU84695566O4450_1",
                         "text": "Over Odds",
                         "shortText": "Over Odds",
                         "isExternal": true,
@@ -8459,7 +8615,7 @@
                             "gameId": 401873025,
                             "betSide": "over",
                             "betType": "straight",
-                            "betDetails": "Over:43.5"
+                            "betDetails": "Over:44.5"
                           }
                         }
                       }
@@ -8471,8 +8627,8 @@
                   },
                   "under": {
                     "close": {
-                      "line": "u43.5",
-                      "odds": "-102",
+                      "line": "u44.5",
+                      "odds": "-118",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -8480,7 +8636,7 @@
                           "desktop",
                           "bets"
                         ],
-                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118133%3Foutcomes%3D0OU84695566U4350_3",
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118133%3Foutcomes%3D0OU84695566U4450_3",
                         "text": "Under Odds",
                         "shortText": "Under Odds",
                         "isExternal": true,
@@ -8493,7 +8649,7 @@
                             "gameId": 401873025,
                             "betSide": "under",
                             "betType": "straight",
-                            "betDetails": "Under:43.5"
+                            "betDetails": "Under:44.5"
                           }
                         }
                       }
@@ -8560,16 +8716,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Thunderstorms",
-          "temperature": 76,
-          "highTemperature": 76,
-          "conditionId": "15",
+          "displayValue": "Cloudy",
+          "temperature": 78,
+          "highTemperature": 78,
+          "conditionId": "7",
           "link": {
             "language": "en-US",
             "rel": [
               "33607"
             ],
-            "href": "http://www.accuweather.com/en/us/raymond-james-stadium-fl/33602/hourly-weather-forecast/53558_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/raymond-james-stadium-fl/33602/hourly-weather-forecast/53558_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -9291,7 +9447,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $113",
-                "numberAvailable": 2266,
+                "numberAvailable": 2253,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/jacksonville-jaguars-tickets-jacksonville-everbank-stadium-3-2-2026/production/6490144?wsUser=717"
@@ -9639,16 +9795,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Cloudy",
-          "temperature": 79,
-          "highTemperature": 79,
-          "conditionId": "7",
+          "displayValue": "Showers",
+          "temperature": 80,
+          "highTemperature": 80,
+          "conditionId": "12",
           "link": {
             "language": "en-US",
             "rel": [
               "32202"
             ],
-            "href": "http://www.accuweather.com/en/us/everbank-stadium-fl/32202/hourly-weather-forecast/53553_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/everbank-stadium-fl/32202/hourly-weather-forecast/53553_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10369,8 +10525,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $72",
-                "numberAvailable": 7169,
+                "summary": "Tickets as low as $73",
+                "numberAvailable": 7008,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/los-angeles-rams-tickets-inglewood-sofi-stadium-3-8-2026/production/6491648?wsUser=717"
@@ -10719,15 +10875,15 @@
         ],
         "weather": {
           "displayValue": "Mostly cloudy",
-          "temperature": 72,
-          "highTemperature": 72,
+          "temperature": 73,
+          "highTemperature": 73,
           "conditionId": "6",
           "link": {
             "language": "en-US",
             "rel": [
               "90301"
             ],
-            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/sofi-stadium-ca/90301/hourly-weather-forecast/209205_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -11448,8 +11604,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $178",
-                "numberAvailable": 4226,
+                "summary": "Tickets as low as $189",
+                "numberAvailable": 4144,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/denver-broncos-tickets-denver-empower-field-at-mile-high-3-2-2026/production/6489647?wsUser=717"
@@ -11806,7 +11962,7 @@
             "rel": [
               "80204"
             ],
-            "href": "http://www.accuweather.com/en/us/empower-field-at-mile-high-co/80203/hourly-weather-forecast/45295_poi?day=4&hbhhour=15&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/empower-field-at-mile-high-co/80203/hourly-weather-forecast/45295_poi?day=3&hbhhour=15&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -12528,7 +12684,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $81",
-                "numberAvailable": 4511,
+                "numberAvailable": 4486,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/miami-dolphins-tickets-miami-gardens-hard-rock-stadium-3-2-2026/production/6492060?wsUser=717"
@@ -12877,15 +13033,15 @@
         ],
         "weather": {
           "displayValue": "Intermittent clouds",
-          "temperature": 82,
-          "highTemperature": 82,
+          "temperature": 78,
+          "highTemperature": 78,
           "conditionId": "4",
           "link": {
             "language": "en-US",
             "rel": [
               "33056"
             ],
-            "href": "http://www.accuweather.com/en/us/hard-rock-stadium-fl/33056/hourly-weather-forecast/53559_poi?day=4&hbhhour=17&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/hard-rock-stadium-fl/33056/hourly-weather-forecast/53559_poi?day=3&hbhhour=17&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -13607,7 +13763,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $84",
-                "numberAvailable": 5220,
+                "numberAvailable": 5191,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/washington-commanders-tickets-landover-northwest-stadium-3-3-2026/production/6493307?wsUser=717"
@@ -13692,7 +13848,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-250",
+                      "odds": "-258",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -13724,7 +13880,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+205",
+                      "odds": "+210",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -13955,16 +14111,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Intermittent clouds",
-          "temperature": 51,
-          "highTemperature": 51,
-          "conditionId": "36",
+          "displayValue": "Mostly clear",
+          "temperature": 50,
+          "highTemperature": 50,
+          "conditionId": "34",
           "link": {
             "language": "en-US",
             "rel": [
               "20785"
             ],
-            "href": "http://www.accuweather.com/en/us/northwest-stadium-md/20781/hourly-weather-forecast/53589_poi?day=4&hbhhour=21&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/northwest-stadium-md/20781/hourly-weather-forecast/53589_poi?day=3&hbhhour=21&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -14685,8 +14841,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $291",
-                "numberAvailable": 3518,
+                "summary": "Tickets as low as $301",
+                "numberAvailable": 3477,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/seattle-seahawks-tickets-seattle-lumen-field-3-8-2027/production/6492981?wsUser=717"
@@ -15045,7 +15201,7 @@
             "rel": [
               "98134"
             ],
-            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=5&hbhhour=18&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lumen-field-wa/98104/hourly-weather-forecast/53660_poi?day=4&hbhhour=18&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -18998,14 +19154,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Jeff Hafley had a towel draped around his neck as he stepped to the podium and the Miami Dolphins coach wiped his face one last time before taking questions from reporters.",
                 "shortLinkText": "Malik Willis sparks first win for Jeff Hafley and Dolphins hold off late Jets rally in 28-25 victory"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
@@ -23189,14 +23345,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Frustrated by a two-game skid, the Seattle Seahawks went into playoff mode.",
                 "shortLinkText": "Jaxon Smith-Njigba has 150 receiving yards and a score in the Seahawks' 20-3 win over the Chiefs"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
