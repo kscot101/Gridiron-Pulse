@@ -1,0 +1,11 @@
+/* Readable explanations without changing card selection, numbers or navigation. */
+.gp-pick-reason{margin:12px 0;padding:11px 12px;border-left:3px solid #52712a;background:rgba(100,135,70,.08);font:400 13px/1.55 Inter,system-ui,sans-serif;color:inherit;overflow-wrap:anywhere}
+.gp-pick-reason>strong{display:block;font-size:12px;font-weight:800;line-height:1.4;margin-bottom:5px;color:inherit}
+.gp-pick-reason p{margin:5px 0;font-size:12px;line-height:1.55;color:inherit}
+.gp-pick-reason small{display:block;margin-top:7px;font-size:10px;line-height:1.45;color:inherit;opacity:.85}
+.gp-pick-details{margin-top:10px;font:400 11px/1.55 Inter,system-ui,sans-serif;color:inherit}
+.gp-pick-details summary{cursor:pointer;min-height:28px;padding:5px 0;font-weight:700;color:inherit}
+.gp-pick-details p{margin:5px 0;font-size:11px;line-height:1.55;color:inherit}
+.ds-pick .gp-pick-reason{border-color:#c9ff32;background:rgba(201,255,50,.06);color:#edf5ee}
+.ds-pick .gp-pick-details{color:#d1ddd5}
+.gp-pick-details summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}
