@@ -1,51 +1,49 @@
 {
-  "checkedAt": "2026-10-30T16:40:21.005791+00:00",
-  "workflowRun": "41091971753",
+  "checkedAt": "2026-10-30T21:01:53.668166+00:00",
+  "workflowRun": "41127842409",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-10-30T16:40:21.875Z",
+      "generatedAt": "2026-10-30T21:01:54.637Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 17,
-      "fallbackSignalCount": 3,
-      "warnings": [
-        "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
-      ]
-    },
-    {
-      "generatedAt": "2026-10-30T16:41:34.087Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 17,
-      "fallbackSignalCount": 3,
+      "fallbackSignalCount": 4,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-30T16:42:46.372Z",
+      "generatedAt": "2026-10-30T21:03:08.605Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 17,
-      "fallbackSignalCount": 3,
+      "fallbackSignalCount": 4,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-30T16:44:00.864Z",
+      "generatedAt": "2026-10-30T21:04:20.523Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 17,
-      "fallbackSignalCount": 3,
+      "fallbackSignalCount": 4,
       "warnings": []
     },
     {
-      "generatedAt": "2026-10-30T16:45:12.830Z",
+      "generatedAt": "2026-10-30T21:05:32.672Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 17,
-      "fallbackSignalCount": 3,
+      "fallbackSignalCount": 4,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-10-30T21:06:44.809Z",
+      "teamsWithHistory": 26,
+      "teamsMeetingSampleTarget": 17,
+      "fallbackSignalCount": 4,
       "warnings": []
     }
   ],
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 8,
-  "previousGeneratedAt": "2026-10-30T09:57:13.773Z",
+  "previousGeneratedAt": "2026-10-30T16:45:12.830Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -99,7 +97,7 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-10-30T16:45:12.830Z",
+  "generatedAt": "2026-10-30T21:06:44.809Z",
   "season": {
     "year": 2026,
     "type": 2,
@@ -148,7 +146,7 @@
     "picksWithGameHistory": 51,
     "playersWithoutGameHistory": [],
     "signalCount": 204,
-    "fallbackSignalCount": 3,
+    "fallbackSignalCount": 4,
     "sampleSeasons": [
       "2026"
     ],
@@ -206,7 +204,7 @@
       "name": "Travis Kelce",
       "team": "KC",
       "position": "TE",
-      "score": 66,
+      "score": 76,
       "baselineAvailable": true,
       "recentGames": [
         {
@@ -246,32 +244,6 @@
         {
           "label": "Position history",
           "detail": "DEN's recent results against comparable TE roles are still being established."
-        }
-      ]
-    },
-    {
-      "name": "De'Von Achane",
-      "team": "MIA",
-      "position": "RB",
-      "score": 74,
-      "baselineAvailable": false,
-      "recentGames": [],
-      "signals": [
-        {
-          "label": "Opponent defense",
-          "detail": "NE has allowed 83.7 rushing yards per game across 3 recent samples."
-        },
-        {
-          "label": "Current form",
-          "detail": "Active current-roster player; game usage is still being established."
-        },
-        {
-          "label": "Team scheme",
-          "detail": "MIA's recent yardage mix is 46% passing and 54% rushing. The strongest recent non-QB production has come from WR."
-        },
-        {
-          "label": "Position history",
-          "detail": "Comparable RB groups averaged 173.7 scrimmage yards, 7.3 catches and 1 TD across 3 recent games vs NE."
         }
       ]
     }
