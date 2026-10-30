@@ -1,0 +1,63 @@
+name: Verify plain-language pick copy
+on:
+  workflow_dispatch:
+  push:
+    branches: [plain-pick-reasons-20261030]
+    paths:
+      - '.github/workflows/verify-pick-copy-preview.yml'
+      - 'assets/pick-reasons.*'
+      - 'scripts/install_pick_copy.py'
+      - 'scripts/test_pick_copy.js'
+      - 'scripts/check_pick_copy.py'
+permissions:
+  contents: write
+concurrency:
+  group: plain-pick-copy-preview
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: plain-pick-reasons-20261030
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply copy only and validate JavaScript
+        run: |
+          set -euo pipefail
+          python scripts/install_pick_copy.py
+          node --check assets/pick-reasons.js
+          node --check assets/saved-picks.js
+          node --check assets/projection-trial.js
+          node scripts/test_pick_copy.js
+          git diff --exit-code -- data/ scripts/projection_trial.py scripts/refresh_homepage_feed.py
+      - name: Test displayed copy and unchanged saved values
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/check_pick_copy.py
+      - name: Save verified preview files only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/saved-picks.js assets/projection-trial.js index.html projection-trial.html scripts/install_projection_trial.py scripts/install_durable_picks.py pick-copy-verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verify plain-language pick explanations and identical saved numbers'
+          git pull --rebase origin plain-pick-reasons-20261030
+          git push origin HEAD:plain-pick-reasons-20261030
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pick-copy-verification
+          retention-days: 7
+          path: |
+            pick-copy-verification.json
+            pick-copy-*.png
