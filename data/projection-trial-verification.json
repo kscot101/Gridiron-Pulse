@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-01T14:26:06.489Z",
+  "testedAt": "2026-11-01T16:51:54.009Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 363,
@@ -13,61 +13,32 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": true,
-      "analysisCurrent": true,
-      "mode": "agent",
-      "gamesCheckedAt": "2026-11-01T14:18:27.105Z",
+      "available": false,
+      "analysisCurrent": false,
+      "mode": "unavailable",
+      "gamesCheckedAt": null,
       "analysisGeneratedAt": "2026-11-01T14:18:27.105Z",
-      "modelRecordAsOf": "2026-11-01T14:18:27.105Z",
-      "scoreSource": "analysis-agent"
+      "modelRecordAsOf": "2026-11-01T14:18:27.105Z"
     },
-    "gameCount": 14,
+    "gameCount": 0,
     "forecastCount": 670,
-    "statusText": "2026 Regular Season - Week 8 | Game data checked Nov 1, 9:18 AM | Analysis generated Nov 1, 9:18 AM"
+    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Nov 1, 9:18 AM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
-      "expected": [
-        "401873026|3918298|workload-trial-1",
-        "401873026|4035671|workload-trial-1",
-        "401873026|4379399|workload-trial-1",
-        "401873026|4429615|workload-trial-1",
-        "401873031|3915511|workload-trial-1",
-        "401873031|4688380|workload-trial-1"
-      ],
-      "actual": [
-        "401873026|3918298|workload-trial-1",
-        "401873026|4035671|workload-trial-1",
-        "401873026|4379399|workload-trial-1",
-        "401873026|4429615|workload-trial-1",
-        "401873031|3915511|workload-trial-1",
-        "401873031|4688380|workload-trial-1"
-      ],
-      "edgeCards": 6,
-      "analysisCurrent": true,
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
-      "expected": [
-        "401873026|3918298|v2.1-tracked-1",
-        "401873026|4035671|v2.1-tracked-1",
-        "401873026|4379399|v2.1-tracked-1",
-        "401873026|4429615|v2.1-tracked-1",
-        "401873031|3915511|v2.1-tracked-1",
-        "401873031|4688380|v2.1-tracked-1"
-      ],
-      "actual": [
-        "401873026|3918298|v2.1-tracked-1",
-        "401873026|4035671|v2.1-tracked-1",
-        "401873026|4379399|v2.1-tracked-1",
-        "401873026|4429615|v2.1-tracked-1",
-        "401873031|3915511|v2.1-tracked-1",
-        "401873031|4688380|v2.1-tracked-1"
-      ],
-      "edgeCards": 6,
-      "analysisCurrent": true,
+      "expected": [],
+      "actual": [],
+      "edgeCards": 0,
+      "analysisCurrent": false,
       "values": true
     }
   ],
