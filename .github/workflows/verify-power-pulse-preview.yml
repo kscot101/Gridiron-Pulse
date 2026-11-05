@@ -41,7 +41,8 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html .github/workflows/refresh-homepage-feed.yml data/power-pulse.json power-pulse-verification.json
+          # Workflow edits are published separately through the authorized connection.
+          git add index.html data/power-pulse.json power-pulse-verification.json
           if ! git diff --cached --quiet; then
             git commit -m 'Verify independent Power Pulse loading with preserved scores'
             git push origin HEAD:durable-power-pulse-20261105
