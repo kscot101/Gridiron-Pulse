@@ -4,7 +4,7 @@
   'use strict';
   if(root.GPSavedPicks)return;
   var HOUR=3600000, saved=null, schedule=null, timer=null, expanded=false, observed=false;
-  var metrics={passing_yards:'Passing yards',passing_tds:'Passing TD',rushing_yards:'Rushing yards',rushing_tds:'Rushing TD',receiving_yards:'Receiving yards',receiving_tds:'Receiving TD',scrimmage_yards:'Rush + receiving yards',scrimmage_tds:'Rush + receiving TD',receptions:'Receptions',targets:'Targets',carries:'Carries'};
+  var metrics={passing_yards:'passing yards',passing_tds:'passing touchdowns',rushing_yards:'rushing yards',rushing_tds:'rushing touchdowns',receiving_yards:'receiving yards',receiving_tds:'receiving touchdowns',scrimmage_yards:'rush + receiving yards',scrimmage_tds:'rush + receiving touchdowns',receptions:'receptions',targets:'targets',carries:'carries'};
   function list(v){return Array.isArray(v)?v:[];}
   function tm(v){v=String(v||'').toUpperCase();return {WSH:'WAS',JAC:'JAX',LA:'LAR',OAK:'LV',SD:'LAC'}[v]||v;}
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -54,7 +54,7 @@
     var name=root.GPPlayerStats?root.GPPlayerStats.link(p,r.playerName):esc(r.playerName);
     var reason=root.GPPickReasons?root.GPPickReasons.markup(r):'';
     var details=root.GPPickReasons?root.GPPickReasons.details(r):'<p>Pregame estimate. Saved '+esc(when(r.recordedAt))+'</p>';
-    return '<article class="ds-pick" data-saved-record="'+esc(r.id)+'"><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+'</small><h3>'+name+'</h3>'+reason+'<div class="ds-values">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-saved-metric="'+esc(k)+'">'+esc(r.predictions[k].toLocaleString(undefined,{maximumFractionDigits:2}))+'</strong><span>'+esc(metrics[k])+'</span></div>';}).join('')+'</div>'+details+'</article>';
+    return '<article class="ds-pick" data-saved-record="'+esc(r.id)+'"><small>'+esc(r.team+' vs '+r.opponent+' / '+r.position)+'</small><h3>'+name+'</h3>'+reason+'<div class="ds-values">'+Object.keys(r.predictions).map(function(k){return '<div><span class="gp-expected-label">Expected '+esc(metrics[k])+'</span><strong data-saved-metric="'+esc(k)+'">'+esc(r.predictions[k].toLocaleString(undefined,{maximumFractionDigits:2}))+'</strong></div>';}).join('')+'</div>'+details+'</article>';
   }
   function host(id,before){var e=document.getElementById(id);if(!e&&before){e=document.createElement('section');e.id=id;e.className='ds-panel';e.hidden=true;before.before(e);}return e;}
   function paint(){
