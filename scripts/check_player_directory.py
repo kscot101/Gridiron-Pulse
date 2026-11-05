@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 root=Path.cwd();base='https://kscot101.github.io/Gridiron-Pulse/'
 directory=json.loads((root/'data/player-directory.json').read_text());logs=json.loads((root/'data/player-recent-games.json').read_text());ledger=json.loads((root/'data/projection-trial.json').read_text());board=json.loads((root/'data/homepage-scoreboard.json').read_text())
 stamp=max(ledger['generatedAt'],board['fetchedAt']);when=int(datetime.fromisoformat(stamp.replace('Z','+00:00')).timestamp()*1000)+60000
-report={'testedAt':datetime.now().astimezone().isoformat(),'mode':'Published local statistics; external feeds blocked','pageErrors':[],'coverage':directory['coverage']}
+report={'testedAt':datetime.now().astimezone().isoformat(),'mode':'Published local statistics; external feeds and full game-log download blocked','pageErrors':[],'coverage':directory['coverage']}
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True,executable_path=os.getenv('CHROMIUM_PATH') or None)
     context=browser.new_context(viewport={'width':1440,'height':1000},timezone_id='America/New_York')
@@ -15,7 +15,7 @@ with sync_playwright() as p:
         u=rt.request.url
         if not u.startswith(base):return rt.abort()
         rel=u[len(base):].split('?')[0].split('#')[0] or 'index.html'
-        if rel=='data/homepage-snapshot.json':return rt.fulfill(status=503,body='Unavailable external-feed test')
+        if rel in ['data/homepage-snapshot.json','data/player-recent-games.json']:return rt.fulfill(status=503,body='Unavailable external-feed test')
         f=(root/rel).resolve()
         if not f.is_relative_to(root) or not f.is_file():return rt.fulfill(status=404,body='Missing')
         return rt.fulfill(path=str(f))

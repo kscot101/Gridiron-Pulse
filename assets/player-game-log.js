@@ -55,6 +55,12 @@
       }).finally(function() { clearTimeout(timeout); pending = null; });
     return pending;
   }
+  async function loadPlayer(d,force) {
+    if (window.GPLogShards) {
+      try { var shard=await GPLogShards.load(d,force); if(shard)return shard; } catch(e) { /* Keep the complete-feed fallback. */ }
+    }
+    return load(force);
+  }
   function resolve(d, data) {
     d = describe(d);
     var byId = data.byId.get(d.id), byEspn = data.byEspn.get(d.espnId) || data.byEspn.get(d.id);
@@ -400,7 +406,7 @@
 
       var data, entry;
       try{
-        data=await load(false);
+        data=await loadPlayer(d,false);
         entry=resolve(d,data);
       }catch(localError){
         data=null; entry=null;
@@ -473,7 +479,7 @@
     section.setAttribute('aria-busy','true');
     section.innerHTML = '<div class="gp-log-heading"><div><h3>Recent games</h3><p>Actual results, not projections.</p></div></div><p class="gp-log-message" role="status">Loading recent game stats...</p>';
     try {
-      var values = await Promise.all([load(force), window.GPPlayerDirectory ? GPPlayerDirectory.load() : Promise.resolve()]);
+      var values = await Promise.all([loadPlayer(d,force), window.GPPlayerDirectory ? GPPlayerDirectory.load() : Promise.resolve()]);
       var data = values[0]; d = describe(d);
       if (!section.isConnected) return;
       render(section,d,resolve(d,data),data,5);
