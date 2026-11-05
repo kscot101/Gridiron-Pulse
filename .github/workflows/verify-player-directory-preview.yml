@@ -33,6 +33,7 @@ jobs:
       - name: Apply and verify repair when present
         run: |
           if [ -f scripts/install_player_directory_repair.py ]; then
+            sha256sum data/projection-trial.json data/projection-trial-ledger.json > /tmp/protected-shas
             python scripts/install_player_directory_repair.py
             python scripts/build_player_directory.py --input-dir .directory-inputs
             python scripts/test_player_directory.py
@@ -40,9 +41,10 @@ jobs:
             node --check assets/player-game-log.js
             node --check assets/saved-picks.js
             node --check assets/projection-trial.js
-            npm install --no-save playwright
-            npx playwright install --with-deps chromium
-            node scripts/check_player_directory.js
+            pip install playwright
+            python -m playwright install --with-deps chromium
+            python scripts/check_player_directory.py
+            sha256sum -c /tmp/protected-shas
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add index.html pick-tracker.html projection-trial.html projections-2026.html team.html assets data/player-directory.json data/player-recent-games.json scripts/install-player-game-logs.py scripts/install_durable_picks.py scripts/install_projection_trial.py player-directory-verification.json
@@ -60,8 +62,9 @@ jobs:
           files=[Path(p) for p in subprocess.check_output(['git','ls-files'],text=True).splitlines()]
           files+=list(Path('.directory-inputs').glob('*'))
           files+=list(Path('.').glob('player-directory-*.png'))
+          files += [Path('player-directory-verification.json'),Path('data/player-directory.json')]
           with zipfile.ZipFile('player-directory-work.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for p in files:
+              for p in dict.fromkeys(files):
                   if p.is_file():z.write(p,str(p))
           PY
       - uses: actions/upload-artifact@v4
