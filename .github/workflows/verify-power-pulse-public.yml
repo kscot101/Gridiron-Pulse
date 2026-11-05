@@ -48,28 +48,30 @@ jobs:
                   try:
                       page.goto(base+'?power-check='+str(time.time()),wait_until='domcontentloaded',timeout=30000)
                       page.wait_for_function("window.GPPowerPulse && document.querySelectorAll('#power-grid .ranking-card').length===16",timeout=12000)
-                      details=page.evaluate("({power:powerRankings(),state:document.getElementById('power-feed-status').textContent,liveGames:allGames().length})")
-                      assert details['liveGames']==0
-                      p=details['power'];assert len(p['teams'])==32 and len(p['players'])>0
+                      details=page.evaluate("({power:powerRankings(),state:document.getElementById('power-feed-status').textContent,savedScheduleGames:allGames().length,feedStatus:window.state?.snapshot?.feedStatus||null})")
+                      # The same-origin saved schedule may work while every external API is blocked.
+                      # Verify live analysis is absent rather than demanding an empty scoreboard.
+                      assert not (details.get('feedStatus') or {}).get('analysisCurrent'),'Live analysis unexpectedly available in outage test'
+                      p=details['power'];assert len(p['teams'])==32 and len(p['players'])>0,'Saved rankings missing'
                       expected=[str(round(r['heatScore'])) for r in sorted(p['teams'],key=lambda r:r['heatScore'],reverse=True)[:16]]
-                      assert page.locator('#power-grid .ranking-card .heat > strong').all_text_contents()==expected
+                      assert page.locator('#power-grid .ranking-card .heat > strong').all_text_contents()==expected,'Displayed scores differ from saved rankings'
                       page.locator('[data-power-kind="players"]').click()
                       page.locator('[data-power-position="QB"]').click()
-                      assert page.locator('#power-grid .ranking-card').count()>0
+                      assert page.locator('#power-grid .ranking-card').count()>0,'QB rankings missing'
                       page.locator('[data-power-order="cold"]').click()
                       page.locator('[data-power-order="hot"]').click()
                       page.locator('[data-power-kind="teams"]').click()
                       page.locator('#power-pulse').scroll_into_view_if_needed()
-                      assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                      assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'Mobile horizontal overflow'
                       assert not errors,errors
                       page.screenshot(path='power-pulse-public-mobile.png')
-                      report={'testedAt':datetime.now(timezone.utc).isoformat(),'publicSite':True,'externalFeedsBlocked':True,'bigSnapshotBlocked':True,'teamCount':len(p['teams']),'playerCount':len(p['players']),'rankingGeneratedAt':p['generatedAt'],'statusText':details['state'],'exactScores':True,'teamPlayerFilters':True,'mobileOverflow':False,'pageErrors':errors,'passed':True}
+                      report={'testedAt':datetime.now(timezone.utc).isoformat(),'publicSite':True,'externalFeedsBlocked':True,'bigSnapshotBlocked':True,'liveAnalysisUnavailable':True,'savedScheduleGames':details['savedScheduleGames'],'teamCount':len(p['teams']),'playerCount':len(p['players']),'rankingGeneratedAt':p['generatedAt'],'statusText':details['state'],'exactScores':True,'teamPlayerFilters':True,'mobileOverflow':False,'pageErrors':errors,'passed':True}
                       Path('power-pulse-public.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));last=None;context.close();break
                   except Exception as e:
                       last=e
                       diagnostic={'attempt':attempt+1,'error':str(e),'pageErrors':errors,'responses':responses}
                       try:
-                          diagnostic['page']=page.evaluate("({url:location.href,module:!!window.GPPowerPulse,render:typeof window.renderPower,cards:document.querySelectorAll('#power-grid .ranking-card').length,status:document.getElementById('power-feed-status')?.textContent,scripts:[...document.scripts].map(s=>s.src).filter(s=>s.includes('power')),title:document.title})")
+                          diagnostic['page']=page.evaluate("({url:location.href,module:!!window.GPPowerPulse,render:typeof window.renderPower,cards:document.querySelectorAll('#power-grid .ranking-card').length,status:document.getElementById('power-feed-status')?.textContent,feedStatus:window.state?.snapshot?.feedStatus||null,scripts:[...document.scripts].map(s=>s.src).filter(s=>s.includes('power')),title:document.title})")
                           page.screenshot(path='power-pulse-public-mobile.png')
                       except Exception:pass
                       Path('power-pulse-public-diagnostic.json').write_text(json.dumps(diagnostic,indent=2));print(json.dumps(diagnostic,indent=2),flush=True)
