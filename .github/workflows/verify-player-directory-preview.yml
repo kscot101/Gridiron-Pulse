@@ -28,30 +28,30 @@ jobs:
         run: |
           mkdir -p .directory-inputs
           curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv -o .directory-inputs/roster.csv
+          curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nfldata/raw/refs/heads/master/data/games.csv -o .directory-inputs/games.csv
           curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv -o .directory-inputs/players.csv
-          curl -fLsS --retry 2 --max-time 90 https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv -o .directory-inputs/games.csv
-      - name: Apply and verify repair when present
+      - name: Apply and verify repair
         run: |
-          if [ -f scripts/install_player_directory_repair.py ]; then
-            sha256sum data/projection-trial.json data/projection-trial-ledger.json > /tmp/protected-shas
-            python scripts/install_player_directory_repair.py
-            python scripts/build_player_directory.py --input-dir .directory-inputs
-            python scripts/test_player_directory.py
-            node --check assets/player-directory.js
-            node --check assets/player-game-log.js
-            node --check assets/saved-picks.js
-            node --check assets/projection-trial.js
-            pip install playwright
-            python -m playwright install --with-deps chromium
-            python scripts/check_player_directory.py
-            sha256sum -c /tmp/protected-shas
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add index.html pick-tracker.html projection-trial.html projections-2026.html team.html assets data/player-directory.json data/player-recent-games.json scripts/install-player-game-logs.py scripts/install_durable_picks.py scripts/install_projection_trial.py player-directory-verification.json
-            if ! git diff --cached --quiet; then
-              git commit -m 'Verify player search, recent logs and expected-stat labels'
-              git push origin HEAD:player-directory-labels-20261105
-            fi
+          sha256sum data/projection-trial.json data/projection-trial-ledger.json > /tmp/protected-shas
+          python scripts/install_player_directory_repair.py
+          python scripts/build_player_directory.py --input-dir .directory-inputs
+          python scripts/player_log_shards.py --install
+          python scripts/test_player_directory.py
+          node --check assets/player-directory.js
+          node --check assets/player-log-shards.js
+          node --check assets/player-game-log.js
+          node --check assets/saved-picks.js
+          node --check assets/projection-trial.js
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/check_player_directory.py
+          sha256sum -c /tmp/protected-shas
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html pick-tracker.html projection-trial.html projections-2026.html team.html assets data/player-directory.json data/player-recent-games.json data/player-logs scripts/install-player-game-logs.py scripts/install_durable_picks.py scripts/install_projection_trial.py scripts/check_player_directory.py player-directory-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Verify searchable players and small game-log downloads'
+            git push origin HEAD:player-directory-labels-20261105
           fi
       - name: Bundle inspected source and verification
         if: always()
@@ -62,6 +62,7 @@ jobs:
           files=[Path(p) for p in subprocess.check_output(['git','ls-files'],text=True).splitlines()]
           files+=list(Path('.directory-inputs').glob('*'))
           files+=list(Path('.').glob('player-directory-*.png'))
+          files+=list(Path('data/player-logs').glob('*.json'))
           files += [Path('player-directory-verification.json'),Path('data/player-directory.json')]
           with zipfile.ZipFile('player-directory-work.zip','w',zipfile.ZIP_DEFLATED) as z:
               for p in dict.fromkeys(files):
