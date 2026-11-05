@@ -35,6 +35,10 @@ def main():
             p=ROOT/name;s=p.read_text()
             if tag not in s:s=s.replace('</head>',tag+'\n</head>',1)
             p.write_text(s)
+        test=ROOT/'scripts/check_player_directory.py'
+        s=test.read_text().replace("if rel=='data/homepage-snapshot.json':", "if rel in ['data/homepage-snapshot.json','data/player-recent-games.json']:")
+        s=s.replace("'Published local statistics; external feeds blocked'", "'Published local statistics; external feeds and full game-log download blocked'")
+        test.write_text(s)
     sizes=[(ROOT/f'data/player-logs/{i:02d}.json').stat().st_size for i in groups]
     print(json.dumps({'segments':len(groups),'players':len(data['players']),'largestSegmentBytes':max(sizes),'fullFeedBytes':(ROOT/'data/player-recent-games.json').stat().st_size}))
 if __name__=='__main__':main()
