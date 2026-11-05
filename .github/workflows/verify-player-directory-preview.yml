@@ -1,0 +1,72 @@
+name: Verify player directory preview
+on:
+  push:
+    branches: [player-directory-labels-20261105]
+    paths: ['scripts/**', 'assets/**', '.github/workflows/verify-player-directory-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: player-directory-preview
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: player-directory-labels-20261105
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download published roster and weekly sources
+        run: |
+          mkdir -p .directory-inputs
+          curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv -o .directory-inputs/roster.csv
+          curl -fLsS --retry 2 --max-time 90 https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv -o .directory-inputs/players.csv
+          curl -fLsS --retry 2 --max-time 90 https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv -o .directory-inputs/games.csv
+      - name: Apply and verify repair when present
+        run: |
+          if [ -f scripts/install_player_directory_repair.py ]; then
+            python scripts/install_player_directory_repair.py
+            python scripts/build_player_directory.py --input-dir .directory-inputs
+            python scripts/test_player_directory.py
+            node --check assets/player-directory.js
+            node --check assets/player-game-log.js
+            node --check assets/saved-picks.js
+            node --check assets/projection-trial.js
+            npm install --no-save playwright
+            npx playwright install --with-deps chromium
+            node scripts/check_player_directory.js
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add index.html pick-tracker.html projection-trial.html projections-2026.html team.html assets data/player-directory.json data/player-recent-games.json scripts/install-player-game-logs.py scripts/install_durable_picks.py scripts/install_projection_trial.py player-directory-verification.json
+            if ! git diff --cached --quiet; then
+              git commit -m 'Verify player search, recent logs and expected-stat labels'
+              git push origin HEAD:player-directory-labels-20261105
+            fi
+          fi
+      - name: Bundle inspected source and verification
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile, subprocess
+          files=[Path(p) for p in subprocess.check_output(['git','ls-files'],text=True).splitlines()]
+          files+=list(Path('.directory-inputs').glob('*'))
+          files+=list(Path('.').glob('player-directory-*.png'))
+          with zipfile.ZipFile('player-directory-work.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in files:
+                  if p.is_file():z.write(p,str(p))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-directory-work
+          path: player-directory-work.zip
+          retention-days: 7
