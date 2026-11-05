@@ -1,0 +1,58 @@
+name: Verify independent Power Pulse
+on:
+  push:
+    branches: [durable-power-pulse-20261105]
+    paths: ['assets/power-pulse*', 'scripts/*power_pulse*', '.github/workflows/verify-power-pulse-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: power-pulse-preview
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: durable-power-pulse-20261105
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build saved ranking copy and integrate native controls
+        run: |
+          python scripts/install_power_pulse.py
+          python scripts/save_power_pulse.py --fetch-units
+          node --check assets/power-pulse.js
+          node scripts/test_power_pulse.js
+          git diff --exit-code -- data/projection-trial.json data/projection-trial-ledger.json data/player-recent-games.json data/homepage-snapshot.json
+      - name: Verify first-visit loading, filters, scores and mobile
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/check_power_pulse.py
+      - name: Save tested generated files on preview only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html .github/workflows/refresh-homepage-feed.yml data/power-pulse.json power-pulse-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Verify independent Power Pulse loading with preserved scores'
+            git push origin HEAD:durable-power-pulse-20261105
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: power-pulse-verification
+          retention-days: 7
+          path: |
+            power-pulse-verification.json
+            power-pulse-desktop.png
+            power-pulse-mobile.png
+            data/power-pulse.json
