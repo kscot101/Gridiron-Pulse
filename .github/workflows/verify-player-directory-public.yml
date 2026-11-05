@@ -1,0 +1,88 @@
+name: Verify public player directory
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-player-directory-public.yml'
+      - 'assets/player-directory.js'
+      - 'assets/player-log-shards.js'
+      - 'assets/expected-stats.css'
+permissions:
+  contents: read
+concurrency:
+  group: public-player-directory
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser verifier
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Check published labels, player search and small game logs
+        run: |
+          python - <<'PY'
+          import json,time
+          from urllib.request import urlopen
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          base='https://kscot101.github.io/Gridiron-Pulse/'
+          for attempt in range(18):
+              try:
+                  with urlopen(base+'?directory-release='+str(time.time_ns()),timeout=15) as r:html=r.read().decode()
+                  if 'player-log-shards.js?v=20261105-players1' in html:break
+              except Exception:pass
+              time.sleep(8)
+          else:raise AssertionError('New player directory has not reached the public site')
+          report={'testedAt':time.time(),'mode':'Actual public homepage; external analysis and full log download blocked','players':[],'errors':[],'logRequests':[]}
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True)
+              context=browser.new_context(viewport={'width':390,'height':844},timezone_id='America/New_York')
+              def route(rt):
+                  u=rt.request.url
+                  if not u.startswith(base):return rt.abort()
+                  if '/data/homepage-snapshot.json' in u or '/data/player-recent-games.json' in u:return rt.fulfill(status=503,body='Full-feed outage verification')
+                  if '/data/player-logs/' in u:report['logRequests'].append(u.split('?')[0])
+                  return rt.continue_()
+              context.route('**/*',route)
+              page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
+              page.goto(base+'?verify-directory='+str(time.time_ns()),wait_until='domcontentloaded')
+              page.wait_for_function("window.GPPlayerDirectory && GPPlayerDirectory.status === 'ready'",timeout=30000)
+              report['searchablePlayers']=page.evaluate('allPlayers().length')
+              assert report['searchablePlayers']>1000
+              for query in ['Foyesade Oluokun','D.J. Moore','T J Watt']:
+                  page.locator('#open-search').click();page.locator('#search-input').fill(query)
+                  result=page.locator('[data-search-open="player"]').first;result.wait_for(timeout=15000)
+                  title=result.locator('strong').inner_text();result.click()
+                  table=page.locator('#detail-body .gp-recent-root tbody tr');table.first.wait_for(timeout=20000)
+                  assert table.count()>0
+                  assert page.locator('#detail-body .gp-recent-root').count()==1
+                  report['players'].append({'query':query,'name':title,'recentRows':table.count(),'latest':table.first.inner_text()})
+                  page.keyboard.press('Escape')
+              page.wait_for_function('window.GPExactTracker && GPExactTracker.data',timeout=30000)
+              labels=page.evaluate('''()=>{const r=GPExactTracker.data.forecasts.find(r=>r.position==='WR');const h=document.createElement('section');h.innerHTML=GPExactTracker.strip(r);return [...h.querySelectorAll('[data-metric]')].map(n=>({label:n.previousElementSibling.textContent,value:Number(n.textContent.replace(/,/g,'')),expected:r.predictions[n.dataset.metric]}));}''')
+              assert labels and all(x['label'].startswith('Expected ') and x['value']==x['expected'] for x in labels)
+              report['projectionLabels']=labels
+              for width in [320,390,1440]:
+                  page.set_viewport_size({'width':width,'height':900});assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+2')
+              assert report['logRequests'] and not report['errors'],report
+              report['passed']=True
+              page.set_viewport_size({'width':390,'height':844})
+              page.locator('#player-edge').scroll_into_view_if_needed();page.screenshot(path='player-directory-public-mobile.png')
+              Path('player-directory-public.json').write_text(json.dumps(report,indent=2))
+              print(json.dumps(report,indent=2));browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-player-directory-check
+          retention-days: 7
+          path: |
+            player-directory-public.json
+            player-directory-public-mobile.png

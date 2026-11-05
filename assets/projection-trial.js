@@ -2,7 +2,7 @@
 (function(root){
   'use strict';
   var data=null, mode='v2.1-tracked-1', timer=null;
-  var labels={passing_yards:'Passing yards',passing_tds:'Passing TD',rushing_yards:'Rushing yards',rushing_tds:'Rushing TD',receiving_yards:'Receiving yards',receiving_tds:'Receiving TD',scrimmage_yards:'Rush + receiving yards',scrimmage_tds:'Rush + receiving TD',receptions:'Receptions',targets:'Targets',carries:'Carries'};
+  var labels={passing_yards:'passing yards',passing_tds:'passing touchdowns',rushing_yards:'rushing yards',rushing_tds:'rushing touchdowns',receiving_yards:'receiving yards',receiving_tds:'receiving touchdowns',scrimmage_yards:'rush + receiving yards',scrimmage_tds:'rush + receiving touchdowns',receptions:'receptions',targets:'targets',carries:'carries'};
   function arr(v){return Array.isArray(v)?v:[];}
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function num(v){return v==null||typeof v==='boolean'||String(v).trim()===''?null:Number.isFinite(Number(v))?Number(v):null;}
@@ -25,7 +25,7 @@
   }
   function strip(r){
     if(!r)return '<p class="gp-exact-note">No eligible saved forecast for this player/game in this view.</p>';
-    return '<div class="gp-exact" data-record-id="'+esc(r.id)+'"><small>Projected stats</small><div class="gp-exact-strip">'+Object.keys(r.predictions).map(function(k){return '<div><strong data-metric="'+esc(k)+'">'+fmt(r.predictions[k])+'</strong><span>'+esc(labels[k]||k)+'</span></div>';}).join('')+'</div>'+(root.GPPickReasons?root.GPPickReasons.details(r):'<small>'+esc(r.model==='workload-trial-1'?'Recent-usage estimate':'Standard estimate')+' - Saved '+esc(date(r.recordedAt))+'</small>')+'</div>';
+    return '<div class="gp-exact" data-record-id="'+esc(r.id)+'"><small>Projected stats</small><div class="gp-exact-strip">'+Object.keys(r.predictions).map(function(k){return '<div><span class="gp-expected-label">Expected '+esc(labels[k]||k)+'</span><strong data-metric="'+esc(k)+'">'+fmt(r.predictions[k])+'</strong></div>';}).join('')+'</div>'+(root.GPPickReasons?root.GPPickReasons.details(r):'<small>'+esc(r.model==='workload-trial-1'?'Recent-usage estimate':'Standard estimate')+' - Saved '+esc(date(r.recordedAt))+'</small>')+'</div>';
   }
   function bindHomepage(){
     if(typeof root.playerProjectionMarkup!=='function')return;

@@ -1,0 +1,7 @@
+/* A forecast label comes before its number; historical statistics are untouched. */
+.gp-exact-strip > div,.ds-values > div {display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.gp-exact-strip .gp-expected-label,.ds-values .gp-expected-label {font-size:11px;font-weight:750;line-height:1.3;letter-spacing:.015em;text-transform:none;color:inherit;opacity:1;white-space:normal;overflow-wrap:anywhere}
+.gp-exact-strip strong,.ds-values strong {font-variant-numeric:tabular-nums}
+/* Isolate the light actual-results panel from the dark profile theme. */
+.gp-recent-root :is(h3,p,small,th,td,.gp-log-key,.gp-log-swipe) {color:#193627!important;-webkit-text-fill-color:#193627!important;opacity:1!important}
+.gp-recent-root .gp-log-source a {-webkit-text-fill-color:currentColor!important}

@@ -18,11 +18,12 @@
   function fmt(v) { var n = numeric(v); return n == null ? '\u2014' : n.toLocaleString(undefined, {maximumFractionDigits:1}); }
   function describe(p) {
     p = p || {};
+    if (window.GPPlayerDirectory) p = GPPlayerDirectory.enrich(p);
     return {name:String(p.name || p.playerName || p.player_display_name || p.displayName || p.player_name || p.player || ''),
       id:String(p.player_id || p.gsisId || p.gsis_id || p.id || p.playerKey || ''),
       espnId:String(p.athleteId || p.espnId || p.espn_id || ''),
       team:team(p.team || p.targetTeam || p.target_team || p.toTeam),
-      position:pos(p.position || p.positionGroup || p.pos || p.target_position),
+      position:pos((p.position && p.position.abbreviation) || p.position || p.positionGroup || p.pos || p.target_position),
       gameId:String(p.gameId || p.eventId || p.game_id || p.nextGameId || ''),
       opponent:team(p.nextOpponent || p.opponent || p.opponentTeam || ''),
       headshot:p.headshot || p.headshot_url || ''};
@@ -45,16 +46,27 @@
         data.players.forEach(function(p) {
           if (p.id) data.byId.set(String(p.id), p);
           if (p.espnId) data.byEspn.set(String(p.espnId), p);
-          var key = norm(p.name), group = data.byName.get(key) || [];
-          group.push(p); data.byName.set(key, group);
+          Array.from(new Set([p.name].concat(arr(p.aliases)).map(norm))).forEach(function(key) {
+            var group = data.byName.get(key) || [];
+            group.push(p); data.byName.set(key, group);
+          });
         });
         feed = data; fetchedAt = Date.now(); return data;
       }).finally(function() { clearTimeout(timeout); pending = null; });
     return pending;
   }
+  async function loadPlayer(d,force) {
+    if (window.GPLogShards) {
+      try { var shard=await GPLogShards.load(d,force); if(shard)return shard; } catch(e) { /* Keep the complete-feed fallback. */ }
+    }
+    return load(force);
+  }
   function resolve(d, data) {
-    var exact = data.byId.get(d.id) || data.byEspn.get(d.espnId) || data.byEspn.get(d.id);
-    if (exact) return exact;
+    d = describe(d);
+    var byId = data.byId.get(d.id), byEspn = data.byEspn.get(d.espnId) || data.byEspn.get(d.id);
+    if (byId && byEspn && byId.id !== byEspn.id) return null;
+    if (byId || byEspn) return byId || byEspn;
+    if (d.espnId || /^00-\d+$/.test(d.id)) return null;
     var matches = arr(data.byName.get(norm(d.name)));
     if (d.position) {
       var positionMatches = matches.filter(function(p) { return pos(p.position) === d.position; });
@@ -394,7 +406,7 @@
 
       var data, entry;
       try{
-        data=await load(false);
+        data=await loadPlayer(d,false);
         entry=resolve(d,data);
       }catch(localError){
         data=null; entry=null;
@@ -446,10 +458,10 @@
     var games = entry ? mergePlayerGames(entry.games).slice(0,count) : [];
     var updated = new Date(data.generatedAt);
     var stamp = Number.isNaN(updated.getTime()) ? '' : updated.toLocaleString(undefined, {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-    var source = '<p class="gp-log-source">Source: <a href="https://nflreadr.nflverse.com/reference/load_player_stats.html" target="_blank" rel="noopener noreferrer">nflverse game stats</a>' + (stamp ? ' &middot; Feed updated ' + esc(stamp) : '') + '. Not live play-by-play.</p>';
+    var source = '<p class="gp-log-source">Source: <a href="https://nflreadr.nflverse.com/reference/load_player_stats.html" target="_blank" rel="noopener noreferrer">nflverse game stats</a>' + (stamp ? ' &middot; Feed updated ' + esc(stamp) : '') + '. Published games through ' + esc(data.latestGameDate || 'the latest available source') + '. Not live play-by-play.</p>';
     var head = '<div class="gp-log-heading"><div><h3>Recent games</h3><p>Actual results, not projections.</p></div>' + (entry && entry.games.length > 5 ? '<div class="gp-log-switch" aria-label="Number of recent games"><button type="button" data-gp-count="5" aria-pressed="'+(count===5)+'">Last 5</button><button type="button" data-gp-count="10" aria-pressed="'+(count===10)+'">Last 10</button></div>' : '') + '</div>';
     if (!games.length) {
-      section.innerHTML = head + '<div class="gp-log-message">No recent regular-season or playoff game records are available for ' + esc(d.name) + '. New players may not have an NFL game record yet. Missing stats are not shown as zero.</div>' + source;
+      section.innerHTML = head + '<div class="gp-log-message">No recent regular-season or playoff game records are available for ' + esc(d.name) + '. This does not mean the player did not play: some appearances have no published individual stat row, and new results may not be published yet. Missing stats are not shown as zero.</div>' + source;
       return;
     }
     var fields = columns(pos(entry.position || d.position),games);
@@ -467,7 +479,8 @@
     section.setAttribute('aria-busy','true');
     section.innerHTML = '<div class="gp-log-heading"><div><h3>Recent games</h3><p>Actual results, not projections.</p></div></div><p class="gp-log-message" role="status">Loading recent game stats...</p>';
     try {
-      var data = await load(force);
+      var values = await Promise.all([loadPlayer(d,force), window.GPPlayerDirectory ? GPPlayerDirectory.load() : Promise.resolve()]);
+      var data = values[0]; d = describe(d);
       if (!section.isConnected) return;
       render(section,d,resolve(d,data),data,5);
     } catch (err) {
@@ -536,7 +549,7 @@
     var refs=[state.snapshot,state.seasonOutlook,state.playerContext];
     if (refs.every(function(x,i){return x===observedRefs[i];}) && namesRegex) return;
     observedRefs=refs;
-    var players=mainPlayers().concat(arr(state.playerContext && state.playerContext.players));
+    var players=mainPlayers().filter(function(p){return !p.directoryOnly;}).concat(arr(state.playerContext && state.playerContext.players));
     arr(state.snapshot && state.snapshot.results).forEach(function(r) { players.push(Object.assign({},r,{name:r.player || r.name})); });
     arr(state.seasonOutlook && state.seasonOutlook.offseasonMoves && state.seasonOutlook.offseasonMoves.items).forEach(function(r) { players.push(Object.assign({},r,{name:r.player,team:r.toTeam})); });
     var next=new Map();

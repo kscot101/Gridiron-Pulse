@@ -2542,6 +2542,9 @@
 <script src="./assets/matchup-comparisons.js?v=20261026-defense1" defer></script>
 <link rel="stylesheet" href="./assets/saved-picks.css?v=20261028a">
 <link rel="stylesheet" href="./assets/pick-reasons.css?v=20261030-copy1">
+<script src="./assets/player-directory.js?v=20261105-players1" defer></script>
+<link rel="stylesheet" href="./assets/expected-stats.css?v=20261105-players1">
+<script src="./assets/player-log-shards.js?v=20261105-players1" defer></script>
 </head>
 
 <body>
@@ -2997,7 +3000,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="./assets/player-game-log.js?v=20261026-bars1"></script>
+    <script src="./assets/player-game-log.js?v=20261026-bars1&directory=20261105-players1"></script>
 <script>
     "use strict";
 
@@ -3329,15 +3332,11 @@
         state.snapshot.availability.items
       );
 
-      return unique(
-        seasonPlayers().concat(
-          rankings,
-          picks,
-          gamePlayers,
-          availability
-        ),
+      var available = unique(
+        seasonPlayers().concat(rankings, picks, gamePlayers, availability),
         playerKey
       );
+      return window.GPPlayerDirectory ? GPPlayerDirectory.merge(available) : available;
     }
 
     function findSeasonTeam(key) {
@@ -6890,6 +6889,7 @@
     }
 
     function openSearch() {
+      if (window.GPPlayerDirectory) GPPlayerDirectory.load().then(function(){renderSearch();});
       openOverlay("search-overlay");
 
       document.getElementById(
@@ -6947,6 +6947,7 @@
               type: "player",
               key: playerKey(player),
               title: player.name,
+              aliases: player.aliases || [],
               meta:
                 text(player.team, "NFL") +
                 " · " +
@@ -7000,16 +7001,15 @@
 
       if (query) {
         results = results.filter(function(item) {
-          return (
-            item.title +
-            " " +
-            item.meta
-          )
-            .toLowerCase()
-            .includes(query);
+          return window.GPPlayerDirectory
+            ? GPPlayerDirectory.matches(item, query)
+            : String(item.title + " " + item.meta).toLowerCase().includes(query);
         });
       }
 
+      if (query && window.GPPlayerDirectory) results.sort(function(a,b) {
+        return GPPlayerDirectory.rank(a,query) - GPPlayerDirectory.rank(b,query);
+      });
       results = results.slice(0, 30);
 
       document.getElementById(
@@ -7037,7 +7037,7 @@
               );
             })
             .join("")
-        : '<div class="empty">No teams, players or games match that search.</div>';
+        : '<div class="empty">' + (window.GPPlayerDirectory && GPPlayerDirectory.status === 'loading' ? 'Loading the player directory...' : window.GPPlayerDirectory && GPPlayerDirectory.status === 'unavailable' ? 'Player directory could not load. Close and reopen Search to retry.' : 'No teams, players or games match that search.') + '</div>';
     }
 
     document.addEventListener("click", function(event) {
@@ -7381,7 +7381,7 @@ setInterval(function () {
 }, 60000);
 </script>
 <script src="./assets/pick-reasons.js?v=20261030-copy1" defer></script>
-<script src="./assets/projection-trial.js?v=20261030-copy1" defer></script>
-<script src="./assets/saved-picks.js?v=20261030-copy1" defer></script>
+<script src="./assets/projection-trial.js?v=20261030-copy1&directory=20261105-players1" defer></script>
+<script src="./assets/saved-picks.js?v=20261030-copy1&directory=20261105-players1" defer></script>
 </body>
 </html>
