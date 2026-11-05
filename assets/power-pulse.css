@@ -1,0 +1,5 @@
+#power-feed-status{margin:0 0 14px;padding:10px 12px;border-left:3px solid #97c52b;background:rgba(7,16,13,.04);color:#253d30;font:500 12px/1.5 var(--sans,system-ui,sans-serif)}
+#power-feed-status[data-mode="last-available"]{border-color:#c58225}
+#power-feed-status[data-mode="unavailable"]{border-color:#9c9c8d}
+#power-pulse [data-power-metric]:disabled{opacity:.5;cursor:not-allowed}
+#power-pulse .power-unit-unavailable{display:block;padding-top:8px;color:#536257;font-size:11px}

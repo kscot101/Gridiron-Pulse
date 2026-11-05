@@ -2545,6 +2545,7 @@
 <script src="./assets/player-directory.js?v=20261105-players1" defer></script>
 <link rel="stylesheet" href="./assets/expected-stats.css?v=20261105-players1">
 <script src="./assets/player-log-shards.js?v=20261105-players1" defer></script>
+<link rel="stylesheet" href="./assets/power-pulse.css?v=20261105-power1">
 </head>
 
 <body>
@@ -2885,6 +2886,7 @@
 
         </div>
 
+        <p id="power-feed-status" role="status" aria-live="polite">Loading saved team and player rankings...</p>
         <div class="power-position-nav power-team-metric-nav" id="power-team-metric-nav"></div>
         <div class="power-position-nav" id="power-position-nav" hidden></div>
         <div class="ranking-grid" id="power-grid"></div>
@@ -3285,11 +3287,15 @@
       );
     }
 
+    function powerRankings() {
+      return window.GPPowerPulse
+        ? GPPowerPulse.current(state.snapshot)
+        : state.snapshot && state.snapshot.powerRankings;
+    }
+
     function allTeams() {
       var rankings = list(
-        state.snapshot &&
-        state.snapshot.powerRankings &&
-        state.snapshot.powerRankings.teams
+        powerRankings() && powerRankings().teams
       );
 
       var gameTeams = allGames()
@@ -3309,9 +3315,7 @@
 
     function allPlayers() {
       var rankings = list(
-        state.snapshot &&
-        state.snapshot.powerRankings &&
-        state.snapshot.powerRankings.players
+        powerRankings() && powerRankings().players
       );
 
       var picks = allBoards().flatMap(function(board) {
@@ -5805,7 +5809,9 @@
         return number(item && item.heatScore, null);
       }
 
-      var history = findHistoricalTeam(teamKey(item));
+      var history = window.GPPowerPulse
+        ? GPPowerPulse.units(item.teamId || teamKey(item), state.historicalOutlook)
+        : findHistoricalTeam(teamKey(item));
       var active = !!(
         history &&
         history.historical &&
@@ -5824,8 +5830,8 @@
             ? "defensePulse"
             : "tandemPulse";
 
-      var value = Number(metrics[key]);
-      return Number.isFinite(value) ? value : null;
+      var value = metrics[key];
+      return typeof value === "number" && Number.isFinite(value) ? value : null;
     }
 
     function powerMetricLabel(metric) {
@@ -5839,13 +5845,16 @@
     }
 
     function renderPower() {
-      var power =
-        state.snapshot &&
-        state.snapshot.powerRankings;
+      var power = powerRankings();
+      if (window.GPPowerPulse) GPPowerPulse.status(state.snapshot);
 
       var teams = list(power && power.teams);
       var players = list(power && power.players);
-      var rawPositions = list(power && power.positions);
+      var rawPositions = Array.from(new Set(players.map(function(p) { return p.positionGroup || p.position; }).filter(Boolean)));
+      if (state.powerKind === "teams" && state.powerMetric !== "overall" &&
+          !teams.some(function(t) { return teamPowerMetricValue(t, state.powerMetric) != null; })) {
+        state.powerMetric = "overall";
+      }
       var preferredOrder = [
         "QB",
         "RB",
@@ -5917,7 +5926,10 @@
         ]
           .map(function(option) {
             return (
-              '<button type="button" data-power-metric="' +
+              '<button type="button" ' +
+              (option[0] !== "overall" && !teams.some(function(t) { return teamPowerMetricValue(t, option[0]) != null; })
+                ? 'disabled title="These scores are awaiting an update" ' : '') +
+              'data-power-metric="' +
               option[0] +
               '" class="' +
               (state.powerMetric === option[0] ? "active" : "") +
@@ -5946,8 +5958,10 @@
             ? teamPowerMetricValue(b, state.powerMetric)
             : number(b.heatScore, null);
 
-        if (aValue == null) aValue = number(a.heatScore);
-        if (bValue == null) bValue = number(b.heatScore);
+        // Missing unit scores are not overall Heat Scores and are never zeros.
+        if (aValue == null && bValue == null) return 0;
+        if (aValue == null) return 1;
+        if (bValue == null) return -1;
 
         return state.powerOrder === "hot"
           ? bValue - aValue
@@ -6053,7 +6067,7 @@
                   : index + 1;
 
               var teamHistory = teamMode
-                ? findHistoricalTeam(entityKey)
+                ? (window.GPPowerPulse ? GPPowerPulse.units(item.teamId || entityKey, state.historicalOutlook) : findHistoricalTeam(entityKey))
                 : null;
               var historyActive = !!(
                 teamHistory &&
@@ -6076,11 +6090,11 @@
               var unitMarkup = teamMode
                 ? (
                     '<div class="power-unit-strip"><span>OFF <b>' +
-                    (historyActive ? Math.round(number(teamMetrics.offensePulse)) : "—") +
+                    (historyActive && typeof teamMetrics.offensePulse === "number" ? Math.round(teamMetrics.offensePulse) : "—") +
                     '</b></span><span>DEF <b>' +
-                    (historyActive ? Math.round(number(teamMetrics.defensePulse)) : "—") +
+                    (historyActive && typeof teamMetrics.defensePulse === "number" ? Math.round(teamMetrics.defensePulse) : "—") +
                     '</b></span><span>TANDEM <b>' +
-                    (historyActive ? Math.round(number(teamMetrics.tandemPulse)) : "—") +
+                    (historyActive && typeof teamMetrics.tandemPulse === "number" ? Math.round(teamMetrics.tandemPulse) : "—") +
                     "</b></span></div>"
                   )
                 : "";
@@ -7383,5 +7397,6 @@ setInterval(function () {
 <script src="./assets/pick-reasons.js?v=20261030-copy1" defer></script>
 <script src="./assets/projection-trial.js?v=20261030-copy1&directory=20261105-players1" defer></script>
 <script src="./assets/saved-picks.js?v=20261030-copy1&directory=20261105-players1" defer></script>
+<script src="./assets/power-pulse.js?v=20261105-power1" defer></script>
 </body>
 </html>
