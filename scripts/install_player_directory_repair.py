@@ -7,7 +7,7 @@ VERSION='20261105-players1'
 
 def patch(path,old,new):
     p=ROOT/path;s=p.read_text()
-    if new in s:return
+    if new in s or new.replace('Promise.all([load(force)', 'Promise.all([loadPlayer(d,force)') in s:return
     if old not in s:raise ValueError('Missing patch anchor: '+path+' '+old[:70])
     p.write_text(s.replace(old,new,1))
 
