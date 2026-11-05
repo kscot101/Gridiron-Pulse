@@ -38,12 +38,13 @@ jobs:
               browser=pw.chromium.launch(headless=True)
               for attempt in range(8):
                   context=browser.new_context(viewport={'width':390,'height':844},timezone_id='America/New_York')
-                  errors=[]
+                  errors=[];responses=[]
                   def route(r):
                       if not r.request.url.startswith(base) or '/data/homepage-snapshot.json' in r.request.url:return r.abort()
                       r.continue_()
                   context.route('**/*',route)
                   page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+                  page.on('response',lambda r:responses.append({'url':r.url,'status':r.status}) if 'power-pulse' in r.url else None)
                   try:
                       page.goto(base+'?power-check='+str(time.time()),wait_until='domcontentloaded',timeout=30000)
                       page.wait_for_function("window.GPPowerPulse && document.querySelectorAll('#power-grid .ranking-card').length===16",timeout=12000)
@@ -65,7 +66,14 @@ jobs:
                       report={'testedAt':datetime.now(timezone.utc).isoformat(),'publicSite':True,'externalFeedsBlocked':True,'bigSnapshotBlocked':True,'teamCount':len(p['teams']),'playerCount':len(p['players']),'rankingGeneratedAt':p['generatedAt'],'statusText':details['state'],'exactScores':True,'teamPlayerFilters':True,'mobileOverflow':False,'pageErrors':errors,'passed':True}
                       Path('power-pulse-public.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));last=None;context.close();break
                   except Exception as e:
-                      last=e;context.close()
+                      last=e
+                      diagnostic={'attempt':attempt+1,'error':str(e),'pageErrors':errors,'responses':responses}
+                      try:
+                          diagnostic['page']=page.evaluate("({url:location.href,module:!!window.GPPowerPulse,render:typeof window.renderPower,cards:document.querySelectorAll('#power-grid .ranking-card').length,status:document.getElementById('power-feed-status')?.textContent,scripts:[...document.scripts].map(s=>s.src).filter(s=>s.includes('power')),title:document.title})")
+                          page.screenshot(path='power-pulse-public-mobile.png')
+                      except Exception:pass
+                      Path('power-pulse-public-diagnostic.json').write_text(json.dumps(diagnostic,indent=2));print(json.dumps(diagnostic,indent=2),flush=True)
+                      context.close()
                       if attempt<7:time.sleep(12)
               browser.close()
           if last:raise last
@@ -77,4 +85,5 @@ jobs:
           retention-days: 7
           path: |
             power-pulse-public.json
+            power-pulse-public-diagnostic.json
             power-pulse-public-mobile.png
