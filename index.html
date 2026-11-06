@@ -2546,6 +2546,7 @@
 <link rel="stylesheet" href="./assets/expected-stats.css?v=20261105-players1">
 <script src="./assets/player-log-shards.js?v=20261105-players1" defer></script>
 <link rel="stylesheet" href="./assets/power-pulse.css?v=20261105-power1">
+<link rel="stylesheet" href="./assets/fan-zone.css?v=20261105-fan1">
 </head>
 
 <body>
@@ -2704,6 +2705,35 @@
         </div>
 
         <div class="edge-grid" id="edge-grid"></div>
+      </div>
+    </section>
+
+    <section class="gp-fan-zone" aria-labelledby="gp-fan-heading">
+      <div class="shell">
+        <div class="gp-fan-heading">
+          <div>
+            <p class="eyebrow">THE FAN ZONE / INTERACTIVE</p>
+            <h2 id="gp-fan-heading">YOUR GAME. YOUR CALL.</h2>
+          </div>
+          <p>Make a matchup prediction, follow your NFL team, or jump into the player matchup you care about. Your selections stay in this browser.</p>
+        </div>
+        <div class="gp-fan-grid">
+          <article class="gp-fan-card" id="gp-fan-calls">
+            <p class="gp-fan-card-kicker">MAKE THE CALL</p>
+            <h3>Pick a winner.</h3>
+            <p class="gp-fan-card-copy">Loading upcoming matchups…</p>
+          </article>
+          <article class="gp-fan-card" id="gp-fan-team">
+            <p class="gp-fan-card-kicker">YOUR TEAM</p>
+            <h3>Rep your colors.</h3>
+            <p class="gp-fan-card-copy">Loading teams…</p>
+          </article>
+          <article class="gp-fan-card" id="gp-fan-focus">
+            <p class="gp-fan-card-kicker">FIND YOUR EDGE</p>
+            <h3>Your next deep dive.</h3>
+            <p class="gp-fan-card-copy">Select a player group to explore.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -4144,6 +4174,7 @@
       renderPower();
       renderModel();
       renderResults();
+      if (window.GPFanZone) GPFanZone.render(state);
       GPHomepageFeed.paint(state.snapshot);
     }
 
@@ -7398,5 +7429,6 @@ setInterval(function () {
 <script src="./assets/projection-trial.js?v=20261030-copy1&directory=20261105-players1" defer></script>
 <script src="./assets/saved-picks.js?v=20261030-copy1&directory=20261105-players1" defer></script>
 <script src="./assets/power-pulse.js?v=20261105-power1" defer></script>
+<script src="./assets/fan-zone.js?v=20261105-fan1" defer></script>
 </body>
 </html>
