@@ -1,22 +1,43 @@
 {
-  "checkedAt": "2026-11-09T00:47:13.134526+00:00",
-  "workflowRun": "42542042031",
-  "ok": false,
+  "checkedAt": "2026-11-09T07:53:04.105348+00:00",
+  "workflowRun": "42582091291",
+  "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-11-09T00:47:14.094Z",
-      "teamsWithHistory": 4,
-      "teamsMeetingSampleTarget": 2,
+      "generatedAt": "2026-11-09T07:53:04.672Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 0,
       "fallbackSignalCount": 0,
       "warnings": [
         "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
       ]
     },
     {
-      "generatedAt": "2026-11-09T00:48:26.333Z",
-      "teamsWithHistory": 4,
-      "teamsMeetingSampleTarget": 2,
+      "generatedAt": "2026-11-09T07:54:13.982Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 0,
+      "fallbackSignalCount": 0,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-09T07:55:22.820Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 0,
+      "fallbackSignalCount": 0,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-09T07:56:31.734Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 0,
+      "fallbackSignalCount": 0,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-09T07:57:40.855Z",
+      "teamsWithHistory": 2,
+      "teamsMeetingSampleTarget": 0,
       "fallbackSignalCount": 0,
       "warnings": []
     }
@@ -24,7 +45,7 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 9,
-  "previousGeneratedAt": "2026-11-08T20:47:39.968Z",
+  "previousGeneratedAt": "2026-11-09T00:48:26.333Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -33,36 +54,176 @@
     "week": 9,
     "label": "2026 Regular Season \u00b7 Week 9"
   },
-  "previousResultCount": 7,
+  "previousResultCount": 50,
   "previousAnalysisInputs": {
     "historyReady": false,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 12,
-    "teamsWithHistory": 12,
-    "teamsMeetingSampleTarget": 7,
+    "pregameTeams": 4,
+    "teamsWithHistory": 4,
+    "teamsMeetingSampleTarget": 2,
     "teamSamples": {
-      "HOU": 2,
-      "LAC": 2,
-      "GB": 3,
-      "NE": 3,
-      "LV": 3,
-      "SF": 2,
-      "ARI": 3,
-      "SEA": 3,
       "TB": 3,
       "CHI": 3,
       "BUF": 2,
       "MIN": 2
     },
-    "playerPicks": 22,
-    "picksWithGameHistory": 22,
+    "playerPicks": 6,
+    "picksWithGameHistory": 6,
     "playersWithoutGameHistory": [],
-    "signalCount": 88,
-    "fallbackSignalCount": 1,
+    "signalCount": 24,
+    "fallbackSignalCount": 0,
     "sampleSeasons": [
       "2026"
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "error": "Homepage source returned HTTP 503"
+  "generatedAt": "2026-11-09T07:57:40.855Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 9,
+    "label": "2026 Regular Season \u00b7 Week 9"
+  },
+  "gameCount": 15,
+  "resultCount": 53,
+  "analysisInputs": {
+    "historyReady": false,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 2,
+    "teamsWithHistory": 2,
+    "teamsMeetingSampleTarget": 0,
+    "teamSamples": {
+      "BUF": 2,
+      "MIN": 2
+    },
+    "playerPicks": 3,
+    "picksWithGameHistory": 3,
+    "playersWithoutGameHistory": [],
+    "signalCount": 12,
+    "fallbackSignalCount": 0,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
+  "sampleSignals": [
+    {
+      "name": "Patrick Mahomes",
+      "team": "KC",
+      "position": "QB",
+      "score": 89,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401873033",
+          "date": "2026-11-01T21:25Z",
+          "opponent": "DEN",
+          "headline": "30/41 C/ATT \u00b7 321 YDS \u00b7 3 TD",
+          "productionScore": 118.25,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 8
+        },
+        {
+          "gameId": "401873022",
+          "date": "2026-10-26T00:20Z",
+          "opponent": "SEA",
+          "headline": "19/33 C/ATT \u00b7 165 YDS \u00b7 0 TD",
+          "productionScore": 39.916666666666664,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 7
+        },
+        {
+          "gameId": "401873006",
+          "date": "2026-10-18T20:25Z",
+          "opponent": "LAC",
+          "headline": "23/30 C/ATT \u00b7 272 YDS \u00b7 0 TD",
+          "productionScore": 67.33333333333333,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 6
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "NYJ has allowed 225.7 net passing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "3-game form is rising; latest vs DEN: 30/41 C/ATT \u00b7 321 YDS \u00b7 3 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "KC's recent yardage mix is 72% passing and 28% rushing. The strongest recent non-QB production has come from WR."
+        },
+        {
+          "label": "Position history",
+          "detail": "Opposing QBs averaged 230 passing yards, 2.7 passing TD and 0 INT across 3 recent games vs NYJ."
+        }
+      ]
+    },
+    {
+      "name": "Travis Kelce",
+      "team": "KC",
+      "position": "TE",
+      "score": 82,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401873033",
+          "date": "2026-11-01T21:25Z",
+          "opponent": "DEN",
+          "headline": "5 REC \u00b7 67 YDS \u00b7 0 TD",
+          "productionScore": 48.5,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 8
+        },
+        {
+          "gameId": "401873022",
+          "date": "2026-10-26T00:20Z",
+          "opponent": "SEA",
+          "headline": "4 REC \u00b7 44 YDS \u00b7 0 TD",
+          "productionScore": 34,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 7
+        },
+        {
+          "gameId": "401873006",
+          "date": "2026-10-18T20:25Z",
+          "opponent": "LAC",
+          "headline": "4 REC \u00b7 53 YDS \u00b7 0 TD",
+          "productionScore": 38.5,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 6
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "NYJ has allowed 225.7 net passing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "3-game form is rising; latest vs DEN: 5 REC \u00b7 67 YDS \u00b7 0 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "KC's recent yardage mix is 72% passing and 28% rushing. The strongest recent non-QB production has come from WR."
+        },
+        {
+          "label": "Position history",
+          "detail": "NYJ's recent results against comparable TE roles are still being established."
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "analysisWarning": "History warm-up is incomplete; a fresh timestamp alone does not mean complete analysis."
 }
