@@ -315,6 +315,20 @@
     });
   }
 
+  // ESPN event IDs can differ from local game IDs. A player cannot face the
+  // same NFL opponent twice on the same calendar date, so use that pair as
+  // the final conservative H2H identity when source team fields are incomplete.
+  function distinctH2HGames(rows) {
+    var seen = new Set();
+    return mergePlayerGames(rows).filter(function(row) {
+      var calendar = gameCalendarDate(row), opponent = team(row && row.opponent);
+      if (!calendar || !opponent) return true; // Never guess an identity.
+      var key = calendar + '|' + opponent;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
   function localH2H(entry, opponent) {
     return arr(entry && entry.games).filter(function(g){return team(g.opponent)===opponent;}).map(function(g){
       return {
@@ -334,7 +348,7 @@
       var remote=await Promise.allSettled(years.map(function(y){return fetchH2HSeason(espnId,y).then(function(data){return parseEspnH2H(data,y,opponent.team);});}));
       remote.forEach(function(result,i){if(result.status==='fulfilled') rows=rows.concat(result.value); else failed.push(years[i]);});
     }
-    rows=mergePlayerGames(rows);
+    rows=distinctH2HGames(rows);
     return {opponent:opponent,rows:rows,failed:failed,year:year,oldest:oldest,espnId:espnId};
   }
   function h2hYards(row, position) {
@@ -357,6 +371,7 @@
     section.setAttribute('aria-busy','false');
     if (!result || !offensivePositions.has(pos(d.position))) { section.hidden=true; return; }
     section.hidden=false;
+    if(result && Array.isArray(result.rows))result.rows=distinctH2HGames(result.rows);
     if (window.GPMatchupComparisons) {
       Promise.resolve().then(function() {
         if (section.isConnected) GPMatchupComparisons.mountPlayer(section,d,result);
@@ -367,7 +382,7 @@
       section.innerHTML='<div class="gp-h2h-head"><div><small>MATCHUP HISTORY</small><h3>Head to head</h3></div></div><p class="gp-h2h-note">'+esc(result.message||'Next opponent is not available yet.')+'</p>';
       return;
     }
-    var rows=mergePlayerGames(result.rows), position=pos(d.position), yardLabel=position==='QB'?'Pass yds':position==='RB'?'Scrimmage yds':'Rec yds';
+    var rows=distinctH2HGames(result.rows), position=pos(d.position), yardLabel=position==='QB'?'Pass yds':position==='RB'?'Scrimmage yds':'Rec yds';
     var yards=rows.map(function(r){return h2hYards(r,position);}).filter(function(v){return v!=null;});
     var avg=yards.length?yards.reduce(function(a,b){return a+b;},0)/yards.length:null;
     var totalTd=rows.reduce(function(sum,row){return sum+h2hTd(row,position);},0);
