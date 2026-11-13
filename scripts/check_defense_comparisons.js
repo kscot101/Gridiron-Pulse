@@ -58,44 +58,63 @@ const path=require('node:path');
   await page.waitForFunction(()=>window.GPPlayerStats&&window.GPMatchupComparisons);
   const p=Object.values(players.players).find(p=>p.name==='Patrick Mahomes');assert.ok(p);
   await page.evaluate(p=>GPPlayerStats.open({name:p.name,id:p.id,team:p.team,position:p.position}),p);
-  await page.locator('.gc-player [data-gc-metric="passingYards"]').waitFor({timeout:30000});
-  await page.locator('.gc-player .gc-visual-panel .gc-bar-row[data-series="season"] [data-value]').waitFor();
-  const seasonLocator=page.locator('.gc-player .gc-visual-panel .gc-bar-row[data-series="season"] [data-value]');
-  const season=Number(await seasonLocator.getAttribute('data-value'));
-  assert.ok(Math.abs(season-p.averages.season.passingYards.value)<.00001);
+
+  await page.locator('.gc-unified-graph .gc-triple-week').first().waitFor({timeout:30000});
+  assert.equal(await page.locator('.gc-unified-graph').count(),1,'Exactly one player comparison graph');
+  assert.equal(await page.locator('.gc-matchup-layout,.gc-defense-weeks,.gc-player-chart-grid').count(),0,'Remove separate charts');
+  assert.equal(await page.locator('.gc-unified-graph .gc-triple-week').count(),5,'Five grouped NFL weeks');
+  assert.equal(await page.locator('.gc-unified-graph .gc-triple-level').count(),15,'Three levels in each week');
   assert.equal(await page.locator('.gc-player [data-gc-player-stat]').inputValue(),'passingYards');
-  assert.equal(await page.locator('.gc-player .gc-weekly-column').count()>=5,true,'At least five weekly player bars should render');
-  await page.locator('.gc-player [data-gc-metric="passingTD"]').click();
-  assert.ok(Math.abs(Number(await seasonLocator.getAttribute('data-value'))-p.averages.season.passingTD.value)<.00001);
-  await page.locator('.gc-player [data-gc-metric="passingYards"]').click();
-  assert.equal(await page.locator('.gc-player .gc-read-strip').count(),1);
-  assert.equal(await page.locator('.gc-player .gc-matchup-layout').count(),1);
-  assert.equal(await page.locator('.gc-player .gc-visual-panel').count(),2);
-  const latestFive=p.games.slice(-5);
-  const shownWeekly=await page.locator('.gc-visual-panel .gc-weekly-column').evaluateAll(nodes=>
-    nodes.map(node=>node.querySelector('[data-value]').dataset.value));
-  assert.equal(shownWeekly.length,latestFive.length);
-  latestFive.forEach((game,i)=>{
-    const expected=game.values.passingYards;
-    assert.ok(expected==null?shownWeekly[i]==='':Math.abs(Number(shownWeekly[i])-expected)<.00001,
-      'Player weekly chart must match saved results: '+i);
-  });
-  const nextOpp=await page.evaluate(async p=>GPMatchupComparisons.resolveOpponent({name:p.name,team:p.team,position:p.position}),p);
-  if(nextOpp && defense.teams[nextOpp.team]){
-    await page.locator('.gc-defense-weeks [data-gc-defense-stat]').waitFor();
-    const shownDefense=await page.locator('.gc-defense-weeks .gc-weekly-column').evaluateAll(nodes=>
-      nodes.map(node=>node.querySelector('[data-value]').dataset.value));
-    const expectedDefense=defense.teams[nextOpp.team].games
-      .filter(game=>!nextOpp.date||String(game.date).slice(0,10)<String(nextOpp.date).slice(0,10))
-      .slice(-5);
-    assert.equal(shownDefense.length,expectedDefense.length);
-    expectedDefense.forEach((game,i)=>{
-      const val=game.values.QB_passingYards;
-      assert.ok(val==null?shownDefense[i]==='':Math.abs(Number(shownDefense[i])-val)<.00001,
-        'Opponent weekly chart must match recorded allowances: '+i);
+  assert.equal(await page.locator('.gc-triple-summary [data-gc-summary="season"]').innerText(),
+    p.averages.season.passingYards.value.toLocaleString(undefined,{maximumFractionDigits:1}));
+  const nextOpp=await page.evaluate(async p=>GPMatchupComparisons.resolveOpponent(
+    {name:p.name,team:p.team,position:p.position}),p);
+  const defenseTeam=nextOpp&&defense.teams[nextOpp.team];
+  const defWeeks=defenseTeam?
+    defenseTeam.games.filter(g=>!nextOpp.date||String(g.date).slice(0,10)<String(nextOpp.date).slice(0,10)).slice(-5):
+    [];
+  const playerWeeks=p.games.slice(-5);
+  const anchorGames=defWeeks.length?defWeeks:playerWeeks;
+  const chartWeeks=await page.locator('.gc-triple-week').evaluateAll(nodes=>nodes.map(n=>({
+    week:Number(n.dataset.gcWeekGroup),
+    values:Array.from(n.querySelectorAll('.gc-triple-level')).map(row=>({
+      level:row.dataset.gcLevel,value:row.dataset.value
+    }))
+  })));
+  assert.equal(chartWeeks.length,anchorGames.length);
+  chartWeeks.forEach((group,i)=>{
+    assert.equal(group.week,Number(anchorGames[i].week),'Weekly rows share league week identity');
+    assert.deepEqual(group.values.map(v=>v.level),['player','season','defense']);
+    const playerWeek=p.games.find(g=>Number(g.week)===group.week);
+    const defWeek=defWeeks.find(g=>Number(g.week)===group.week);
+    const exp=[playerWeek?playerWeek.values.passingYards:null,
+      p.averages.season.passingYards.value,defWeek?defWeek.values.QB_passingYards:null];
+    exp.forEach((v,k)=>{
+      assert.ok(v==null?group.values[k].value==='':Math.abs(Number(group.values[k].value)-v)<.00001,
+        'Verified weekly comparison '+group.week+' / '+group.values[k].level);
     });
-    report.weeklyDefenseVerified=true;
-  } else report.weeklyDefenseVerified='No verified next opponent';
+  });
+  report.singleWeeklyChart=true;
+  report.threeLevelsPerWeek=true;
+  report.weeklyDefenseVerified=Boolean(defenseTeam);
+  report.exactPlayerValues=true;
+  await page.locator('[data-gc-metric="passingTD"]').click();
+  assert.equal(await page.locator('.gc-triple-summary [data-gc-summary="season"]').innerText(),
+    p.averages.season.passingTD.value.toLocaleString(undefined,{maximumFractionDigits:1}));
+  const hasDefensePassTD=Boolean(defenseTeam);
+  if(hasDefensePassTD){
+    const defenseVals=await page.locator('[data-gc-level="defense"]').evaluateAll(nodes=>nodes.map(n=>n.dataset.value));
+    chartWeeks.forEach((group,i)=>{
+      const week=defWeeks.find(g=>Number(g.week)===group.week);
+      const expected=week&&week.values.QB_passingTD;
+      assert.ok(expected==null?defenseVals[i]==='':Math.abs(Number(defenseVals[i])-expected)<.00001,
+        'Defense passing TD comparison '+group.week);
+    });
+  }
+  await page.locator('[data-gc-metric="interceptions"]').click();
+  assert.equal(await page.locator('[data-gc-level="defense"]').evaluateAll(nodes=>
+    nodes.every(n=>n.dataset.value==='')),true,'Unsupported defensive stat must be unavailable, not mismatched');
+  await page.locator('[data-gc-metric="passingYards"]').click();
   const openProfiles=await page.evaluate(()=>document.querySelectorAll('dialog.gp-player-dialog[open],#detail-overlay.open').length);
   assert.equal(openProfiles,1);assert.equal(await page.locator('.gp-recent-root').count(),1);
   report.playerBars=true;report.exactPlayerValues=true;report.singlePopup=true;
