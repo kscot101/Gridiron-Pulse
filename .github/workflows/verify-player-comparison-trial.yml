@@ -13,6 +13,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: gp-player-card-trial
+  cancel-in-progress: true
 jobs:
   player-card:
     runs-on: ubuntu-latest
