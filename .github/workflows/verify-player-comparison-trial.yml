@@ -1,0 +1,43 @@
+name: Player card comparison trial (browser)
+on:
+  push:
+    branches:
+      - feature/player-card-weekly-comparison-20261113
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'assets/matchup-comparisons.js'
+      - 'assets/player-comparison-v2.css'
+      - 'scripts/check_defense_comparisons.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  player-card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript syntax
+        run: |
+          node --check assets/matchup-comparisons.js
+          node --check scripts/check_defense_comparisons.js
+      - name: Install headless browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Check player and defense chart values and mobile layout
+        run: node scripts/check_defense_comparisons.js
+      - name: Upload visual screenshots and test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: player-card-comparison-trial
+          retention-days: 7
+          path: |
+            defense-verification.json
+            defense-*.png
