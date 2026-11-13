@@ -1,0 +1,43 @@
+name: Unified player three-level chart trial
+on:
+  push:
+    branches: [feature/unified-player-three-level-week-chart-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gp-unified-chart-trial
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check script syntax
+        run: |
+          node --check assets/matchup-comparisons.js
+          node --check scripts/check_defense_comparisons.js
+          node --check scripts/check-player-width.js
+      - name: Install Chromium for desktop/mobile QA
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Validate real recorded series and weekly grouping
+        run: node scripts/check_defense_comparisons.js
+      - name: Verify player modal fills screen
+        run: node scripts/check-player-width.js
+      - name: Upload screenshots and numerical verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unified-player-chart-browser-trial
+          retention-days: 7
+          path: |
+            defense-verification.json
+            defense-*.png
+            player-width-verification.json
+            player-width-*.png
