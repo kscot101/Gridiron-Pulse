@@ -227,10 +227,14 @@
         var options=playerOptions[position].map(function(key){
           return '<option value="'+esc(key)+'"'+(key===metric?' selected':'')+'>'+esc(labels[key]||key)+'</option>';
         }).join('');
+        var metricButtons=playerOptions[position].map(function(key){
+          return '<button type="button" data-gc-metric="'+esc(key)+'" aria-pressed="'+(key===metric)+'">'+esc(labels[key]||key)+'</button>';
+        }).join('');
         var markup=
           '<div class="gc-player-intro"><div><p class="gc-kicker">PERFORMANCE SNAPSHOT</p>'+
           '<h4>Compare the numbers</h4><p>One statistic across matchup history, season form, and the last five games.</p></div>'+
-          '<label class="gc-metric-picker">Statistic <select data-gc-player-stat aria-label="Player comparison statistic">'+options+'</select></label></div>'+
+          '<label class="gc-metric-picker">Statistic <select data-gc-player-stat aria-label="Player comparison statistic">'+options+'</select></label></div>'+ 
+          '<div class="gc-stat-pills" role="group" aria-label="Select player performance statistic">'+metricButtons+'</div>'+
           '<div class="gc-matchup-layout"><div class="gc-player-side"><div class="gc-player-chart-grid">'+
           chartSection('H2H vs season vs last 5',playerLabel+' per recorded appearance',comparison,playerLabel)+
           chartSection('Last 5 individual games',recent.length?rowSamples+' of '+recent.length+' with published '+playerLabel.toLowerCase():'No current-season games',recent,playerLabel,true)+
@@ -310,6 +314,15 @@
           '<div><b>Defense trend</b><span>'+defenseRead+'</span></div></div>';
         host.innerHTML=markup;
 
+        host.querySelectorAll('[data-gc-metric]').forEach(function(button){
+          button.addEventListener('click',function(){
+            pref.metric=button.getAttribute('data-gc-metric');pref.defenseMetric='';paint();
+            var next=Array.from(host.querySelectorAll('[data-gc-metric]')).find(function(b){
+              return b.getAttribute('data-gc-metric')===pref.metric;
+            });
+            if(next)next.focus({preventScroll:true});
+          });
+        });
         var playerSelect=host.querySelector('[data-gc-player-stat]');
         if(playerSelect)playerSelect.addEventListener('change',function(e){
           pref.metric=e.target.value;pref.defenseMetric='';paint();
