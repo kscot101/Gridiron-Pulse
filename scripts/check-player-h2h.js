@@ -80,7 +80,9 @@ const path = require('node:path');
     dialogs:Array.from(document.querySelectorAll('dialog.gp-player-dialog')).filter(d=>d.open).length
   }));
   assert.ok(visibleProfileCounts.detail + visibleProfileCounts.dialogs <= 1,'More than one player profile presentation is visible');
-  const directRows=await directH2H.locator('tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(0,2).map(c=>c.innerText.replace(/\s+/g,' ').trim()).join('|')));
+  // The full H2H table is collapsed by default in the visual card. Read
+  // textContent (the actual cell data), not innerText (empty when hidden).
+  const directRows=await directH2H.locator('.gp-h2h-table tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(0,2).map(c=>c.textContent.replace(/\s+/g,' ').trim()).join('|')));
   assert.equal(new Set(directRows).size,directRows.length,'Duplicate H2H game rows rendered');
 
   await page.setViewportSize({width:390,height:844});
