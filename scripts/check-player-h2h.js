@@ -81,6 +81,8 @@ const path = require('node:path');
   }));
   assert.ok(visibleProfileCounts.detail + visibleProfileCounts.dialogs <= 1,'More than one player profile presentation is visible');
   const directRows=await directH2H.locator('tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(0,2).map(c=>c.innerText.replace(/\s+/g,' ').trim()).join('|')));
+  console.log('H2H DEBUG rows:',JSON.stringify(directRows));
+  console.log('H2H DEBUG html:',(await directH2H.innerHTML()).slice(0,4500));
   assert.equal(new Set(directRows).size,directRows.length,'Duplicate H2H game rows rendered');
 
   await page.setViewportSize({width:390,height:844});
