@@ -39,7 +39,8 @@ const fs=require('node:fs');
        const modal=overlay.querySelector('.modal');
        const graph=overlay.querySelector('.gc-matchup-layout');
        const rect=modal.getBoundingClientRect();
-       return {viewport:innerWidth,width:Math.round(rect.width),modalOverflow:modal.scrollWidth>modal.clientWidth+3,
+       const st=getComputedStyle(modal),os=getComputedStyle(overlay);
+       return {viewport:innerWidth,width:Math.round(rect.width),modalCSS:st.width,modalFlex:st.flex,modalMax:st.maxWidth,overlayCSS:os.display,selectorMatch:overlay.matches('#detail-overlay.open:has(.gp-h2h-root)'),cssLoaded:[...document.styleSheets].some(x=>x.href&&x.href.includes('player-comparison-v2.css')),modalOverflow:modal.scrollWidth>modal.clientWidth+3,
          pageOverflow:document.documentElement.scrollWidth>innerWidth+3,hasAnalysis:!!overlay.querySelector('.gp-h2h-root'),
          chartColumns:graph?getComputedStyle(graph).gridTemplateColumns:'pending'};
      });
