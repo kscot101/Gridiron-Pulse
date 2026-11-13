@@ -1,0 +1,45 @@
+/* Player comparison v2: visible, readable evidence before the detailed box score.
+   Scoped only to the individual player profile; no homepage redesign. */
+.gp-h2h-root .gc-player{margin:16px 0 12px;padding:0;border:0;color:#edf8ef}
+.gp-h2h-root .gc-player-intro{display:flex;align-items:end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin:0 0 18px;padding:18px 18px 12px;background:#142b20;border:1px solid #385c43;border-radius:12px}
+.gp-h2h-root .gc-player-intro h4{font-size:clamp(19px,3vw,26px)!important;font-weight:900!important;line-height:1.2!important}
+.gp-h2h-root .gc-player-intro p:not(.gc-kicker){margin:6px 0;color:#d4e3d5;font-size:13px;line-height:1.5}
+.gp-h2h-root .gc-metric-picker{display:flex;flex-direction:column;gap:7px;color:#d4e6d6;font-size:12px;font-weight:800;min-width:170px}
+.gp-h2h-root .gc-metric-picker select{width:100%;font-size:14px;font-weight:700;min-height:46px}
+.gp-h2h-root .gc-player-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+.gp-h2h-root .gc-visual-panel{min-width:0;padding:17px 16px;background:#10251d;border:1px solid #416348;border-radius:12px}
+.gp-h2h-root .gc-visual-head{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.gp-h2h-root .gc-visual-head h4{font-size:16px!important;font-weight:850!important;color:#fff!important}
+.gp-h2h-root .gc-visual-head span{font-size:12px;color:#bad2bc}
+.gp-h2h-root .gc-bar-row{margin-bottom:3px}
+.gp-h2h-root .gc-bar-label{gap:10px}
+.gp-h2h-root .gc-bar-label span{font-size:12px;font-weight:700;overflow-wrap:anywhere}
+.gp-h2h-root .gc-bar-label strong{font-size:16px!important;font-weight:900!important;color:#f9fff0!important}
+.gp-h2h-root .gc-track{height:13px;background:#294339;border:1px solid #375846;border-radius:4px}
+.gp-h2h-root .gc-fill{background:#c9ff32}
+.gp-h2h-root .gc-tone-1{background:#59d7ff}
+.gp-h2h-root .gc-tone-2{background:#ffa86a}
+.gp-h2h-root .gc-tone-3{background:#c9ff32}
+.gp-h2h-root .gc-bar-row>small{color:#b2cdb6!important;margin:5px 0 7px}
+.gp-h2h-root .gc-playoff-toggle{display:flex;gap:9px;align-items:center;min-height:44px;margin:10px 0;color:#e5f0e6;font-weight:750;font-size:12px}
+.gp-h2h-root .gc-playoff-toggle input{width:17px;height:17px;accent-color:#c9ff32}
+.gp-h2h-root .gc-forecast-note{padding:12px 14px;margin:10px 0;border-left:3px solid #59d7ff;background:#112c29;font-size:12px;color:#d9edeb}
+.gp-h2h-root .gc-forecast-note strong{font-size:15px;color:#fff}
+.gp-h2h-root .gc-visual-empty{padding:14px;background:#183126;border:1px dashed #668572;border-radius:8px;font-size:13px;line-height:1.6;color:#d1e3d3}
+.gp-h2h-root .gc-defense-weeks{margin-top:24px;padding:20px;background:linear-gradient(160deg,#142e26,#0c221b);border:1px solid #4d8060;border-radius:12px}
+.gp-h2h-root .gc-defense-weeks-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.gp-h2h-root .gc-defense-weeks-head h4{font-size:clamp(19px,3vw,25px)!important;font-weight:900!important}
+.gp-h2h-root .gc-defense-weeks-head p:not(.gc-kicker){max-width:580px;color:#d4e4d8;font-size:13px;margin:7px 0 0;line-height:1.55}
+.gp-h2h-root .gc-defense-picker{max-width:380px;margin:0 0 12px}
+.gp-h2h-root .gc-defense-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.gp-h2h-root .gc-defense-summary>div{padding:14px;background:#102419;border:1px solid #487253;border-radius:9px}
+.gp-h2h-root .gc-defense-summary small{display:block;margin-bottom:8px;color:#bed6c2;font-size:12px;line-height:1.35;font-weight:700}
+.gp-h2h-root .gc-defense-summary strong{color:#c9ff32;font:900 26px/1.1 ui-monospace,Consolas,monospace}
+.gp-h2h-root .gc-defense-disclosure{padding:10px 12px;border:1px solid #4b6b6d;background:#163035;border-radius:8px;color:#daeeee;font-size:12px;line-height:1.5}
+.gp-h2h-root .gc-h2h-details{margin:18px 0 0;border-top:1px solid #4f7357}
+.gp-h2h-root .gc-h2h-details>summary{color:#c9ff32!important;font-size:13px;font-weight:850;cursor:pointer;padding:13px 4px}
+.gp-h2h-root .gc-h2h-details .gp-h2h-summary{margin:12px 0}
+.gp-h2h-root .gc-h2h-details .gp-log-scroll{max-width:100%}
+.gp-h2h-root :is(select,input,summary,a):focus-visible{outline:3px solid #59d7ff;outline-offset:3px}
+@media(max-width:760px){.gp-h2h-root .gc-player-chart-grid{grid-template-columns:1fr}.gp-h2h-root .gc-player-intro{align-items:stretch}.gp-h2h-root .gc-metric-picker{width:100%}.gp-h2h-root .gc-visual-panel{padding:15px 13px}.gp-h2h-root .gc-defense-weeks{padding:16px 12px}.gp-h2h-root .gc-defense-summary strong{font-size:22px}}
+@media(max-width:380px){.gp-h2h-root .gc-defense-summary{grid-template-columns:1fr}.gp-h2h-root .gc-bar-label strong{font-size:14px!important}}
