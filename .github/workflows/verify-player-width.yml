@@ -1,0 +1,44 @@
+name: Player profile width trial
+on:
+  push:
+    branches:
+      - fix/player-profile-full-width-20261113
+  pull_request:
+    branches: [main]
+    paths:
+      - 'assets/player-comparison-v2.css'
+      - 'scripts/check-player-width.js'
+      - '.github/workflows/verify-player-width.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: player-profile-width-trial
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser test script
+        run: node --check scripts/check-player-width.js
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test player profile widths
+        run: node scripts/check-player-width.js
+      - name: Save screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: player-profile-width-trial
+          retention-days: 7
+          path: |
+            player-width-verification.json
+            player-width-desktop.png
+            player-width-mobile.png

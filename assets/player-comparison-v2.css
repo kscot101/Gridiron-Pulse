@@ -95,3 +95,71 @@
   .gp-h2h-root .gc-read-strip>div:last-child{border-bottom:0!important}
 }
 @media(prefers-reduced-motion:reduce){.gp-h2h-root .gc-weekly-fill{transition:none;animation:none}}
+
+
+/* Wide-screen profile layout — give the graphs room rather than squeezing
+   both panels into the old 980px-wide generic detail popup. */
+#detail-overlay.open:has(.gp-h2h-root){
+  display:flex;
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100dvh;
+  max-width:none;
+  box-sizing:border-box;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:clamp(6px,0.9vw,16px);
+}
+#detail-overlay:has(.gp-h2h-root) .modal{
+  flex:0 0 auto;
+  box-sizing:border-box;
+  width:min(1680px,calc(100vw - 24px))!important;
+  max-width:none!important;
+  min-width:0;
+  height:calc(100dvh - 24px)!important;
+  max-height:calc(100dvh - 24px)!important;
+  border:1px solid #345744!important;
+  border-radius:12px!important;
+}
+#detail-overlay:has(.gp-h2h-root) .modal-body{
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  padding:clamp(12px,1.6vw,26px);
+}
+#detail-overlay:has(.gp-h2h-root) .gp-h2h-root{width:100%;box-sizing:border-box}
+.gp-player-dialog:has(.gp-h2h-root){
+  box-sizing:border-box;
+  width:min(1580px,calc(100vw - 24px));
+  max-width:none;
+}
+.gp-h2h-root .gc-matchup-layout{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(14px,1.7vw,26px);
+}
+.gp-h2h-root .gc-visual-panel{padding:clamp(16px,1.4vw,24px)}
+.gp-h2h-root .gc-defense-weeks{padding:clamp(16px,1.4vw,24px)}
+.gp-h2h-root .gc-player-intro{padding:clamp(16px,1.4vw,24px)}
+.gp-h2h-root .gc-weekly-track{height:clamp(125px,12vw,185px)}
+.gp-h2h-root .gc-bar-label span{font-size:clamp(12px,0.95vw,15px)}
+.gp-h2h-root .gc-bar-label strong{font-size:clamp(16px,1.1vw,19px)!important}
+.gp-h2h-root .gc-stat-pills button{font-size:13px;min-height:42px}
+@media(max-width:1120px){
+  /* A side-by-side split gets too cramped on laptop/tablet widths. */
+  .gp-h2h-root .gc-matchup-layout{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  #detail-overlay.open:has(.gp-h2h-root){padding:4px}
+  #detail-overlay:has(.gp-h2h-root) .modal{
+    width:calc(100vw - 8px)!important;
+    height:calc(100dvh - 8px)!important;
+    max-height:calc(100dvh - 8px)!important;
+    border-radius:7px!important;
+  }
+  #detail-overlay:has(.gp-h2h-root) .modal-body{padding:10px}
+  .gp-player-dialog:has(.gp-h2h-root){width:calc(100vw - 12px)}
+  .gp-h2h-root .gc-visual-panel{padding:14px 11px}
+  .gp-h2h-root .gc-defense-weeks{padding:15px 11px}
+  .gp-h2h-root .gc-weekly-track{height:120px}
+}
