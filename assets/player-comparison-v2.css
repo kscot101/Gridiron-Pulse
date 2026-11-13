@@ -163,3 +163,135 @@
   .gp-h2h-root .gc-defense-weeks{padding:15px 11px}
   .gp-h2h-root .gc-weekly-track{height:120px}
 }
+
+
+/* Unified three-level weekly chart. The previous separate performance and
+   opponent graphs are replaced by five shared-scale weekly groups. */
+.gp-h2h-root .gc-unified-profile{min-width:0;width:100%}
+.gp-h2h-root .gc-unified-profile .gc-player-intro{margin-bottom:12px}
+.gp-h2h-root .gc-triple-summary{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;
+ margin:16px 0 18px
+}
+.gp-h2h-root .gc-triple-summary>div{
+ min-width:0;display:flex;flex-direction:column;gap:7px;
+ background:#10251d;border:1px solid #477154;border-radius:11px;padding:16px
+}
+.gp-h2h-root .gc-triple-summary small{
+ font:800 11px/1.3 system-ui,sans-serif!important;color:#c0d5c7!important;
+ text-transform:uppercase;letter-spacing:.025em
+}
+.gp-h2h-root .gc-triple-summary strong{font:900 clamp(22px,2.2vw,34px)/1.1 ui-monospace,Consolas,monospace;color:#c9ff32!important}
+.gp-h2h-root .gc-triple-summary span{font:600 11px/1.4 system-ui,sans-serif;color:#b9cfc0}
+.gp-h2h-root .gc-unified-graph{
+ min-width:0;background:linear-gradient(155deg,#0b1f19 0%,#102921 100%);
+ border:1px solid #598065;border-radius:14px;padding:clamp(15px,2vw,26px)
+}
+.gp-h2h-root .gc-unified-head{
+ display:flex;justify-content:space-between;align-items:flex-start;
+ flex-wrap:wrap;gap:12px;margin-bottom:15px
+}
+.gp-h2h-root .gc-unified-head h4{
+ font:900 clamp(20px,2vw,29px)/1.15 system-ui,sans-serif!important;
+ color:#f8fff4!important;margin:7px 0 0!important
+}
+.gp-h2h-root .gc-unified-head p:not(.gc-kicker){margin:7px 0 0!important;color:#cbdcce!important;font-size:12px!important}
+.gp-h2h-root .gc-axis-range{
+ font:700 11px/1.5 ui-monospace,Consolas,monospace;color:#c5dbcf;
+ padding:8px 12px;border:1px solid #486b53;border-radius:8px;
+ background:#10251c;white-space:normal
+}
+.gp-h2h-root .gc-triple-legend{
+ display:flex;flex-wrap:wrap;gap:8px 15px;align-items:center;
+ padding:11px 0 17px;border-bottom:1px solid #345440;
+ font:750 12px/1.35 system-ui,sans-serif;color:#e8f5e9
+}
+.gp-h2h-root .gc-triple-legend>span{display:inline-flex;align-items:center;gap:7px}
+.gp-h2h-root .gc-triple-legend>span::before{
+ content:"";display:inline-block;width:11px;height:11px;border-radius:2px;
+ background:#d3dedd;flex-shrink:0
+}
+.gp-h2h-root .gc-legend-player::before{background:#48b7ff!important}
+.gp-h2h-root .gc-legend-season::before{background:#c9ff32!important}
+.gp-h2h-root .gc-legend-defense::before{background:#ffae4a!important}
+.gp-h2h-root .gc-legend-h2h::before{width:15px!important;height:0!important;border-top:2px dashed #c2a7ff;border-radius:0!important;background:transparent!important}
+.gp-h2h-root .gc-legend-h2h b{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#e9dbff}
+.gp-h2h-root .gc-triple-weeks{
+ display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;
+ margin-top:19px;align-items:stretch;min-width:0
+}
+.gp-h2h-root .gc-triple-week{
+ min-width:0;padding:13px 12px 15px;background:#142f25;
+ border:1px solid #40614d;border-radius:10px
+}
+.gp-h2h-root .gc-triple-week-head{
+ min-height:102px;display:flex;flex-direction:column;gap:5px;
+ border-bottom:1px solid #385746;padding-bottom:10px;margin-bottom:12px
+}
+.gp-h2h-root .gc-triple-week-head>strong{font:900 18px/1.1 system-ui,sans-serif;color:#f6fff3}
+.gp-h2h-root .gc-triple-week-head>span{
+ color:#bdd3c4;font:600 11px/1.35 system-ui,sans-serif;
+ overflow-wrap:anywhere
+}
+.gp-h2h-root .gc-triple-stack{display:grid;gap:12px}
+.gp-h2h-root .gc-triple-level{display:block;min-width:0}
+.gp-h2h-root .gc-triple-label{
+ display:flex;align-items:center;justify-content:space-between;gap:7px;
+ font:750 11px/1.3 system-ui,sans-serif;color:#d5e6d7;margin-bottom:6px
+}
+.gp-h2h-root .gc-triple-label>span{min-width:0;display:inline-flex;align-items:center;gap:6px;overflow-wrap:anywhere}
+.gp-h2h-root .gc-triple-label>strong{flex-shrink:0;color:#fff;font:900 14px/1.1 ui-monospace,Consolas,monospace}
+.gp-h2h-root .gc-triple-key{width:8px;height:8px;flex-shrink:0;border-radius:2px;background:#48b7ff}
+.gp-h2h-root .gc-triple-season .gc-triple-key{background:#c9ff32}
+.gp-h2h-root .gc-triple-defense .gc-triple-key{background:#ffae4a}
+.gp-h2h-root .gc-triple-track{
+ position:relative;height:17px;overflow:hidden;
+ border-radius:4px;background:#243e31;border:1px solid #41604c
+}
+.gp-h2h-root .gc-triple-bar{
+ position:absolute;top:0;bottom:0;background:linear-gradient(90deg,#2483ca,#52c5ff);
+ min-width:0;border-radius:2px
+}
+.gp-h2h-root .gc-triple-season .gc-triple-bar{background:linear-gradient(90deg,#91c01a,#d1ff43)}
+.gp-h2h-root .gc-triple-defense .gc-triple-bar{background:linear-gradient(90deg,#c27518,#ffb84f)}
+.gp-h2h-root .gc-combined-h2h{
+ position:absolute;top:-1px;bottom:-1px;z-index:2;
+ border-left:2px dashed #d4bcff;pointer-events:none;
+ filter:drop-shadow(0 0 2px #1d102e)
+}
+.gp-h2h-root .gc-combined-zero{
+ position:absolute;top:0;bottom:0;z-index:1;width:1px;background:#e6fff7aa;pointer-events:none
+}
+.gp-h2h-root .gc-triple-empty{
+ position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+ font:700 9px/1 system-ui,sans-serif;color:#c0d2c5
+}
+.gp-h2h-root .gc-unified-caption{
+ margin:19px 0 0!important;color:#d4e5d7!important;
+ font:550 12px/1.65 system-ui,sans-serif!important
+}
+.gp-h2h-root .gc-unified-caption strong{color:#f0fff0}
+.gp-h2h-root .gc-unified-profile .gc-defense-disclosure{margin:12px 0 0}
+.gp-h2h-root .gc-unified-profile .gc-playoff-toggle{margin:15px 0 0}
+@media(max-width:1320px){
+ .gp-h2h-root .gc-triple-weeks{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .gp-h2h-root .gc-triple-week-head{min-height:82px}
+}
+@media(max-width:850px){
+ .gp-h2h-root .gc-triple-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .gp-h2h-root .gc-triple-weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .gp-h2h-root .gc-triple-week-head{min-height:98px}
+}
+@media(max-width:620px){
+ .gp-h2h-root .gc-unified-graph{padding:13px 10px}
+ .gp-h2h-root .gc-triple-summary{gap:7px}
+ .gp-h2h-root .gc-triple-summary>div{padding:12px}
+ .gp-h2h-root .gc-triple-summary strong{font-size:23px}
+ .gp-h2h-root .gc-triple-weeks{grid-template-columns:1fr;gap:9px}
+ .gp-h2h-root .gc-triple-week{padding:13px}
+ .gp-h2h-root .gc-triple-week-head{min-height:0}
+ .gp-h2h-root .gc-triple-week-head>span{font-size:11px}
+ .gp-h2h-root .gc-triple-label{font-size:12px}
+ .gp-h2h-root .gc-triple-track{height:20px}
+ .gp-h2h-root .gc-unified-head h4{font-size:20px!important}
+}
