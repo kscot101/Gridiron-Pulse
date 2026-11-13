@@ -40,9 +40,9 @@ jobs:
                       hashes[path]=hashlib.sha256(published).hexdigest()
                   for path in ['index.html','projections-2026.html','projection-trial.html','pick-tracker.html']:
                       html=get(path).decode()
-                      assert 'matchup-comparisons.js?v=20261113-comparison2' in html,path
+                      assert 'matchup-comparisons.js?v=20261113-unified1' in html,path
                       assert 'player-game-log.js?v=20261026-bars1' in html,path
-                      assert 'player-comparison-v2.css?v=20261113-comparison2' in html,path
+                      assert 'player-comparison-v2.css?v=20261113-unified1' in html,path
                   d=json.loads(get('data/team-defense.json'));p=json.loads(get('data/defense-players.json'))
                   assert d['ok'] and len(d['teams'])==32 and d['through']
                   assert p['ok'] and len(p['players'])>0

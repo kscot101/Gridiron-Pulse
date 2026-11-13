@@ -176,14 +176,111 @@
     return '<section class="gc-visual-panel"><div class="gc-visual-head"><h4>'+esc(title)+'</h4><span>'+esc(subtitle)+'</span></div>'+
       (rows.length?(vertical?weeklyColumns(rows,statLabel,'player'):bars(rows,statLabel,'per game')):'<p class="gc-visual-empty">No verified game records for this view.</p>')+'</section>';
   }
+
+  /* Single chart: three observed/baseline levels under each NFL week.
+     Each group aligns the player's game and the upcoming opponent defense's
+     game by the SAME league week. Current season average is a constant
+     baseline, while H2H is a reference marker, not a fourth weekly bar. */
+  function availableDefenseStat(position, metric, defense) {
+    return !!(defense && defense.metrics && (defense.metrics[position+'_'+metric] ||
+      (position==='RB' && metric==='scrimmageTD' &&
+       defense.metrics.RB_rushingTD && defense.metrics.RB_receivingTD)));
+  }
+  function allowedStat(game, position, metric, defense) {
+    if(!game || !availableDefenseStat(position,metric,defense))return null;
+    var vals=game.values||{};
+    if(position==='RB' && metric==='scrimmageTD') {
+      var rush=num(vals.RB_rushingTD),receive=num(vals.RB_receivingTD);
+      return rush===null || receive===null ? null : rush+receive;
+    }
+    return num(vals[position+'_'+metric]);
+  }
+  function weeklyTripleRows(player, opponentTeam, opponent, position, metric, defense) {
+    var playerGames=(player && Array.isArray(player.games)?player.games:[]).slice()
+      .sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''))||String(a.id||'').localeCompare(String(b.id||''));});
+    var defenseGames=(opponentTeam && Array.isArray(opponentTeam.games)?opponentTeam.games:[])
+      .filter(function(game){
+        var cutoff=String(opponent&&opponent.date||'').slice(0,10);
+        return game&&game.date&&(!cutoff||String(game.date).slice(0,10)<cutoff);
+      }).slice().sort(function(a,b){
+        return String(a.date||'').localeCompare(String(b.date||''))||String(a.id||'').localeCompare(String(b.id||''));
+      });
+    // When an opponent is known, align to the defense's five completed games;
+    // otherwise show the player's own last five. Never pair games by index.
+    var anchors=(defenseGames.length?defenseGames:playerGames).slice(-5);
+    return anchors.map(function(anchor){
+      var week=Number(anchor.week);
+      var defenseGame=defenseGames.find(function(g){return Number(g.week)===week;})||null;
+      var playerGame=playerGames.find(function(g){return Number(g.week)===week;})||null;
+      return {week:week,playerGame:playerGame,defenseGame:defenseGame,
+        playerValue:num(playerGame&&playerGame.values&&playerGame.values[metric]),
+        defenseValue:allowedStat(defenseGame,position,metric,defense)};
+    });
+  }
+  function renderTripleChart(rows, seasonValue, h2hValue, metricLabel, code, compatible) {
+    var entries=[seasonValue,h2hValue];
+    rows.forEach(function(row){entries.push(row.playerValue,row.defenseValue);});
+    var present=entries.filter(function(v){return num(v)!==null;});
+    var low=Math.min.apply(null,[0].concat(present));
+    var high=Math.max.apply(null,[1].concat(present));
+    if(high<=low)high=low+1;
+    var span=high-low,zero=-low/span*100;
+    var h2hPct=num(h2hValue)===null?null:(h2hValue-low)/span*100;
+    function strip(which,value,label,week) {
+      var v=num(value),left=v===null?zero:(Math.min(0,v)-low)/span*100;
+      var width=v===null?0:Math.abs(v)/span*100;
+      var zeroMark=low<0?'<i class="gc-combined-zero" style="left:'+zero.toFixed(3)+'%" aria-hidden="true"></i>':'';
+      var h2hMark=h2hPct===null?'':'<i class="gc-combined-h2h" style="left:'+h2hPct.toFixed(3)+'%" aria-hidden="true"></i>';
+      return '<div class="gc-triple-level gc-triple-'+which+'" data-gc-level="'+which+
+        '" data-gc-week="'+esc(week)+'" data-value="'+(v===null?'':v)+'" role="group" aria-label="'+
+        esc(label+': '+(v===null?'unavailable':fmt(v)))+'">'+
+        '<div class="gc-triple-label"><span><i class="gc-triple-key" aria-hidden="true"></i>'+esc(label)+'</span>'+
+        '<strong>'+esc(v===null?'—':fmt(v))+'</strong></div>'+
+        '<div class="gc-triple-track">'+
+        (v===null?'<span class="gc-triple-empty">No verified value</span>':
+          '<i class="gc-triple-bar" style="left:'+left.toFixed(3)+'%;width:'+width.toFixed(3)+'%" aria-hidden="true"></i>')+
+        zeroMark+h2hMark+'</div></div>';
+    }
+    var columns=rows.length?rows.map(function(row,index){
+      var week=Number.isFinite(row.week)?'Week '+row.week:'Game '+(index+1);
+      var p=row.playerGame,d=row.defenseGame;
+      var pLabel=p?'Player '+(p.team||'')+' '+(p.opponent?'vs '+p.opponent:'')+' ('+date(p.date)+')':'No recorded player appearance';
+      var dLabel=d?'Defense '+(d.home?'vs ':'@ ')+(d.opponent||'opponent')+' ('+date(d.date)+')':'No recorded defensive game';
+      return '<div class="gc-triple-week" data-gc-week-group="'+esc(row.week)+'">'+
+        '<div class="gc-triple-week-head"><strong>'+esc(week)+'</strong>'+
+        '<span>'+esc(pLabel)+'</span><span>'+esc(dLabel)+'</span></div>'+
+        '<div class="gc-triple-stack">'+
+          strip('player',row.playerValue,'Player actual',row.week)+
+          strip('season',seasonValue,'Season average',row.week)+
+          strip('defense',row.defenseValue,code?code+' allowed to position':'Defense allowed',row.week)+
+        '</div></div>';
+    }).join(''):'<p class="gc-visual-empty">No verified weekly player or opponent-defense data is available for this matchup.</p>';
+    return '<section class="gc-unified-graph" aria-label="Five-week player and opponent comparison">'+
+      '<div class="gc-unified-head"><div><p class="gc-kicker">ONE GRAPH / THREE LEVELS PER WEEK</p>'+
+      '<h4>Week-by-week matchup comparison</h4>'+
+      '<p>'+esc(metricLabel)+' · five most recent completed games of the upcoming opponent, matched by NFL week</p></div>'+
+      '<div class="gc-axis-range">Shared scale: '+esc(fmt(low))+' to '+esc(fmt(high))+'</div></div>'+
+      '<div class="gc-triple-legend" aria-label="Chart legend">'+
+      '<span class="gc-legend-player">Player actual</span>'+
+      '<span class="gc-legend-season">Season avg</span>'+
+      '<span class="gc-legend-defense">Defense allowed (full position group)</span>'+
+      (h2hPct!==null?'<span class="gc-legend-h2h">H2H average: <b data-gc-h2h-value="'+h2hValue+'">'+esc(fmt(h2hValue))+'</b></span>':
+        '<span>H2H: no verified meetings</span>')+'</div>'+
+      '<div class="gc-triple-weeks" role="group" aria-label="Each week has three comparison bars on the same scale">'+columns+'</div>'+
+      '<p class="gc-unified-caption">Player actual and defensive allowance refer to <strong>different games in the same NFL week</strong>. '+
+      'Season average is the latest published season baseline, repeated for reference. The purple dashed marker shows the H2H average. '+
+      'All bars share the same numeric scale. Defense figures include <strong>all opposing players at that position combined</strong>, not one player. Blank values mean unavailable, not zero.</p>'+
+      (!compatible?'<p class="gc-defense-disclosure">A position-specific defensive measure for this statistic is not available, so orange bars are left blank instead of comparing different units.</p>':'')+
+      '</section>';
+  }
   async function mountPlayer(section,d,result) {
     if(!section||!section.isConnected||!result||!playerOptions[d.position])return;
-    var pref=settings.get(section)||{metric:playerOptions[d.position][0],post:false,defenseMetric:''};
+    var pref=settings.get(section)||{metric:playerOptions[d.position][0],post:false};
     if(!playerOptions[d.position].includes(pref.metric))pref.metric=playerOptions[d.position][0];
     settings.set(section,pref);
     var host=document.createElement('section');
-    host.className='gp-compare gc-player';
-    host.innerHTML='<p class="gc-note" role="status">Building player and defensive comparison charts…</p>';
+    host.className='gp-compare gc-player gc-unified-profile';
+    host.innerHTML='<p class="gc-note" role="status">Loading combined weekly comparisons…</p>';
     section.querySelectorAll('.gc-player').forEach(function(node){node.remove();});
     var head=section.querySelector('.gp-h2h-head');
     if(head)head.after(host);else section.prepend(host);
@@ -199,149 +296,82 @@
       if(!host.isConnected)return;
       var data=feeds[0],defense=feeds[1],player=resolvePlayer(data,d);
       var opponent=result.opponent||null,code=team(opponent&&opponent.team),position=d.position;
-      var teamData=defense.teams&&defense.teams[code];
-
-      function paint() {
+      var opponentTeam=defense.teams&&defense.teams[code];
+      function paint(){
         if(!host.isConnected)return;
-        var metric=pref.metric;
-        var records=(result.rows||[]).filter(function(game){
-          return pref.post||String(game.seasonType||'REG').toUpperCase()==='REG';
+        var metric=pref.metric,label=labels[metric]||metric;
+        var history=(result.rows||[]).filter(function(row){
+          return pref.post||String(row.seasonType||'REG').toUpperCase()==='REG';
         });
-        var h2hValues=records.map(function(game){return historicalValue(game,metric);}).filter(function(value){return value!==null;});
-        var h2hAvg=h2hValues.length?h2hValues.reduce(function(a,b){return a+b;},0)/h2hValues.length:null;
+        var h2h=history.map(function(game){return historicalValue(game,metric);}).filter(function(v){return v!==null;});
+        var h2hAvg=h2h.length?h2h.reduce(function(sum,v){return sum+v;},0)/h2h.length:null;
         var season=player&&player.averages&&player.averages.season&&player.averages.season[metric];
-        var last5=player&&player.averages&&player.averages.last5&&player.averages.last5[metric];
-        var comparison=[
-          {key:'h2h',label:'Head-to-head'+(code?' vs '+code:''),value:h2hAvg,
-            note:h2hValues.length+' recorded meeting'+(h2hValues.length===1?'':'s')+
-              (pref.post?' · including playoffs':' · regular season')+
-              (result.loadingExtended?' · checking older meetings':result.failed&&result.failed.length?' · partial history':'')},
-          {key:'season',label:data.season+' season average',value:stat(season),
-            note:sample(season)+' recorded appearances'},
-          {key:'last5',label:'Last 5 average',value:stat(last5),
-            note:sample(last5)+' most recent recorded appearances'}
-        ];
-        var recent=playerWeeklyRows(player,metric);
-        var rowSamples=recent.filter(function(row){return num(row.value)!==null;}).length;
-        var playerLabel=labels[metric]||metric;
-        var options=playerOptions[position].map(function(key){
+        var recent=player&&player.averages&&player.averages.last5&&player.averages.last5[metric];
+        var seasonAvg=stat(season),last5Avg=stat(recent);
+        var aligned=availableDefenseStat(position,metric,defense);
+        var slots=weeklyTripleRows(player,opponentTeam,opponent,position,metric,defense);
+        var defValues=slots.map(function(row){return row.defenseValue;}).filter(function(v){return v!==null;});
+        var defAvg=defValues.length?defValues.reduce(function(a,b){return a+b;},0)/defValues.length:null;
+        var selectOptions=playerOptions[position].map(function(key){
           return '<option value="'+esc(key)+'"'+(key===metric?' selected':'')+'>'+esc(labels[key]||key)+'</option>';
         }).join('');
-        var metricButtons=playerOptions[position].map(function(key){
-          return '<button type="button" data-gc-metric="'+esc(key)+'" aria-pressed="'+(key===metric)+'">'+esc(labels[key]||key)+'</button>';
+        var pills=playerOptions[position].map(function(key){
+          return '<button type="button" data-gc-metric="'+esc(key)+'" aria-pressed="'+(key===metric)+'">'+
+            esc(labels[key]||key)+'</button>';
         }).join('');
-        var markup=
-          '<div class="gc-player-intro"><div><p class="gc-kicker">PERFORMANCE SNAPSHOT</p>'+
-          '<h4>Compare the numbers</h4><p>One statistic across matchup history, season form, and the last five games.</p></div>'+
-          '<label class="gc-metric-picker">Statistic <select data-gc-player-stat aria-label="Player comparison statistic">'+options+'</select></label></div>'+ 
-          '<div class="gc-stat-pills" role="group" aria-label="Select player performance statistic">'+metricButtons+'</div>'+
-          '<div class="gc-matchup-layout"><div class="gc-player-side"><div class="gc-player-chart-grid">'+
-          chartSection('H2H vs season vs last 5',playerLabel+' per recorded appearance',comparison,playerLabel)+
-          chartSection('Last 5 individual games',recent.length?rowSamples+' of '+recent.length+' with published '+playerLabel.toLowerCase():'No current-season games',recent,playerLabel,true)+
+        var markup='<div class="gc-player-intro"><div><p class="gc-kicker">PLAYER EDGE / UNIFIED VIEW</p>'+
+          '<h4>Compare three levels for every week</h4><p>Actual performance, season baseline and opponent positional allowance — together.</p></div>'+
+          '<label class="gc-metric-picker">Statistic <select data-gc-player-stat aria-label="Player comparison statistic">'+selectOptions+'</select></label></div>'+
+          '<div class="gc-stat-pills" role="group" aria-label="Choose performance statistic">'+pills+'</div>'+
+          '<div class="gc-triple-summary" aria-label="Matchup averages">'+
+            '<div><small>H2H avg vs '+esc(code||'opponent')+'</small><strong data-gc-summary="h2h">'+esc(fmt(h2hAvg))+'</strong>'+
+             '<span>'+h2h.length+' recorded meeting'+(h2h.length===1?'':'s')+(result.loadingExtended?' · checking older games':'')+'</span></div>'+
+            '<div><small>Season avg</small><strong data-gc-summary="season">'+esc(fmt(seasonAvg))+'</strong><span>'+esc(sample(season))+'</span></div>'+
+            '<div><small>Last 5 avg</small><strong data-gc-summary="last5">'+esc(fmt(last5Avg))+'</strong><span>'+esc(sample(recent))+'</span></div>'+
+            '<div><small>Defense last '+slots.length+' avg</small><strong data-gc-summary="defense">'+esc(fmt(defAvg))+'</strong><span>Entire opposing '+esc(position)+' group</span></div>'+
           '</div>'+
+          renderTripleChart(slots,seasonAvg,h2hAvg,label,code,aligned)+
           '<label class="gc-playoff-toggle"><input type="checkbox" data-gc-playoffs'+(pref.post?' checked':'')+'> Include playoff games in H2H</label>'+
-          '<p class="gc-note">H2H covers available verified meetings across seasons; the other averages and weekly bars use '+
-             esc(data.season)+' regular-season appearances. Missing games or statistics are not displayed as zero.</p>';
-
-        var saved=null;
-        if(root.GPExactTracker&&opponent)saved=root.GPExactTracker.find({
-          name:d.name,athleteId:d.espnId||player&&player.espnId,team:d.team,gameId:opponent.gameId
-        });
-        if(saved&&Date.parse(saved.kickoff)>Date.now()&&team(saved.opponent)===code&&
-          Date.parse(saved.recordedAt)<=Date.parse(saved.kickoff)-300000&&num(saved.predictions[predKeys[metric]])!==null){
-          markup+='<p class="gc-forecast-note">Saved pregame forecast: <strong>'+
-            esc(fmt(saved.predictions[predKeys[metric]]))+'</strong> '+esc(playerLabel.toLowerCase())+
-            ' · model estimate, not a game result</p>';
+          '<p class="gc-note">'+esc(data.season)+' data through '+esc(date(data.through))+' (player) and '+esc(date(defense.through))+' (defense). '+
+          'Head-to-head covers available verified meetings across seasons; the weekly graph uses current regular-season records only.</p>';
+        if(root.GPExactTracker&&opponent){
+          var saved=root.GPExactTracker.find({
+            name:d.name,athleteId:d.espnId||(player&&player.espnId),team:d.team,gameId:opponent.gameId
+          });
+          if(saved&&Date.parse(saved.kickoff)>Date.now()&&team(saved.opponent)===code&&
+            Date.parse(saved.recordedAt)<=Date.parse(saved.kickoff)-300000&&
+            num(saved.predictions&&saved.predictions[predKeys[metric]])!==null)
+            markup+='<p class="gc-forecast-note">Saved pregame projection: <strong>'+
+              esc(fmt(saved.predictions[predKeys[metric]]))+'</strong> '+esc(label.toLowerCase())+
+              ' · model estimate, not an actual result</p>';
         }
-        if(Number(data.season)!==currentSeason())markup+='<p class="gc-warning">The latest available player averages are for '+
-          esc(data.season)+', not the current season.</p>';
-        markup+='<p class="gc-source">Player data: nflverse · through '+esc(date(data.through))+'</p>';
-
-        // Place weekly defensive allowances beside the player's results.
-        // Counts are for the whole opposing position group, never one player.
-        markup+='</div><section class="gc-defense-weeks"><div class="gc-defense-weeks-head">'+
-          '<div><p class="gc-kicker">OPPONENT DEFENSE / LAST FIVE GAMES</p>'+
-          '<h4>'+(code?esc(code)+' vs '+esc(position):'Upcoming defensive matchup')+'</h4>'+
-          '<p>What the defense allowed to the entire opposing '+esc(position)+' group each week, before this matchup.</p></div>'+
-          (code?'<a class="gc-page-link" href="team.html?team='+encodeURIComponent(code)+'">Full defense profile ↗</a>':'')+'</div>';
-
-        var candidates=(positionDefenseMetrics[position]||[]).filter(function(key){return !!(defense.metrics&&defense.metrics[key]);});
-        var aligned=position+'_'+metric;
-        var suggested=candidates.includes(aligned)?aligned:defaultDefenseMetrics[position];
-        var chosen=candidates.includes(pref.defenseMetric)?pref.defenseMetric:
-          candidates.includes(suggested)?suggested:candidates[0];
-        var defenseRead='No verified opponent trend available';
-        if(teamData&&chosen){
-          var optionsDefense=candidates.map(function(key){
-            return '<option value="'+esc(key)+'"'+(key===chosen?' selected':'')+'>'+esc(defense.metrics[key].label)+'</option>';
-          }).join('');
-          var weeks=defensiveWeeklyRows(teamData,chosen,opponent);
-          var weekMean=mean(weeks);
-          var valuesCount=weeks.filter(function(row){return num(row.value)!==null;}).length;
-          var league=defense.league&&defense.league[chosen];
-          var alignedMetric=(chosen===aligned);
-          var defensiveLabel=defense.metrics[chosen].label;
-          if(weekMean!==null)defenseRead=esc(fmt(weekMean))+' '+esc(defensiveLabel.toLowerCase())+' allowed per game (last '+weeks.length+')';
-          markup+='<label class="gc-metric-picker gc-defense-picker">Defense allowed statistic '+
-            '<select data-gc-defense-stat aria-label="Defense allowed statistic">'+optionsDefense+'</select></label>'+
-            (!alignedMetric?'<p class="gc-defense-disclosure">Position-specific '+esc(playerLabel.toLowerCase())+
-              ' data is not published for this view. Showing <strong>'+esc(defensiveLabel.toLowerCase())+'</strong> instead.</p>':'')+
-            '<div class="gc-defense-summary">'+
-            '<div><small>Last '+weeks.length+' games avg</small><strong>'+esc(fmt(weekMean))+'</strong></div>'+
-            '<div><small>League / team-game avg</small><strong>'+esc(fmt(stat(league)))+'</strong></div>'+
-            '</div>'+
-            (weeks.length?weeklyColumns(weeks,defensiveLabel,'defense'):
-              '<p class="gc-visual-empty">No completed defensive games precede this matchup in the available feed.</p>')+
-            '<p class="gc-note">Last '+weeks.length+' completed regular-season team-games; '+valuesCount+
-            ' have a recorded value. All opposing '+esc(position)+' players combined — <strong>not</strong> the average for one player. '+
-            'More yards, catches, or touchdowns allowed does not guarantee an individual result.</p>'+
-            (Number(defense.season)!==currentSeason()?'<p class="gc-warning">Defensive data is from '+esc(defense.season)+', not the current season.</p>':'')+
-            '<p class="gc-source">Defense data: nflverse · through '+esc(date(defense.through))+'</p>';
-        }else{
-          markup+='<p class="gc-visual-empty">Verified weekly position-specific defensive statistics are unavailable'+
-            (code?' for '+esc(code):' until the next opponent is known')+'. No placeholder values have been inserted.</p>';
-        }
-        markup+='</section></div>';
-        var seasonValue=stat(season),last5Value=stat(last5);
-        var recentRead=last5Value===null?'No recent player average recorded':
-          esc(fmt(last5Value))+' '+esc(playerLabel.toLowerCase())+' per game (last '+esc(sample(last5))+')';
-        var h2hRead=h2hValues.length?esc(fmt(h2hAvg))+' '+esc(playerLabel.toLowerCase())+
-          ' per meeting ('+h2hValues.length+' recorded)':'No verified meetings available';
-        markup+='<div class="gc-read-strip" aria-label="Performance summary"><div class="gc-read-title">'+
-          '<span class="gc-kicker">THE READ</span><strong>At a glance</strong></div>'+
-          '<div><b>Head to head</b><span>'+h2hRead+'</span></div>'+
-          '<div><b>Recent form</b><span>'+recentRead+'</span></div>'+
-          '<div><b>Defense trend</b><span>'+defenseRead+'</span></div></div>';
+        if(Number(data.season)!==currentSeason()||Number(defense.season)!==currentSeason())
+          markup+='<p class="gc-warning">One or more statistics feeds are from a prior NFL season. Verify the data dates before interpreting this comparison.</p>';
+        if(result.failed&&result.failed.length)
+          markup+='<p class="gc-note">Some older H2H seasons could not be loaded. The H2H sample is partial.</p>';
+        if(code)markup+='<a class="gc-page-link" href="team.html?team='+encodeURIComponent(code)+'">View full '+esc(code)+' defense profile ↗</a>';
         host.innerHTML=markup;
-
         host.querySelectorAll('[data-gc-metric]').forEach(function(button){
           button.addEventListener('click',function(){
-            pref.metric=button.getAttribute('data-gc-metric');pref.defenseMetric='';paint();
-            var next=Array.from(host.querySelectorAll('[data-gc-metric]')).find(function(b){
-              return b.getAttribute('data-gc-metric')===pref.metric;
-            });
-            if(next)next.focus({preventScroll:true});
+            pref.metric=button.dataset.gcMetric;paint();
+            var match=Array.from(host.querySelectorAll('[data-gc-metric]')).find(function(b){return b.dataset.gcMetric===pref.metric;});
+            if(match)match.focus({preventScroll:true});
           });
         });
-        var playerSelect=host.querySelector('[data-gc-player-stat]');
-        if(playerSelect)playerSelect.addEventListener('change',function(e){
-          pref.metric=e.target.value;pref.defenseMetric='';paint();
+        var picker=host.querySelector('[data-gc-player-stat]');
+        if(picker)picker.addEventListener('change',function(e){
+          pref.metric=e.target.value;paint();
           var again=host.querySelector('[data-gc-player-stat]');if(again)again.focus({preventScroll:true});
         });
-        var postToggle=host.querySelector('[data-gc-playoffs]');
-        if(postToggle)postToggle.addEventListener('change',function(e){
+        var playoffs=host.querySelector('[data-gc-playoffs]');
+        if(playoffs)playoffs.addEventListener('change',function(e){
           pref.post=e.target.checked;paint();
           var again=host.querySelector('[data-gc-playoffs]');if(again)again.focus({preventScroll:true});
-        });
-        var defenseSelect=host.querySelector('[data-gc-defense-stat]');
-        if(defenseSelect)defenseSelect.addEventListener('change',function(e){
-          pref.defenseMetric=e.target.value;paint();
-          var again=host.querySelector('[data-gc-defense-stat]');if(again)again.focus({preventScroll:true});
         });
       }
       paint();
     }catch(error){
-      if(host.isConnected)host.innerHTML='<p class="gc-warning">Comparison charts are temporarily unavailable. Verified H2H box scores and recent game logs remain accessible below. Missing values are never represented as zero.</p>';
+      if(host.isConnected)host.innerHTML='<p class="gc-warning">Combined chart temporarily unavailable. Verified game logs remain below. Missing values are not displayed as zero.</p>';
     }
   }
   async function resolveOpponent(d) {
