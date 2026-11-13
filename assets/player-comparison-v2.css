@@ -107,17 +107,20 @@
   height:100dvh;
   max-width:none;
   box-sizing:border-box;
-  align-items:center;
-  justify-content:center;
+  align-items:center!important;
+  justify-content:center!important;
   padding:clamp(6px,0.9vw,16px);
 }
 #detail-overlay:has(.gp-h2h-root) .modal{
   flex:0 0 auto;
   box-sizing:border-box;
-  width:min(1680px,calc(100vw - 24px));
-  max-width:none;
+  width:min(1680px,calc(100vw - 24px))!important;
+  max-width:none!important;
   min-width:0;
-  max-height:calc(100dvh - 24px);
+  height:calc(100dvh - 24px)!important;
+  max-height:calc(100dvh - 24px)!important;
+  border:1px solid #345744!important;
+  border-radius:12px!important;
 }
 #detail-overlay:has(.gp-h2h-root) .modal-body{
   box-sizing:border-box;
@@ -149,8 +152,10 @@
 @media(max-width:620px){
   #detail-overlay.open:has(.gp-h2h-root){padding:4px}
   #detail-overlay:has(.gp-h2h-root) .modal{
-    width:calc(100vw - 8px);
-    max-height:calc(100dvh - 8px);
+    width:calc(100vw - 8px)!important;
+    height:calc(100dvh - 8px)!important;
+    max-height:calc(100dvh - 8px)!important;
+    border-radius:7px!important;
   }
   #detail-overlay:has(.gp-h2h-root) .modal-body{padding:10px}
   .gp-player-dialog:has(.gp-h2h-root){width:calc(100vw - 12px)}
