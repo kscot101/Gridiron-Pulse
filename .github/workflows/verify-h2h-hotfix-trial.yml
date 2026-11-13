@@ -1,0 +1,39 @@
+name: H2H deduplication QA (hotfix)
+on:
+  push:
+    branches: [hotfix/h2h-unique-opponent-dates-20261113]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'assets/player-game-log.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gp-h2h-hotfix-qa
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check assets/player-game-log.js
+      - name: Install headless Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verify single player/H2H presentation and unique games
+        run: node scripts/check-player-h2h.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h2h-hotfix-qa
+          retention-days: 7
+          path: |
+            data/player-h2h-verification.json
+            player-h2h-mobile.png
