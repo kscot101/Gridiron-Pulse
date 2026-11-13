@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "fetchedAt": "2026-11-13T02:52:42.296306+00:00",
+  "fetchedAt": "2026-11-13T10:50:27.850865+00:00",
   "source": "ESPN public scoreboard",
   "scoreboard": {
     "leagues": [
@@ -421,7 +421,7 @@
             "id": "401873052",
             "uid": "s:20~l:28~e:401873052~c:401873052",
             "date": "2026-11-13T01:15Z",
-            "attendance": 0,
+            "attendance": 80450,
             "type": {
               "id": "1",
               "abbreviation": "STD"
@@ -430,7 +430,7 @@
             "neutralSite": false,
             "conferenceCompetition": false,
             "playByPlayAvailable": true,
-            "recent": true,
+            "recent": false,
             "venue": {
               "id": "3839",
               "fullName": "MetLife Stadium",
@@ -448,6 +448,7 @@
                 "type": "team",
                 "order": 0,
                 "homeAway": "home",
+                "winner": false,
                 "team": {
                   "id": "19",
                   "uid": "s:20~l:28~t:19",
@@ -547,7 +548,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/nyg.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/nyg.png"
                 },
-                "score": "7",
+                "score": "21",
                 "linescores": [
                   {
                     "value": 0.0,
@@ -560,9 +561,14 @@
                     "period": 2
                   },
                   {
-                    "value": 0.0,
-                    "displayValue": "0",
+                    "value": 7.0,
+                    "displayValue": "7",
                     "period": 3
+                  },
+                  {
+                    "value": 7.0,
+                    "displayValue": "7",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -572,14 +578,14 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "5-2-1"
+                    "summary": "5-3-1"
                   },
                   {
                     "name": "Home",
                     "type": "home",
-                    "summary": "3-1"
+                    "summary": "3-2"
                   },
                   {
                     "name": "Road",
@@ -594,6 +600,7 @@
                 "type": "team",
                 "order": 1,
                 "homeAway": "away",
+                "winner": true,
                 "team": {
                   "id": "28",
                   "uid": "s:20~l:28~t:28",
@@ -693,7 +700,7 @@
                   "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/wsh.png",
                   "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/wsh.png"
                 },
-                "score": "10",
+                "score": "24",
                 "linescores": [
                   {
                     "value": 0.0,
@@ -706,9 +713,14 @@
                     "period": 2
                   },
                   {
-                    "value": 0.0,
-                    "displayValue": "0",
+                    "value": 7.0,
+                    "displayValue": "7",
                     "period": 3
+                  },
+                  {
+                    "value": 7.0,
+                    "displayValue": "7",
+                    "period": 4
                   }
                 ],
                 "statistics": [],
@@ -718,9 +730,9 @@
                 "records": [
                   {
                     "name": "overall",
-                    "abbreviation": "Any",
+                    "abbreviation": "Game",
                     "type": "total",
-                    "summary": "2-5-1"
+                    "summary": "3-5-1"
                   },
                   {
                     "name": "Home",
@@ -730,102 +742,24 @@
                   {
                     "name": "Road",
                     "type": "road",
-                    "summary": "0-3"
+                    "summary": "1-3"
                   }
                 ]
               }
             ],
             "notes": [],
-            "situation": {
-              "lastPlay": {
-                "id": "4018730522220",
-                "type": {
-                  "id": "5",
-                  "text": "Rush",
-                  "abbreviation": "RUSH"
-                },
-                "text": " (Shotgun) A.Ekeler right guard to WAS 6 for 3 yards (D.Alexander; A.Reese).",
-                "scoreValue": 0,
-                "team": {
-                  "id": "28"
-                },
-                "probability": {
-                  "tiePercentage": 0.0,
-                  "homeWinPercentage": 0.4743,
-                  "awayWinPercentage": 0.5257000000000001,
-                  "secondsLeft": 0
-                },
-                "statYardage": 3,
-                "drive": {
-                  "description": "3 plays, -15 yards, 1:50",
-                  "start": {
-                    "yardLine": 79,
-                    "text": "WSH 21"
-                  },
-                  "timeElapsed": {
-                    "displayValue": "1:50"
-                  }
-                },
-                "start": {
-                  "yardLine": 97,
-                  "team": {
-                    "id": "28"
-                  }
-                },
-                "end": {
-                  "yardLine": 94,
-                  "team": {
-                    "id": "28"
-                  }
-                },
-                "athletesInvolved": [
-                  {
-                    "id": "3068267",
-                    "fullName": "Austin Ekeler",
-                    "displayName": "Austin Ekeler",
-                    "shortName": "A. Ekeler",
-                    "links": [
-                      {
-                        "rel": [
-                          "playercard",
-                          "desktop",
-                          "athlete"
-                        ],
-                        "href": "https://www.espn.com/nfl/player/_/id/3068267/austin-ekeler"
-                      }
-                    ],
-                    "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3068267.png",
-                    "jersey": "30",
-                    "position": "RB",
-                    "team": {
-                      "id": "28"
-                    }
-                  }
-                ]
-              },
-              "down": 4,
-              "yardLine": 94,
-              "distance": 25,
-              "downDistanceText": "4th & 25 at WSH 6",
-              "shortDownDistanceText": "4th & 25",
-              "possessionText": "WSH 6",
-              "isRedZone": false,
-              "homeTimeouts": 3,
-              "awayTimeouts": 3,
-              "possession": "28"
-            },
             "status": {
-              "clock": 804.0,
-              "displayClock": "13:24",
-              "period": 3,
+              "clock": 0.0,
+              "displayClock": "0:00",
+              "period": 4,
               "type": {
-                "id": "2",
-                "name": "STATUS_IN_PROGRESS",
-                "state": "in",
-                "completed": false,
-                "description": "In Progress",
-                "detail": "13:24 - 3rd Quarter",
-                "shortDetail": "13:24 - 3rd"
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
               },
               "isTBDFlex": false
             },
@@ -845,13 +779,13 @@
                 "abbreviation": "PYDS",
                 "leaders": [
                   {
-                    "displayValue": "11/15, 112 YDS, 1 TD",
-                    "value": 112.0,
+                    "displayValue": "23/36, 293 YDS, 1 TD, 1 INT",
+                    "value": 293.0,
                     "athlete": {
-                      "id": "4426348",
-                      "fullName": "Jayden Daniels",
-                      "displayName": "Jayden Daniels",
-                      "shortName": "J. Daniels",
+                      "id": "4433970",
+                      "fullName": "J.J. McCarthy",
+                      "displayName": "J.J. McCarthy",
+                      "shortName": "J.J. McCarthy",
                       "links": [
                         {
                           "rel": [
@@ -859,21 +793,21 @@
                             "desktop",
                             "athlete"
                           ],
-                          "href": "https://www.espn.com/nfl/player/_/id/4426348/jayden-daniels"
+                          "href": "https://www.espn.com/nfl/player/_/id/4433970/jj-mccarthy"
                         }
                       ],
-                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426348.png",
-                      "jersey": "5",
+                      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4433970.png",
+                      "jersey": "18",
                       "position": {
                         "abbreviation": "QB"
                       },
                       "team": {
-                        "id": "28"
+                        "id": "19"
                       },
                       "active": true
                     },
                     "team": {
-                      "id": "28"
+                      "id": "19"
                     }
                   }
                 ]
@@ -885,8 +819,8 @@
                 "abbreviation": "RYDS",
                 "leaders": [
                   {
-                    "displayValue": "8 CAR, 35 YDS, 1 TD",
-                    "value": 35.0,
+                    "displayValue": "18 CAR, 78 YDS, 2 TD",
+                    "value": 78.0,
                     "athlete": {
                       "id": "4696981",
                       "fullName": "Cam Skattebo",
@@ -925,8 +859,8 @@
                 "abbreviation": "RECYDS",
                 "leaders": [
                   {
-                    "displayValue": "5 REC, 39 YDS",
-                    "value": 39.0,
+                    "displayValue": "9 REC, 127 YDS, 1 TD",
+                    "value": 127.0,
                     "athlete": {
                       "id": "4361050",
                       "fullName": "Isaiah Likely",
@@ -986,18 +920,242 @@
                 "region": "us"
               }
             ],
-            "highlights": []
+            "highlights": [
+              {
+                "id": 50468530,
+                "cerebroId": "6af693222f5e962a8dd3bc0a",
+                "source": "espn",
+                "headline": "Commanders outlast Giants 24-21 in NFC East TNF thriller",
+                "description": "Commanders outlast Giants 24-21 in NFC East TNF thriller",
+                "lastModified": "2026-11-13T04:35:39Z",
+                "originalPublishDate": "2026-11-13T04:33:38Z",
+                "duration": 80,
+                "timeRestrictions": {
+                  "embargoDate": "2026-11-13T04:33:37Z",
+                  "expirationDate": "2026-11-15T04:33:37Z"
+                },
+                "deviceRestrictions": {
+                  "devices": [
+                    "settop",
+                    "tablet",
+                    "handset",
+                    "ipad",
+                    "desktop"
+                  ],
+                  "type": "whitelist"
+                },
+                "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.jpg",
+                "links": {
+                  "api": {
+                    "artwork": {
+                      "href": "https://artwork.api.espn.com/artwork/collections/media/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576"
+                    },
+                    "self": {
+                      "href": "https://content.core.api.espn.com/v1/video/clips/50468530"
+                    }
+                  },
+                  "mobile": {
+                    "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                    "alert": {
+                      "href": "https://m.espn.com/general/video/videoAlert?vid=50468530"
+                    },
+                    "progressiveDownload": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller"
+                    },
+                    "source": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                    },
+                    "streaming": {
+                      "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller"
+                    }
+                  },
+                  "source": {
+                    "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4",
+                    "HD": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                    },
+                    "HLS": {
+                      "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8",
+                      "9x16": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                      },
+                      "HD": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                      },
+                      "cmaf": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8",
+                        "9x16": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                        },
+                        "cmb": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                        }
+                      },
+                      "cmb": {
+                        "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                      },
+                      "shield": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/media/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset"
+                      }
+                    },
+                    "flash": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                    },
+                    "full": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                    },
+                    "mezzanine": {
+                      "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                    }
+                  },
+                  "sportscenter": {
+                    "href": "sportscenter://x-callback-url/showVideo?videoID=50468530&videoDSI=8615b26ae0589"
+                  },
+                  "web": {
+                    "href": "https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                    "self": {
+                      "href": "https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                      "dsi": {
+                        "href": "https://www.espn.com/video/clip?id=8615b26ae0589"
+                      }
+                    }
+                  }
+                },
+                "ad": {
+                  "bundle": "nfl_one_plays",
+                  "sport": "nfl"
+                },
+                "tracking": {
+                  "coverageType": "Final Game Highlight",
+                  "leagueName": "NFL",
+                  "program": "espnnfl",
+                  "sportName": "football",
+                  "trackingId": "dm_20261113_NFL_commanders_outlast_giants_2421_in_nfc_east_tnf_thriller",
+                  "trackingName": "COM_NFL Highlight (Commanders outlast Giants 24-21 in NFC East TNF thriller) 2026/11/13 ESHEET"
+                }
+              }
+            ],
+            "headlines": [
+              {
+                "type": "Recap",
+                "description": "\u2014 Even after Jayden Daniels threw two interceptions and it looked like the Washington Commanders were hurtling toward a painful loss at the New York Giants, teammates remembered what it was like when the franchise quarterback burst onto the scene in...",
+                "shortLinkText": "Jayden Daniels and Commanders rally to stun the Giants 24-21 and keep their hopes alive",
+                "video": [
+                  {
+                    "id": 50468530,
+                    "source": "espn",
+                    "headline": "Commanders outlast Giants 24-21 in NFC East TNF thriller",
+                    "thumbnail": "https://espnmedia-cdn.akamaized.net/espn/media/common/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.jpg",
+                    "duration": 80,
+                    "tracking": {
+                      "coverageType": "Final Game Highlight",
+                      "leagueName": "NFL",
+                      "program": "espnnfl",
+                      "sportName": "football",
+                      "trackingId": "dm_20261113_NFL_commanders_outlast_giants_2421_in_nfc_east_tnf_thriller",
+                      "trackingName": "COM_NFL Highlight (Commanders outlast Giants 24-21 in NFC East TNF thriller) 2026/11/13 ESHEET"
+                    },
+                    "deviceRestrictions": {
+                      "devices": [
+                        "settop",
+                        "tablet",
+                        "handset",
+                        "ipad",
+                        "desktop"
+                      ],
+                      "type": "whitelist"
+                    },
+                    "links": {
+                      "api": {
+                        "artwork": {
+                          "href": "https://artwork.api.espn.com/artwork/collections/media/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576"
+                        },
+                        "self": {
+                          "href": "https://content.core.api.espn.com/v1/video/clips/50468530"
+                        }
+                      },
+                      "mobile": {
+                        "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                        "alert": {
+                          "href": "https://m.espn.com/general/video/videoAlert?vid=50468530"
+                        },
+                        "progressiveDownload": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller"
+                        },
+                        "source": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                        },
+                        "streaming": {
+                          "href": "https://watch.auth.api.espn.com/video/auth/brightcove/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset?UMADPARAMreferer=https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller"
+                        }
+                      },
+                      "source": {
+                        "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4",
+                        "HD": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                        },
+                        "HLS": {
+                          "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8",
+                          "9x16": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/9x16/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                          },
+                          "HD": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                          },
+                          "cmaf": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8",
+                            "9x16": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/9x16/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                            },
+                            "cmb": {
+                              "href": "https://cmp-espn.media.dssott.com/opp/cmaf/espn/cmb/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                            }
+                          },
+                          "cmb": {
+                            "href": "https://cmp-espn.media.dssott.com/opp/hls/espn/cmb/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f/playlist.m3u8"
+                          },
+                          "shield": {
+                            "href": "https://watch.auth.api.espn.com/video/auth/media/41e65d8d-4ff0-40ad-b0e9-db1c1f16e576/asset"
+                          }
+                        },
+                        "flash": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                        },
+                        "full": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                        },
+                        "mezzanine": {
+                          "href": "https://espnmedia-cdn.akamaized.net/espn/media/16x9/wsc/2026/1113/ed4e2a23-f184-42f3-8b96-fca839e2375f/ed4e2a23-f184-42f3-8b96-fca839e2375f.mp4"
+                        }
+                      },
+                      "sportscenter": {
+                        "href": "sportscenter://x-callback-url/showVideo?videoID=50468530&videoDSI=8615b26ae0589"
+                      },
+                      "web": {
+                        "href": "https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                        "self": {
+                          "href": "https://www.espn.com/video/clip/_/id/50468530/commanders-outlast-giants-24-21-nfc-east-tnf-thriller",
+                          "dsi": {
+                            "href": "https://www.espn.com/video/clip?id=8615b26ae0589"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
           }
         ],
         "links": [
           {
             "language": "en-US",
             "rel": [
-              "live",
+              "summary",
               "desktop",
               "event"
             ],
-            "href": "https://www.espn.com/nfl/game?gameId=401873052",
+            "href": "https://www.espn.com/nfl/game/_/gameId/401873052/commanders-giants",
             "text": "Gamecast",
             "shortText": "Gamecast",
             "isExternal": false,
@@ -1019,6 +1177,18 @@
           {
             "language": "en-US",
             "rel": [
+              "highlights",
+              "desktop"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401873052",
+            "text": "Highlights",
+            "shortText": "Highlights",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
               "pbp",
               "desktop",
               "event"
@@ -1028,37 +1198,33 @@
             "shortText": "Play-by-Play",
             "isExternal": false,
             "isPremium": false
-          }
-        ],
-        "weather": {
-          "displayValue": "7",
-          "temperature": 48,
-          "highTemperature": 48,
-          "conditionId": "Cloudy",
-          "link": {
+          },
+          {
             "language": "en-US",
             "rel": [
-              "07073"
+              "recap",
+              "desktop",
+              "event"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/current-weather/52866_poi?lang=en-us",
-            "text": "Weather",
-            "shortText": "Weather",
-            "isExternal": true,
+            "href": "https://www.espn.com/nfl/recap?gameId=401873052",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
             "isPremium": false
           }
-        },
+        ],
         "status": {
-          "clock": 804.0,
-          "displayClock": "13:24",
-          "period": 3,
+          "clock": 0.0,
+          "displayClock": "0:00",
+          "period": 4,
           "type": {
-            "id": "2",
-            "name": "STATUS_IN_PROGRESS",
-            "state": "in",
-            "completed": false,
-            "description": "In Progress",
-            "detail": "13:24 - 3rd Quarter",
-            "shortDetail": "13:24 - 3rd"
+            "id": "3",
+            "name": "STATUS_FINAL",
+            "state": "post",
+            "completed": true,
+            "description": "Final",
+            "detail": "Final",
+            "shortDetail": "Final"
           }
         }
       },
@@ -1765,8 +1931,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $356",
-                "numberAvailable": 1229,
+                "summary": "Tickets as low as $376",
+                "numberAvailable": 1289,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/detroit-lions-tickets-allianz-arena-11-15-2026--sports-nfl-football/production/7027930?wsUser=717"
@@ -2828,8 +2994,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $110",
-                "numberAvailable": 2651,
+                "summary": "Tickets as low as $109",
+                "numberAvailable": 2650,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/atlanta-falcons-tickets-atlanta-mercedes-benz-stadium-3-9-2026/production/6487188?wsUser=717"
@@ -3177,16 +3343,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Sunny",
+          "displayValue": "Mostly sunny",
           "temperature": 53,
           "highTemperature": 53,
-          "conditionId": "1",
+          "conditionId": "2",
           "link": {
             "language": "en-US",
             "rel": [
               "30313"
             ],
-            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/mercedes-benz-stadium-ga/30303/hourly-weather-forecast/17252_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -3908,7 +4074,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $30",
-                "numberAvailable": 4929,
+                "numberAvailable": 4905,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/cleveland-browns-tickets-cleveland-huntington-bank-field-3-4-2026/production/6489427?wsUser=717"
@@ -4257,15 +4423,15 @@
         ],
         "weather": {
           "displayValue": "Cloudy",
-          "temperature": 46,
-          "highTemperature": 46,
+          "temperature": 45,
+          "highTemperature": 45,
           "conditionId": "7",
           "link": {
             "language": "en-US",
             "rel": [
               "44114"
             ],
-            "href": "http://www.accuweather.com/en/us/huntington-bank-field-oh/44113/hourly-weather-forecast/41494_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/huntington-bank-field-oh/44113/hourly-weather-forecast/41494_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -4987,7 +5153,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $313",
-                "numberAvailable": 2915,
+                "numberAvailable": 2834,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/green-bay-packers-tickets-green-bay-lambeau-field-3-3-2026/production/6489937?wsUser=717"
@@ -5247,11 +5413,35 @@
                   "under": {
                     "close": {
                       "line": "u41.5",
-                      "odds": "OFF"
+                      "odds": "-105",
+                      "link": {
+                        "language": "en-US",
+                        "rel": [
+                          "under",
+                          "desktop",
+                          "bets"
+                        ],
+                        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118179%3Foutcomes%3D0OU84695612U4150_3",
+                        "text": "Under Odds",
+                        "shortText": "Under Odds",
+                        "isExternal": true,
+                        "isPremium": false,
+                        "tracking": {
+                          "campaign": "betting-integrations",
+                          "tags": {
+                            "league": "nfl",
+                            "sport": "football",
+                            "gameId": 401873060,
+                            "betSide": "under",
+                            "betType": "straight",
+                            "betDetails": "Under:41.5"
+                          }
+                        }
+                      }
                     },
                     "open": {
                       "line": "u45.5",
-                      "odds": "OFF"
+                      "odds": "-110"
                     }
                   }
                 },
@@ -5320,7 +5510,7 @@
             "rel": [
               "54304"
             ],
-            "href": "http://www.accuweather.com/en/us/lambeau-field-wi/54303/hourly-weather-forecast/29742_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lambeau-field-wi/54303/hourly-weather-forecast/29742_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -6042,7 +6232,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $24",
-                "numberAvailable": 1839,
+                "numberAvailable": 1783,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/tennessee-titans-tickets-nashville-nissan-stadium-3-3-2027/production/6493541?wsUser=717"
@@ -6399,7 +6589,7 @@
             "rel": [
               "37213"
             ],
-            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/nissan-stadium-tn/37219/hourly-weather-forecast/53638_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -7121,7 +7311,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $29",
-                "numberAvailable": 2764,
+                "numberAvailable": 2762,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/indianapolis-colts-tickets-indianapolis-lucas-oil-stadium-3-6-2026/production/6490119?wsUser=717"
@@ -7206,7 +7396,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-198",
+                      "odds": "-205",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7238,7 +7428,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+164",
+                      "odds": "+170",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -7478,7 +7668,7 @@
             "rel": [
               "46225"
             ],
-            "href": "http://www.accuweather.com/en/us/lucas-oil-stadium-in/46204/hourly-weather-forecast/53571_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/lucas-oil-stadium-in/46204/hourly-weather-forecast/53571_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -8200,7 +8390,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $31",
-                "numberAvailable": 3975,
+                "numberAvailable": 3890,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-orleans-saints-tickets-new-orleans-caesars-superdome-3-3-2027/production/6493127?wsUser=717"
@@ -8285,7 +8475,7 @@
                   "shortDisplayName": "ML",
                   "home": {
                     "close": {
-                      "odds": "-130",
+                      "odds": "-135",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -8317,7 +8507,7 @@
                   },
                   "away": {
                     "close": {
-                      "odds": "+110",
+                      "odds": "+114",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -8557,7 +8747,7 @@
             "rel": [
               "70112"
             ],
-            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=4&hbhhour=12&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/caesars-superdome-la/70112/hourly-weather-forecast/19245_poi?day=3&hbhhour=12&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -9279,7 +9469,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $159",
-                "numberAvailable": 2735,
+                "numberAvailable": 2589,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/new-york-jets-tickets-east-rutherford-metlife-stadium-3-6-2027/production/6494612?wsUser=717"
@@ -9636,7 +9826,7 @@
             "rel": [
               "07073"
             ],
-            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/metlife-stadium-nj/07073/hourly-weather-forecast/52866_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -10358,7 +10548,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $172",
-                "numberAvailable": 2956,
+                "numberAvailable": 2908,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/las-vegas-raiders-tickets-las-vegas-allegiant-stadium-3-7-2026/production/6491254?wsUser=717"
@@ -10715,7 +10905,7 @@
             "rel": [
               "89118"
             ],
-            "href": "http://www.accuweather.com/en/us/allegiant-stadium-nv/89101/hourly-weather-forecast/209206_poi?day=4&hbhhour=13&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/allegiant-stadium-nv/89101/hourly-weather-forecast/209206_poi?day=3&hbhhour=13&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -11434,8 +11624,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $41",
-                "numberAvailable": 3444,
+                "summary": "Tickets as low as $39",
+                "numberAvailable": 3330,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/arizona-cardinals-tickets-glendale-state-farm-stadium-3-7-2026/production/6487027?wsUser=717"
@@ -11792,7 +11982,7 @@
             "rel": [
               "85305"
             ],
-            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=4&hbhhour=14&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/state-farm-stadium-az/85301/hourly-weather-forecast/53536_poi?day=3&hbhhour=14&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -12513,8 +12703,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $236",
-                "numberAvailable": 3303,
+                "summary": "Tickets as low as $220",
+                "numberAvailable": 3209,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/dallas-cowboys-tickets-arlington-att-stadium-3-8-2026/production/6489549?wsUser=717"
@@ -12668,7 +12858,7 @@
                   "home": {
                     "close": {
                       "line": "+3.5",
-                      "odds": "-105",
+                      "odds": "-102",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -12702,7 +12892,7 @@
                   "away": {
                     "close": {
                       "line": "-3.5",
-                      "odds": "-115",
+                      "odds": "-118",
                       "link": {
                         "language": "en-US",
                         "rel": [
@@ -12871,7 +13061,7 @@
             "rel": [
               "76011"
             ],
-            "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/hourly-weather-forecast/53644_poi?day=4&hbhhour=15&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/hourly-weather-forecast/53644_poi?day=3&hbhhour=15&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -13592,8 +13782,8 @@
             },
             "tickets": [
               {
-                "summary": "Tickets as low as $288",
-                "numberAvailable": 1502,
+                "summary": "Tickets as low as $292",
+                "numberAvailable": 1452,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/pittsburgh-steelers-tickets-cincinnati-paycor-stadium-3-3-2026/production/6489006?wsUser=717"
@@ -13941,16 +14131,16 @@
           }
         ],
         "weather": {
-          "displayValue": "Intermittent clouds",
+          "displayValue": "Mostly cloudy",
           "temperature": 43,
           "highTemperature": 43,
-          "conditionId": "36",
+          "conditionId": "38",
           "link": {
             "language": "en-US",
             "rel": [
               "45202"
             ],
-            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=4&hbhhour=20&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/paycor-stadium-oh/45212/hourly-weather-forecast/53622_poi?day=3&hbhhour=20&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -14672,7 +14862,7 @@
             "tickets": [
               {
                 "summary": "Tickets as low as $38",
-                "numberAvailable": 6177,
+                "numberAvailable": 5965,
                 "links": [
                   {
                     "href": "https://www.vividseats.com/baltimore-ravens-tickets-baltimore-mt-bank-stadium-3-8-2026/production/6487949?wsUser=717"
@@ -15031,7 +15221,7 @@
             "rel": [
               "21230"
             ],
-            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=5&hbhhour=20&lang=en-us",
+            "href": "http://www.accuweather.com/en/us/m-t-bank-stadium-md/21202/hourly-weather-forecast/43035_poi?day=4&hbhhour=20&lang=en-us",
             "text": "Weather",
             "shortText": "Weather",
             "isExternal": true,
@@ -17740,14 +17930,14 @@
                 "region": "us"
               }
             ],
-            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Chiefs quarterback Patrick Mahomes walked off the field dangling his right arm, which had been bent grotesquely on a strip-sack by the Jets' David Bailey, and for the briefest of moments a pall seemed to descend over Arrowhead Stadium on Sunday.",
                 "shortLinkText": "Kenneth Walker scores 3 TDs as the Chiefs roll past the woeful Jets 35-12 to end their 2-game skid"
               }
-            ]
+            ],
+            "highlights": []
           }
         ],
         "links": [
@@ -22528,14 +22718,14 @@
                 "region": "us"
               }
             ],
+            "highlights": [],
             "headlines": [
               {
                 "type": "Recap",
                 "description": "\u2014 Jaden Dugger set the tone for the second half when he returned an interception from Kirk Cousins on the first play for a touchdown.",
                 "shortLinkText": "49ers capitalize on 5 2nd-half takeaways to cruise past Raiders 38-17"
               }
-            ],
-            "highlights": []
+            ]
           }
         ],
         "links": [
