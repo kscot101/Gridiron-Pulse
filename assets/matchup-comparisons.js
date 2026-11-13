@@ -269,7 +269,7 @@
       '<div class="gc-triple-weeks" role="group" aria-label="Each week has three comparison bars on the same scale">'+columns+'</div>'+
       '<p class="gc-unified-caption">Player actual and defensive allowance refer to <strong>different games in the same NFL week</strong>. '+
       'Season average is the latest published season baseline, repeated for reference. The purple dashed marker shows the H2H average. '+
-      'All bars share the same numeric scale. Defense figures include <strong>all opposing '+'players at that position combined</strong>, not one player. Blank values mean unavailable, not zero.</p>'+
+      'All bars share the same numeric scale. Defense figures include <strong>all opposing players at that position combined</strong>, not one player. Blank values mean unavailable, not zero.</p>'+
       (!compatible?'<p class="gc-defense-disclosure">A position-specific defensive measure for this statistic is not available, so orange bars are left blank instead of comparing different units.</p>':'')+
       '</section>';
   }
@@ -332,7 +332,7 @@
           '</div>'+
           renderTripleChart(slots,seasonAvg,h2hAvg,label,code,aligned)+
           '<label class="gc-playoff-toggle"><input type="checkbox" data-gc-playoffs'+(pref.post?' checked':'')+'> Include playoff games in H2H</label>'+
-          '<p class="gc-note">2026 data through '+esc(date(data.through))+' (player) and '+esc(date(defense.through))+' (defense). '+
+          '<p class="gc-note">'+esc(data.season)+' data through '+esc(date(data.through))+' (player) and '+esc(date(defense.through))+' (defense). '+
           'Head-to-head covers available verified meetings across seasons; the weekly graph uses current regular-season records only.</p>';
         if(root.GPExactTracker&&opponent){
           var saved=root.GPExactTracker.find({
