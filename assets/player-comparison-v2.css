@@ -101,11 +101,18 @@
    both panels into the old 980px-wide generic detail popup. */
 #detail-overlay.open:has(.gp-h2h-root){
   display:flex;
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100dvh;
+  max-width:none;
+  box-sizing:border-box;
   align-items:center;
   justify-content:center;
   padding:clamp(6px,0.9vw,16px);
 }
 #detail-overlay:has(.gp-h2h-root) .modal{
+  flex:0 0 auto;
   box-sizing:border-box;
   width:min(1680px,calc(100vw - 24px));
   max-width:none;
