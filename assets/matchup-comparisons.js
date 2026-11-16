@@ -218,6 +218,7 @@
     });
   }
   function renderTripleChart(rows, seasonValue, h2hValue, metricLabel, code, compatible) {
+    if (root.GPWeeklyChart) return root.GPWeeklyChart.render(rows, seasonValue, h2hValue, metricLabel, code, compatible);
     var entries=[seasonValue,h2hValue];
     rows.forEach(function(row){entries.push(row.playerValue,row.defenseValue);});
     var present=entries.filter(function(v){return num(v)!==null;});
