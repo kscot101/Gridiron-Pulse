@@ -20,7 +20,7 @@ const fs=require('node:fs');
  const page=await context.newPage(), errors=[],checks=[];
  page.on('pageerror',e=>errors.push(e.message));
  try{
-   await page.goto(base,{waitUntil:'domcontentloaded'});
+   await page.goto(base,{waitUntil:'load'});
    await page.waitForFunction(()=>window.GPPlayerStats&&window.GPMatchupComparisons);
    const dataset=JSON.parse(fs.readFileSync('data/defense-players.json','utf8'));
    const player=Object.values(dataset.players).find(p=>p.name==='Patrick Mahomes');
@@ -29,6 +29,18 @@ const fs=require('node:fs');
    await page.locator('#detail-overlay.open .gp-h2h-root .gc-unified-graph').waitFor({timeout:30000});
    const compact=page.locator('link[href*="player-profile-compact.css"]');
    assert.equal(await compact.count(),1,'Compact profile sheet must be loaded');
+   await page.waitForFunction(()=>{
+     const css=document.querySelector('link[href*="player-profile-compact.css"]');
+     return !!(css&&css.sheet&&css.sheet.cssRules&&css.sheet.cssRules.length>0);
+   },null,{timeout:10000});
+   const debug=await page.evaluate(()=>{
+     const overlay=document.getElementById('detail-overlay'), title=overlay.querySelector('#detail-body .modal-title');
+     return {sheet:document.querySelector('link[href*="player-profile-compact"]').href,
+       selected:overlay.matches('#detail-overlay:has(.gp-h2h-root)'),
+       font:getComputedStyle(title).fontSize,
+       rules:document.querySelector('link[href*="player-profile-compact"]').sheet.cssRules.length};
+   });
+   console.log('CSS CHECK',JSON.stringify(debug));
    const sizing=()=>page.evaluate(()=>{
      const root=document.querySelector('#detail-overlay.open');
      const info=root.querySelector('#detail-body > div:first-child');
@@ -48,8 +60,10 @@ const fs=require('node:fs');
      };
    });
    await compact.evaluate(el=>el.disabled=true);
+   await page.waitForTimeout(150);
    const before=await sizing();
    await compact.evaluate(el=>el.disabled=false);
+   await page.waitForTimeout(150);
    const after=await sizing();
    assert.ok(after.playerHeaderHeight<=before.playerHeaderHeight*0.70,
       'Player name/info header was not reduced enough: '+JSON.stringify({before,after}));
