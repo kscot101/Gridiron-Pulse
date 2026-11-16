@@ -1,0 +1,38 @@
+name: Compact player profile trial
+on:
+  push:
+    branches:
+      - fix/compact-player-info-header-20261116
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gp-compact-player-profile-trial
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check test syntax
+        run: node --check scripts/check-compact-player.js
+      - name: Install headless Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Compare player info sizes and preserve chart
+        run: node scripts/check-compact-player.js
+      - name: Save browser screenshots and measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compact-player-header-trial
+          retention-days: 7
+          path: |
+            compact-player-verification.json
+            compact-player-desktop.png
+            compact-player-mobile.png
