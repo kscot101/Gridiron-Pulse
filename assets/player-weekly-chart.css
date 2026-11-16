@@ -1,0 +1,33 @@
+/* Only the weekly chart changes. The full-width player dialog stays intact. */
+.gp-h2h-root .gc-weekly-large{padding:clamp(14px,1.8vw,28px);min-width:0;max-width:100%;box-sizing:border-box}
+.gp-h2h-root .gc-weekly-large .gc-wide-chart-scroll{width:100%;max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#70947c #12291f;margin:18px 0 0;border-radius:5px}
+.gp-h2h-root .gc-weekly-large .gc-wide-weekly-chart{display:block;width:100%;min-width:940px;max-width:none;height:auto;background:transparent;overflow:visible;font-family:Inter,system-ui,sans-serif}
+.gp-h2h-root .gc-weekly-large svg .gc-triple-week,.gp-h2h-root .gc-weekly-large svg .gc-triple-level{display:inline;padding:0;margin:0;border:0;background:none}
+.gp-h2h-root .gc-wide-gridline{stroke:#365445;stroke-width:1;vector-effect:non-scaling-stroke}
+.gp-h2h-root .gc-wide-baseline{stroke:#a5c1ae;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.gp-h2h-root .gc-wide-tick{fill:#c1d5c6;font-size:14px;font-variant-numeric:tabular-nums}
+.gp-h2h-root .gc-wide-series .gc-wide-bar{fill:#48b7ff}
+.gp-h2h-root .gc-wide-season .gc-wide-bar{fill:#c9ff32}
+.gp-h2h-root .gc-wide-defense .gc-wide-bar{fill:#ffae4a}
+.gp-h2h-root .gc-wide-zero-value{stroke:#48b7ff;stroke-width:3}
+.gp-h2h-root .gc-wide-season .gc-wide-zero-value{stroke:#c9ff32}
+.gp-h2h-root .gc-wide-defense .gc-wide-zero-value{stroke:#ffae4a}
+.gp-h2h-root .gc-wide-value{fill:#f7fff5;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;paint-order:stroke;stroke:#10251b;stroke-width:3px;stroke-linejoin:round}
+.gp-h2h-root .gc-wide-missing{fill:#b4c6bb;font-size:17px}
+.gp-h2h-root .gc-wide-week-name{fill:#f3fff4;font-size:19px;font-weight:850}
+.gp-h2h-root .gc-wide-context{fill:#d0e3d5;font-size:13px;font-weight:650}
+.gp-h2h-root .gc-wide-date{fill:#9fbaa9;font-size:12px}
+.gp-h2h-root .gc-wide-h2h-line{stroke:#c7a7ff;stroke-width:2;stroke-dasharray:7 5;vector-effect:non-scaling-stroke;pointer-events:none}
+.gp-h2h-root .gc-wide-series{outline:none}
+.gp-h2h-root .gc-wide-series:focus .gc-wide-bar,.gp-h2h-root .gc-wide-series:hover .gc-wide-bar{stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke;filter:brightness(1.08)}
+.gp-h2h-root .gc-wide-series:focus text{fill:#fff;text-decoration:underline}
+.gp-h2h-root .gc-wide-chart-scroll:focus-visible{outline:2px solid #59d7ff;outline-offset:3px}
+.gp-h2h-root .gc-wide-swipe{display:none;color:#d5e6d7!important;font:700 12px/1.5 system-ui,sans-serif!important;margin:12px 0 0!important}
+.gp-h2h-root .gc-wide-data{border-top:1px solid #42644d;margin-top:16px;color:#d1e4d5;font-size:12px}
+.gp-h2h-root .gc-wide-data summary{color:#c9ff32;min-height:44px;padding:12px 0;cursor:pointer;font-weight:750}
+.gp-h2h-root .gc-wide-table-scroll{overflow:auto;max-width:100%}
+.gp-h2h-root .gc-wide-data table{min-width:420px;width:100%;border-collapse:collapse}
+.gp-h2h-root .gc-wide-data caption{text-align:left;padding:8px 0;color:#e2f1e5}
+.gp-h2h-root .gc-wide-data td,.gp-h2h-root .gc-wide-data th{padding:10px 8px;border-bottom:1px solid #3b5c47;font-variant-numeric:tabular-nums}
+@media(max-width:1120px){.gp-h2h-root .gc-wide-swipe{display:block}.gp-h2h-root .gc-weekly-large{padding:16px 12px}}
+@media(max-width:620px){.gp-h2h-root .gc-weekly-large{padding:13px 10px}.gp-h2h-root .gc-weekly-large .gc-triple-legend{font-size:11px;gap:9px 12px}}
