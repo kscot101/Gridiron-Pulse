@@ -1,0 +1,67 @@
+name: Continuous weekly chart trial
+on:
+  push:
+    branches: [feature/continuous-weekly-bar-chart-20261116]
+    paths:
+      - 'assets/player-weekly-chart.js'
+      - 'assets/player-weekly-chart.css'
+      - 'scripts/install_weekly_wide_chart.py'
+      - 'scripts/check_weekly_wide_chart.js'
+      - '.github/workflows/trial-continuous-weekly-chart.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: continuous-weekly-chart-trial
+  cancel-in-progress: true
+jobs:
+  trial:
+    if: github.ref == 'refs/heads/feature/continuous-weekly-bar-chart-20261116'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/continuous-weekly-bar-chart-20261116
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate renderer without changing model inputs
+        run: |
+          python scripts/install_weekly_wide_chart.py
+          node --check assets/player-weekly-chart.js
+          node --check assets/matchup-comparisons.js
+          node --check scripts/check_weekly_wide_chart.js
+      - name: Install browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test actual saved comparison values and controls
+        run: node scripts/check_defense_comparisons.js
+      - name: Test plot geometry, negative values, missing stats and phone scrolling
+        run: node scripts/check_weekly_wide_chart.js
+      - name: Preserve full-width player modal
+        run: node scripts/check-player-width.js
+      - name: Save verified integration to the review branch only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/matchup-comparisons.js index.html projections-2026.html projection-trial.html pick-tracker.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Integrate verified continuous weekly bar chart on four player pages'
+          git push origin HEAD:feature/continuous-weekly-bar-chart-20261116
+      - name: Save verification and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuous-weekly-chart-trial
+          retention-days: 7
+          path: |
+            defense-verification.json
+            defense-*.png
+            weekly-wide-verification.json
+            weekly-wide-*.png
+            player-width-verification.json
+            player-width-*.png
