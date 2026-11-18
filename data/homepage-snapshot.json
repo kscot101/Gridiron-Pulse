@@ -1,9 +1,9 @@
 {
   "ok": true,
   "snapshot": {
-    "id": "2026-2-11-2026-11-18T11:34:28.280Z",
+    "id": "2026-2-11-2026-11-18T19:38:17.942Z",
     "version": "1.4.0",
-    "generatedAt": "2026-11-18T11:34:28.280Z",
+    "generatedAt": "2026-11-18T19:38:17.942Z",
     "mode": "pregame",
     "season": {
       "year": 2026,
@@ -29,7 +29,7 @@
       "availabilityCount": 130,
       "availabilityConcernCount": 130,
       "availabilityImpactCount": 1,
-      "generationMs": 5341
+      "generationMs": 6109
     },
     "refresh": {
       "recommendedBrowserSeconds": 300,
@@ -389,24 +389,6 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4362523",
-            "name": "Will Mallory",
-            "team": "IND",
-            "teamId": "11",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4601021",
-            "name": "Jaylon Carlies",
-            "team": "IND",
-            "teamId": "11",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
-          },
-          {
             "athleteId": "4429684",
             "name": "Anthony Gould",
             "team": "IND",
@@ -416,21 +398,39 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "2566045",
-            "name": "Luke Rhodes",
+            "athleteId": "4362580",
+            "name": "Bernhard Raimann",
             "team": "IND",
             "teamId": "11",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
+            "status": "Out",
+            "type": "out",
+            "details": "Concussion"
           },
           {
             "athleteId": "3863182",
             "name": "Jerry Tillery",
             "team": "IND",
             "teamId": "11",
-            "status": "Questionable",
-            "type": "questionable",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4892240",
+            "name": "Jalen Travis",
+            "team": "IND",
+            "teamId": "11",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4037361",
+            "name": "Charvarius Ward",
+            "team": "IND",
+            "teamId": "11",
+            "status": "Out",
+            "type": "out",
             "details": "Not Specified"
           }
         ],
@@ -524,7 +524,7 @@
           "indoor": null
         },
         "weather": {
-          "display": "4",
+          "display": "3",
           "temperature": 62
         },
         "broadcasts": [
@@ -660,22 +660,13 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4241476",
-            "name": "Tyrell Shavers",
+            "athleteId": "4242433",
+            "name": "Joshua Palmer",
             "team": "BUF",
             "teamId": "2",
-            "status": "Out",
-            "type": "out",
-            "details": "Surgery"
-          },
-          {
-            "athleteId": "4683276",
-            "name": "Zeek Biggers",
-            "team": "MIA",
-            "teamId": "15",
             "status": "Injured Reserve",
             "type": "Injured Reserve",
-            "details": "Surgery"
+            "details": "Not Specified"
           },
           {
             "athleteId": "4837188",
@@ -687,8 +678,8 @@
             "details": "Surgery"
           },
           {
-            "athleteId": "4430681",
-            "name": "Jared Wayne",
+            "athleteId": "4869961",
+            "name": "Chris Bell",
             "team": "MIA",
             "teamId": "15",
             "status": "Questionable",
@@ -696,8 +687,17 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4869961",
-            "name": "Chris Bell",
+            "athleteId": "4683276",
+            "name": "Zeek Biggers",
+            "team": "MIA",
+            "teamId": "15",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Surgery"
+          },
+          {
+            "athleteId": "4430681",
+            "name": "Jared Wayne",
             "team": "MIA",
             "teamId": "15",
             "status": "Questionable",
@@ -804,8 +804,8 @@
           "indoor": null
         },
         "weather": {
-          "display": "7",
-          "temperature": 55
+          "display": "6",
+          "temperature": 58
         },
         "broadcasts": [
           "Fox"
@@ -1084,7 +1084,7 @@
           "indoor": null
         },
         "weather": {
-          "display": "5",
+          "display": "6",
           "temperature": 65
         },
         "broadcasts": [
@@ -1238,6 +1238,15 @@
             "details": "Not Specified"
           },
           {
+            "athleteId": "4871023",
+            "name": "Carnell Tate",
+            "team": "TEN",
+            "teamId": "10",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4870805",
             "name": "Anthony Hill Jr.",
             "team": "TEN",
@@ -1254,15 +1263,6 @@
             "status": "Questionable",
             "type": "questionable",
             "details": "Concussion"
-          },
-          {
-            "athleteId": "4871023",
-            "name": "Carnell Tate",
-            "team": "TEN",
-            "teamId": "10",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
           },
           {
             "athleteId": "4240532",
@@ -1364,7 +1364,7 @@
           "indoor": null
         },
         "weather": {
-          "display": "18",
+          "display": "7",
           "temperature": 58
         },
         "broadcasts": [
@@ -1522,8 +1522,8 @@
             "name": "Yaya Diaby",
             "team": "TB",
             "teamId": "27",
-            "status": "Doubtful",
-            "type": "doubtful",
+            "status": "Questionable",
+            "type": "questionable",
             "details": "Sprain"
           },
           {
@@ -1644,8 +1644,8 @@
           "indoor": null
         },
         "weather": {
-          "display": "2",
-          "temperature": 47
+          "display": "4",
+          "temperature": 48
         },
         "broadcasts": [
           "CBS"
@@ -1744,15 +1744,6 @@
         },
         "injuries": [
           {
-            "athleteId": "4871063",
-            "name": "Peter Woods",
-            "team": "KC",
-            "teamId": "12",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Stinger"
-          },
-          {
             "athleteId": "4567048",
             "name": "Kenneth Walker III",
             "team": "KC",
@@ -1760,6 +1751,15 @@
             "status": "Questionable",
             "type": "questionable",
             "details": "Not Specified"
+          },
+          {
+            "athleteId": "4871063",
+            "name": "Peter Woods",
+            "team": "KC",
+            "teamId": "12",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Stinger"
           },
           {
             "athleteId": "4043041",
@@ -1925,7 +1925,7 @@
         },
         "weather": {
           "display": "7",
-          "temperature": 62
+          "temperature": 61
         },
         "broadcasts": [
           "CBS"
@@ -2069,21 +2069,21 @@
             "details": "Not Specified"
           },
           {
+            "athleteId": "4368304",
+            "name": "Mason McCormick",
+            "team": "PIT",
+            "teamId": "23",
+            "status": "Out",
+            "type": "out",
+            "details": "Dislocated"
+          },
+          {
             "athleteId": "3929846",
             "name": "DeShon Elliott",
             "team": "PIT",
             "teamId": "23",
             "status": "Questionable",
             "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4368304",
-            "name": "Mason McCormick",
-            "team": "PIT",
-            "teamId": "23",
-            "status": "Doubtful",
-            "type": "doubtful",
             "details": "Not Specified"
           },
           {
@@ -2205,7 +2205,7 @@
         },
         "weather": {
           "display": "7",
-          "temperature": 62
+          "temperature": 60
         },
         "broadcasts": [
           "Fox"
@@ -2349,6 +2349,15 @@
             "details": "Surgery"
           },
           {
+            "athleteId": "3916387",
+            "name": "Lamar Jackson",
+            "team": "BAL",
+            "teamId": "33",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Surgery"
+          },
+          {
             "athleteId": "3858276",
             "name": "Jaylinn Hawkins",
             "team": "BAL",
@@ -2376,22 +2385,13 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4685526",
-            "name": "Adam Randall",
+            "athleteId": "4426372",
+            "name": "Adisa Isaac",
             "team": "BAL",
             "teamId": "33",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
+            "status": "Questionable",
+            "type": "questionable",
             "details": "Not Specified"
-          },
-          {
-            "athleteId": "3916387",
-            "name": "Lamar Jackson",
-            "team": "BAL",
-            "teamId": "33",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Surgery"
           }
         ],
         "drives": [],
@@ -2629,8 +2629,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4683815",
-            "name": "Trevin Wallace",
+            "athleteId": "4569371",
+            "name": "Isaiah Williams",
             "team": "NYJ",
             "teamId": "20",
             "status": "Questionable",
@@ -2638,17 +2638,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4426817",
-            "name": "Jarvis Brownlee Jr.",
-            "team": "NYJ",
-            "teamId": "20",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4243375",
-            "name": "Dylan Parham",
+            "athleteId": "4723820",
+            "name": "Omar Cooper Jr.",
             "team": "NYJ",
             "teamId": "20",
             "status": "Questionable",
@@ -2665,8 +2656,17 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4723820",
-            "name": "Omar Cooper Jr.",
+            "athleteId": "4683815",
+            "name": "Trevin Wallace",
+            "team": "NYJ",
+            "teamId": "20",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4426817",
+            "name": "Jarvis Brownlee Jr.",
             "team": "NYJ",
             "teamId": "20",
             "status": "Questionable",
@@ -2909,6 +2909,15 @@
             "details": "Concussion"
           },
           {
+            "athleteId": "4432665",
+            "name": "Brock Bowers",
+            "team": "LV",
+            "teamId": "13",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4432775",
             "name": "Dont'e Thornton Jr.",
             "team": "LV",
@@ -2920,15 +2929,6 @@
           {
             "athleteId": "4360749",
             "name": "Thomas Booker IV",
-            "team": "LV",
-            "teamId": "13",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4432665",
-            "name": "Brock Bowers",
             "team": "LV",
             "teamId": "13",
             "status": "Questionable",
@@ -3193,9 +3193,9 @@
             "name": "Robert Hainsey",
             "team": "JAX",
             "teamId": "30",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
+            "status": "Out",
+            "type": "out",
+            "details": "Sprain"
           },
           {
             "athleteId": "4573319",
@@ -3424,15 +3424,6 @@
         },
         "injuries": [
           {
-            "athleteId": "4427325",
-            "name": "Renardo Green",
-            "team": "SF",
-            "teamId": "25",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
             "athleteId": "16737",
             "name": "Mike Evans",
             "team": "SF",
@@ -3440,6 +3431,24 @@
             "status": "Questionable",
             "type": "questionable",
             "details": "Tendinitis"
+          },
+          {
+            "athleteId": "4360438",
+            "name": "Brandon Aiyuk",
+            "team": "SF",
+            "teamId": "25",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4427325",
+            "name": "Renardo Green",
+            "team": "SF",
+            "teamId": "25",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
           },
           {
             "athleteId": "4686308",
@@ -3460,13 +3469,22 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4685369",
-            "name": "Gracen Halton",
-            "team": "SF",
-            "teamId": "25",
+            "athleteId": "4429205",
+            "name": "Jordan Addison",
+            "team": "MIN",
+            "teamId": "16",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4875564",
+            "name": "Bo Richter",
+            "team": "MIN",
+            "teamId": "16",
             "status": "Injured Reserve",
             "type": "Injured Reserve",
-            "details": "Surgery"
+            "details": "Not Specified"
           },
           {
             "athleteId": "4629149",
@@ -3494,24 +3512,6 @@
             "status": "Questionable",
             "type": "questionable",
             "details": "Concussion"
-          },
-          {
-            "athleteId": "3133487",
-            "name": "Andrew Van Ginkel",
-            "team": "MIN",
-            "teamId": "16",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4429205",
-            "name": "Jordan Addison",
-            "team": "MIN",
-            "teamId": "16",
-            "status": "Out",
-            "type": "out",
-            "details": "Not Specified"
           }
         ],
         "drives": [],
@@ -3605,7 +3605,7 @@
         },
         "weather": {
           "display": "38",
-          "temperature": 50
+          "temperature": 52
         },
         "broadcasts": [
           "ESPN"
@@ -7054,24 +7054,6 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4362523",
-              "name": "Will Mallory",
-              "team": "IND",
-              "teamId": "11",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4601021",
-              "name": "Jaylon Carlies",
-              "team": "IND",
-              "teamId": "11",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Not Specified"
-            },
-            {
               "athleteId": "4429684",
               "name": "Anthony Gould",
               "team": "IND",
@@ -7081,21 +7063,39 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "2566045",
-              "name": "Luke Rhodes",
+              "athleteId": "4362580",
+              "name": "Bernhard Raimann",
               "team": "IND",
               "teamId": "11",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
+              "status": "Out",
+              "type": "out",
+              "details": "Concussion"
             },
             {
               "athleteId": "3863182",
               "name": "Jerry Tillery",
               "team": "IND",
               "teamId": "11",
-              "status": "Questionable",
-              "type": "questionable",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "4892240",
+              "name": "Jalen Travis",
+              "team": "IND",
+              "teamId": "11",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "4037361",
+              "name": "Charvarius Ward",
+              "team": "IND",
+              "teamId": "11",
+              "status": "Out",
+              "type": "out",
               "details": "Not Specified"
             }
           ],
@@ -7121,7 +7121,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "BUF's recent scoring profile meets the clearest pressure point in MIA's latest defensive baseline.",
-        "context": "Highmark Stadium \u00b7 4 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Highmark Stadium \u00b7 3 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "4242512",
@@ -10480,22 +10480,13 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4241476",
-              "name": "Tyrell Shavers",
+              "athleteId": "4242433",
+              "name": "Joshua Palmer",
               "team": "BUF",
               "teamId": "2",
-              "status": "Out",
-              "type": "out",
-              "details": "Surgery"
-            },
-            {
-              "athleteId": "4683276",
-              "name": "Zeek Biggers",
-              "team": "MIA",
-              "teamId": "15",
               "status": "Injured Reserve",
               "type": "Injured Reserve",
-              "details": "Surgery"
+              "details": "Not Specified"
             },
             {
               "athleteId": "4837188",
@@ -10507,8 +10498,8 @@
               "details": "Surgery"
             },
             {
-              "athleteId": "4430681",
-              "name": "Jared Wayne",
+              "athleteId": "4869961",
+              "name": "Chris Bell",
               "team": "MIA",
               "teamId": "15",
               "status": "Questionable",
@@ -10516,8 +10507,17 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4869961",
-              "name": "Chris Bell",
+              "athleteId": "4683276",
+              "name": "Zeek Biggers",
+              "team": "MIA",
+              "teamId": "15",
+              "status": "Injured Reserve",
+              "type": "Injured Reserve",
+              "details": "Surgery"
+            },
+            {
+              "athleteId": "4430681",
+              "name": "Jared Wayne",
               "team": "MIA",
               "teamId": "15",
               "status": "Questionable",
@@ -10556,7 +10556,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "CHI's recent scoring profile meets the clearest pressure point in NO's latest defensive baseline.",
-        "context": "Soldier Field \u00b7 7 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Soldier Field \u00b7 6 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "4360689",
@@ -13689,7 +13689,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "DAL's recent scoring profile meets the clearest pressure point in TEN's latest defensive baseline.",
-        "context": "AT&T Stadium \u00b7 5 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "AT&T Stadium \u00b7 6 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "4688380",
@@ -16729,6 +16729,15 @@
               "details": "Not Specified"
             },
             {
+              "athleteId": "4871023",
+              "name": "Carnell Tate",
+              "team": "TEN",
+              "teamId": "10",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Not Specified"
+            },
+            {
               "athleteId": "4870805",
               "name": "Anthony Hill Jr.",
               "team": "TEN",
@@ -16745,15 +16754,6 @@
               "status": "Questionable",
               "type": "questionable",
               "details": "Concussion"
-            },
-            {
-              "athleteId": "4871023",
-              "name": "Carnell Tate",
-              "team": "TEN",
-              "teamId": "10",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
             },
             {
               "athleteId": "4240532",
@@ -16787,7 +16787,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "TB and DET enter with no single overwhelming team-level edge, so individual role and matchup signals matter more.",
-        "context": "Ford Field \u00b7 18 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Ford Field \u00b7 7 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "3046779",
@@ -19819,8 +19819,8 @@
               "name": "Yaya Diaby",
               "team": "TB",
               "teamId": "27",
-              "status": "Doubtful",
-              "type": "doubtful",
+              "status": "Questionable",
+              "type": "questionable",
               "details": "Sprain"
             },
             {
@@ -19873,7 +19873,7 @@
         "locked": false,
         "lockStatus": "UPDATES UNTIL KICKOFF",
         "read": "KC's recent scoring profile meets the clearest pressure point in ARI's latest defensive baseline.",
-        "context": "Arrowhead Stadium \u00b7 2 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
+        "context": "Arrowhead Stadium \u00b7 4 \u00b7 Head-to-head is used only when the source supplies a verified prior meeting.",
         "picks": [
           {
             "athleteId": "3139477",
@@ -22921,15 +22921,6 @@
         "evidence": {
           "injuries": [
             {
-              "athleteId": "4871063",
-              "name": "Peter Woods",
-              "team": "KC",
-              "teamId": "12",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Stinger"
-            },
-            {
               "athleteId": "4567048",
               "name": "Kenneth Walker III",
               "team": "KC",
@@ -22937,6 +22928,15 @@
               "status": "Questionable",
               "type": "questionable",
               "details": "Not Specified"
+            },
+            {
+              "athleteId": "4871063",
+              "name": "Peter Woods",
+              "team": "KC",
+              "teamId": "12",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Stinger"
             },
             {
               "athleteId": "4043041",
@@ -25901,21 +25901,21 @@
               "details": "Not Specified"
             },
             {
+              "athleteId": "4368304",
+              "name": "Mason McCormick",
+              "team": "PIT",
+              "teamId": "23",
+              "status": "Out",
+              "type": "out",
+              "details": "Dislocated"
+            },
+            {
               "athleteId": "3929846",
               "name": "DeShon Elliott",
               "team": "PIT",
               "teamId": "23",
               "status": "Questionable",
               "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4368304",
-              "name": "Mason McCormick",
-              "team": "PIT",
-              "teamId": "23",
-              "status": "Doubtful",
-              "type": "doubtful",
               "details": "Not Specified"
             },
             {
@@ -29275,6 +29275,15 @@
               "details": "Surgery"
             },
             {
+              "athleteId": "3916387",
+              "name": "Lamar Jackson",
+              "team": "BAL",
+              "teamId": "33",
+              "status": "Injured Reserve",
+              "type": "Injured Reserve",
+              "details": "Surgery"
+            },
+            {
               "athleteId": "3858276",
               "name": "Jaylinn Hawkins",
               "team": "BAL",
@@ -29302,22 +29311,13 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4685526",
-              "name": "Adam Randall",
+              "athleteId": "4426372",
+              "name": "Adisa Isaac",
               "team": "BAL",
               "teamId": "33",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
+              "status": "Questionable",
+              "type": "questionable",
               "details": "Not Specified"
-            },
-            {
-              "athleteId": "3916387",
-              "name": "Lamar Jackson",
-              "team": "BAL",
-              "teamId": "33",
-              "status": "Injured Reserve",
-              "type": "Injured Reserve",
-              "details": "Surgery"
             }
           ],
           "news": [],
@@ -30641,110 +30641,6 @@
               }
             },
             {
-              "athleteId": "4569371",
-              "name": "Isaiah Williams",
-              "team": "NYJ",
-              "teamId": "20",
-              "position": "WR",
-              "number": "18",
-              "score": 82,
-              "tier": "CLEAR EDGE",
-              "forecast": "4+ catch path \u00b7 45+ receiving-yard path. Limiter: Recent game production has not yet confirmed a full-volume impact role.",
-              "impactPath": "4+ catch path \u00b7 45+ receiving-yard path.",
-              "limitingFactor": "Recent game production has not yet confirmed a full-volume impact role.",
-              "outlook": "MIXED",
-              "accent": "#115740",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "LAC has allowed 288 net passing yards per game across 3 recent samples."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "3-game form is steady; latest vs BUF: 4 REC \u00b7 24 YDS \u00b7 0 TD."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "NYJ's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "Comparable WR groups averaged 276.3 scrimmage yards, 19.7 catches and 2 TD across 3 recent games vs LAC."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "REC",
-                  "value": "2.5"
-                },
-                {
-                  "label": "YDS",
-                  "value": "21"
-                },
-                {
-                  "label": "TD",
-                  "value": "0.5"
-                },
-                {
-                  "label": "TGTS",
-                  "value": "4"
-                },
-                {
-                  "label": "YDS",
-                  "value": "4"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401873054",
-                  "date": "2026-11-15T18:00Z",
-                  "opponent": "BUF",
-                  "headline": "4 REC \u00b7 24 YDS \u00b7 0 TD",
-                  "productionScore": 24,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 10
-                },
-                {
-                  "gameId": "401873045",
-                  "date": "2026-11-08T18:00Z",
-                  "opponent": "KC",
-                  "headline": "1 CAR \u00b7 4 YDS \u00b7 0 TD",
-                  "productionScore": 2,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 9
-                },
-                {
-                  "gameId": "401873029",
-                  "date": "2026-11-01T18:00Z",
-                  "opponent": "LV",
-                  "headline": "1 REC \u00b7 18 YDS \u00b7 1 TD",
-                  "productionScore": 26,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 8
-                }
-              ],
-              "starter": false,
-              "experience": 3,
-              "baselineAvailable": true,
-              "notabilityScore": 12.457142857142857,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 94.45714285714286,
-              "qbScore": 91,
-              "components": {
-                "opponentDefense": 8.59,
-                "currentForm": 3.3357142857142854,
-                "teamScheme": 7,
-                "positionHistory": 11,
-                "notability": 12.457142857142857
-              }
-            },
-            {
               "athleteId": "4361331",
               "name": "Jamien Sherwood",
               "team": "NYJ",
@@ -31356,6 +31252,110 @@
                 "teamScheme": 3,
                 "positionHistory": 4,
                 "notability": 14.457142857142857
+              }
+            },
+            {
+              "athleteId": "4361767",
+              "name": "Will McDonald IV",
+              "team": "NYJ",
+              "teamId": "20",
+              "position": "DE",
+              "number": "9",
+              "score": 72,
+              "tier": "WATCH EDGE",
+              "forecast": "Sack path \u00b7 multi-pressure ceiling. Limiter: LAC's recent defense and comparable-position results point to a tighter path.",
+              "impactPath": "Sack path \u00b7 multi-pressure ceiling.",
+              "limitingFactor": "LAC's recent defense and comparable-position results point to a tighter path.",
+              "outlook": "MIXED",
+              "accent": "#115740",
+              "signals": [
+                {
+                  "label": "Opponent defense",
+                  "detail": "LAC has allowed 4 sacks per recent game, with 1.3 turnovers."
+                },
+                {
+                  "label": "Current form",
+                  "detail": "3-game form is steady; latest vs BUF: 1 TOT \u00b7 1 SOLO \u00b7 1 SACKS."
+                },
+                {
+                  "label": "Team scheme",
+                  "detail": "NYJ's recent yardage mix is 64% passing and 36% rushing. The strongest recent non-QB production has come from WR."
+                },
+                {
+                  "label": "Position history",
+                  "detail": "LAC's recent results against comparable EDGE roles are still being established."
+                }
+              ],
+              "source": "roster+recent-model",
+              "recent": [
+                {
+                  "label": "TOT",
+                  "value": "1.7"
+                },
+                {
+                  "label": "SOLO",
+                  "value": "0.7"
+                },
+                {
+                  "label": "SACKS",
+                  "value": "0.7"
+                },
+                {
+                  "label": "TFL",
+                  "value": "0.7"
+                },
+                {
+                  "label": "PD",
+                  "value": "0"
+                }
+              ],
+              "recentGames": [
+                {
+                  "gameId": "401873054",
+                  "date": "2026-11-15T18:00Z",
+                  "opponent": "BUF",
+                  "headline": "1 TOT \u00b7 1 SOLO \u00b7 1 SACKS",
+                  "productionScore": 31,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 10
+                },
+                {
+                  "gameId": "401873045",
+                  "date": "2026-11-08T18:00Z",
+                  "opponent": "KC",
+                  "headline": "2 TOT \u00b7 0 SOLO \u00b7 0 SACKS",
+                  "productionScore": 8,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 9
+                },
+                {
+                  "gameId": "401873029",
+                  "date": "2026-11-01T18:00Z",
+                  "opponent": "LV",
+                  "headline": "2 TOT \u00b7 1 SOLO \u00b7 1 SACKS",
+                  "productionScore": 35,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 8
+                }
+              ],
+              "starter": false,
+              "experience": 4,
+              "baselineAvailable": true,
+              "notabilityScore": 14.057142857142857,
+              "notableEvidence": [
+                "multi-game production"
+              ],
+              "starScore": 86.05714285714285,
+              "qbScore": 82,
+              "components": {
+                "opponentDefense": 9.333333333333334,
+                "currentForm": 3.8857142857142857,
+                "teamScheme": 3,
+                "positionHistory": 4,
+                "notability": 14.057142857142857
               }
             }
           ],
@@ -32627,8 +32627,8 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4683815",
-              "name": "Trevin Wallace",
+              "athleteId": "4569371",
+              "name": "Isaiah Williams",
               "team": "NYJ",
               "teamId": "20",
               "status": "Questionable",
@@ -32636,17 +32636,8 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4426817",
-              "name": "Jarvis Brownlee Jr.",
-              "team": "NYJ",
-              "teamId": "20",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4243375",
-              "name": "Dylan Parham",
+              "athleteId": "4723820",
+              "name": "Omar Cooper Jr.",
               "team": "NYJ",
               "teamId": "20",
               "status": "Questionable",
@@ -32663,8 +32654,17 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4723820",
-              "name": "Omar Cooper Jr.",
+              "athleteId": "4683815",
+              "name": "Trevin Wallace",
+              "team": "NYJ",
+              "teamId": "20",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "4426817",
+              "name": "Jarvis Brownlee Jr.",
               "team": "NYJ",
               "teamId": "20",
               "status": "Questionable",
@@ -35745,6 +35745,15 @@
               "details": "Concussion"
             },
             {
+              "athleteId": "4432665",
+              "name": "Brock Bowers",
+              "team": "LV",
+              "teamId": "13",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Not Specified"
+            },
+            {
               "athleteId": "4432775",
               "name": "Dont'e Thornton Jr.",
               "team": "LV",
@@ -35756,15 +35765,6 @@
             {
               "athleteId": "4360749",
               "name": "Thomas Booker IV",
-              "team": "LV",
-              "teamId": "13",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4432665",
-              "name": "Brock Bowers",
               "team": "LV",
               "teamId": "13",
               "status": "Questionable",
@@ -39044,9 +39044,9 @@
               "name": "Robert Hainsey",
               "team": "JAX",
               "teamId": "30",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
+              "status": "Out",
+              "type": "out",
+              "details": "Sprain"
             },
             {
               "athleteId": "4573319",
@@ -40856,6 +40856,110 @@
               }
             },
             {
+              "athleteId": "3133487",
+              "name": "Andrew Van Ginkel",
+              "team": "MIN",
+              "teamId": "16",
+              "position": "LB",
+              "number": "43",
+              "score": 72,
+              "tier": "WATCH EDGE",
+              "forecast": "Sack path \u00b7 multi-pressure ceiling. Limiter: SF's recent defense and comparable-position results point to a tighter path.",
+              "impactPath": "Sack path \u00b7 multi-pressure ceiling.",
+              "limitingFactor": "SF's recent defense and comparable-position results point to a tighter path.",
+              "outlook": "MIXED",
+              "accent": "#4f2683",
+              "signals": [
+                {
+                  "label": "Opponent defense",
+                  "detail": "SF has allowed 3 sacks per recent game, with 0.5 turnovers."
+                },
+                {
+                  "label": "Current form",
+                  "detail": "3-game form is cooling; latest vs GB: 3 TOT \u00b7 3 SOLO \u00b7 1 SACKS."
+                },
+                {
+                  "label": "Team scheme",
+                  "detail": "MIN's recent yardage mix is 65% passing and 35% rushing. The strongest recent non-QB production has come from WR."
+                },
+                {
+                  "label": "Position history",
+                  "detail": "SF's recent results against comparable LB roles are still being established."
+                }
+              ],
+              "source": "roster+recent-model",
+              "recent": [
+                {
+                  "label": "TOT",
+                  "value": "3.7"
+                },
+                {
+                  "label": "SOLO",
+                  "value": "2.3"
+                },
+                {
+                  "label": "SACKS",
+                  "value": "1.5"
+                },
+                {
+                  "label": "TFL",
+                  "value": "1.3"
+                },
+                {
+                  "label": "PD",
+                  "value": "0"
+                }
+              ],
+              "recentGames": [
+                {
+                  "gameId": "401873060",
+                  "date": "2026-11-15T18:00Z",
+                  "opponent": "GB",
+                  "headline": "3 TOT \u00b7 3 SOLO \u00b7 1 SACKS",
+                  "productionScore": 39,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 10
+                },
+                {
+                  "gameId": "401873051",
+                  "date": "2026-11-10T01:15Z",
+                  "opponent": "BUF",
+                  "headline": "4 TOT \u00b7 2 SOLO \u00b7 1 SACKS",
+                  "productionScore": 43,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 9
+                },
+                {
+                  "gameId": "401873030",
+                  "date": "2026-11-01T18:00Z",
+                  "opponent": "DET",
+                  "headline": "4 TOT \u00b7 2 SOLO \u00b7 2.5 SACKS",
+                  "productionScore": 80,
+                  "seasonYear": 2026,
+                  "seasonType": 2,
+                  "seasonWeek": 8
+                }
+              ],
+              "starter": false,
+              "experience": 8,
+              "baselineAvailable": true,
+              "notabilityScore": 16.042857142857144,
+              "notableEvidence": [
+                "multi-game production"
+              ],
+              "starScore": 88.04285714285714,
+              "qbScore": 83,
+              "components": {
+                "opponentDefense": 6.5,
+                "currentForm": 4.705952380952381,
+                "teamScheme": 3,
+                "positionHistory": 4,
+                "notability": 16.042857142857144
+              }
+            },
+            {
               "athleteId": "4360277",
               "name": "Jalen Redmond",
               "team": "MIN",
@@ -40957,100 +41061,6 @@
                 "teamScheme": 3,
                 "positionHistory": 4,
                 "notability": 13.642857142857142
-              }
-            },
-            {
-              "athleteId": "4696782",
-              "name": "Elijah Williams",
-              "team": "MIN",
-              "teamId": "16",
-              "position": "DE",
-              "number": "99",
-              "score": 74,
-              "tier": "WATCH EDGE",
-              "forecast": "Sack path \u00b7 multi-pressure ceiling. Limiter: SF's recent defense and comparable-position results point to a tighter path.",
-              "impactPath": "Sack path \u00b7 multi-pressure ceiling.",
-              "limitingFactor": "SF's recent defense and comparable-position results point to a tighter path.",
-              "outlook": "MIXED",
-              "accent": "#4f2683",
-              "signals": [
-                {
-                  "label": "Opponent defense",
-                  "detail": "SF has allowed 3 sacks per recent game, with 0.5 turnovers."
-                },
-                {
-                  "label": "Current form",
-                  "detail": "2-game form is rising; latest vs GB: 5 TOT \u00b7 4 SOLO \u00b7 1 SACKS."
-                },
-                {
-                  "label": "Team scheme",
-                  "detail": "MIN's recent yardage mix is 65% passing and 35% rushing. The strongest recent non-QB production has come from WR."
-                },
-                {
-                  "label": "Position history",
-                  "detail": "SF's recent results against comparable EDGE roles are still being established."
-                }
-              ],
-              "source": "roster+recent-model",
-              "recent": [
-                {
-                  "label": "TOT",
-                  "value": "5.5"
-                },
-                {
-                  "label": "SOLO",
-                  "value": "3"
-                },
-                {
-                  "label": "SACKS",
-                  "value": "0.5"
-                },
-                {
-                  "label": "TFL",
-                  "value": "1"
-                },
-                {
-                  "label": "PD",
-                  "value": "0"
-                }
-              ],
-              "recentGames": [
-                {
-                  "gameId": "401873060",
-                  "date": "2026-11-15T18:00Z",
-                  "opponent": "GB",
-                  "headline": "5 TOT \u00b7 4 SOLO \u00b7 1 SACKS",
-                  "productionScore": 54,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 10
-                },
-                {
-                  "gameId": "401873051",
-                  "date": "2026-11-10T01:15Z",
-                  "opponent": "BUF",
-                  "headline": "6 TOT \u00b7 2 SOLO \u00b7 0 SACKS",
-                  "productionScore": 24,
-                  "seasonYear": 2026,
-                  "seasonType": 2,
-                  "seasonWeek": 9
-                }
-              ],
-              "starter": false,
-              "experience": 2,
-              "baselineAvailable": true,
-              "notabilityScore": 11.6,
-              "notableEvidence": [
-                "multi-game production"
-              ],
-              "starScore": 85.6,
-              "qbScore": 82,
-              "components": {
-                "opponentDefense": 6.5,
-                "currentForm": 7.3,
-                "teamScheme": 3,
-                "positionHistory": 4,
-                "notability": 11.6
               }
             }
           ],
@@ -42141,15 +42151,6 @@
         "evidence": {
           "injuries": [
             {
-              "athleteId": "4427325",
-              "name": "Renardo Green",
-              "team": "SF",
-              "teamId": "25",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
               "athleteId": "16737",
               "name": "Mike Evans",
               "team": "SF",
@@ -42157,6 +42158,24 @@
               "status": "Questionable",
               "type": "questionable",
               "details": "Tendinitis"
+            },
+            {
+              "athleteId": "4360438",
+              "name": "Brandon Aiyuk",
+              "team": "SF",
+              "teamId": "25",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "4427325",
+              "name": "Renardo Green",
+              "team": "SF",
+              "teamId": "25",
+              "status": "Questionable",
+              "type": "questionable",
+              "details": "Not Specified"
             },
             {
               "athleteId": "4686308",
@@ -42177,13 +42196,22 @@
               "details": "Not Specified"
             },
             {
-              "athleteId": "4685369",
-              "name": "Gracen Halton",
-              "team": "SF",
-              "teamId": "25",
+              "athleteId": "4429205",
+              "name": "Jordan Addison",
+              "team": "MIN",
+              "teamId": "16",
+              "status": "Out",
+              "type": "out",
+              "details": "Not Specified"
+            },
+            {
+              "athleteId": "4875564",
+              "name": "Bo Richter",
+              "team": "MIN",
+              "teamId": "16",
               "status": "Injured Reserve",
               "type": "Injured Reserve",
-              "details": "Surgery"
+              "details": "Not Specified"
             },
             {
               "athleteId": "4629149",
@@ -42211,24 +42239,6 @@
               "status": "Questionable",
               "type": "questionable",
               "details": "Concussion"
-            },
-            {
-              "athleteId": "3133487",
-              "name": "Andrew Van Ginkel",
-              "team": "MIN",
-              "teamId": "16",
-              "status": "Questionable",
-              "type": "questionable",
-              "details": "Not Specified"
-            },
-            {
-              "athleteId": "4429205",
-              "name": "Jordan Addison",
-              "team": "MIN",
-              "teamId": "16",
-              "status": "Out",
-              "type": "out",
-              "details": "Not Specified"
             }
           ],
           "news": [],
@@ -45650,7 +45660,7 @@
     "powerRankings": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-11-18T11:34:28.280Z",
+      "generatedAt": "2026-11-18T19:38:17.942Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonWeek": 11,
@@ -73651,7 +73661,7 @@
     "modelPerformance": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-11-18T11:34:28.280Z",
+      "generatedAt": "2026-11-18T19:38:17.942Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonTypeName": "Regular Season",
@@ -74343,18 +74353,87 @@
     "availability": {
       "available": true,
       "status": "ACTIVE",
-      "updatedAt": "2026-11-18T11:34:28.280Z",
+      "updatedAt": "2026-11-18T19:38:17.942Z",
       "count": 130,
       "concernCount": 130,
       "impactCount": 1,
       "summary": {
-        "out": 43,
-        "doubtful": 5,
-        "questionable": 82,
+        "out": 48,
+        "doubtful": 3,
+        "questionable": 79,
         "monitor": 0,
         "available": 0
       },
       "items": [
+        {
+          "id": "401873066:4362580",
+          "gameId": "401873066",
+          "matchup": "IND @ HOU",
+          "kickoff": "2026-11-20T01:15Z",
+          "athleteId": "4362580",
+          "name": "Bernhard Raimann",
+          "team": "IND",
+          "teamId": "11",
+          "teamColor": "003b75",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Concussion",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873066:4037361",
+          "gameId": "401873066",
+          "matchup": "IND @ HOU",
+          "kickoff": "2026-11-20T01:15Z",
+          "athleteId": "4037361",
+          "name": "Charvarius Ward",
+          "team": "IND",
+          "teamId": "11",
+          "teamColor": "003b75",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873066:4892240",
+          "gameId": "401873066",
+          "matchup": "IND @ HOU",
+          "kickoff": "2026-11-20T01:15Z",
+          "athleteId": "4892240",
+          "name": "Jalen Travis",
+          "team": "IND",
+          "teamId": "11",
+          "teamColor": "003b75",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
         {
           "id": "401873066:4594277",
           "gameId": "401873066",
@@ -74376,15 +74455,15 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
-          "id": "401873066:4601021",
+          "id": "401873066:3863182",
           "gameId": "401873066",
           "matchup": "IND @ HOU",
           "kickoff": "2026-11-20T01:15Z",
-          "athleteId": "4601021",
-          "name": "Jaylon Carlies",
+          "athleteId": "3863182",
+          "name": "Jerry Tillery",
           "team": "IND",
           "teamId": "11",
           "teamColor": "003b75",
@@ -74394,35 +74473,12 @@
           "spotlightRole": null,
           "edgeScore": null,
           "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
+          "status": "Out",
+          "type": "out",
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873068:4685526",
-          "gameId": "401873068",
-          "matchup": "BAL @ CAR",
-          "kickoff": "2026-11-22T18:00Z",
-          "athleteId": "4685526",
-          "name": "Adam Randall",
-          "team": "BAL",
-          "teamId": "33",
-          "teamColor": "29126f",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Not Specified",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4372099",
@@ -74445,7 +74501,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:3918331",
@@ -74468,7 +74524,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4606712",
@@ -74491,7 +74547,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4430379",
@@ -74514,7 +74570,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:4256062",
@@ -74537,7 +74593,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4248911",
@@ -74560,7 +74616,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4038524",
@@ -74583,7 +74639,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4569465",
@@ -74606,7 +74662,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4430834",
@@ -74629,7 +74685,7 @@
           "details": "Sprain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:3045147",
@@ -74652,7 +74708,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4430723",
@@ -74675,7 +74731,7 @@
           "details": "Fracture",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:4678008",
@@ -74698,7 +74754,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4428996",
@@ -74721,7 +74777,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4837188",
@@ -74744,7 +74800,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4248533",
@@ -74767,7 +74823,30 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873070:4242433",
+          "gameId": "401873070",
+          "matchup": "MIA @ BUF",
+          "kickoff": "2026-11-22T18:00Z",
+          "athleteId": "4242433",
+          "name": "Joshua Palmer",
+          "team": "BUF",
+          "teamId": "2",
+          "teamColor": "00338d",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Injured Reserve",
+          "type": "Injured Reserve",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4360383",
@@ -74790,7 +74869,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:3916387",
@@ -74813,7 +74892,30 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873076:4368304",
+          "gameId": "401873076",
+          "matchup": "PIT @ PHI",
+          "kickoff": "2026-11-22T18:00Z",
+          "athleteId": "4368304",
+          "name": "Mason McCormick",
+          "team": "PIT",
+          "teamId": "23",
+          "teamColor": "000000",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Dislocated",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4035687",
@@ -74836,7 +74938,7 @@
           "details": "Plantar Fasciitis",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:3917853",
@@ -74859,7 +74961,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4431492",
@@ -74882,7 +74984,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:3047495",
@@ -74905,30 +75007,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873070:4241476",
-          "gameId": "401873070",
-          "matchup": "MIA @ BUF",
-          "kickoff": "2026-11-22T18:00Z",
-          "athleteId": "4241476",
-          "name": "Tyrell Shavers",
-          "team": "BUF",
-          "teamId": "2",
-          "teamColor": "00338d",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Out",
-          "type": "out",
-          "details": "Surgery",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4569587",
@@ -74951,7 +75030,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4257364",
@@ -74974,7 +75053,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4683276",
@@ -74997,7 +75076,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:4875266",
@@ -75020,7 +75099,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:3123075",
@@ -75043,7 +75122,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:3915520",
@@ -75066,7 +75145,7 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:2970716",
@@ -75089,7 +75168,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4243916",
@@ -75112,7 +75191,30 @@
           "details": "Stinger",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873069:4242391",
+          "gameId": "401873069",
+          "matchup": "JAX @ NYG",
+          "kickoff": "2026-11-22T21:25Z",
+          "athleteId": "4242391",
+          "name": "Robert Hainsey",
+          "team": "JAX",
+          "teamId": "30",
+          "teamColor": "007487",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Sprain",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:3929950",
@@ -75135,7 +75237,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:4360516",
@@ -75158,7 +75260,53 @@
           "details": "Strain",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873077:4875564",
+          "gameId": "401873077",
+          "matchup": "MIN @ SF",
+          "kickoff": "2026-11-23T01:20Z",
+          "athleteId": "4875564",
+          "name": "Bo Richter",
+          "team": "MIN",
+          "teamId": "16",
+          "teamColor": "4f2683",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Injured Reserve",
+          "type": "Injured Reserve",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873077:4360438",
+          "gameId": "401873077",
+          "matchup": "MIN @ SF",
+          "kickoff": "2026-11-23T01:20Z",
+          "athleteId": "4360438",
+          "name": "Brandon Aiyuk",
+          "team": "SF",
+          "teamId": "25",
+          "teamColor": "aa0000",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Out",
+          "type": "out",
+          "details": "Not Specified",
+          "level": "OUT",
+          "priority": 4,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:4686308",
@@ -75181,30 +75329,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873077:4685369",
-          "gameId": "401873077",
-          "matchup": "MIN @ SF",
-          "kickoff": "2026-11-23T01:20Z",
-          "athleteId": "4685369",
-          "name": "Gracen Halton",
-          "team": "SF",
-          "teamId": "25",
-          "teamColor": "aa0000",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Injured Reserve",
-          "type": "Injured Reserve",
-          "details": "Surgery",
-          "level": "OUT",
-          "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:4429205",
@@ -75227,7 +75352,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:4240542",
@@ -75250,7 +75375,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4368003",
@@ -75273,7 +75398,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4361577",
@@ -75296,7 +75421,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4575131",
@@ -75319,7 +75444,7 @@
           "details": "Not Specified",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:3051890",
@@ -75342,7 +75467,7 @@
           "details": "Surgery",
           "level": "OUT",
           "priority": 4,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4361788",
@@ -75365,7 +75490,7 @@
           "details": "Sprain",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:3917331",
@@ -75388,30 +75513,7 @@
           "details": "Not Specified",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873076:4368304",
-          "gameId": "401873076",
-          "matchup": "PIT @ PHI",
-          "kickoff": "2026-11-22T18:00Z",
-          "athleteId": "4368304",
-          "name": "Mason McCormick",
-          "team": "PIT",
-          "teamId": "23",
-          "teamColor": "000000",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Doubtful",
-          "type": "doubtful",
-          "details": "Not Specified",
-          "level": "DOUBTFUL",
-          "priority": 3,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4606711",
@@ -75434,30 +75536,7 @@
           "details": "Sprain",
           "level": "DOUBTFUL",
           "priority": 3,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873072:4686334",
-          "gameId": "401873072",
-          "matchup": "TB @ DET",
-          "kickoff": "2026-11-22T18:00Z",
-          "athleteId": "4686334",
-          "name": "Yaya Diaby",
-          "team": "TB",
-          "teamId": "27",
-          "teamColor": "bd1c36",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Doubtful",
-          "type": "doubtful",
-          "details": "Sprain",
-          "level": "DOUBTFUL",
-          "priority": 3,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4567048",
@@ -75480,7 +75559,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4426485",
@@ -75503,7 +75582,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:15864",
@@ -75526,7 +75605,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4432665",
@@ -75549,7 +75628,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873066:4429684",
@@ -75572,7 +75651,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873066:4362504",
@@ -75595,7 +75674,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873066:2976560",
@@ -75618,30 +75697,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873066:3863182",
-          "gameId": "401873066",
-          "matchup": "IND @ HOU",
-          "kickoff": "2026-11-20T01:15Z",
-          "athleteId": "3863182",
-          "name": "Jerry Tillery",
-          "team": "IND",
-          "teamId": "11",
-          "teamColor": "003b75",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873066:4602699",
@@ -75664,30 +75720,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873066:2566045",
-          "gameId": "401873066",
-          "matchup": "IND @ HOU",
-          "kickoff": "2026-11-20T01:15Z",
-          "athleteId": "2566045",
-          "name": "Luke Rhodes",
-          "team": "IND",
-          "teamId": "11",
-          "teamColor": "003b75",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873066:4432708",
@@ -75710,30 +75743,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873066:4362523",
-          "gameId": "401873066",
-          "matchup": "IND @ HOU",
-          "kickoff": "2026-11-20T01:15Z",
-          "athleteId": "4362523",
-          "name": "Will Mallory",
-          "team": "IND",
-          "teamId": "11",
-          "teamColor": "003b75",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4040537",
@@ -75756,7 +75766,30 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873068:4426372",
+          "gameId": "401873068",
+          "matchup": "BAL @ CAR",
+          "kickoff": "2026-11-22T18:00Z",
+          "athleteId": "4426372",
+          "name": "Adisa Isaac",
+          "team": "BAL",
+          "teamId": "33",
+          "teamColor": "29126f",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Questionable",
+          "type": "questionable",
+          "details": "Not Specified",
+          "level": "QUESTIONABLE",
+          "priority": 2,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4870805",
@@ -75779,7 +75812,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:4034790",
@@ -75802,7 +75835,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:3052587",
@@ -75825,7 +75858,7 @@
           "details": "Strain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:3117253",
@@ -75848,7 +75881,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4871023",
@@ -75871,7 +75904,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4869961",
@@ -75894,7 +75927,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4379778",
@@ -75917,7 +75950,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:5081999",
@@ -75940,7 +75973,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:3926229",
@@ -75963,7 +75996,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873072:3139387",
@@ -75986,7 +76019,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4401823",
@@ -76009,7 +76042,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:3929846",
@@ -76032,7 +76065,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4241478",
@@ -76055,7 +76088,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4683848",
@@ -76078,7 +76111,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4428850",
@@ -76101,7 +76134,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4568624",
@@ -76124,7 +76157,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873070:4430681",
@@ -76147,7 +76180,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4709718",
@@ -76170,7 +76203,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4685489",
@@ -76193,7 +76226,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:3858276",
@@ -76216,7 +76249,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4043041",
@@ -76239,7 +76272,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4685287",
@@ -76262,7 +76295,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:2971027",
@@ -76285,7 +76318,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4360590",
@@ -76308,7 +76341,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4608686",
@@ -76331,7 +76364,7 @@
           "details": "Sprain",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4361093",
@@ -76354,7 +76387,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4870953",
@@ -76377,7 +76410,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873076:4240456",
@@ -76400,7 +76433,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:4035245",
@@ -76423,7 +76456,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:4832793",
@@ -76446,7 +76479,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:3929850",
@@ -76469,7 +76502,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4241993",
@@ -76492,7 +76525,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873067:4871063",
@@ -76515,7 +76548,7 @@
           "details": "Stinger",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873073:4240532",
@@ -76538,7 +76571,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873071:4426374",
@@ -76561,7 +76594,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873068:5151083",
@@ -76584,7 +76617,30 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
+        },
+        {
+          "id": "401873072:4686334",
+          "gameId": "401873072",
+          "matchup": "TB @ DET",
+          "kickoff": "2026-11-22T18:00Z",
+          "athleteId": "4686334",
+          "name": "Yaya Diaby",
+          "team": "TB",
+          "teamId": "27",
+          "teamColor": "bd1c36",
+          "position": "PLAYER",
+          "number": "\u2014",
+          "headshot": null,
+          "spotlightRole": null,
+          "edgeScore": null,
+          "trackedPlayer": false,
+          "status": "Questionable",
+          "type": "questionable",
+          "details": "Sprain",
+          "level": "QUESTIONABLE",
+          "priority": 2,
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4685553",
@@ -76607,15 +76663,15 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
-          "id": "401873074:4243375",
+          "id": "401873074:4569371",
           "gameId": "401873074",
           "matchup": "NYJ @ LAC",
           "kickoff": "2026-11-22T21:05Z",
-          "athleteId": "4243375",
-          "name": "Dylan Parham",
+          "athleteId": "4569371",
+          "name": "Isaiah Williams",
           "team": "NYJ",
           "teamId": "20",
           "teamColor": "115740",
@@ -76630,7 +76686,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4574105",
@@ -76653,7 +76709,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4426817",
@@ -76676,7 +76732,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4360745",
@@ -76699,7 +76755,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4612826",
@@ -76722,7 +76778,7 @@
           "details": "Spasms",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4723820",
@@ -76745,7 +76801,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4838693",
@@ -76768,7 +76824,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873074:4683815",
@@ -76791,7 +76847,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4039059",
@@ -76814,7 +76870,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:4573319",
@@ -76837,7 +76893,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4432775",
@@ -76860,7 +76916,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:4240706",
@@ -76883,7 +76939,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4372016",
@@ -76906,7 +76962,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4429193",
@@ -76929,7 +76985,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4258194",
@@ -76952,7 +77008,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873069:4040615",
@@ -76975,7 +77031,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4382401",
@@ -76998,30 +77054,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873069:4242391",
-          "gameId": "401873069",
-          "matchup": "JAX @ NYG",
-          "kickoff": "2026-11-22T21:25Z",
-          "athleteId": "4242391",
-          "name": "Robert Hainsey",
-          "team": "JAX",
-          "teamId": "30",
-          "teamColor": "007487",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4360853",
@@ -77044,7 +77077,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873075:4360749",
@@ -77067,30 +77100,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
-        },
-        {
-          "id": "401873077:3133487",
-          "gameId": "401873077",
-          "matchup": "MIN @ SF",
-          "kickoff": "2026-11-23T01:20Z",
-          "athleteId": "3133487",
-          "name": "Andrew Van Ginkel",
-          "team": "MIN",
-          "teamId": "16",
-          "teamColor": "4f2683",
-          "position": "PLAYER",
-          "number": "\u2014",
-          "headshot": null,
-          "spotlightRole": null,
-          "edgeScore": null,
-          "trackedPlayer": false,
-          "status": "Questionable",
-          "type": "questionable",
-          "details": "Not Specified",
-          "level": "QUESTIONABLE",
-          "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:3728281",
@@ -77113,7 +77123,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:3886598",
@@ -77136,7 +77146,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:16737",
@@ -77159,7 +77169,7 @@
           "details": "Tendinitis",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:4427325",
@@ -77182,7 +77192,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873077:4629149",
@@ -77205,7 +77215,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4361088",
@@ -77228,7 +77238,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:3125082",
@@ -77251,7 +77261,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4401811",
@@ -77274,7 +77284,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:2576736",
@@ -77297,7 +77307,7 @@
           "details": "Concussion",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:4429000",
@@ -77320,7 +77330,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         },
         {
           "id": "401873078:3051746",
@@ -77343,7 +77353,7 @@
           "details": "Not Specified",
           "level": "QUESTIONABLE",
           "priority": 2,
-          "updatedAt": "2026-11-18T11:34:28.280Z"
+          "updatedAt": "2026-11-18T19:38:17.942Z"
         }
       ],
       "message": "130 active availability concerns; 1 involve a current QB or team-star spotlight.",

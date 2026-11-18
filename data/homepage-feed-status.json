@@ -1,46 +1,41 @@
 {
-  "checkedAt": "2026-11-18T11:29:41.347767+00:00",
-  "workflowRun": "44295150951",
+  "checkedAt": "2026-11-18T19:33:12.714108+00:00",
+  "workflowRun": "44381652322",
   "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-11-18T11:29:42.102Z",
-      "teamsWithHistory": 0,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 160,
+      "generatedAt": "2026-11-18T19:33:13.394Z",
+      "teamsWithHistory": 26,
+      "teamsMeetingSampleTarget": 16,
+      "fallbackSignalCount": 1,
       "warnings": [
         "Current rosters were refreshed. Multi-game form and position history will warm up on scheduled refreshes."
       ]
     },
     {
-      "generatedAt": "2026-11-18T11:30:52.897Z",
-      "teamsWithHistory": 22,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 30,
-      "warnings": [
-        "Recent-game baselines were unavailable for 4 team(s).",
-        "Multi-game form is warming up for 22 team(s); another scheduled refresh will add the next prior slate."
-      ]
-    },
-    {
-      "generatedAt": "2026-11-18T11:32:04.360Z",
-      "teamsWithHistory": 26,
-      "teamsMeetingSampleTarget": 0,
-      "fallbackSignalCount": 1,
-      "warnings": [
-        "Multi-game form is warming up for 26 team(s); another scheduled refresh will add the next prior slate."
-      ]
-    },
-    {
-      "generatedAt": "2026-11-18T11:33:16.363Z",
+      "generatedAt": "2026-11-18T19:34:40.032Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
       "warnings": []
     },
     {
-      "generatedAt": "2026-11-18T11:34:28.280Z",
+      "generatedAt": "2026-11-18T19:35:52.383Z",
+      "teamsWithHistory": 26,
+      "teamsMeetingSampleTarget": 16,
+      "fallbackSignalCount": 1,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-18T19:37:05.075Z",
+      "teamsWithHistory": 26,
+      "teamsMeetingSampleTarget": 16,
+      "fallbackSignalCount": 1,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-18T19:38:17.942Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
@@ -50,32 +45,61 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 11,
-  "previousGeneratedAt": "2026-11-18T02:50:48.052Z",
+  "previousGeneratedAt": "2026-11-18T11:34:28.280Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
     "typeName": "Regular Season",
     "slug": "regular-season",
-    "week": 10,
-    "label": "2026 Regular Season \u00b7 Week 10"
+    "week": 11,
+    "label": "2026 Regular Season \u00b7 Week 11"
   },
-  "previousResultCount": 53,
+  "previousResultCount": 0,
   "previousAnalysisInputs": {
-    "historyReady": true,
+    "historyReady": false,
     "targetRecentGamesPerTeam": 3,
-    "pregameTeams": 0,
-    "teamsWithHistory": 0,
-    "teamsMeetingSampleTarget": 0,
-    "teamSamples": {},
-    "playerPicks": 0,
-    "picksWithGameHistory": 0,
+    "pregameTeams": 26,
+    "teamsWithHistory": 26,
+    "teamsMeetingSampleTarget": 16,
+    "teamSamples": {
+      "IND": 3,
+      "HOU": 2,
+      "MIA": 3,
+      "BUF": 3,
+      "NO": 2,
+      "CHI": 2,
+      "TEN": 2,
+      "DAL": 3,
+      "TB": 2,
+      "DET": 3,
+      "ARI": 3,
+      "KC": 3,
+      "PIT": 2,
+      "PHI": 2,
+      "BAL": 3,
+      "CAR": 3,
+      "NYJ": 3,
+      "LAC": 3,
+      "LV": 3,
+      "DEN": 2,
+      "JAX": 3,
+      "NYG": 2,
+      "MIN": 3,
+      "SF": 2,
+      "CIN": 3,
+      "WSH": 3
+    },
+    "playerPicks": 50,
+    "picksWithGameHistory": 50,
     "playersWithoutGameHistory": [],
-    "signalCount": 0,
-    "fallbackSignalCount": 0,
-    "sampleSeasons": [],
+    "signalCount": 200,
+    "fallbackSignalCount": 1,
+    "sampleSeasons": [
+      "2026"
+    ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "generatedAt": "2026-11-18T11:34:28.280Z",
+  "generatedAt": "2026-11-18T19:38:17.942Z",
   "season": {
     "year": 2026,
     "type": 2,
