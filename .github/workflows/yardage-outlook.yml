@@ -1,0 +1,98 @@
+name: Build and verify all-player yardage outlook
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 11,19 * * *'
+  push:
+    branches: [main, feature/all-offense-yardage-outlook-20261119]
+    paths:
+      - '.github/workflows/yardage-outlook.yml'
+      - 'scripts/build-yardage-outlook.py'
+      - 'scripts/test-yardage-outlook.py'
+      - 'scripts/check-yardage-outlook.js'
+      - 'assets/player-yardage-outlook.js'
+      - 'assets/player-yardage-outlook.css'
+permissions:
+  contents: write
+concurrency:
+  group: player-yardage-outlook-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source-code syntax and data guards
+        run: |
+          python -m unittest discover -s scripts -p 'test-yardage-outlook.py' -v
+          node --check assets/player-yardage-outlook.js
+          node --check scripts/check-yardage-outlook.js
+          node --check assets/matchup-comparisons.js
+      - name: Download full career history from published nflverse records
+        shell: bash
+        run: |
+          set -euo pipefail
+          SEASON=$(python -c "from datetime import datetime,timezone;d=datetime.now(timezone.utc);print(d.year-(d.month<3))")
+          echo "YARDAGE_SEASON=$SEASON" >> "$GITHUB_ENV"
+          export SEASON
+          mkdir -p .yardage-inputs
+          seq 1999 "$SEASON" | xargs -P 6 -I {} bash -c '
+            set -euo pipefail
+            curl -fLsS --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 125 \
+              "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{}.csv" \
+              -o ".yardage-inputs/stats_{}.csv"
+            test -s ".yardage-inputs/stats_{}.csv"
+          '
+          curl -fLsS --retry 3 --max-time 125 \
+            "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_${SEASON}.csv" \
+            -o ".yardage-inputs/roster_${SEASON}.csv"
+          curl -fLsS --retry 3 --max-time 125 \
+            "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv" \
+            -o .yardage-inputs/games.csv
+          test -s ".yardage-inputs/roster_${SEASON}.csv"
+          test -s ".yardage-inputs/games.csv"
+      - name: Build full-history career and opponent yardage profiles
+        run: |
+          python scripts/build-yardage-outlook.py --season "$YARDAGE_SEASON"
+      - name: Test all offensive positions, percentages and mobile cards
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          node scripts/check-yardage-outlook.js
+      - name: Commit only verified outlook data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/player-yardage-outlook.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update verified career and opponent yardage outlook data'
+          for attempt in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
+          done
+          exit 1
+      - name: Request GitHub Pages rebuild on main
+        if: github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent
+      - name: Save validation and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-player-yardage-outlook-verification
+          retention-days: 7
+          path: |
+            yardage-outlook-verification.json
+            yardage-outlook-*.png
