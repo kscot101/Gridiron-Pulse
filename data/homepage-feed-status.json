@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-11-19T09:26:47.555734+00:00",
-  "workflowRun": "44496437493",
-  "ok": false,
+  "checkedAt": "2026-11-19T18:37:19.611006+00:00",
+  "workflowRun": "44589695491",
+  "ok": true,
   "refreshed": true,
   "refreshPasses": [
     {
-      "generatedAt": "2026-11-19T09:26:48.199Z",
+      "generatedAt": "2026-11-19T18:37:20.652Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
@@ -14,21 +14,28 @@
       ]
     },
     {
-      "generatedAt": "2026-11-19T09:27:58.953Z",
+      "generatedAt": "2026-11-19T18:38:32.856Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
       "warnings": []
     },
     {
-      "generatedAt": "2026-11-19T09:29:09.647Z",
+      "generatedAt": "2026-11-19T18:39:44.634Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
       "warnings": []
     },
     {
-      "generatedAt": "2026-11-19T09:30:20.697Z",
+      "generatedAt": "2026-11-19T18:40:57.314Z",
+      "teamsWithHistory": 26,
+      "teamsMeetingSampleTarget": 16,
+      "fallbackSignalCount": 1,
+      "warnings": []
+    },
+    {
+      "generatedAt": "2026-11-19T18:42:09.702Z",
       "teamsWithHistory": 26,
       "teamsMeetingSampleTarget": 16,
       "fallbackSignalCount": 1,
@@ -38,7 +45,7 @@
   "expectedSeason": 2026,
   "expectedSeasonType": 2,
   "expectedWeek": 11,
-  "previousGeneratedAt": "2026-11-19T01:30:03.706Z",
+  "previousGeneratedAt": "2026-11-19T09:30:20.697Z",
   "previousSeason": {
     "year": 2026,
     "type": 2,
@@ -92,5 +99,177 @@
     ],
     "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
   },
-  "error": "Homepage source returned HTTP 503"
+  "generatedAt": "2026-11-19T18:42:09.702Z",
+  "season": {
+    "year": 2026,
+    "type": 2,
+    "typeName": "Regular Season",
+    "slug": "regular-season",
+    "week": 11,
+    "label": "2026 Regular Season \u00b7 Week 11"
+  },
+  "gameCount": 13,
+  "resultCount": 0,
+  "analysisInputs": {
+    "historyReady": false,
+    "targetRecentGamesPerTeam": 3,
+    "pregameTeams": 26,
+    "teamsWithHistory": 26,
+    "teamsMeetingSampleTarget": 16,
+    "teamSamples": {
+      "IND": 3,
+      "HOU": 2,
+      "MIA": 3,
+      "BUF": 3,
+      "NO": 2,
+      "CHI": 2,
+      "TEN": 2,
+      "DAL": 3,
+      "TB": 2,
+      "DET": 3,
+      "ARI": 3,
+      "KC": 3,
+      "PIT": 2,
+      "PHI": 2,
+      "BAL": 3,
+      "CAR": 3,
+      "NYJ": 3,
+      "LAC": 3,
+      "LV": 3,
+      "DEN": 2,
+      "JAX": 3,
+      "NYG": 2,
+      "MIN": 3,
+      "SF": 2,
+      "CIN": 3,
+      "WSH": 3
+    },
+    "playerPicks": 50,
+    "picksWithGameHistory": 50,
+    "playersWithoutGameHistory": [],
+    "signalCount": 200,
+    "fallbackSignalCount": 1,
+    "sampleSeasons": [
+      "2026"
+    ],
+    "note": "Small samples remain small samples. A missing player history is not evidence of zero production. Sample counts can include prior-season games under the existing agent policy."
+  },
+  "sampleSignals": [
+    {
+      "name": "Patrick Mahomes",
+      "team": "KC",
+      "position": "QB",
+      "score": 92,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401873058",
+          "date": "2026-11-15T18:00Z",
+          "opponent": "ATL",
+          "headline": "22/35 C/ATT \u00b7 348 YDS \u00b7 5 TD",
+          "productionScore": 152,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 10
+        },
+        {
+          "gameId": "401873045",
+          "date": "2026-11-08T18:00Z",
+          "opponent": "NYJ",
+          "headline": "23/31 C/ATT \u00b7 242 YDS \u00b7 2 TD",
+          "productionScore": 87.16666666666667,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 9
+        },
+        {
+          "gameId": "401873033",
+          "date": "2026-11-01T21:25Z",
+          "opponent": "DEN",
+          "headline": "30/41 C/ATT \u00b7 321 YDS \u00b7 3 TD",
+          "productionScore": 118.25,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 8
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "ARI has allowed 192.3 net passing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "3-game form is rising; latest vs ATL: 22/35 C/ATT \u00b7 348 YDS \u00b7 5 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "KC's recent yardage mix is 70% passing and 30% rushing. The strongest recent non-QB production has come from RB."
+        },
+        {
+          "label": "Position history",
+          "detail": "Opposing QBs averaged 206.3 passing yards, 1.7 passing TD and 0.3 INT across 3 recent games vs ARI."
+        }
+      ]
+    },
+    {
+      "name": "Travis Kelce",
+      "team": "KC",
+      "position": "TE",
+      "score": 74,
+      "baselineAvailable": true,
+      "recentGames": [
+        {
+          "gameId": "401873058",
+          "date": "2026-11-15T18:00Z",
+          "opponent": "ATL",
+          "headline": "2 REC \u00b7 30 YDS \u00b7 0 TD",
+          "productionScore": 21,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 10
+        },
+        {
+          "gameId": "401873045",
+          "date": "2026-11-08T18:00Z",
+          "opponent": "NYJ",
+          "headline": "1 CAR \u00b7 1 YDS \u00b7 1 TD",
+          "productionScore": 44.5,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 9
+        },
+        {
+          "gameId": "401873033",
+          "date": "2026-11-01T21:25Z",
+          "opponent": "DEN",
+          "headline": "5 REC \u00b7 67 YDS \u00b7 0 TD",
+          "productionScore": 48.5,
+          "seasonYear": 2026,
+          "seasonType": 2,
+          "seasonWeek": 8
+        }
+      ],
+      "signals": [
+        {
+          "label": "Opponent defense",
+          "detail": "ARI has allowed 192.3 net passing yards per game across 3 recent samples."
+        },
+        {
+          "label": "Current form",
+          "detail": "3-game form is cooling; latest vs ATL: 2 REC \u00b7 30 YDS \u00b7 0 TD."
+        },
+        {
+          "label": "Team scheme",
+          "detail": "KC's recent yardage mix is 70% passing and 30% rushing. The strongest recent non-QB production has come from RB."
+        },
+        {
+          "label": "Position history",
+          "detail": "ARI's recent results against comparable TE roles are still being established."
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "analysisWarning": "History warm-up is incomplete; a fresh timestamp alone does not mean complete analysis."
 }
