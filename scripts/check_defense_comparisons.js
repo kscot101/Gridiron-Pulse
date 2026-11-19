@@ -21,6 +21,12 @@ const path=require('node:path');
  const page=await context.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  const report={mode:'Controlled browser test of unchanged downloaded statistical inputs; external APIs blocked',testedAt:new Date().toISOString(),through:defense.through};
+ async function openChartReference(){
+  const reference=page.locator('#detail-overlay.open .gc-chart-reference');
+  assert.equal(await reference.getAttribute('open'),null,'Chart reference values start collapsed after each metric render');
+  await reference.locator('summary').click();
+  assert.notEqual(await reference.getAttribute('open'),null,'The visible summary opens chart reference values');
+ }
  try{
   await page.goto(base+'team.html?team=KC',{waitUntil:'domcontentloaded'});
   await page.locator('[data-defense-metric="passYards"]').waitFor();
@@ -65,6 +71,7 @@ const path=require('node:path');
   assert.equal(await page.locator('.gc-unified-graph .gc-triple-week').count(),5,'Five grouped NFL weeks');
   assert.equal(await page.locator('.gc-unified-graph .gc-triple-level').count(),15,'Three levels in each week');
   assert.equal(await page.locator('.gc-player [data-gc-player-stat]').inputValue(),'passingYards');
+  await openChartReference();
   assert.equal(await page.locator('.gc-triple-summary [data-gc-summary="season"]').innerText(),
     p.averages.season.passingYards.value.toLocaleString(undefined,{maximumFractionDigits:1}));
   const nextOpp=await page.evaluate(async p=>GPMatchupComparisons.resolveOpponent(
@@ -99,8 +106,10 @@ const path=require('node:path');
   report.weeklyDefenseVerified=Boolean(defenseTeam);
   report.exactPlayerValues=true;
   await page.locator('[data-gc-metric="passingTD"]').click();
+  await openChartReference();
   assert.equal(await page.locator('.gc-triple-summary [data-gc-summary="season"]').innerText(),
     p.averages.season.passingTD.value.toLocaleString(undefined,{maximumFractionDigits:1}));
+  report.chartReferenceDisclosure=true;
   const hasDefensePassTD=Boolean(defenseTeam);
   if(hasDefensePassTD){
     const defenseVals=await page.locator('[data-gc-level="defense"]').evaluateAll(nodes=>nodes.map(n=>n.dataset.value));

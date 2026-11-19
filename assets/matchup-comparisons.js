@@ -103,7 +103,7 @@
     var first=container.querySelector('.modal-section');if(first)first.before(host);else container.appendChild(host);
     try{var d=await read('team-defense');if(host.isConnected)renderTeam(host,d,code,false);}catch(e){if(host.isConnected)host.innerHTML='<p class="gc-warning">Defensive statistics are unavailable. Missing values are not shown as zero.</p>';}
   }
-  var playerOptions={QB:['passingYards','passingTD','interceptions','rushingYards'],RB:['scrimmageYards','rushingYards','receivingYards','receptions','scrimmageTD'],WR:['receivingYards','receptions','targets','receivingTD'],TE:['receivingYards','receptions','targets','receivingTD']};
+  var playerOptions={QB:['passingYards','passingTD','interceptions','rushingYards'],RB:['scrimmageYards','rushingYards','receivingYards','receptions','scrimmageTD'],WR:['receivingYards','receptions','targets','receivingTD','rushingYards'],TE:['receivingYards','receptions','targets','receivingTD']};
   var labels={passingYards:'Passing yards',passingTD:'Passing TDs',interceptions:'Interceptions',rushingYards:'Rushing yards',rushingTD:'Rushing TDs',receivingYards:'Receiving yards',receivingTD:'Receiving TDs',receptions:'Receptions',targets:'Targets',scrimmageYards:'Rushing + receiving yards',scrimmageTD:'Rushing + receiving TDs'};
   var oldKeys={passingTD:'passingTouchdowns',rushingTD:'rushingTouchdowns',receivingTD:'receivingTouchdowns'};
   var predKeys={passingYards:'passing_yards',passingTD:'passing_tds',rushingYards:'rushing_yards',rushingTD:'rushing_tds',receivingYards:'receiving_yards',receivingTD:'receiving_tds',receptions:'receptions',targets:'targets',scrimmageYards:'scrimmage_yards',scrimmageTD:'scrimmage_tds'};
@@ -298,7 +298,7 @@
       var data=feeds[0],defense=feeds[1],player=resolvePlayer(data,d);
       var opponent=result.opponent||null,code=team(opponent&&opponent.team),position=d.position;
       var opponentTeam=defense.teams&&defense.teams[code];
-      function paint(){
+      function paint(focusYardage){
         if(!host.isConnected)return;
         var metric=pref.metric,label=labels[metric]||metric;
         var history=(result.rows||[]).filter(function(row){
@@ -321,16 +321,18 @@
             esc(labels[key]||key)+'</button>';
         }).join('');
         var markup='<div class="gc-player-intro"><div><p class="gc-kicker">PLAYER EDGE / UNIFIED VIEW</p>'+
-          '<h4>Compare three levels for every week</h4><p>Actual performance, season baseline and opponent positional allowance — together.</p></div>'+
+          '<h4>Recent games & opponent defense</h4><p>Actual performance, season baseline and opponent positional allowance — together.</p></div>'+
           '<label class="gc-metric-picker">Statistic <select data-gc-player-stat aria-label="Player comparison statistic">'+selectOptions+'</select></label></div>'+
           '<div class="gc-stat-pills" role="group" aria-label="Choose performance statistic">'+pills+'</div>'+
-          '<div class="gc-triple-summary" aria-label="Matchup averages">'+
+          '<details class="gc-methods gc-chart-reference"><summary>Chart reference values and opponent defense</summary>'+
+          '<div class="gc-triple-summary" aria-label="Chart reference averages">'+
             '<div><small>H2H avg vs '+esc(code||'opponent')+'</small><strong data-gc-summary="h2h">'+esc(fmt(h2hAvg))+'</strong>'+
              '<span>'+h2h.length+' recorded meeting'+(h2h.length===1?'':'s')+(result.loadingExtended?' · checking older games':'')+'</span></div>'+
             '<div><small>Season avg</small><strong data-gc-summary="season">'+esc(fmt(seasonAvg))+'</strong><span>'+esc(sample(season))+'</span></div>'+
             '<div><small>Last 5 avg</small><strong data-gc-summary="last5">'+esc(fmt(last5Avg))+'</strong><span>'+esc(sample(recent))+'</span></div>'+
             '<div><small>Defense last '+slots.length+' avg</small><strong data-gc-summary="defense">'+esc(fmt(defAvg))+'</strong><span>Entire opposing '+esc(position)+' group</span></div>'+
-          '</div>'+
+          '</div><p class="gc-note">The chart H2H marker uses available verified box scores and the playoff setting below. '+
+          'The four yardage-history cards use regular-season career records.</p></details>'+
           renderTripleChart(slots,seasonAvg,h2hAvg,label,code,aligned)+
           '<label class="gc-playoff-toggle"><input type="checkbox" data-gc-playoffs'+(pref.post?' checked':'')+'> Include playoff games in H2H</label>'+
           '<p class="gc-note">'+esc(data.season)+' data through '+esc(date(data.through))+' (player) and '+esc(date(defense.through))+' (defense). '+
@@ -353,7 +355,10 @@
         if(code)markup+='<a class="gc-page-link" href="team.html?team='+encodeURIComponent(code)+'">View full '+esc(code)+' defense profile ↗</a>';
         host.innerHTML=markup;
         // The outlook is a shared profile feature, independent of daily picks.
-        if(root.GPYardageOutlook)root.GPYardageOutlook.mount(host,d,opponent);
+        if(root.GPYardageOutlook)root.GPYardageOutlook.mount(host,d,opponent,{
+          metric:metric,focusMetric:focusYardage===true,
+          onMetricChange:function(next){pref.metric=next;paint(true);}
+        });
         host.querySelectorAll('[data-gc-metric]').forEach(function(button){
           button.addEventListener('click',function(){
             pref.metric=button.dataset.gcMetric;paint();
