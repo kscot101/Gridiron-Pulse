@@ -56,7 +56,8 @@ const {chromium}=require('playwright');
      if(probPanel){
        const values=await host.locator('[role="meter"]').evaluateAll(nodes=>nodes.map(el=>Number(el.getAttribute('aria-valuenow'))));
        assert.ok(values.every(v=>v>=0&&v<=100));
-       assert.equal(values.length,2,'Two probabilities '+position);
+       assert.equal(values.length,p.metrics[chosen].season&&p.metrics[chosen].season.value!=null?2:1,
+         'Season probabilities are unavailable when season average is missing: '+position);
      }else{
        assert.equal(await host.locator('.gp-yards-limited').count(),1,'Insufficient history must show reason');
      }
