@@ -33,7 +33,7 @@ jobs:
           node-version: '22'
       - name: Validate source-code syntax and data guards
         run: |
-          python -m unittest discover -s scripts -p 'test-yardage-outlook.py' -v
+          python scripts/test-yardage-outlook.py
           node --check assets/player-yardage-outlook.js
           node --check scripts/check-yardage-outlook.js
           node --check assets/matchup-comparisons.js
