@@ -1,40 +1,46 @@
-/* Compact yardage outlook; keeps the existing full-width weekly SVG intact. */
-.gp-h2h-root .gp-yards-outlook{margin:12px 0 18px;padding:16px 18px;border:1px solid #52795c;border-radius:12px;background:linear-gradient(150deg,#112c21,#0d211b);color:#eff9f1}
-.gp-h2h-root .gp-yards-title{display:flex;align-items:end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:13px}
-.gp-h2h-root .gp-yards-title h4{font:850 clamp(18px,2vw,24px)/1.12 system-ui,sans-serif;color:#f7fff8!important;margin:5px 0!important}
-.gp-h2h-root .gp-yards-title p:not(.gc-kicker){font-size:12px;line-height:1.4;color:#bfdbc5;margin:4px 0 0}
-.gp-h2h-root .gp-yards-title label{display:grid;gap:5px;min-width:165px;color:#d1e5d4;font-weight:800;font-size:11px}
-.gp-h2h-root .gp-yards-title select{min-height:39px;max-width:100%;padding:8px;background:#203a2d;color:white;border:1px solid #779784;border-radius:7px;font-size:13px}
-.gp-h2h-root .gp-yards-comparisons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:10px 0 13px}
-.gp-h2h-root .gp-yards-stat{display:flex;flex-direction:column;gap:5px;min-width:0;background:#12271e;border:1px solid #45664e;border-radius:9px;padding:11px}
-.gp-h2h-root .gp-yards-stat small{font-size:10px;font-weight:800;line-height:1.35;letter-spacing:.035em;color:#d0e3d2;text-transform:uppercase}
-.gp-h2h-root .gp-yards-stat strong{font:900 clamp(22px,2vw,29px)/1.05 ui-monospace,Consolas,monospace;color:#e8fff0}
-.gp-h2h-root .gp-yards-stat span{color:#a9c6b0;font:600 10px/1.4 system-ui,sans-serif}
-.gp-h2h-root .gp-yards-range{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:12px}
-.gp-h2h-root .gp-yards-range>div{background:#1a3427;border:1px solid #4a7055;padding:12px 14px;border-radius:9px;display:flex;flex-direction:column;gap:5px;align-items:center;text-align:center}
-.gp-h2h-root .gp-yards-range small{font:800 10px/1.25 system-ui,sans-serif;color:#c2ddca;letter-spacing:.035em}
-.gp-h2h-root .gp-yards-range strong{font:900 clamp(25px,3vw,38px)/1.08 ui-monospace,Consolas,monospace;color:#f6fff6}
-.gp-h2h-root .gp-yards-range .gp-yards-point{border-color:#b5e72b;background:#294121}
-.gp-h2h-root .gp-yards-range .gp-yards-point strong{color:#d1ff39}
-.gp-h2h-root .gp-yards-prob-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:13px 0 6px}
-.gp-h2h-root .gp-yards-prob{min-width:0}
-.gp-h2h-root .gp-yards-prob-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
-.gp-h2h-root .gp-yards-prob-head span{font-size:12px;font-weight:700;color:#e0eddf}
-.gp-h2h-root .gp-yards-prob-head strong{font:850 12px/1.3 ui-monospace,Consolas,monospace;color:#caff41;white-space:nowrap}
-.gp-h2h-root .gp-yards-prob-track{width:100%;height:10px;background:#294233;border-radius:20px;overflow:hidden;border:1px solid #53765c}
-.gp-h2h-root .gp-yards-prob-track>i{display:block;background:#c4fa36;height:100%;border-radius:20px}
-.gp-h2h-root .gp-yards-footnote{color:#b6d3bc!important;font-size:11px!important;line-height:1.55!important;margin:12px 0 0!important}
-.gp-h2h-root .gp-yards-limited{font-size:13px;line-height:1.5;background:#2a2b20;color:#eadfbd;border:1px solid #69654b;border-radius:8px;padding:12px;margin:0}
-.gp-h2h-root .gp-yards-title select:focus-visible{outline:3px solid #5ed4ff;outline-offset:2px}
+/* Historical averages lead; the chart keeps its full width between sections. */
+.gp-h2h-root .gp-yards-outlook{margin:12px 0 18px;padding:18px;border:1px solid #52795c;border-radius:12px;background:linear-gradient(150deg,#112c21,#0d211b);color:#eff9f1;min-width:0}
+.gp-h2h-root .gp-yards-title{display:flex;align-items:end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.gp-h2h-root .gp-yards-title h4{font:800 clamp(20px,2vw,25px)/1.2 system-ui,sans-serif;color:#f7fff8!important;margin:5px 0!important}
+.gp-h2h-root .gp-yards-title p:not(.gc-kicker){font-size:14px;line-height:1.45;color:#bfdbc5;margin:4px 0 0}
+.gp-h2h-root .gp-yards-title label{display:grid;gap:6px;min-width:170px;max-width:100%;color:#d1e5d4;font-weight:700;font-size:14px}
+.gp-h2h-root .gp-yards-title select{min-height:44px;max-width:100%;width:100%;padding:8px 30px 8px 10px;background:#203a2d;color:#eff9f1;border:1px solid #779784;border-radius:7px;font-size:16px}
+.gp-h2h-root .gp-yards-comparisons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 0}
+.gp-h2h-root .gp-yards-stat{display:flex;flex-direction:column;gap:7px;min-width:0;background:#12271e;border:1px solid #45664e;border-radius:9px;padding:13px}
+.gp-h2h-root .gp-yards-stat small{font-size:14px;font-weight:700;line-height:1.35;color:#d0e3d2}
+.gp-h2h-root .gp-yards-stat strong{font:800 clamp(26px,2.5vw,32px)/1.1 ui-monospace,Consolas,monospace;color:#e8fff0}
+.gp-h2h-root .gp-yards-stat span{color:#b5d0bb;font:400 12px/1.45 system-ui,sans-serif}
+.gp-h2h-root .gp-yards-support{margin:18px 0;padding:16px 18px;min-width:0;border:1px solid #365444;border-radius:10px;background:#102119;color:#d7e8dc}
+.gp-h2h-root .gp-yards-estimate-head,.gp-h2h-root .gp-yards-record-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.gp-h2h-root .gp-yards-estimate-head h4,.gp-h2h-root .gp-yards-record-head h5{font:700 16px/1.4 system-ui,sans-serif;color:#d7e8dc!important;margin:0!important}
+.gp-h2h-root .gp-yards-estimate-head>span,.gp-h2h-root .gp-yards-record-head>span{font-size:12px;line-height:1.5;color:#b4cbbb}
+.gp-h2h-root .gp-yards-range{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px;margin:14px 0 0}
+.gp-h2h-root .gp-yards-range>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.gp-h2h-root .gp-yards-range small{font:400 14px/1.4 system-ui,sans-serif;color:#b9cfbf}
+.gp-h2h-root .gp-yards-range strong{font:600 22px/1.2 ui-monospace,Consolas,monospace;color:#d8e7dc}
+.gp-h2h-root .gp-yards-model-record{border-top:1px solid #365444;margin-top:17px;padding-top:15px;min-width:0}
+.gp-h2h-root .gp-yards-record-label{font-size:12px!important;line-height:1.5!important;color:#b5cbbb!important;margin:5px 0 12px!important}
+.gp-h2h-root .gp-yards-record-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.gp-h2h-root .gp-yards-record-pair{min-width:0}
+.gp-h2h-root .gp-yards-record-pair>small{display:block;font-size:14px;color:#d1e0d6;line-height:1.4;font-weight:600}
+.gp-h2h-root .gp-yards-record-pair p{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:14px!important;line-height:1.6!important;margin:5px 0!important;color:#bacfc1!important}
+.gp-h2h-root .gp-yards-record-pair strong{font:600 15px/1.5 ui-monospace,Consolas,monospace;color:#e3eee6;white-space:nowrap}
+.gp-h2h-root .gp-yards-record-sample{font-size:12px;line-height:1.5;color:#adc7b5}
+.gp-h2h-root .gp-yards-footnote{color:#b6cebe!important;font-size:12px!important;line-height:1.55!important;margin:12px 0 0!important}
+.gp-h2h-root .gp-yards-limited{font-size:14px;line-height:1.5;background:#27291f;color:#e5dec6;border:1px solid #625f4a;border-radius:8px;padding:12px;margin:12px 0 0}
+.gp-h2h-root .gp-yards-method{margin-top:12px;font-size:12px;line-height:1.55;color:#b6cebe}
+.gp-h2h-root .gp-yards-method summary{min-height:32px;cursor:pointer;color:#c9decf}
+.gp-h2h-root .gp-yards-method p{font-size:12px!important;line-height:1.55!important;color:#b6cebe!important;margin:5px 0!important}
+.gp-h2h-root .gp-yards-title select:focus-visible,.gp-h2h-root .gp-yards-method summary:focus-visible{outline:3px solid #5ed4ff;outline-offset:2px}
 @media(max-width:750px){
- .gp-h2h-root .gp-yards-outlook{padding:13px 11px}
+ .gp-h2h-root .gp-yards-outlook,.gp-h2h-root .gp-yards-support{padding:14px 12px}
  .gp-h2h-root .gp-yards-comparisons{grid-template-columns:repeat(2,minmax(0,1fr))}
- .gp-h2h-root .gp-yards-prob-grid{grid-template-columns:1fr;gap:12px}
- .gp-h2h-root .gp-yards-range>div{padding:10px 5px}
- .gp-h2h-root .gp-yards-range strong{font-size:clamp(23px,5.5vw,32px)}
+ .gp-h2h-root .gp-yards-record-pairs{grid-template-columns:1fr;gap:13px}
+ .gp-h2h-root .gp-yards-stat{padding:11px}
+ .gp-h2h-root .gp-yards-range strong{font-size:20px}
 }
 @media(max-width:380px){
  .gp-h2h-root .gp-yards-title label{width:100%}
- .gp-h2h-root .gp-yards-prob-head{flex-wrap:wrap}
- .gp-h2h-root .gp-yards-stat{padding:9px}
+ .gp-h2h-root .gp-yards-range{gap:8px}
+ .gp-h2h-root .gp-yards-stat{padding:10px}
 }

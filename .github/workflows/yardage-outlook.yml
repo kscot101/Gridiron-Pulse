@@ -3,6 +3,13 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '35 11,19 * * *'
+  pull_request:
+    paths:
+      - '.github/workflows/yardage-outlook.yml'
+      - 'assets/player-yardage-outlook.*'
+      - 'assets/matchup-comparisons.js'
+      - 'data/yardage-model-record.json'
+      - 'scripts/check-yardage-outlook.js'
   push:
     branches: [main, feature/all-offense-yardage-outlook-20261119]
     paths:
@@ -12,6 +19,8 @@ on:
       - 'scripts/check-yardage-outlook.js'
       - 'assets/player-yardage-outlook.js'
       - 'assets/player-yardage-outlook.css'
+      - 'assets/matchup-comparisons.js'
+      - 'data/yardage-model-record.json'
 permissions:
   contents: write
 concurrency:
@@ -63,12 +72,13 @@ jobs:
       - name: Build full-history career and opponent yardage profiles
         run: |
           python scripts/build-yardage-outlook.py --season "$YARDAGE_SEASON"
-      - name: Test all offensive positions, percentages and mobile cards
+      - name: Test history, chart order, experimental estimates and mobile cards
         run: |
           npm install --no-save playwright
           npx playwright install --with-deps chromium
           node scripts/check-yardage-outlook.js
       - name: Commit only verified outlook data
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         shell: bash
         run: |
           set -euo pipefail

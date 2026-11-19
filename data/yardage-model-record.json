@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "yardage-opponent-form-v1",
+  "modelCommit": "673aebddc5f9aa47cea7c8109e3191ae702f720b",
+  "testedSeason": 2026,
+  "fromWeek": 1,
+  "throughWeek": 10,
+  "createdAt": "2026-11-19T21:00:11.292059+00:00",
+  "method": "historicalReplay",
+  "scope": "Published regular-season offensive statistical appearances; conditional on a recorded appearance. DNPs are not evaluated. The historical cohort does not use the present-day roster.",
+  "period": {
+    "from": "2026-09-09",
+    "through": "2026-11-16",
+    "games": 150
+  },
+  "latestWeek": {
+    "week": 10,
+    "from": "2026-11-12",
+    "through": "2026-11-16",
+    "games": 14
+  },
+  "calibrationYear": 2024,
+  "validationYear": 2025,
+  "calibration": {
+    "QB_passingYards": {
+      "bias": -9.7066,
+      "sigma": 88.4013
+    },
+    "QB_rushingYards": {
+      "bias": -1.3839,
+      "sigma": 15.3412
+    },
+    "RB_scrimmageYards": {
+      "bias": -0.2791,
+      "sigma": 30.6039
+    },
+    "RB_rushingYards": {
+      "bias": 0.0257,
+      "sigma": 26.1855
+    },
+    "RB_receivingYards": {
+      "bias": -0.3049,
+      "sigma": 12.3245
+    },
+    "WR_receivingYards": {
+      "bias": -1.2073,
+      "sigma": 27.2416
+    },
+    "WR_rushingYards": {
+      "bias": -0.3944,
+      "sigma": 2
+    },
+    "TE_receivingYards": {
+      "bias": -0.1127,
+      "sigma": 18.6182
+    }
+  },
+  "configuration": {
+    "baselineSeasonPriorGames": 6,
+    "recentWeight": 0.45,
+    "recentPriorGames": 5,
+    "opponentWeight": 0.35,
+    "opponentPriorGames": 3,
+    "h2hHalfLifeSeasons": 3,
+    "interval": 0.8
+  },
+  "categories": {
+    "QB_passingYards": {
+      "position": "QB",
+      "metric": "passingYards",
+      "all": {
+        "totalN": 351,
+        "scoredN": 334,
+        "withheldN": 17,
+        "missingActualN": 0,
+        "mae": 71.77791019088033,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7754491017964071,
+          "insideN": 259,
+          "n": 334,
+          "widthMean": 224.5376515327663
+        },
+        "comparisons": {
+          "season": {
+            "n": 275,
+            "modelMae": 68.0990567618254,
+            "baselineMae": 70.14806036363636,
+            "improvementYards": 2.0490036018109663
+          },
+          "last5": {
+            "n": 334,
+            "modelMae": 71.77791019088033,
+            "baselineMae": 70.87784431137725,
+            "improvementYards": -0.9000658795030887
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 36,
+        "scoredN": 32,
+        "withheldN": 4,
+        "missingActualN": 0,
+        "mae": 88.30923073608064,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.6875,
+          "insideN": 22,
+          "n": 32,
+          "widthMean": 225.30187239318286
+        },
+        "comparisons": {
+          "season": {
+            "n": 31,
+            "modelMae": 88.03111003401871,
+            "baselineMae": 73.18958064516129,
+            "improvementYards": -14.841529388857424
+          },
+          "last5": {
+            "n": 32,
+            "modelMae": 88.30923073608064,
+            "baselineMae": 80.93125,
+            "improvementYards": -7.37798073608063
+          }
+        }
+      }
+    },
+    "QB_rushingYards": {
+      "position": "QB",
+      "metric": "rushingYards",
+      "all": {
+        "totalN": 351,
+        "scoredN": 334,
+        "withheldN": 17,
+        "missingActualN": 0,
+        "mae": 11.984826055761712,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.8143712574850299,
+          "insideN": 272,
+          "n": 334,
+          "widthMean": 39.321077754665644
+        },
+        "comparisons": {
+          "season": {
+            "n": 275,
+            "modelMae": 11.855060748034154,
+            "baselineMae": 12.167469818181818,
+            "improvementYards": 0.3124090701476643
+          },
+          "last5": {
+            "n": 334,
+            "modelMae": 11.984826055761712,
+            "baselineMae": 12.001796407185628,
+            "improvementYards": 0.01697035142391634
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 36,
+        "scoredN": 32,
+        "withheldN": 4,
+        "missingActualN": 0,
+        "mae": 12.778684177008214,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.71875,
+          "insideN": 23,
+          "n": 32,
+          "widthMean": 39.321077754665644
+        },
+        "comparisons": {
+          "season": {
+            "n": 31,
+            "modelMae": 12.676753747234287,
+            "baselineMae": 9.870903225806451,
+            "improvementYards": -2.8058505214278355
+          },
+          "last5": {
+            "n": 32,
+            "modelMae": 12.778684177008214,
+            "baselineMae": 10.637500000000001,
+            "improvementYards": -2.1411841770082134
+          }
+        }
+      }
+    },
+    "RB_receivingYards": {
+      "position": "RB",
+      "metric": "receivingYards",
+      "all": {
+        "totalN": 891,
+        "scoredN": 783,
+        "withheldN": 108,
+        "missingActualN": 0,
+        "mae": 10.513958915026546,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7739463601532567,
+          "insideN": 606,
+          "n": 783,
+          "widthMean": 24.963029364962196
+        },
+        "comparisons": {
+          "season": {
+            "n": 664,
+            "modelMae": 10.694946036133421,
+            "baselineMae": 11.390243674698795,
+            "improvementYards": 0.6952976385653731
+          },
+          "last5": {
+            "n": 783,
+            "modelMae": 10.513958915026546,
+            "baselineMae": 10.835504469987228,
+            "improvementYards": 0.32154555496068227
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 83,
+        "scoredN": 77,
+        "withheldN": 6,
+        "missingActualN": 0,
+        "mae": 12.898845675099665,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7402597402597403,
+          "insideN": 57,
+          "n": 77,
+          "widthMean": 24.8102716264629
+        },
+        "comparisons": {
+          "season": {
+            "n": 76,
+            "modelMae": 13.003313480035187,
+            "baselineMae": 12.830386842105263,
+            "improvementYards": -0.17292663792992435
+          },
+          "last5": {
+            "n": 77,
+            "modelMae": 12.898845675099665,
+            "baselineMae": 13.251948051948052,
+            "improvementYards": 0.35310237684838697
+          }
+        }
+      }
+    },
+    "RB_rushingYards": {
+      "position": "RB",
+      "metric": "rushingYards",
+      "all": {
+        "totalN": 891,
+        "scoredN": 783,
+        "withheldN": 108,
+        "missingActualN": 0,
+        "mae": 19.88778477702698,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.8071519795657727,
+          "insideN": 632,
+          "n": 783,
+          "widthMean": 67.11613703913626
+        },
+        "comparisons": {
+          "season": {
+            "n": 664,
+            "modelMae": 20.4964415388181,
+            "baselineMae": 19.922299096385544,
+            "improvementYards": -0.5741424424325565
+          },
+          "last5": {
+            "n": 783,
+            "modelMae": 19.88778477702698,
+            "baselineMae": 19.86641123882503,
+            "improvementYards": -0.021373538201949316
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 83,
+        "scoredN": 77,
+        "withheldN": 6,
+        "missingActualN": 0,
+        "mae": 21.63343394141318,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7662337662337663,
+          "insideN": 59,
+          "n": 77,
+          "widthMean": 67.11613703913626
+        },
+        "comparisons": {
+          "season": {
+            "n": 76,
+            "modelMae": 21.86910553932651,
+            "baselineMae": 19.275680263157895,
+            "improvementYards": -2.5934252761686167
+          },
+          "last5": {
+            "n": 77,
+            "modelMae": 21.63343394141318,
+            "baselineMae": 19.942857142857143,
+            "improvementYards": -1.6905767985560374
+          }
+        }
+      }
+    },
+    "RB_scrimmageYards": {
+      "position": "RB",
+      "metric": "scrimmageYards",
+      "all": {
+        "totalN": 891,
+        "scoredN": 780,
+        "withheldN": 111,
+        "missingActualN": 0,
+        "mae": 24.25098601939423,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.8025641025641026,
+          "insideN": 626,
+          "n": 780,
+          "widthMean": 67.7428481487281
+        },
+        "comparisons": {
+          "season": {
+            "n": 662,
+            "modelMae": 24.822661495056312,
+            "baselineMae": 24.035554682779456,
+            "improvementYards": -0.787106812276857
+          },
+          "last5": {
+            "n": 780,
+            "modelMae": 24.25098601939423,
+            "baselineMae": 23.712820512820514,
+            "improvementYards": -0.5381655065737156
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 83,
+        "scoredN": 77,
+        "withheldN": 6,
+        "missingActualN": 0,
+        "mae": 28.132018658877506,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7142857142857143,
+          "insideN": 55,
+          "n": 77,
+          "widthMean": 67.80239540688349
+        },
+        "comparisons": {
+          "season": {
+            "n": 76,
+            "modelMae": 28.38794380570484,
+            "baselineMae": 26.474360526315788,
+            "improvementYards": -1.9135832793890515
+          },
+          "last5": {
+            "n": 77,
+            "modelMae": 28.132018658877506,
+            "baselineMae": 26.322077922077924,
+            "improvementYards": -1.8099407367995823
+          }
+        }
+      }
+    },
+    "TE_receivingYards": {
+      "position": "TE",
+      "metric": "receivingYards",
+      "all": {
+        "totalN": 759,
+        "scoredN": 664,
+        "withheldN": 95,
+        "missingActualN": 0,
+        "mae": 15.82815283022972,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7740963855421686,
+          "insideN": 514,
+          "n": 664,
+          "widthMean": 41.45090601797224
+        },
+        "comparisons": {
+          "season": {
+            "n": 565,
+            "modelMae": 16.136316156635335,
+            "baselineMae": 16.68026407079646,
+            "improvementYards": 0.5439479141611265
+          },
+          "last5": {
+            "n": 664,
+            "modelMae": 15.82815283022972,
+            "baselineMae": 15.851204819277108,
+            "improvementYards": 0.02305198904738681
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 72,
+        "scoredN": 66,
+        "withheldN": 6,
+        "missingActualN": 0,
+        "mae": 16.34247159614767,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7727272727272727,
+          "insideN": 51,
+          "n": 66,
+          "widthMean": 40.88317927460979
+        },
+        "comparisons": {
+          "season": {
+            "n": 66,
+            "modelMae": 16.34247159614767,
+            "baselineMae": 15.840486363636364,
+            "improvementYards": -0.5019852325113074
+          },
+          "last5": {
+            "n": 66,
+            "modelMae": 16.34247159614767,
+            "baselineMae": 16.133333333333333,
+            "improvementYards": -0.20913826281433856
+          }
+        }
+      }
+    },
+    "WR_receivingYards": {
+      "position": "WR",
+      "metric": "receivingYards",
+      "all": {
+        "totalN": 1395,
+        "scoredN": 1212,
+        "withheldN": 183,
+        "missingActualN": 0,
+        "mae": 22.356769771385267,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7813531353135313,
+          "insideN": 947,
+          "n": 1212,
+          "widthMean": 58.44563698321515
+        },
+        "comparisons": {
+          "season": {
+            "n": 1041,
+            "modelMae": 22.578233316897112,
+            "baselineMae": 23.052052257444764,
+            "improvementYards": 0.47381894054765183
+          },
+          "last5": {
+            "n": 1212,
+            "modelMae": 22.356769771385267,
+            "baselineMae": 21.97970297029703,
+            "improvementYards": -0.37706680108823676
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 130,
+        "scoredN": 118,
+        "withheldN": 12,
+        "missingActualN": 0,
+        "mae": 23.88963115113369,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.7457627118644068,
+          "insideN": 88,
+          "n": 118,
+          "widthMean": 57.503159495396396
+        },
+        "comparisons": {
+          "season": {
+            "n": 116,
+            "modelMae": 23.93644018443878,
+            "baselineMae": 23.32858275862069,
+            "improvementYards": -0.6078574258180893
+          },
+          "last5": {
+            "n": 118,
+            "modelMae": 23.88963115113369,
+            "baselineMae": 24.857627118644068,
+            "improvementYards": 0.9679959675103795
+          }
+        }
+      }
+    },
+    "WR_rushingYards": {
+      "position": "WR",
+      "metric": "rushingYards",
+      "all": {
+        "totalN": 1395,
+        "scoredN": 1212,
+        "withheldN": 183,
+        "missingActualN": 0,
+        "mae": 1.3174729681240491,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.8663366336633663,
+          "insideN": 1050,
+          "n": 1212,
+          "widthMean": 5.1262062621784015
+        },
+        "comparisons": {
+          "season": {
+            "n": 1041,
+            "modelMae": 1.3766659331315336,
+            "baselineMae": 1.3100805955811718,
+            "improvementYards": -0.06658533755036178
+          },
+          "last5": {
+            "n": 1212,
+            "modelMae": 1.3174729681240491,
+            "baselineMae": 1.3564356435643565,
+            "improvementYards": 0.038962675440307404
+          }
+        }
+      },
+      "latestWeek": {
+        "totalN": 130,
+        "scoredN": 118,
+        "withheldN": 12,
+        "missingActualN": 0,
+        "mae": 1.6392882802140059,
+        "range": {
+          "nominal": 0.8,
+          "coverage": 0.8728813559322034,
+          "insideN": 103,
+          "n": 118,
+          "widthMean": 5.1262062621784015
+        },
+        "comparisons": {
+          "season": {
+            "n": 116,
+            "modelMae": 1.6634268613509093,
+            "baselineMae": 1.700506896551724,
+            "improvementYards": 0.03708003520081471
+          },
+          "last5": {
+            "n": 118,
+            "modelMae": 1.6392882802140059,
+            "baselineMae": 1.7338983050847459,
+            "improvementYards": 0.09461002487074
+          }
+        }
+      }
+    }
+  },
+  "notes": [
+    "Reconstruction using the current model and historical inputs; not forecasts archived before kickoff.",
+    "Career, season, last-five and opponent inputs exclude the entire target week and every later week.",
+    "The formula, 2024 calibration and 2025 validation gates remain fixed. No model tuning used these 2026 replay results.",
+    "Historical source data may include later statistical corrections. Original feed availability is not reconstructed.",
+    "Every baseline comparison uses identical player-games where that baseline exists; n may differ between season and last-five comparisons.",
+    "Mean absolute error is measured in yards; lower is better. Positive improvementYards means the model error is lower than the baseline error.",
+    "Interval coverage is measured separately from probability calibration. The 80% interval is not a cap.",
+    "Multiple metrics for the same player are separate forecasts, not independent players."
+  ],
+  "provenance": {
+    "replayResultsSha256": "ffbaa7f335860a033c6723004e46bd2adb79e80a1ff5f9f6a43a4c15013f3a2f",
+    "asOfDate": "2026-11-19",
+    "sources": [
+      {
+        "name": "Frozen production forecast source",
+        "url": "https://github.com/kscot101/Gridiron-Pulse/blob/673aebddc5f9aa47cea7c8109e3191ae702f720b/assets/player-yardage-outlook.js"
+      },
+      {
+        "name": "Frozen historical feature definitions",
+        "url": "https://github.com/kscot101/Gridiron-Pulse/blob/673aebddc5f9aa47cea7c8109e3191ae702f720b/scripts/build-yardage-outlook.py"
+      },
+      {
+        "name": "Frozen model parameters",
+        "url": "https://github.com/kscot101/Gridiron-Pulse/blob/673aebddc5f9aa47cea7c8109e3191ae702f720b/data/player-yardage-outlook.json"
+      },
+      {
+        "name": "nflverse weekly player statistics",
+        "url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player",
+        "fromSeason": 1999,
+        "throughSeason": 2026
+      },
+      {
+        "name": "nflverse game schedule",
+        "url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      }
+    ]
+  }
+}
