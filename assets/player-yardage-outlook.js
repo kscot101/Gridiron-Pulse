@@ -50,7 +50,7 @@
     return matches.length===1?matches[0]:null;
   }
   function compute(metric, opponent, model){
-    if(!metric||!metric.career||!metric.career.n||!n(metric.career.value))return null;
+    if(!metric||!metric.career||!metric.career.n||n(metric.career.value)===null)return null;
     var prior=avg(metric.priorCareer),season=avg(metric.season),career=avg(metric.career);
     var currentN=(metric.season&&metric.season.n)||0;
     var last5=avg(metric.last5),recentN=(metric.last5&&metric.last5.n)||0;
@@ -89,7 +89,7 @@
   function probability(label,p){
     if(p===null||p===undefined)return '<div class="gp-yards-prob"><div class="gp-yards-prob-head"><span>'+esc(label)+'</span><strong>Unavailable</strong></div></div>';
     var val=Math.round(p*100);
-    return '<div class="gp-yards-prob"><div class="gp-yards-prob-head"><span>'+esc(label)+'</span><strong>'+val+'% above · '+(100-val)+'% below</strong></div>'+
+    return '<div class="gp-yards-prob"><div class="gp-yards-prob-head"><span>'+esc(label)+'</span><strong>'+val+'% above · '+(100-val)+'% at/below</strong></div>'+
       '<div class="gp-yards-prob-track" role="meter" aria-label="'+esc(label)+' chance above" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+val+'">'+
       '<i style="width:'+val+'%"></i></div></div>';
   }
@@ -105,7 +105,6 @@
     var prob=predict(result,calibrate,check,Boolean(code),fresh);
     var target=result&&result.h2h||null;
     var h2h=target&&target.raw||{value:null,n:0};
-    var status=result&&result.historyN>=5&&code&&fresh;
     var opts=options.map(function(x){return '<option value="'+esc(x[0])+'"'+(x[0]===chosen?' selected':'')+'>'+esc(x[1])+'</option>';}).join('');
     var historical=metrics&&metrics.career||{value:null,n:0};
     var s=metrics&&metrics.season||{value:null,n:0};
