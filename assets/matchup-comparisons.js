@@ -352,6 +352,8 @@
           markup+='<p class="gc-note">Some older H2H seasons could not be loaded. The H2H sample is partial.</p>';
         if(code)markup+='<a class="gc-page-link" href="team.html?team='+encodeURIComponent(code)+'">View full '+esc(code)+' defense profile ↗</a>';
         host.innerHTML=markup;
+        // The outlook is a shared profile feature, independent of daily picks.
+        if(root.GPYardageOutlook)root.GPYardageOutlook.mount(host,d,opponent);
         host.querySelectorAll('[data-gc-metric]').forEach(function(button){
           button.addEventListener('click',function(){
             pref.metric=button.dataset.gcMetric;paint();
