@@ -1,7 +1,7 @@
 {
   "version": "workload-trial-1",
-  "generatedAt": "2026-11-20T08:02:32.493433+00:00",
-  "analysisSourceGeneratedAt": "2026-11-20T00:58:07.736Z",
+  "generatedAt": "2026-11-20T08:32:13.714330+00:00",
+  "analysisSourceGeneratedAt": "2026-11-20T08:30:27.184Z",
   "season": 2026,
   "week": 11,
   "trialOnly": true,
@@ -9,11 +9,18 @@
   "newCaptures": 0,
   "baselineFresh": false,
   "warnings": [
-    "Current analysis failed freshness/slate validation. No new forecasts captured; existing records still evaluated.",
-    "No eligible upcoming players; existing forecasts will still be graded.",
     "Existing v2.1 feed stale or missing; no new v2.1 comparisons captured this run."
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "name": "Jacoby Brissett",
+      "reason": "Fewer than two usable same-team observations"
+    },
+    {
+      "name": "Cade Klubnik",
+      "reason": "Fewer than two usable same-team observations"
+    }
+  ],
   "calibration": {
     "version": "workload-trial-1",
     "parameters": {
