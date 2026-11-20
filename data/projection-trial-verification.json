@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-20T00:34:02.531Z",
+  "testedAt": "2026-11-20T00:59:50.230Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 534,
@@ -13,32 +13,47 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": false,
-      "analysisCurrent": false,
-      "mode": "unavailable",
-      "gamesCheckedAt": null,
-      "analysisGeneratedAt": "2026-11-19T18:42:09.702Z",
-      "modelRecordAsOf": "2026-11-19T18:42:09.702Z"
+      "available": true,
+      "analysisCurrent": true,
+      "mode": "agent",
+      "gamesCheckedAt": "2026-11-20T00:58:07.736Z",
+      "analysisGeneratedAt": "2026-11-20T00:58:07.736Z",
+      "modelRecordAsOf": "2026-11-20T00:58:07.736Z",
+      "scoreSource": "analysis-agent"
     },
-    "gameCount": 0,
+    "gameCount": 13,
     "forecastCount": 944,
-    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Nov 19, 1:42 PM"
+    "statusText": "2026 Regular Season - Week 11 | Game data checked Nov 19, 7:58 PM | Analysis generated Nov 19, 7:58 PM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
-      "expected": [],
-      "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "expected": [
+        "401873066|3917792|workload-trial-1",
+        "401873066|4242335|workload-trial-1",
+        "401873066|4258173|workload-trial-1",
+        "401873066|4432577|workload-trial-1",
+        "401873070|3918298|workload-trial-1",
+        "401873070|4242512|workload-trial-1"
+      ],
+      "actual": [
+        "401873066|3917792|workload-trial-1",
+        "401873066|4242335|workload-trial-1",
+        "401873066|4258173|workload-trial-1",
+        "401873066|4432577|workload-trial-1",
+        "401873070|3918298|workload-trial-1",
+        "401873070|4242512|workload-trial-1"
+      ],
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
       "expected": [],
       "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     }
   ],
