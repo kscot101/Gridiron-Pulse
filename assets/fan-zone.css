@@ -1,0 +1,39 @@
+/* Homepage Fan Zone: opt-in, browser-local interactions. */
+.gp-fan-zone{background:#0b1711;color:#f6f9ef;border-top:1px solid rgba(201,255,50,.18);border-bottom:1px solid rgba(255,255,255,.10);padding:62px 0 70px}
+.gp-fan-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:24px}
+.gp-fan-heading h2{font:400 clamp(44px,6vw,76px)/.94 var(--display,Impact,sans-serif);letter-spacing:.005em;text-transform:uppercase;margin:0}
+.gp-fan-heading p{max-width:390px;line-height:1.6;color:#b6c7b8;margin:0}
+.gp-fan-heading .eyebrow{color:#c9ff32}
+.gp-fan-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;align-items:stretch}
+.gp-fan-card{min-width:0;padding:24px;background:linear-gradient(150deg,rgba(255,255,255,.065),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.14);border-radius:18px;display:flex;flex-direction:column;gap:0}
+.gp-fan-card:first-child{border-color:rgba(201,255,50,.36);background:linear-gradient(145deg,rgba(201,255,50,.10),rgba(255,255,255,.02) 68%)}
+.gp-fan-card h3{font:400 clamp(28px,3vw,39px)/1.04 var(--display,Impact,sans-serif);text-transform:uppercase;margin:11px 0 12px;color:#f7ffec}
+.gp-fan-topline{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.gp-fan-card-kicker{color:#c9ff32;font:800 11px/1.2 var(--mono,monospace);letter-spacing:.1em;margin:0}
+.gp-fan-saved,.gp-fan-micro{color:#b9c9bc;font:700 11px/1.5 var(--mono,monospace)}
+.gp-fan-card-copy{color:#c4d1c5;line-height:1.55;font-size:14px;margin:4px 0 20px}
+.gp-fan-field-label{color:#d9e9d7;font-size:12px;font-weight:800;display:block;margin:9px 0 7px}
+.gp-fan-select{display:block;width:100%;max-width:100%;min-height:44px;background:#1d2d21;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:8px 11px;font-size:13px;cursor:pointer}
+.gp-fan-select option{color:#07110d;background:#fff}
+.gp-fan-kickoff{margin:12px 0;font-size:12px;font-weight:800;color:#b7c9b9}
+.gp-call-matchup{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:7px;align-items:center}
+.gp-call-choice{min-height:118px;min-width:0;border:1px solid rgba(255,255,255,.24);border-radius:12px;background:rgba(0,0,0,.17);color:#fff;cursor:pointer;display:flex;align-items:flex-start;flex-direction:column;text-align:left;padding:13px;gap:11px}
+.gp-call-choice strong{font-size:15px;line-height:1.25;overflow-wrap:anywhere}
+.gp-call-choice:hover,.gp-call-choice:focus-visible{border-color:#c9ff32}
+.gp-call-choice.is-picked{border-color:#c9ff32;box-shadow:0 0 0 1px #c9ff32;background:rgba(201,255,50,.10)}
+.gp-call-role{color:#a8bca9;font-size:10px;font-weight:800;letter-spacing:.08em}
+.gp-call-indicator{font-size:11px;font-weight:800;color:#c9ff32;margin-top:auto}
+.gp-call-versus{color:#b1bfb3;text-align:center;font:800 11px/1 var(--mono,monospace)}
+.gp-fan-card-foot{margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#b8c7ba;font-size:11px;line-height:1.45}
+.gp-fan-link{color:#c9ff32;font-size:12px;font-weight:800;white-space:nowrap;text-decoration:none;cursor:pointer;background:none;border:0;padding:0}
+.gp-fan-link:hover{text-decoration:underline}
+.gp-fan-action{min-height:47px;border:1px solid #c9ff32;border-radius:10px;color:#07110d;background:#c9ff32;font-weight:900;cursor:pointer;padding:10px 12px;margin-top:14px}
+.gp-fan-action:disabled{cursor:not-allowed;opacity:.5}
+.gp-fan-focus-actions{display:grid;gap:8px;margin-top:auto}
+.gp-fan-focus-actions button{display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;min-height:49px;background:#1b2c21;color:#f8fff5;border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:10px 13px;font-size:13px;font-weight:800;cursor:pointer}
+.gp-fan-focus-actions button:hover,.gp-fan-focus-actions button:focus-visible{border-color:#c9ff32}
+.gp-fan-focus-actions b{color:#c9ff32}
+.gp-fan-zone :is(button,select,a):focus-visible{outline:2px solid #c9ff32;outline-offset:3px}
+@media(max-width:1120px){.gp-fan-grid{grid-template-columns:1fr 1fr}.gp-fan-card:first-child{grid-row:span 2}.gp-fan-heading{align-items:flex-start}}
+@media(max-width:720px){.gp-fan-zone{padding:46px 0}.gp-fan-heading{display:block}.gp-fan-heading p{margin-top:16px}.gp-fan-grid{grid-template-columns:1fr}.gp-fan-card:first-child{grid-row:auto}.gp-fan-card{padding:22px}.gp-fan-card-foot{flex-wrap:wrap}.gp-call-choice{min-height:110px}}
+@media(prefers-reduced-motion:reduce){.gp-fan-zone *{scroll-behavior:auto}}
