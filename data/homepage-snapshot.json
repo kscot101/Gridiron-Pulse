@@ -1,9 +1,9 @@
 {
   "ok": true,
   "snapshot": {
-    "id": "2026-2-11-2026-11-24T18:14:16.926Z",
+    "id": "2026-2-11-2026-11-25T02:45:51.580Z",
     "version": "1.4.0",
-    "generatedAt": "2026-11-24T18:14:16.926Z",
+    "generatedAt": "2026-11-25T02:45:51.580Z",
     "mode": "postgame",
     "season": {
       "year": 2026,
@@ -29,7 +29,7 @@
       "availabilityCount": 0,
       "availabilityConcernCount": 0,
       "availabilityImpactCount": 0,
-      "generationMs": 7078
+      "generationMs": 3826
     },
     "refresh": {
       "recommendedBrowserSeconds": 300,
@@ -2770,6 +2770,15 @@
             "details": "Concussion"
           },
           {
+            "athleteId": "4685324",
+            "name": "Caden Curry",
+            "team": "IND",
+            "teamId": "11",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4362580",
             "name": "Bernhard Raimann",
             "team": "IND",
@@ -2799,15 +2808,6 @@
           {
             "athleteId": "4037361",
             "name": "Charvarius Ward",
-            "team": "IND",
-            "teamId": "11",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4362523",
-            "name": "Will Mallory",
             "team": "IND",
             "teamId": "11",
             "status": "Questionable",
@@ -5579,6 +5579,24 @@
         },
         "injuries": [
           {
+            "athleteId": "4379778",
+            "name": "Christian Benford",
+            "team": "BUF",
+            "teamId": "2",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4385690",
+            "name": "Dalton Kincaid",
+            "team": "BUF",
+            "teamId": "2",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "4684527",
             "name": "T.J. Sanders",
             "team": "BUF",
@@ -5597,31 +5615,13 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4362506",
-            "name": "Greg Rousseau",
-            "team": "BUF",
-            "teamId": "2",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Back"
-          },
-          {
-            "athleteId": "4379778",
-            "name": "Christian Benford",
+            "athleteId": "4428696",
+            "name": "O'Cyrus Torrence",
             "team": "BUF",
             "teamId": "2",
             "status": "Questionable",
             "type": "questionable",
             "details": "Not Specified"
-          },
-          {
-            "athleteId": "4036060",
-            "name": "Damar Hamlin",
-            "team": "BUF",
-            "teamId": "2",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Toe"
           },
           {
             "athleteId": "4567225",
@@ -8401,13 +8401,13 @@
         },
         "injuries": [
           {
-            "athleteId": "4361093",
-            "name": "Kyler Gordon",
+            "athleteId": "4242402",
+            "name": "Elijah Hicks",
             "team": "CHI",
             "teamId": "3",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
+            "status": "Out",
+            "type": "out",
+            "details": "Concussion"
           },
           {
             "athleteId": "4426386",
@@ -8419,8 +8419,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "5125873",
-            "name": "Theo Benedet",
+            "athleteId": "4361093",
+            "name": "Kyler Gordon",
             "team": "CHI",
             "teamId": "3",
             "status": "Questionable",
@@ -11253,30 +11253,12 @@
         },
         "injuries": [
           {
-            "athleteId": "3929850",
-            "name": "P.J. Locke",
+            "athleteId": "4702577",
+            "name": "Devin Moore",
             "team": "DAL",
             "teamId": "6",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Concussion"
-          },
-          {
-            "athleteId": "4426485",
-            "name": "Jonathan Mingo",
-            "team": "DAL",
-            "teamId": "6",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4685266",
-            "name": "Jaishawn Barham",
-            "team": "DAL",
-            "teamId": "6",
-            "status": "Questionable",
-            "type": "questionable",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
             "details": "Not Specified"
           },
           {
@@ -11289,12 +11271,30 @@
             "details": "Bruise"
           },
           {
-            "athleteId": "4242355",
-            "name": "Jake Ferguson",
+            "athleteId": "4426485",
+            "name": "Jonathan Mingo",
             "team": "DAL",
             "teamId": "6",
             "status": "Questionable",
             "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "3929850",
+            "name": "P.J. Locke",
+            "team": "DAL",
+            "teamId": "6",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Concussion"
+          },
+          {
+            "athleteId": "4242355",
+            "name": "Jake Ferguson",
+            "team": "DAL",
+            "teamId": "6",
+            "status": "Doubtful",
+            "type": "doubtful",
             "details": "Not Specified"
           },
           {
@@ -13912,6 +13912,24 @@
         },
         "injuries": [
           {
+            "athleteId": "3045463",
+            "name": "Chuck Clark",
+            "team": "DET",
+            "teamId": "8",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "5103940",
+            "name": "Skyler Gill-Howard",
+            "team": "DET",
+            "teamId": "8",
+            "status": "Out",
+            "type": "out",
+            "details": "Surgery"
+          },
+          {
             "athleteId": "4566092",
             "name": "Ennis Rakestraw Jr.",
             "team": "DET",
@@ -13930,31 +13948,13 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "3045463",
-            "name": "Chuck Clark",
+            "athleteId": "4361788",
+            "name": "Cade Mays",
             "team": "DET",
             "teamId": "8",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "5103940",
-            "name": "Skyler Gill-Howard",
-            "team": "DET",
-            "teamId": "8",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4430027",
-            "name": "Sam LaPorta",
-            "team": "DET",
-            "teamId": "8",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Sprain"
           },
           {
             "athleteId": "4034790",
@@ -16595,24 +16595,6 @@
             "details": "Concussion"
           },
           {
-            "athleteId": "4043041",
-            "name": "Jaylon Moore",
-            "team": "KC",
-            "teamId": "12",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4240472",
-            "name": "Noah Gray",
-            "team": "KC",
-            "teamId": "12",
-            "status": "Questionable",
-            "type": "questionable",
-            "details": "Not Specified"
-          },
-          {
             "athleteId": "4567048",
             "name": "Kenneth Walker III",
             "team": "KC",
@@ -16626,9 +16608,27 @@
             "name": "Ben VanSumeren",
             "team": "KC",
             "teamId": "12",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Sprain"
+          },
+          {
+            "athleteId": "4043041",
+            "name": "Jaylon Moore",
+            "team": "KC",
+            "teamId": "12",
             "status": "Questionable",
             "type": "questionable",
-            "details": "Sprain"
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4591008",
+            "name": "Omarr Norman-Lott",
+            "team": "KC",
+            "teamId": "12",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
           },
           {
             "athleteId": "4367199",
@@ -19360,8 +19360,17 @@
         },
         "injuries": [
           {
-            "athleteId": "4431573",
-            "name": "Smael Mondon Jr.",
+            "athleteId": "4257591",
+            "name": "Arnold Ebiketie",
+            "team": "PHI",
+            "teamId": "21",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4686273",
+            "name": "Quinyon Mitchell",
             "team": "PHI",
             "teamId": "21",
             "status": "Questionable",
@@ -19378,8 +19387,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4685201",
-            "name": "Tanner McKee",
+            "athleteId": "4431573",
+            "name": "Smael Mondon Jr.",
             "team": "PHI",
             "teamId": "21",
             "status": "Questionable",
@@ -19396,17 +19405,26 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4257591",
-            "name": "Arnold Ebiketie",
-            "team": "PHI",
-            "teamId": "21",
-            "status": "Questionable",
-            "type": "questionable",
+            "athleteId": "4431258",
+            "name": "Gennings Dunker",
+            "team": "PIT",
+            "teamId": "23",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
             "details": "Not Specified"
           },
           {
             "athleteId": "4429164",
             "name": "Nick Herbig",
+            "team": "PIT",
+            "teamId": "23",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4035656",
+            "name": "Ben Skowronek",
             "team": "PIT",
             "teamId": "23",
             "status": "Questionable",
@@ -19430,24 +19448,6 @@
             "status": "Doubtful",
             "type": "doubtful",
             "details": "Not Specified"
-          },
-          {
-            "athleteId": "4431258",
-            "name": "Gennings Dunker",
-            "team": "PIT",
-            "teamId": "23",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4368304",
-            "name": "Mason McCormick",
-            "team": "PIT",
-            "teamId": "23",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Dislocated"
           }
         ],
         "drives": [
@@ -22129,6 +22129,15 @@
         },
         "injuries": [
           {
+            "athleteId": "4256062",
+            "name": "Brady Christensen",
+            "team": "CAR",
+            "teamId": "29",
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Not Specified"
+          },
+          {
             "athleteId": "3117253",
             "name": "Bobby Okereke",
             "team": "CAR",
@@ -22145,15 +22154,6 @@
             "status": "Injured Reserve",
             "type": "Injured Reserve",
             "details": "Strain"
-          },
-          {
-            "athleteId": "4256062",
-            "name": "Brady Christensen",
-            "team": "CAR",
-            "teamId": "29",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
           },
           {
             "athleteId": "4035462",
@@ -27542,8 +27542,8 @@
         },
         "injuries": [
           {
-            "athleteId": "4039059",
-            "name": "Brandon Jones",
+            "athleteId": "4603189",
+            "name": "Sai'vion Jones",
             "team": "DEN",
             "teamId": "7",
             "status": "Questionable",
@@ -27551,26 +27551,8 @@
             "details": "Not Specified"
           },
           {
-            "athleteId": "4432208",
-            "name": "Caleb Lohner",
-            "team": "DEN",
-            "teamId": "7",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Surgery"
-          },
-          {
-            "athleteId": "4066109",
-            "name": "Eyioma Uwazurike",
-            "team": "DEN",
-            "teamId": "7",
-            "status": "Injured Reserve",
-            "type": "Injured Reserve",
-            "details": "Not Specified"
-          },
-          {
-            "athleteId": "4568490",
-            "name": "RJ Harvey",
+            "athleteId": "4687592",
+            "name": "Jonah Elliss",
             "team": "DEN",
             "teamId": "7",
             "status": "Injured Reserve",
@@ -27585,6 +27567,24 @@
             "status": "Injured Reserve",
             "type": "Injured Reserve",
             "details": "Fracture"
+          },
+          {
+            "athleteId": "4039007",
+            "name": "Taylor Rapp",
+            "team": "DEN",
+            "teamId": "7",
+            "status": "Questionable",
+            "type": "questionable",
+            "details": "Not Specified"
+          },
+          {
+            "athleteId": "4241985",
+            "name": "J.K. Dobbins",
+            "team": "DEN",
+            "teamId": "7",
+            "status": "Out",
+            "type": "out",
+            "details": "Not Specified"
           },
           {
             "athleteId": "4429109",
@@ -30527,9 +30527,9 @@
             "name": "Greg Newsome II",
             "team": "NYG",
             "teamId": "19",
-            "status": "Out",
-            "type": "out",
-            "details": "Sprain"
+            "status": "Injured Reserve",
+            "type": "Injured Reserve",
+            "details": "Surgery"
           },
           {
             "athleteId": "4360516",
@@ -48061,7 +48061,7 @@
     "powerRankings": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-11-24T18:14:16.926Z",
+      "generatedAt": "2026-11-25T02:45:51.580Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonWeek": 11,
@@ -76546,7 +76546,7 @@
     "modelPerformance": {
       "available": true,
       "status": "ACTIVE",
-      "generatedAt": "2026-11-24T18:14:16.926Z",
+      "generatedAt": "2026-11-25T02:45:51.580Z",
       "seasonYear": 2026,
       "seasonType": 2,
       "seasonTypeName": "Regular Season",
@@ -76815,7 +76815,7 @@
           "actual": "144 pass yds \u00b7 0 pass TD \u00b7 3 rush yds",
           "finalScore": "IND 3 \u00b7 HOU 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873066|hou|c.j. stroud|qb impact",
@@ -76833,7 +76833,7 @@
           "actual": "194 pass yds \u00b7 3 pass TD \u00b7 27 rush yds",
           "finalScore": "IND 3 \u00b7 HOU 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873066|ind|jonathan taylor|team star",
@@ -76851,7 +76851,7 @@
           "actual": "27 scrimmage yds \u00b7 0 TD",
           "finalScore": "IND 3 \u00b7 HOU 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873066|hou|nico collins|team star",
@@ -76869,7 +76869,7 @@
           "actual": "58 scrimmage yds \u00b7 1 TD",
           "finalScore": "IND 3 \u00b7 HOU 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873072|det|jared goff|qb impact",
@@ -76887,7 +76887,7 @@
           "actual": "279 pass yds \u00b7 2 pass TD \u00b7 12 rush yds",
           "finalScore": "TB 21 \u00b7 DET 31",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873072|tb|bucky irving|team star",
@@ -76905,7 +76905,7 @@
           "actual": "100 scrimmage yds \u00b7 1 TD",
           "finalScore": "TB 21 \u00b7 DET 31",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873072|det|jahmyr gibbs|team star",
@@ -76923,7 +76923,7 @@
           "actual": "118 scrimmage yds \u00b7 2 TD",
           "finalScore": "TB 21 \u00b7 DET 31",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873076|pit|aaron rodgers|qb impact",
@@ -76941,7 +76941,7 @@
           "actual": "227 pass yds \u00b7 1 pass TD \u00b7 29 rush yds",
           "finalScore": "PIT 16 \u00b7 PHI 19",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873076|phi|tanner mckee|qb impact",
@@ -76959,7 +76959,7 @@
           "actual": "Player line unavailable",
           "finalScore": "PIT 16 \u00b7 PHI 19",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873076|pit|jaylen warren|team star",
@@ -76977,7 +76977,7 @@
           "actual": "29 scrimmage yds \u00b7 0 TD",
           "finalScore": "PIT 16 \u00b7 PHI 19",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873076|phi|makai lemon|team star",
@@ -76995,7 +76995,7 @@
           "actual": "Player line unavailable",
           "finalScore": "PIT 16 \u00b7 PHI 19",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873070|mia|malik willis|qb impact",
@@ -77013,7 +77013,7 @@
           "actual": "Player line unavailable",
           "finalScore": "MIA 9 \u00b7 BUF 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873070|buf|josh allen|qb impact",
@@ -77031,7 +77031,7 @@
           "actual": "304 pass yds \u00b7 1 pass TD",
           "finalScore": "MIA 9 \u00b7 BUF 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873070|mia|jalen tolbert|team star",
@@ -77049,7 +77049,7 @@
           "actual": "17 scrimmage yds \u00b7 0 TD",
           "finalScore": "MIA 9 \u00b7 BUF 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873070|buf|james cook iii|team star",
@@ -77067,7 +77067,7 @@
           "actual": "92 scrimmage yds \u00b7 1 TD",
           "finalScore": "MIA 9 \u00b7 BUF 26",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873071|no|tyler shough|qb impact",
@@ -77085,7 +77085,7 @@
           "actual": "222 pass yds \u00b7 1 pass TD \u00b7 34 rush yds",
           "finalScore": "NO 13 \u00b7 CHI 21",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873071|chi|caleb williams|qb impact",
@@ -77103,7 +77103,7 @@
           "actual": "181 pass yds \u00b7 2 pass TD \u00b7 11 rush yds",
           "finalScore": "NO 13 \u00b7 CHI 21",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873071|no|chris olave|team star",
@@ -77121,7 +77121,7 @@
           "actual": "102 scrimmage yds \u00b7 0 TD",
           "finalScore": "NO 13 \u00b7 CHI 21",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873071|chi|d'andre swift|team star",
@@ -77139,7 +77139,7 @@
           "actual": "59 scrimmage yds \u00b7 1 TD",
           "finalScore": "NO 13 \u00b7 CHI 21",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873073|ten|cam ward|qb impact",
@@ -77157,7 +77157,7 @@
           "actual": "248 pass yds \u00b7 2 pass TD \u00b7 3 rush yds",
           "finalScore": "TEN 30 \u00b7 DAL 51",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873073|dal|dak prescott|qb impact",
@@ -77175,7 +77175,7 @@
           "actual": "325 pass yds \u00b7 4 pass TD \u00b7 9 rush yds",
           "finalScore": "TEN 30 \u00b7 DAL 51",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873073|ten|tony pollard|team star",
@@ -77193,7 +77193,7 @@
           "actual": "110 scrimmage yds \u00b7 0 TD",
           "finalScore": "TEN 30 \u00b7 DAL 51",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873073|dal|ceedee lamb|team star",
@@ -77211,7 +77211,7 @@
           "actual": "132 scrimmage yds \u00b7 1 TD",
           "finalScore": "TEN 30 \u00b7 DAL 51",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         },
         {
           "id": "401873067|kc|patrick mahomes|qb impact",
@@ -77229,7 +77229,7 @@
           "actual": "324 pass yds \u00b7 3 pass TD",
           "finalScore": "ARI 7 \u00b7 KC 34",
           "lockedBeforeKickoff": true,
-          "updatedAt": "2026-11-24T18:14:16.926Z"
+          "updatedAt": "2026-11-25T02:45:51.580Z"
         }
       ],
       "message": "296-188 across 484 graded pregame Player Edge calls.",
@@ -77249,7 +77249,7 @@
     "availability": {
       "available": false,
       "status": "CLEAR",
-      "updatedAt": "2026-11-24T18:14:16.926Z",
+      "updatedAt": "2026-11-25T02:45:51.580Z",
       "count": 0,
       "concernCount": 0,
       "impactCount": 0,
