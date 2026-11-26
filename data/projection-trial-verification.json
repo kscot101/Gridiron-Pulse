@@ -1,8 +1,8 @@
 {
-  "testedAt": "2026-11-26T04:04:11.073Z",
+  "testedAt": "2026-11-26T04:13:18.754Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
-  "trialForecasts": 597,
+  "trialForecasts": 598,
   "baselineForecasts": 446,
   "noBackfill": true,
   "positionFilter": true,
@@ -13,32 +13,47 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": false,
-      "analysisCurrent": false,
-      "mode": "unavailable",
-      "gamesCheckedAt": null,
-      "analysisGeneratedAt": "2026-11-25T22:03:04.892Z",
-      "modelRecordAsOf": "2026-11-25T22:03:04.892Z"
+      "available": true,
+      "analysisCurrent": true,
+      "mode": "agent",
+      "gamesCheckedAt": "2026-11-26T04:11:03.128Z",
+      "analysisGeneratedAt": "2026-11-26T04:11:03.128Z",
+      "modelRecordAsOf": "2026-11-26T04:11:03.128Z",
+      "scoreSource": "analysis-agent"
     },
-    "gameCount": 0,
-    "forecastCount": 1043,
-    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Nov 25, 5:03 PM"
+    "gameCount": 16,
+    "forecastCount": 1044,
+    "statusText": "2026 Regular Season - Week 12 | Game data checked Nov 25, 11:11 PM | Analysis generated Nov 25, 11:11 PM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
-      "expected": [],
-      "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "expected": [
+        "401873079|12483|workload-trial-1",
+        "401873079|4036378|workload-trial-1",
+        "401873079|4248528|workload-trial-1",
+        "401873079|4430737|workload-trial-1",
+        "401873081|3046779|workload-trial-1",
+        "401873081|4431611|workload-trial-1"
+      ],
+      "actual": [
+        "401873079|12483|workload-trial-1",
+        "401873079|4036378|workload-trial-1",
+        "401873079|4248528|workload-trial-1",
+        "401873079|4430737|workload-trial-1",
+        "401873081|3046779|workload-trial-1",
+        "401873081|4431611|workload-trial-1"
+      ],
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
       "expected": [],
       "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     }
   ],
