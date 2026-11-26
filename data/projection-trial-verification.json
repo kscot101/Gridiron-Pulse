@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-26T09:41:11.889Z",
+  "testedAt": "2026-11-26T13:55:13.724Z",
   "version": "trial-verifier-20261007",
   "mode": "Saved-data UI checks and live homepage diagnostics; isolated unavailable/stale fixtures tested separately",
   "trialForecasts": 598,
@@ -13,32 +13,45 @@
   "trialMobileOverflow": false,
   "homepage": {
     "feedStatus": {
-      "available": false,
-      "analysisCurrent": false,
-      "mode": "unavailable",
-      "gamesCheckedAt": null,
-      "analysisGeneratedAt": "2026-11-26T04:11:03.128Z",
-      "modelRecordAsOf": "2026-11-26T04:11:03.128Z"
+      "available": true,
+      "analysisCurrent": true,
+      "mode": "agent",
+      "gamesCheckedAt": "2026-11-26T13:53:03.143Z",
+      "analysisGeneratedAt": "2026-11-26T13:53:03.143Z",
+      "modelRecordAsOf": "2026-11-26T13:53:03.143Z",
+      "scoreSource": "analysis-agent"
     },
-    "gameCount": 0,
+    "gameCount": 16,
     "forecastCount": 1044,
-    "statusText": "Game schedule source unavailable | Player Edge awaiting refresh; last analysis Nov 25, 11:11 PM"
+    "statusText": "2026 Regular Season - Week 12 | Game data checked Nov 26, 8:53 AM | Analysis generated Nov 26, 8:53 AM"
   },
   "homepageModes": [
     {
       "model": "workload-trial-1",
-      "expected": [],
-      "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "expected": [
+        "401873080|2577417|workload-trial-1",
+        "401873080|4360698|workload-trial-1",
+        "401873081|3046779|workload-trial-1",
+        "401873081|4429795|workload-trial-1",
+        "401873081|4431611|workload-trial-1"
+      ],
+      "actual": [
+        "401873080|2577417|workload-trial-1",
+        "401873080|4360698|workload-trial-1",
+        "401873081|3046779|workload-trial-1",
+        "401873081|4429795|workload-trial-1",
+        "401873081|4431611|workload-trial-1"
+      ],
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     },
     {
       "model": "v2.1-tracked-1",
       "expected": [],
       "actual": [],
-      "edgeCards": 0,
-      "analysisCurrent": false,
+      "edgeCards": 6,
+      "analysisCurrent": true,
       "values": true
     }
   ],
